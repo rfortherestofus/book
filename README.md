@@ -1,1 +1,1 @@
-# book
+# R for the Rest of Us: A Statistics-Free Introduction
