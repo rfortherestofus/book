@@ -4,13 +4,13 @@ on:
     pull_request:
       branches: main
   
-  name: Render and deploy Book to Netlify
+name: Render and deploy Book to Netlify
   
-  env:
+env:
     isExtPR: ${{ github.event.pull_request.head.repo.fork == true }}
     RUST_BACKTRACE: 1
   
-  jobs:
+jobs:
     build-deploy:
       runs-on: ubuntu-latest
       env:
