@@ -1,0 +1,61 @@
+project:
+  type: book
+
+book:
+  title: "R for the Rest of Us: A Statistics-Free Introduction"
+
+  page-footer:
+    left: |
+      R for the Rest of Us: A Statistics-Free Introduction
+    right: |
+      This book can be purchased from No Starch Press.
+  
+  # sidebar:
+    # logo: assets/cover.jpg
+    # style: "docked"
+    # background: "white"
+    # border: false
+    # alignment: "center"
+
+  cover-image: assets/cover.jpg
+  favicon: assets/cover.jpg
+  site-url: https://book.rfortherestofus.com/
+
+  chapters:
+    - index.qmd
+    - introduction.qmd
+
+    - part: "Part I: Visualizations"
+      chapters:
+        - crash-course.qmd
+        - data-viz.qmd
+        - custom-theme.qmd
+        - maps.qmd
+        - tables.qmd
+
+    - part: "Part II: Reports, Presentations, and Websites"
+      chapters:
+        - rmarkdown.qmd
+        - parameterized-reporting.qmd
+        - presentations.qmd
+        - websites.qmd
+        - quarto.qmd
+
+    - part: "Part III: Automation and Collaboration"
+      chapters:
+        - accessing-data.qmd
+        - packages.qmd
+
+format:
+  html:
+    page-layout: full
+    theme: cosmo
+    css: style.css
+    code-link: true
+    number-depth: 0
+    grid:
+      sidebar-width: 350px
+
+    author-meta: "David Keyes"
+    include-in-header: "fathom.html"
+    callout-appearance: simple
