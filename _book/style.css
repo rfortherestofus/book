@@ -1,3 +1,7 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap');
@@ -21,9 +25,16 @@ p.caption {
   color: #777;
   margin-top: 10px;
 }
-p code {
+
+code {
+  color: red;
+  background-color: white;
+}
+
+/* p code {
   white-space: inherit;
 }
+
 pre {
   font-family: "IBM Plex Mono", mono;
   word-break: normal;
@@ -84,4 +95,4 @@ blockquote {
     padding-left: 1.5rem;
     margin-left: -0.5rem;
     font-style: italic;
-}
+} */

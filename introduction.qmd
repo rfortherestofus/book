@@ -1,34 +1,32 @@
-# Introduction
+# Introduction {.unnumbered}
 
-In early 2020, as the world struggled to contain the spread of COVID-19, one
-country succeeded where others did not: New Zealand. There are many reasons New Zealand was able to tackle COVID-19. One was the
-R programming language (yes, really).
+In early 2020, as the world struggled to contain the spread of COVID-19, one country succeeded where others did not: New Zealand. There are many reasons New Zealand was able to tackle COVID-19. One was the R programming language (yes, really).
 
 This humble tool for data analysis helped New Zealand fight COVID-19 by enabling a Ministry of Health team to generate daily reports on cases throughout New Zealand. Based on the information in these reports, officials were able to develop policies that kept the country largely free of COVID-19. The team was small, however, so producing the reports every day with a tool like Excel wouldn’t have been feasible. As team leader Chris Knox told me, “Trying to do what we did in a point-and-click environment is not possible.”
+
 Instead, a few staff members wrote R code that they could run every day to produce updated reports. These reports did not involve any complicated statistics; they were literally counts of COVID-19 cases. Their value came from everything else that R can do: data analysis and visualization, report creation, and workflow automation.
 
 This book explores the many ways that people use R to communicate and automate tasks. You’ll learn how to do the following:
 
 - Make professional-quality data visualizations, maps, and tables
-- Replace a clunky multi-tool workflow to create reports with R
-Markdown
+- Replace a clunky multi-tool workflow to create reports with R Markdown
 - Use parameterized reporting to generate multiple reports at once
 - Produce slideshow presentations and websites using R Markdown
 - Automate the process of importing online data from Google Sheets and the US Census Bureau
 - Create your own functions to automate tasks you do repeatedly
 - Bundle your functions into a package that you can share with others
 
-Best of all, you’ll do all of this without performing any statistical analysis more complex than calculating averages
+Best of all, you’ll do all of this without performing any statistical analysis more complex than calculating averages.
 
 ## Isn’t R Just for Statistical Analysis?
 
-Many people think of R as simply a tool for hardcore statistical analysis, but it can do much more than manipulate numerical values. After all, every R user must illuminate their findings and communicate their results some- how, whether that’s via data visualizations, reports, websites, or presenta- tions. Also, the more you use R, the more you’ll find yourself wanting to automate tasks you currently do manually.
+Many people think of R as simply a tool for hardcore statistical analysis, but it can do much more than manipulate numerical values. After all, every R user must illuminate their findings and communicate their results somehow, whether that’s via data visualizations, reports, websites, or presentations. Also, the more you use R, the more you’ll find yourself wanting to automate tasks you currently do manually.
 
-As a qualitatively trained anthropologist without a quantitative back- ground, I used to feel ashamed about using R for my visualization and communication tasks. But the fact is, R is good at these jobs. The ggplot2 package is the tool of choice for many top information designers. Users around the world have taken advantage of R’s ability to automate reporting to make their work more efficient. Rather than simply replacing other tools, R can perform tasks that you’re probably already doing, like generating reports and tables, better than your existing workflow.
+As a qualitatively trained anthropologist without a quantitative background, I used to feel ashamed about using R for my visualization and communication tasks. But the fact is, R is good at these jobs. The `ggplot2` package is the tool of choice for many top information designers. Users around the world have taken advantage of R’s ability to automate reporting to make their work more efficient. Rather than simply replacing other tools, R can perform tasks that you’re probably already doing, like generating reports and tables, better than your existing workflow.
 
 ## Who This Book Is For
 
-No matter your background, using R can transform your work. This book is for you if you’re either a current R user keen to explore its uses for visu- alization and communication or a non-R user wondering if R is right for you. I’ve written *R for the Rest of Us* so that it should make sense whether or not you’ve ever written a line of R code. But even if you’ve written entire R programs, the book should help you learn plenty of new techniques to up your game.
+No matter your background, using R can transform your work. This book is for you if you’re either a current R user keen to explore its uses for visualization and communication or a non-R user wondering if R is right for you. I’ve written *R for the Rest of Us* so that it should make sense whether or not you’ve ever written a line of R code. But even if you’ve written entire R programs, the book should help you learn plenty of new techniques to up your game.
 
 R is a great tool for anyone who works with data. Maybe you’re a researcher looking for a new way to share your results. Perhaps you’re a journalist looking to analyze public data more efficiently. Or maybe you’re a data analyst tired of working in expensive, proprietary tools. If you have to work with data, you will get value from R.
 
@@ -56,7 +54,7 @@ Part II focuses on using R Markdown to communicate efficiently. You’ll learn h
 
 - **Chapter 8: Slideshow Presentations** Explains how to use R Markdown to make slides with the xaringan package. You’ll learn how to make your own presentations, adjust your content to fit on a slide, and add effects to your slideshow.
 
-- **Chapter 9: Websites** Shows you how to create your own website with R Markdown and the distill package. By examining a website about COVID-19 rates in Westchester County, New York, you’ll see how to cre- ate pages on your site, add interactivity through R packages, and deploy your website in multiple ways.
+- **Chapter 9: Websites** Shows you how to create your own website with R Markdown and the distill package. By examining a website about COVID-19 rates in Westchester County, New York, you’ll see how to create pages on your site, add interactivity through R packages, and deploy your website in multiple ways.
 
 - **Chapter 10: Quarto** Explains how to use Quarto, the next-generation version of R Markdown. You’ll learn how to use Quarto for all of the projects you previously used R Markdown for (reports, parameterized reporting, slideshow presentations, and websites).
 

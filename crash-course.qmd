@@ -1,1 +1,171 @@
 # An R Programming Crash Course
+
+R has a well-earned reputation for being hard to learn, especially for those who come to it without prior programming experience. This chapter is designed to help anyone who has never used R before. You’ll set up an R programming environment with RStudio and learn how to use functions, objects, packages, and projects to work with data. You’ll also be introduced to the tidyverse package, which contains the core data analysis and manipulation functions used in this book. This chapter won’t provide a complete introduction to R programming; rather, it will focus on the knowledge you need to follow along with the rest of the book. If you have prior experience with R, feel free to skip ahead to Chapter 2.
+
+## Setting Up
+
+You’ll need two pieces of software to use R effectively. The first is R itself, which provides the underlying computational tools that make the language work. The second is an *integrated development environment (IDE)* like RStudio. This coding platform simplifies working with R. The best way to understand the relationship between R and RStudio is with this analogy from Chester Ismay and Albert Kim’s book *Statistical Inference via Data Science: A Modern Dive into R and the Tidyverse*: R is the engine that powers your data, and RStudio is like the dashboard that provides a user-friendly interface.
+
+### Installing R and RStudio
+
+To download R, go to <https://cloud.r-project.org> and choose the link for your operating system. Once you’ve installed it, open the file. This should open an interface, like the one shown in @fig-r-console, that lets you work with R on your operating system’s command line. For example, enter `2 + 2`, and you should see `4`.
+
+![The R console](assets/r-console.png){#fig-r-console}
+
+A few brave souls work with R using only this command line, but most opt to use RStudio, which provides a way to see your files, the output of your code, and more. You can download RStudio at <https://posit.co/download/rstudio-desktop/>. Install RStudio as you would any other app and open it.
+
+### Exploring the RStudio Interface
+
+The first time you open RStudio, you should see the three panes shown in @fig-rstudio-no-project.
+
+![The RStudio editor](assets/rstudio-no-project.png){#fig-rstudio-no-project}
+
+The left pane should look familiar. It’s similar to the screen you saw when working in R on the command line. This is known as the console. You’ll use it to enter code and see the results. This pane has several tabs, such as Terminal and Background Jobs, for more advanced uses. For now, you’ll stick to the default tab.
+At the bottom right, the files pane shows all of the files on your com- puter. You can click any file to open it within RStudio. Finally, at the top right is the environment pane, which shows the objects that are available to you when working in RStudio. Objects are discussed in “Saving Data as Objects” on page 11.
+There is one more pane that you’ll typically use when working in RStudio, but to see it, first you need to create an R script file.
+
+## R Script Files
+
+If you write all of your code in the console, you won’t have any record of it. Say you sit down today and import your data, analyze it, and then make some graphs. If you run these operations in the console, you’ll have to re- create that code from scratch tomorrow. But if you write your code in files instead, you can run it multiple times.
+
+R script files, which use the .R extension, save your code so you can run it later. To create an R script file, go to `File > New File > R Script`, and
+the script file pane should appear in the top left of RStudio, as shown in @fig-rstudio-four-panels. Save this file in your Documents folder as `sample-code.R`.
+
+![The script file pane (top left)](assets/rstudio-four-panels.png){#fig-rstudio-four-panels}
+
+Now you can enter R code into the new pane to add it to your script file. For example, try entering `2 + 2` in the script file pane to perform a simple addition operation.
+
+To run a script file, click Run or use the keyboard shortcut `command-enter` on macOS or `ctrl-enter` on Windows. The result (4, in this case) should show up in the console pane.
+
+You now have a working programming environment. Next you’ll use it to write some simple R code.
+
+## Basic R Syntax
+
+If you’re trying to learn R, you probably want to perform more complex operations than `2 + 2`, but understanding the fundamentals will prepare you to do more serious data analysis tasks later in this chapter. Let’s cover some of these basics.
+
+### Arithmetic Operators
+
+Besides `+`, R supports the common arithmetic operators `-` for subtraction, `*` for multiplication, and `/` for division. Try entering the following in the console:
+
+```{r}
+2 - 1
+```
+
+```{r}
+3 * 3
+```
+
+```{r}
+16 / 4
+```
+
+As you can see, R returns the result of each calculation you enter. You don’t have to add the spaces around operators as shown here, but doing so makes your code much more readable.
+
+You can also use parentheses to perform multiple operations at once and see their result. The parentheses specify the order in which R will evaluate the expression. Try running the following:
+
+```{r}
+2 * (2 + 1)
+```
+
+This code first evaluates the expression within the parentheses, `2 + 1`, before multiplying the result by 2 in order to get 6.
+
+R also has more advanced arithmetic operators, such as ** to calculate exponents:
+
+```{r}
+2 ** 3
+```
+
+This is equivalent to 2^3^, which returns 8.
+
+To get the remainder of a division operation, you can use the `%%` operator:
+
+```{r}
+10 %% 3
+```
+
+Dividing 10 by 3 produces a remainder of 1, the value R returns.
+
+You won’t need to use these advanced arithmetic operators for the activities in this book, but they’re good to know nonetheless.
+
+### Comparison Operators
+
+R also uses *comparison operators*, which let you test how one value compares to another. R will return either `TRUE` or `FALSE`. For example, enter 2 > 1 in the console:
+
+```{r}
+2 > 1
+```
+
+R should return `TRUE`, because 2 is greater than 1.
+
+Other common comparison operators include less than (`<`), greater than or equal to (`>=`), less than or equal to (`<=`), equal to (`==`), and not equal to (`!=`). Here are some examples:
+
+```{r}
+498 == 498
+```
+
+```{r}
+2 != 2
+```
+
+When you enter `498 == 498` in the console, R should return `TRUE` because the two values are equal. If you run `2 != 2` in the console, R should return `FALSE` because 2 does not *not* equal 2.
+
+You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see com- parison operators used in this way in “tidyverse Functions” (@sec-tidyverse-functions).
+
+### Functions
+
+You can perform even more useful operations by making use of R’s many *functions*, predefined sections of code that let you efficiently do specific things. Functions have a name and a set of parentheses containing *arguments*, which are values that affect the function’s behavior.
+
+Consider the `print()` function, which displays information:
+
+```{r}
+print(x = 1.1)
+```
+
+The name of the `print()` function is `print`. Within the function’s parentheses, you specify the argument name–`x`, in this case—followed by the equal sign (`=`) and a value for the function to display. This code will print the number `1.1`.
+
+To separate multiple arguments, you use commas. For example, you can use the `print()` function’s digits argument to indicate how many digits of a number to display:
+
+```{r}
+print(x = 1.1, digits = 1)
+```
+
+This code will display only one digit (in other words, a whole number). 
+
+Using these two arguments allows you to do something specific (display results) while also giving you the flexibility to change the function’s behavior.
+
+::: {.callout-tip}
+## Note
+
+For a list of all functions built into R, see <https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html>.
+:::
+
+
+A common R pattern is using a function within a function. For example, if you wanted to calculate the *mean*, or average, of the values 10, 20, and 30, you could use the `mean()` function to operate on the result of the `c()` function like so:
+
+```{r}
+mean(x = c(10, 20, 30))
+```
+
+The `c()` function combines multiple values into one, which is necessary because the `mean()` function accepts only one argument. This is why the code has two matching sets of open and close parentheses: one for `mean()` and a nested one for `c()`. 
+
+The value after the equal sign in this example, `c(10, 20, 30)`, tells R to use the values 10, 20, and 30 to calculate the mean. Running this code in the console returns the value `20`. 
+
+The functions `median()` and `mode()` work with `c()` in the same way. To learn how to use a function and what arguments it accepts, enter `?` followed by the function’s name in the console to see the function’s help file. 
+
+Next, let’s look at how to import data for your R programs to work with.
+
+## Working with Data
+
+R lets you do all of the same data manipulation tasks you might perform in a tool like Excel, such as calculating averages or totals. Conceptually, however, working with data in R is very different from working with Excel, where your data and analysis code live in the same place: a spreadsheet. While the data you work with in R might look similar to the data you work with in Excel, it typically comes from some external file, so you have to run code to import it.
+
+### Importing Data
+
+You’ll import data from a `comma-separated values` (CSV) file, a text file that holds a series of related values separated by commas. You can open CSV files using most spreadsheet applications, which use columns rather than commas as separators. For example, @fig-population-by-state-csv shows the `population-by-state.csv` file in Excel.
+
+![The population-by-state.csv file in Excel](assets/population-by-state-csv.png){#fig-population-by-state-csv}
+
+
+### tidyverse Functions {#sec-tidyverse-functions}
+```{r}
+
+```

@@ -48,9 +48,13 @@ book:
 
 format:
   html:
+    title-delim: \.
     page-layout: full
-    theme: cosmo
-    css: style.css
+    callout-icon: false
+    smooth-scroll: true
+    theme: 
+      - cosmo
+      - style.scss
     code-link: true
     number-depth: 0
     grid:

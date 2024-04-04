@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.25">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="David Keyes">
 
-<title>R for the Rest of Us: A Statistics-Free Introduction – 1&nbsp; Introduction</title>
+<title>R for the Rest of Us: A Statistics-Free Introduction - 1&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,10 +70,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
 
 
-<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -266,7 +266,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>In early 2020, as the world struggled to contain the spread of COVID-19, one country succeeded where others did not: New Zealand. There are many reasons New Zealand was able to tackle COVID-19. One was the R programming language (yes, really).</p>
-<p>This humble tool for data analysis helped New Zealand fight COVID-19 by enabling a Ministry of Health team to generate daily reports on cases throughout New Zealand. Based on the information in these reports, officials were able to develop policies that kept the country largely free of COVID-19. The team was small, however, so producing the reports every day with a tool like Excel wouldn’t have been feasible. As team leader Chris Knox told me, “Trying to do what we did in a point-and-click environment is not possible.” Instead, a few staff members wrote R code that they could run every day to produce updated reports. These reports did not involve any complicated statistics; they were literally counts of COVID-19 cases. Their value came from everything else that R can do: data analysis and visualization, report creation, and workflow automation.</p>
+<p>This humble tool for data analysis helped New Zealand fight COVID-19 by enabling a Ministry of Health team to generate daily reports on cases throughout New Zealand. Based on the information in these reports, officials were able to develop policies that kept the country largely free of COVID-19. The team was small, however, so producing the reports every day with a tool like Excel wouldn’t have been feasible. As team leader Chris Knox told me, “Trying to do what we did in a point-and-click environment is not possible.”</p>
+<p>Instead, a few staff members wrote R code that they could run every day to produce updated reports. These reports did not involve any complicated statistics; they were literally counts of COVID-19 cases. Their value came from everything else that R can do: data analysis and visualization, report creation, and workflow automation.</p>
 <p>This book explores the many ways that people use R to communicate and automate tasks. You’ll learn how to do the following:</p>
 <ul>
 <li>Make professional-quality data visualizations, maps, and tables</li>
@@ -277,15 +278,15 @@ ul.task-list li input[type="checkbox"] {
 <li>Create your own functions to automate tasks you do repeatedly</li>
 <li>Bundle your functions into a package that you can share with others</li>
 </ul>
-<p>Best of all, you’ll do all of this without performing any statistical analysis more complex than calculating averages</p>
+<p>Best of all, you’ll do all of this without performing any statistical analysis more complex than calculating averages.</p>
 <section id="isnt-r-just-for-statistical-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="isnt-r-just-for-statistical-analysis">Isn’t R Just for Statistical Analysis?</h2>
-<p>Many people think of R as simply a tool for hardcore statistical analysis, but it can do much more than manipulate numerical values. After all, every R user must illuminate their findings and communicate their results some- how, whether that’s via data visualizations, reports, websites, or presenta- tions. Also, the more you use R, the more you’ll find yourself wanting to automate tasks you currently do manually.</p>
-<p>As a qualitatively trained anthropologist without a quantitative back- ground, I used to feel ashamed about using R for my visualization and communication tasks. But the fact is, R is good at these jobs. The ggplot2 package is the tool of choice for many top information designers. Users around the world have taken advantage of R’s ability to automate reporting to make their work more efficient. Rather than simply replacing other tools, R can perform tasks that you’re probably already doing, like generating reports and tables, better than your existing workflow.</p>
+<p>Many people think of R as simply a tool for hardcore statistical analysis, but it can do much more than manipulate numerical values. After all, every R user must illuminate their findings and communicate their results somehow, whether that’s via data visualizations, reports, websites, or presentations. Also, the more you use R, the more you’ll find yourself wanting to automate tasks you currently do manually.</p>
+<p>As a qualitatively trained anthropologist without a quantitative background, I used to feel ashamed about using R for my visualization and communication tasks. But the fact is, R is good at these jobs. The <code>ggplot2</code> package is the tool of choice for many top information designers. Users around the world have taken advantage of R’s ability to automate reporting to make their work more efficient. Rather than simply replacing other tools, R can perform tasks that you’re probably already doing, like generating reports and tables, better than your existing workflow.</p>
 </section>
 <section id="who-this-book-is-for" class="level2">
 <h2 class="anchored" data-anchor-id="who-this-book-is-for">Who This Book Is For</h2>
-<p>No matter your background, using R can transform your work. This book is for you if you’re either a current R user keen to explore its uses for visu- alization and communication or a non-R user wondering if R is right for you. I’ve written <em>R for the Rest of Us</em> so that it should make sense whether or not you’ve ever written a line of R code. But even if you’ve written entire R programs, the book should help you learn plenty of new techniques to up your game.</p>
+<p>No matter your background, using R can transform your work. This book is for you if you’re either a current R user keen to explore its uses for visualization and communication or a non-R user wondering if R is right for you. I’ve written <em>R for the Rest of Us</em> so that it should make sense whether or not you’ve ever written a line of R code. But even if you’ve written entire R programs, the book should help you learn plenty of new techniques to up your game.</p>
 <p>R is a great tool for anyone who works with data. Maybe you’re a researcher looking for a new way to share your results. Perhaps you’re a journalist looking to analyze public data more efficiently. Or maybe you’re a data analyst tired of working in expensive, proprietary tools. If you have to work with data, you will get value from R.</p>
 </section>
 <section id="about-this-book" class="level2">
@@ -304,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Chapter 6: R Markdown Reports</strong> Introduces R Markdown, a tool that allows you to generate a professional report in R. This chapter covers the structure of an R Markdown document, shows you how to use inline code to automatically update your report’s text when data values change, and discusses the tool’s many export options.</p></li>
 <li><p><strong>Chapter 7: Parameterized Reporting</strong> Covers one of the advantages of using R Markdown: the ability to produce multiple reports at the same time using a technique called parameterized reporting. You’ll see how staff members at the Urban Institute used R to generate fiscal briefs for all 50 US states. In the process, you’ll learn how parameterized reporting works and how you can use it.</p></li>
 <li><p><strong>Chapter 8: Slideshow Presentations</strong> Explains how to use R Markdown to make slides with the xaringan package. You’ll learn how to make your own presentations, adjust your content to fit on a slide, and add effects to your slideshow.</p></li>
-<li><p><strong>Chapter 9: Websites</strong> Shows you how to create your own website with R Markdown and the distill package. By examining a website about COVID-19 rates in Westchester County, New York, you’ll see how to cre- ate pages on your site, add interactivity through R packages, and deploy your website in multiple ways.</p></li>
+<li><p><strong>Chapter 9: Websites</strong> Shows you how to create your own website with R Markdown and the distill package. By examining a website about COVID-19 rates in Westchester County, New York, you’ll see how to create pages on your site, add interactivity through R packages, and deploy your website in multiple ways.</p></li>
 <li><p><strong>Chapter 10: Quarto</strong> Explains how to use Quarto, the next-generation version of R Markdown. You’ll learn how to use Quarto for all of the projects you previously used R Markdown for (reports, parameterized reporting, slideshow presentations, and websites).</p></li>
 </ul>
 <p>Part III focuses on ways you can use R to automate your work and share it with others.</p>
@@ -353,7 +354,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -385,29 +397,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -415,7 +405,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -768,4 +758,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

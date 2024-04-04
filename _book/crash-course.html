@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.25">
-
+<meta name="generator" content="quarto-1.4.553">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="David Keyes">
-
-<title>R for the Rest of Us: A Statistics-Free Introduction – 2&nbsp; An R Programming Crash Course</title>
+<title>R for the Rest of Us: A Statistics-Free Introduction - 1&nbsp; An R Programming Crash Course</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,8 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -69,36 +98,26 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-
-
-<link rel="stylesheet" href="style.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./crash-course.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./crash-course.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for the Rest of Us: A Statistics-Free Introduction</a> 
     </div>
@@ -110,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About the Book</span></a>
@@ -119,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -130,39 +149,39 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./crash-course.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-viz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Maps and Geospatial Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maps and Geospatial Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Designing Effective Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Designing Effective Tables</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -171,39 +190,39 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rmarkdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R Markdown Reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Markdown Reports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./parameterized-reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Parameterized Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parameterized Reporting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./presentations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Slideshow Presentations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Slideshow Presentations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./websites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Websites</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Websites</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -212,40 +231,64 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accessing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Automatically Accesing Online Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accesing Online Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Creating Functions and Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Functions and Packages</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting Up</a>
+  <ul class="collapse">
+<li><a href="#installing-r-and-rstudio" id="toc-installing-r-and-rstudio" class="nav-link" data-scroll-target="#installing-r-and-rstudio">Installing R and RStudio</a></li>
+  <li><a href="#exploring-the-rstudio-interface" id="toc-exploring-the-rstudio-interface" class="nav-link" data-scroll-target="#exploring-the-rstudio-interface">Exploring the RStudio Interface</a></li>
+  </ul>
+</li>
+  <li><a href="#r-script-files" id="toc-r-script-files" class="nav-link" data-scroll-target="#r-script-files">R Script Files</a></li>
+  <li>
+<a href="#basic-r-syntax" id="toc-basic-r-syntax" class="nav-link" data-scroll-target="#basic-r-syntax">Basic R Syntax</a>
+  <ul class="collapse">
+<li><a href="#arithmetic-operators" id="toc-arithmetic-operators" class="nav-link" data-scroll-target="#arithmetic-operators">Arithmetic Operators</a></li>
+  <li><a href="#comparison-operators" id="toc-comparison-operators" class="nav-link" data-scroll-target="#comparison-operators">Comparison Operators</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data">Working with Data</a>
+  <ul class="collapse">
+<li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
+  <li><a href="#sec-tidyverse-functions" id="toc-sec-tidyverse-functions" class="nav-link" data-scroll-target="#sec-tidyverse-functions">tidyverse Functions</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./crash-course.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></h1>
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./crash-course.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span>
+</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -254,14 +297,176 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>R has a well-earned reputation for being hard to learn, especially for those who come to it without prior programming experience. This chapter is designed to help anyone who has never used R before. You’ll set up an R programming environment with RStudio and learn how to use functions, objects, packages, and projects to work with data. You’ll also be introduced to the tidyverse package, which contains the core data analysis and manipulation functions used in this book. This chapter won’t provide a complete introduction to R programming; rather, it will focus on the knowledge you need to follow along with the rest of the book. If you have prior experience with R, feel free to skip ahead to Chapter 2.</p>
+<section id="setting-up" class="level2"><h2 class="anchored" data-anchor-id="setting-up">Setting Up</h2>
+<p>You’ll need two pieces of software to use R effectively. The first is R itself, which provides the underlying computational tools that make the language work. The second is an <em>integrated development environment (IDE)</em> like RStudio. This coding platform simplifies working with R. The best way to understand the relationship between R and RStudio is with this analogy from Chester Ismay and Albert Kim’s book <em>Statistical Inference via Data Science: A Modern Dive into R and the Tidyverse</em>: R is the engine that powers your data, and RStudio is like the dashboard that provides a user-friendly interface.</p>
+<section id="installing-r-and-rstudio" class="level3"><h3 class="anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h3>
+<p>To download R, go to <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a> and choose the link for your operating system. Once you’ve installed it, open the file. This should open an interface, like the one shown in <a href="#fig-r-console" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>, that lets you work with R on your operating system’s command line. For example, enter <code>2 + 2</code>, and you should see <code>4</code>.</p>
+<div id="fig-r-console" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-r-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/r-console.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: The R console
+</figcaption></figure>
+</div>
+<p>A few brave souls work with R using only this command line, but most opt to use RStudio, which provides a way to see your files, the output of your code, and more. You can download RStudio at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. Install RStudio as you would any other app and open it.</p>
+</section><section id="exploring-the-rstudio-interface" class="level3"><h3 class="anchored" data-anchor-id="exploring-the-rstudio-interface">Exploring the RStudio Interface</h3>
+<p>The first time you open RStudio, you should see the three panes shown in <a href="#fig-rstudio-no-project" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>.</p>
+<div id="fig-rstudio-no-project" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-no-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/rstudio-no-project.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-no-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: The RStudio editor
+</figcaption></figure>
+</div>
+<p>The left pane should look familiar. It’s similar to the screen you saw when working in R on the command line. This is known as the console. You’ll use it to enter code and see the results. This pane has several tabs, such as Terminal and Background Jobs, for more advanced uses. For now, you’ll stick to the default tab. At the bottom right, the files pane shows all of the files on your com- puter. You can click any file to open it within RStudio. Finally, at the top right is the environment pane, which shows the objects that are available to you when working in RStudio. Objects are discussed in “Saving Data as Objects” on page 11. There is one more pane that you’ll typically use when working in RStudio, but to see it, first you need to create an R script file.</p>
+</section></section><section id="r-script-files" class="level2"><h2 class="anchored" data-anchor-id="r-script-files">R Script Files</h2>
+<p>If you write all of your code in the console, you won’t have any record of it. Say you sit down today and import your data, analyze it, and then make some graphs. If you run these operations in the console, you’ll have to re- create that code from scratch tomorrow. But if you write your code in files instead, you can run it multiple times.</p>
+<p>R script files, which use the .R extension, save your code so you can run it later. To create an R script file, go to <code>File &gt; New File &gt; R Script</code>, and the script file pane should appear in the top left of RStudio, as shown in <a href="#fig-rstudio-four-panels" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>. Save this file in your Documents folder as <code>sample-code.R</code>.</p>
+<div id="fig-rstudio-four-panels" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-four-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/rstudio-four-panels.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-four-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: The script file pane (top left)
+</figcaption></figure>
+</div>
+<p>Now you can enter R code into the new pane to add it to your script file. For example, try entering <code>2 + 2</code> in the script file pane to perform a simple addition operation.</p>
+<p>To run a script file, click Run or use the keyboard shortcut <code>command-enter</code> on macOS or <code>ctrl-enter</code> on Windows. The result (4, in this case) should show up in the console pane.</p>
+<p>You now have a working programming environment. Next you’ll use it to write some simple R code.</p>
+</section><section id="basic-r-syntax" class="level2"><h2 class="anchored" data-anchor-id="basic-r-syntax">Basic R Syntax</h2>
+<p>If you’re trying to learn R, you probably want to perform more complex operations than <code>2 + 2</code>, but understanding the fundamentals will prepare you to do more serious data analysis tasks later in this chapter. Let’s cover some of these basics.</p>
+<section id="arithmetic-operators" class="level3"><h3 class="anchored" data-anchor-id="arithmetic-operators">Arithmetic Operators</h3>
+<p>Besides <code>+</code>, R supports the common arithmetic operators <code>-</code> for subtraction, <code>*</code> for multiplication, and <code>/</code> for division. Try entering the following in the console:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">-</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">*</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">16</span> <span class="op">/</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>As you can see, R returns the result of each calculation you enter. You don’t have to add the spaces around operators as shown here, but doing so makes your code much more readable.</p>
+<p>You can also use parentheses to perform multiple operations at once and see their result. The parentheses specify the order in which R will evaluate the expression. Try running the following:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+<p>This code first evaluates the expression within the parentheses, <code>2 + 1</code>, before multiplying the result by 2 in order to get 6.</p>
+<p>R also has more advanced arithmetic operators, such as ** to calculate exponents:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">**</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>This is equivalent to 2<sup>3</sup>, which returns 8.</p>
+<p>To get the remainder of a division operation, you can use the <code>%%</code> operator:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>Dividing 10 by 3 produces a remainder of 1, the value R returns.</p>
+<p>You won’t need to use these advanced arithmetic operators for the activities in this book, but they’re good to know nonetheless.</p>
+</section><section id="comparison-operators" class="level3"><h3 class="anchored" data-anchor-id="comparison-operators">Comparison Operators</h3>
+<p>R also uses <em>comparison operators</em>, which let you test how one value compares to another. R will return either <code>TRUE</code> or <code>FALSE</code>. For example, enter 2 &gt; 1 in the console:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">&gt;</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>R should return <code>TRUE</code>, because 2 is greater than 1.</p>
+<p>Other common comparison operators include less than (<code>&lt;</code>), greater than or equal to (<code>&gt;=</code>), less than or equal to (<code>&lt;=</code>), equal to (<code>==</code>), and not equal to (<code>!=</code>). Here are some examples:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">498</span> <span class="op">==</span> <span class="fl">498</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">!=</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>When you enter <code>498 == 498</code> in the console, R should return <code>TRUE</code> because the two values are equal. If you run <code>2 != 2</code> in the console, R should return <code>FALSE</code> because 2 does not <em>not</em> equal 2.</p>
+<p>You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see com- parison operators used in this way in “tidyverse Functions” (<a href="#sec-tidyverse-functions" class="quarto-xref"><span>Section 1.4.2</span></a>).</p>
+</section><section id="functions" class="level3"><h3 class="anchored" data-anchor-id="functions">Functions</h3>
+<p>You can perform even more useful operations by making use of R’s many <em>functions</em>, predefined sections of code that let you efficiently do specific things. Functions have a name and a set of parentheses containing <em>arguments</em>, which are values that affect the function’s behavior.</p>
+<p>Consider the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function, which displays information:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.1</code></pre>
+</div>
+</div>
+<p>The name of the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function is <code>print</code>. Within the function’s parentheses, you specify the argument name–<code>x</code>, in this case—followed by the equal sign (<code>=</code>) and a value for the function to display. This code will print the number <code>1.1</code>.</p>
+<p>To separate multiple arguments, you use commas. For example, you can use the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function’s digits argument to indicate how many digits of a number to display:</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1.1</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>This code will display only one digit (in other words, a whole number).</p>
+<p>Using these two arguments allows you to do something specific (display results) while also giving you the flexibility to change the function’s behavior.</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a list of all functions built into R, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html" class="uri">https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html</a>.</p>
+</div>
+</div>
+<p>A common R pattern is using a function within a function. For example, if you wanted to calculate the <em>mean</em>, or average, of the values 10, 20, and 30, you could use the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function to operate on the result of the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function like so:</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+</div>
+<p>The <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function combines multiple values into one, which is necessary because the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function accepts only one argument. This is why the code has two matching sets of open and close parentheses: one for <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and a nested one for <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
+<p>The value after the equal sign in this example, <code>c(10, 20, 30)</code>, tells R to use the values 10, 20, and 30 to calculate the mean. Running this code in the console returns the value <code>20</code>.</p>
+<p>The functions <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code> and <code><a href="https://rdrr.io/r/base/mode.html">mode()</a></code> work with <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> in the same way. To learn how to use a function and what arguments it accepts, enter <code>?</code> followed by the function’s name in the console to see the function’s help file.</p>
+<p>Next, let’s look at how to import data for your R programs to work with.</p>
+</section></section><section id="working-with-data" class="level2"><h2 class="anchored" data-anchor-id="working-with-data">Working with Data</h2>
+<p>R lets you do all of the same data manipulation tasks you might perform in a tool like Excel, such as calculating averages or totals. Conceptually, however, working with data in R is very different from working with Excel, where your data and analysis code live in the same place: a spreadsheet. While the data you work with in R might look similar to the data you work with in Excel, it typically comes from some external file, so you have to run code to import it.</p>
+<section id="importing-data" class="level3"><h3 class="anchored" data-anchor-id="importing-data">Importing Data</h3>
+<p>You’ll import data from a <code>comma-separated values</code> (CSV) file, a text file that holds a series of related values separated by commas. You can open CSV files using most spreadsheet applications, which use columns rather than commas as separators. For example, <a href="#fig-population-by-state-csv" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> shows the <code>population-by-state.csv</code> file in Excel.</p>
+<div id="fig-population-by-state-csv" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-population-by-state-csv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/population-by-state-csv.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-population-by-state-csv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: The population-by-state.csv file in Excel
+</figcaption></figure>
+</div>
+</section><section id="sec-tidyverse-functions" class="level3"><h3 class="anchored" data-anchor-id="sec-tidyverse-functions">tidyverse Functions</h3>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -296,7 +501,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -328,29 +544,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -358,7 +552,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -680,22 +874,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
       <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./data-viz.html" class="pagination-link" aria-label="Principles of Data Visualization">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>R for the Rest of Us: A Statistics-Free Introduction</p>
 </div>   
@@ -709,6 +900,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </footer>
 
 
-
-
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
