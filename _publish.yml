@@ -1,4 +1,4 @@
 - source: project
   netlify:
     - id: 7b92ae77-44da-48e7-93f1-1aaa0f4130f2
-      url: 'https://warm-frangollo-ca4303.netlify.app'
+      url: 'https://book.rfortherestofus.com/'
