@@ -164,6 +164,84 @@ You’ll import data from a `comma-separated values` (CSV) file, a text file tha
 
 ![The population-by-state.csv file in Excel](assets/population-by-state-csv.png){#fig-population-by-state-csv}
 
+To work with this file in R, download it from <https://data.rfortherestofus.com/population-by-state.csv>. Save it to a location on your computer, such as your *Documents* folder.
+
+Next, to import the file into R, add a line like the following to the `sample-code.R` file you created earlier in this chapter, replacing my filepath with the path to the file’s location on your system:
+
+```{r}
+#| eval: false
+read.csv(file = "/Users/davidkeyes/Documents/population-by-state.csv")
+```
+
+The file argument in the `read.csv()` function specifies the path to the file to open.
+
+The `read.csv()` function can accept additional optional arguments, separated by commas. For example, the following line uses the `skip` argument in addition to file to import the same file but skip the first row:
+
+```{r}
+#| eval: false
+read.csv(file = "/Users/davidkeyes/Documents/population-by-state.csv", skip = 1)
+```
+
+
+To learn about additional arguments for this function, enter `?read.csv()` in the console to see its help file.
+
+At this point, you can run the code to import your data (without the `skip` argument). Highlight the line you want to run in the script file pane in RStudio and click **Run**. You should see the following output in the console pane:
+
+TODO: Add code to display data
+
+This is R’s way of confirming that it imported the CSV file and under- stands the data within it. Four variables show each state’s rank (in terms of population size), name, current population, population growth between the `Pop` and `Pop2018` variables (expressed as a percentage), and 2018 population. Several other variables are hidden in the output, but you’ll see them if you import this CSV file yourself.
+
+You might think you’re ready to work with your data now, but all you’ve really done at this point is display the result of running the code that imports the data. To actually use the data, you need to save it to an object.
+
+### Saving Data as Objects
+
+To save your data for reuse, you need to create an object. For the purposes of this discussion, an object is a data structure that is stored for later use. To create an object, update your data-importing syntax so it looks like this:
+
+Now this line of code contains the `<-` *assignment operator*, which takes what follows it and assigns it to the item on the left. To the left of the assign- ment operator is the `population_data` object. Put together, the whole line imports the CSV file and assigns it to an object called `population_data`.
+
+When you run this code, you should see population_data in your environ- ment pane, as shown in Figure TODO.
+
+TODO: Add figure
+
+This message confirms that your data import worked and that the `population_data` object is ready for future use. Now, instead of having to rerun the code to import the data, you can simply enter `population_data` in an R script file or in the console to output the data.
+
+Data imported to an object in this way is known as a data frame. You can see that the `population_data` data frame has 52 observations and 9 variables. *Variables* are the data frame’s columns, each of which represents some value (for example, the population of each state). As you’ll see throughout the book, you can add new variables or modify existing ones using R code. The 52 observations come from the 50 states, as well as the District of Columbia and Puerto Rico.
+
+```{r}
+#| eval: false
+population_data <- read.csv(file = "/Users/davidkeyes/Documents/population-by-state.csv")
+```
+
+
+### Installing Packages
+
+The `read.csv()` function you’ve been using, as well as the `mean()` and `c()` functions you saw earlier, comes from *base* R, the set of built-in R functions. To use base R functions, you simply enter their names. However, one of the benefits of R being an open source language is that anyone can create their own code and share it with others. R users around the world make R *packages*, which provide custom functions to accomplish specific goals.
+
+The best analogy for understanding packages also comes from the book *Statistical Inference via Data Science*. The functionality in base R is like the features built into a smartphone. A smartphone can do a lot on its own, but you usually want to install additional apps for specific tasks. Packages are like apps, giving you functionality beyond what’s built into base R. In Chapter TODO, you’ll create your own R package.
+
+You can install packages using the `install.packages()` function. You’ll be working with the tidyverse package, which provides a range of functions for data import, cleaning, analysis, visualization, and more. To install it, enter `install.packages("tidyverse")`. Typically, you’ll enter package installation code in the console rather than in a script file because you need to install a pack- age only once on your computer to access its code in the future.
+
+To confirm that the tidyverse package has been installed correctly, click the **Packages** tab on the bottom-right pane in RStudio. Search for `tidyverse`, and you should see it pop up.
+
+Now that you’ve installed the tidyverse, you’ll put it to use. Although you need to install packages only once per computer, you need to *load* them each time you restart RStudio. Return to the `sample-code.R` file and reimport your data using a function from the tidyverse package (your filepath will look slightly different):
+
+```{r}
+#| eval: false
+# TODO: update to actually import data
+library(tidyverse)
+
+population_data_2 <- read_csv(file = "/Users/davidkeyes/Documents/population-by-state.csv")
+```
+
+At the top of the script, the line `library(tidyverse)` loads the `tidyverse` package. Then, the package’s `read_csv()` function imports the data. Note the underscore (`_`) in place of the period (`.`) in the function’s name; this differs from the base R function you used earlier. Using `read_csv()` to import CSV files achieves the same goal of creating an object, however — in this case, one called `population_data_2`. Enter `population_data_2` in the console, and you should see this output:
+
+TODO: Add output
+
+This data looks slightly different from the data you generated using the `read.csv()` function. For example, R shows only the first 10 rows. This variation occurs because `read_csv(`) imports the data not as a data frame but as a data type called a *tibble*. Both data frames and tibbles are used to describe rectangular data like what you would see in a spreadsheet. There are some minor differences between data frames and tibbles, the most important of which is that tibbles print only the first 10 rows by default, while data frames print all rows. For the purposes of this book, the two terms are used interchangeably.
+
+## RStudio Projects
+
+Start here
 
 ### tidyverse Functions {#sec-tidyverse-functions}
 ```{r}

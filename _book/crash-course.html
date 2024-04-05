@@ -274,7 +274,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data">Working with Data</a>
   <ul class="collapse">
 <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing Data</a></li>
-  <li><a href="#sec-tidyverse-functions" id="toc-sec-tidyverse-functions" class="nav-link" data-scroll-target="#sec-tidyverse-functions">tidyverse Functions</a></li>
+  <li><a href="#saving-data-as-objects" id="toc-saving-data-as-objects" class="nav-link" data-scroll-target="#saving-data-as-objects">Saving Data as Objects</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing Packages</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link" data-scroll-target="#rstudio-projects">RStudio Projects</a>
+  <ul class="collapse">
+<li><a href="#sec-tidyverse-functions" id="toc-sec-tidyverse-functions" class="nav-link" data-scroll-target="#sec-tidyverse-functions">tidyverse Functions</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -407,7 +414,7 @@ Figure&nbsp;1.3: The script file pane (top left)
 </div>
 </div>
 <p>When you enter <code>498 == 498</code> in the console, R should return <code>TRUE</code> because the two values are equal. If you run <code>2 != 2</code> in the console, R should return <code>FALSE</code> because 2 does not <em>not</em> equal 2.</p>
-<p>You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see com- parison operators used in this way in “tidyverse Functions” (<a href="#sec-tidyverse-functions" class="quarto-xref"><span>Section 1.4.2</span></a>).</p>
+<p>You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see com- parison operators used in this way in “tidyverse Functions” (<a href="#sec-tidyverse-functions" class="quarto-xref"><span>Section 1.5.1</span></a>).</p>
 </section><section id="functions" class="level3"><h3 class="anchored" data-anchor-id="functions">Functions</h3>
 <p>You can perform even more useful operations by making use of R’s many <em>functions</em>, predefined sections of code that let you efficiently do specific things. Functions have a name and a set of parentheses containing <em>arguments</em>, which are values that affect the function’s behavior.</p>
 <p>Consider the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function, which displays information:</p>
@@ -463,7 +470,49 @@ Note
 Figure&nbsp;1.4: The population-by-state.csv file in Excel
 </figcaption></figure>
 </div>
-</section><section id="sec-tidyverse-functions" class="level3"><h3 class="anchored" data-anchor-id="sec-tidyverse-functions">tidyverse Functions</h3>
+<p>To work with this file in R, download it from <a href="https://data.rfortherestofus.com/population-by-state.csv" class="uri">https://data.rfortherestofus.com/population-by-state.csv</a>. Save it to a location on your computer, such as your <em>Documents</em> folder.</p>
+<p>Next, to import the file into R, add a line like the following to the <code>sample-code.R</code> file you created earlier in this chapter, replacing my filepath with the path to the file’s location on your system:</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The file argument in the <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function specifies the path to the file to open.</p>
+<p>The <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function can accept additional optional arguments, separated by commas. For example, the following line uses the <code>skip</code> argument in addition to file to import the same file but skip the first row:</p>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span>, skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To learn about additional arguments for this function, enter <code>?read.csv()</code> in the console to see its help file.</p>
+<p>At this point, you can run the code to import your data (without the <code>skip</code> argument). Highlight the line you want to run in the script file pane in RStudio and click <strong>Run</strong>. You should see the following output in the console pane:</p>
+<p>TODO: Add code to display data</p>
+<p>This is R’s way of confirming that it imported the CSV file and under- stands the data within it. Four variables show each state’s rank (in terms of population size), name, current population, population growth between the <code>Pop</code> and <code>Pop2018</code> variables (expressed as a percentage), and 2018 population. Several other variables are hidden in the output, but you’ll see them if you import this CSV file yourself.</p>
+<p>You might think you’re ready to work with your data now, but all you’ve really done at this point is display the result of running the code that imports the data. To actually use the data, you need to save it to an object.</p>
+</section><section id="saving-data-as-objects" class="level3"><h3 class="anchored" data-anchor-id="saving-data-as-objects">Saving Data as Objects</h3>
+<p>To save your data for reuse, you need to create an object. For the purposes of this discussion, an object is a data structure that is stored for later use. To create an object, update your data-importing syntax so it looks like this:</p>
+<p>Now this line of code contains the <code>&lt;-</code> <em>assignment operator</em>, which takes what follows it and assigns it to the item on the left. To the left of the assign- ment operator is the <code>population_data</code> object. Put together, the whole line imports the CSV file and assigns it to an object called <code>population_data</code>.</p>
+<p>When you run this code, you should see population_data in your environ- ment pane, as shown in Figure TODO.</p>
+<p>TODO: Add figure</p>
+<p>This message confirms that your data import worked and that the <code>population_data</code> object is ready for future use. Now, instead of having to rerun the code to import the data, you can simply enter <code>population_data</code> in an R script file or in the console to output the data.</p>
+<p>Data imported to an object in this way is known as a data frame. You can see that the <code>population_data</code> data frame has 52 observations and 9 variables. <em>Variables</em> are the data frame’s columns, each of which represents some value (for example, the population of each state). As you’ll see throughout the book, you can add new variables or modify existing ones using R code. The 52 observations come from the 50 states, as well as the District of Columbia and Puerto Rico.</p>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="installing-packages" class="level3"><h3 class="anchored" data-anchor-id="installing-packages">Installing Packages</h3>
+<p>The <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function you’ve been using, as well as the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> functions you saw earlier, comes from <em>base</em> R, the set of built-in R functions. To use base R functions, you simply enter their names. However, one of the benefits of R being an open source language is that anyone can create their own code and share it with others. R users around the world make R <em>packages</em>, which provide custom functions to accomplish specific goals.</p>
+<p>The best analogy for understanding packages also comes from the book <em>Statistical Inference via Data Science</em>. The functionality in base R is like the features built into a smartphone. A smartphone can do a lot on its own, but you usually want to install additional apps for specific tasks. Packages are like apps, giving you functionality beyond what’s built into base R. In Chapter TODO, you’ll create your own R package.</p>
+<p>You can install packages using the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function. You’ll be working with the tidyverse package, which provides a range of functions for data import, cleaning, analysis, visualization, and more. To install it, enter <code>install.packages("tidyverse")</code>. Typically, you’ll enter package installation code in the console rather than in a script file because you need to install a pack- age only once on your computer to access its code in the future.</p>
+<p>To confirm that the tidyverse package has been installed correctly, click the <strong>Packages</strong> tab on the bottom-right pane in RStudio. Search for <code>tidyverse</code>, and you should see it pop up.</p>
+<p>Now that you’ve installed the tidyverse, you’ll put it to use. Although you need to install packages only once per computer, you need to <em>load</em> them each time you restart RStudio. Return to the <code>sample-code.R</code> file and reimport your data using a function from the tidyverse package (your filepath will look slightly different):</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># TODO: update to actually import data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">population_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At the top of the script, the line <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> loads the <code>tidyverse</code> package. Then, the package’s <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function imports the data. Note the underscore (<code>_</code>) in place of the period (<code>.</code>) in the function’s name; this differs from the base R function you used earlier. Using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> to import CSV files achieves the same goal of creating an object, however — in this case, one called <code>population_data_2</code>. Enter <code>population_data_2</code> in the console, and you should see this output:</p>
+<p>TODO: Add output</p>
+<p>This data looks slightly different from the data you generated using the <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function. For example, R shows only the first 10 rows. This variation occurs because <code>read_csv(</code>) imports the data not as a data frame but as a data type called a <em>tibble</em>. Both data frames and tibbles are used to describe rectangular data like what you would see in a spreadsheet. There are some minor differences between data frames and tibbles, the most important of which is that tibbles print only the first 10 rows by default, while data frames print all rows. For the purposes of this book, the two terms are used interchangeably.</p>
+</section></section><section id="rstudio-projects" class="level2"><h2 class="anchored" data-anchor-id="rstudio-projects">RStudio Projects</h2>
+<p>Start here</p>
+<section id="sec-tidyverse-functions" class="level3"><h3 class="anchored" data-anchor-id="sec-tidyverse-functions">tidyverse Functions</h3>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
