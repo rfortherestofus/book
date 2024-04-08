@@ -387,7 +387,7 @@ Figure&nbsp;1.3: The script file pane (top left)
 <p>This code first evaluates the expression within the parentheses, <code>2 + 1</code>, before multiplying the result by 2 in order to get 6.</p>
 <p>R also has more advanced arithmetic operators, such as ** to calculate exponents:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">**</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">**</span><span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>#&gt; [1] 8</code></pre>
 </div>
@@ -489,8 +489,10 @@ Figure&nbsp;1.4: The population-by-state.csv file in Excel
 <p>The file argument in the <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function specifies the path to the file to open.</p>
 <p>The <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function can accept additional optional arguments, separated by commas. For example, the following line uses the <code>skip</code> argument in addition to file to import the same file but skip the first row:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span>, </span>
-<span>         skip <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span></span>
+<span>  file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span>,</span>
+<span>  skip <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To learn about additional arguments for this function, enter <code>?read.csv()</code> in the console to see its help file.</p>
 <p>At this point, you can run the code to import your data (without the <code>skip</code> argument). Highlight the line you want to run in the script file pane in RStudio and click <strong>Run</strong>. You should see the following output in the console pane:</p>
@@ -702,22 +704,14 @@ Figure&nbsp;1.6: RStudio with an active project
 </section><section id="the-tidyverse-pipe" class="level3"><h3 class="anchored" data-anchor-id="the-tidyverse-pipe">The tidyverse Pipe</h3>
 <p>One advantage of working with the tidyverse is that it uses the <em>pipe</em> for multi-step operations. The <code>tidyverse</code> pipe, which is written as <code>%&gt;%</code>, allows you to break steps into multiple lines. For example, you could rewrite your code using the pipe like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># eval: false</span></span>
-<span></span>
-<span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 1 × 1
-#&gt;   mean_population
-#&gt;             &lt;dbl&gt;
-#&gt; 1        6433422.</code></pre>
-</div>
 </div>
 <p>This code says, “Start with the <code>population_data_2</code> data frame, then run the <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function on it, creating a variable called <code>mean_population</code> by calculating the mean of the <code>Pop</code> variable.”</p>
 <p>Notice that the line following the pipe is indented. To make the code easier to read, RStudio automatically adds two spaces to the start of lines that follow pipes.</p>
 <p>The pipe becomes even more useful when you use multiple steps in your data analysis. Say, for example, you want to calculate the mean population of the five largest states. The following code adds a line that uses the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function, also from the tidyverse package, to include only states where the rank variable is less than or equal to (<code>&lt;=</code>) 5. Then, it uses <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> to calculate the mean of those states:</p>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -744,11 +738,10 @@ Figure&nbsp;1.6: RStudio with an active project
 </section></section><section id="comments" class="level2"><h2 class="anchored" data-anchor-id="comments">Comments</h2>
 <p>In addition to code, R script files often contain <em>comments</em> — lines that begin with hash marks (<code>#</code>) and aren’t treated as runnable code but instead as notes for anyone reading the script. For example, you could add a comment to the code from the previous section, like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the mean population of the five largest states</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the mean population of the five largest states</span></span>
 <span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span></span>
-<span>        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This comment will help others understand what is happening in the code, and it can also serve as a useful reminder for you if you haven’t worked on the code in a while. R knows to ignore any lines that begin with the hash mark instead of trying to run them.</p>
 </section><section id="how-to-get-help" class="level2"><h2 class="anchored" data-anchor-id="how-to-get-help">How to Get Help</h2>

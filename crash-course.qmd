@@ -79,7 +79,7 @@ This code first evaluates the expression within the parentheses, `2 + 1`, before
 R also has more advanced arithmetic operators, such as ** to calculate exponents:
 
 ```{r}
-2 ** 3
+2**3
 ```
 
 This is equivalent to 2^3^, which returns 8.
@@ -186,8 +186,10 @@ The `read.csv()` function can accept additional optional arguments, separated by
 
 ```{r}
 #| eval: false
-read.csv(file = "/Users/davidkeyes/Documents/population-by-state.csv", 
-         skip = 1)
+read.csv(
+  file = "/Users/davidkeyes/Documents/population-by-state.csv",
+  skip = 1
+)
 ```
 
 To learn about additional arguments for this function, enter `?read.csv()` in the console to see its help file.
@@ -317,7 +319,7 @@ Notice also that the `summarize()` function creates a totally new tibble from th
 One advantage of working with the tidyverse is that it uses the *pipe* for multi-step operations. The `tidyverse` pipe, which is written as `%>%`, allows you to break steps into multiple lines. For example, you could rewrite your code using the pipe like so:
 
 ```{r}
-# eval: false
+#| eval: false
 
 population_data_2 %>%
   summarize(mean_population = mean(Pop))
@@ -362,9 +364,8 @@ In addition to code, R script files often contain *comments* — lines that begi
 
 # Calculate the mean population of the five largest states
 population_data_2 %>%
-
-        filter(rank <= 5) %>%
-summarize(mean_population = mean(Pop))
+  filter(rank <= 5) %>%
+  summarize(mean_population = mean(Pop))
 ```
 
 
