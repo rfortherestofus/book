@@ -46,6 +46,13 @@ book:
         - accessing-data.qmd
         - packages.qmd
 
+execute: 
+  eval: true
+  warning: false
+  message: false
+  output: true
+  include: true
+
 format:
   html:
     title-delim: \.

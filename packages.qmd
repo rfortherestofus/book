@@ -1,2 +1,2 @@
-# Creating Functions and Packages
+# Creating Functions and Packages {#sec-packages-chapter}
 

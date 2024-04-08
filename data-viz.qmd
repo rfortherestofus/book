@@ -1,3 +1,1 @@
----
-title: "Principles of Data Visualization"
----
+# Principles of Data Visualization {#sec-data-viz-chapter}

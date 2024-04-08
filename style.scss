@@ -24,7 +24,18 @@ figcaption {
 }
 
 code {
-  font-weight: 500;
+  // font-weight: 500;
+}
+
+
+// Output of code chunks
+.cell-output {
+  background-color: rgba(233, 236, 239, .65);
+    border: 1px solid rgba(233, 236, 239, .65);
+    border-radius: .25rem;
+  padding: 1em 1em 0.05em 1em;
+  margin-bottom: 1em;
+  // font-weight: 400;
 }
 
 div.callout-tip.callout {
@@ -35,6 +46,11 @@ div.callout-tip.callout {
 
 div.callout-title-container {
   line-height: 1.75;
+}
+
+.figure img {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-radius: 0.5rem;
 }
 
 
