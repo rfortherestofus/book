@@ -5,7 +5,7 @@ source("_common.R")
 
 # An R Programming Crash Course
 
-R has a well-earned reputation for being hard to learn, especially for those who come to it without prior programming experience. This chapter is designed to help anyone who has never used R before. You’ll set up an R programming environment with RStudio and learn how to use functions, objects, packages, and projects to work with data. You’ll also be introduced to the tidyverse package, which contains the core data analysis and manipulation functions used in this book. This chapter won’t provide a complete introduction to R programming; rather, it will focus on the knowledge you need to follow along with the rest of the book. If you have prior experience with R, feel free to skip ahead to Chapter 2.
+R has a well-earned reputation for being hard to learn, especially for those who come to it without prior programming experience. This chapter is designed to help anyone who has never used R before. You’ll set up an R programming environment with RStudio and learn how to use functions, objects, packages, and projects to work with data. You’ll also be introduced to the tidyverse package, which contains the core data analysis and manipulation functions used in this book. This chapter won’t provide a complete introduction to R programming; rather, it will focus on the knowledge you need to follow along with the rest of the book. If you have prior experience with R, feel free to skip ahead to @sec-data-viz-chapter.
 
 ## Setting Up
 
