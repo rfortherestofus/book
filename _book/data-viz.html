@@ -259,9 +259,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#working-with-ggplot2" id="toc-working-with-ggplot2" class="nav-link" data-scroll-target="#working-with-ggplot2">Working With ggplot2</a>
   <ul class="collapse">
-<li><a href="#the-first-layer-mapping-data-to-aesthetic-properties" id="toc-the-first-layer-mapping-data-to-aesthetic-properties" class="nav-link" data-scroll-target="#the-first-layer-mapping-data-to-aesthetic-properties">The First Layer: Mapping Data to Aesthetic Properties</a></li>
-  <li><a href="#the-second-layer-choosing-the-geoms" id="toc-the-second-layer-choosing-the-geoms" class="nav-link" data-scroll-target="#the-second-layer-choosing-the-geoms">The Second Layer: Choosing the geoms</a></li>
-  <li><a href="#the-third-layer-altering-aesthetic-properties" id="toc-the-third-layer-altering-aesthetic-properties" class="nav-link" data-scroll-target="#the-third-layer-altering-aesthetic-properties">The Third Layer: Altering Aesthetic Properties</a></li>
+<li><a href="#mapping-data-to-aesthetic-properties" id="toc-mapping-data-to-aesthetic-properties" class="nav-link" data-scroll-target="#mapping-data-to-aesthetic-properties">Mapping Data to Aesthetic Properties</a></li>
+  <li><a href="#choosing-the-geometric-objects" id="toc-choosing-the-geometric-objects" class="nav-link" data-scroll-target="#choosing-the-geometric-objects">Choosing the Geometric Objects</a></li>
+  <li><a href="#altering-aesthetic-properties" id="toc-altering-aesthetic-properties" class="nav-link" data-scroll-target="#altering-aesthetic-properties">Altering Aesthetic Properties</a></li>
   <li><a href="#the-fourth-layer-setting-a-theme" id="toc-the-fourth-layer-setting-a-theme" class="nav-link" data-scroll-target="#the-fourth-layer-setting-a-theme">The Fourth Layer: Setting a Theme</a></li>
   </ul>
 </li>
@@ -271,12 +271,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#plotting-one-region-and-year" id="toc-plotting-one-region-and-year" class="nav-link" data-scroll-target="#plotting-one-region-and-year">Plotting One Region and Year</a></li>
   <li><a href="#changing-aesthetic-properties" id="toc-changing-aesthetic-properties" class="nav-link" data-scroll-target="#changing-aesthetic-properties">Changing Aesthetic Properties</a></li>
   <li><a href="#sec-faceting-the-plot" id="toc-sec-faceting-the-plot" class="nav-link" data-scroll-target="#sec-faceting-the-plot">Faceting the Plot</a></li>
-  <li><a href="#applying-small-polishes" id="toc-applying-small-polishes" class="nav-link" data-scroll-target="#applying-small-polishes">Applying Small Polishes</a></li>
+  <li><a href="#adding-final-polishes" id="toc-adding-final-polishes" class="nav-link" data-scroll-target="#adding-final-polishes">Adding Final Polishes</a></li>
   <li><a href="#the-complete-visualization-code" id="toc-the-complete-visualization-code" class="nav-link" data-scroll-target="#the-complete-visualization-code">The Complete Visualization Code</a></li>
   </ul>
 </li>
   <li><a href="#in-conclusion-ggplot-is-your-data-visualization-secret-weapon" id="toc-in-conclusion-ggplot-is-your-data-visualization-secret-weapon" class="nav-link" data-scroll-target="#in-conclusion-ggplot-is-your-data-visualization-secret-weapon">In Conclusion: ggplot is Your Data Visualization Secret Weapon</a></li>
-  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -362,15 +362,16 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 <p>While the graphs look different (and would, to the Excel user, be different types of graphs), Wilkinson’s grammar of graphics emphasizes their similarities. (Incidentally, Wilkinson’s feelings on graph-making tools like Excel became clear when he wrote that “most charting packages channel user requests into a rigid array of chart types.”)</p>
 <p>When Wilkinson wrote his book, no data visualization tool could imple- ment his grammar of graphics. This would change in 2010, when Hadley Wickham announced the <code>ggplot2</code> package for R in the article “A Layered Grammar of Graphics,” published in the <em>Journal of Computational and Graphical Statistics</em>. By providing the tools to implement Wilkinson’s ideas, ggplot2 would come to revolutionize the world of data visualization.</p>
 </section><section id="working-with-ggplot2" class="level2"><h2 class="anchored" data-anchor-id="working-with-ggplot2">Working With ggplot2</h2>
-<p>The <code>ggplot2</code> R package (which I, like nearly everyone in the data visualization world, will refer to simply as ggplot) relies on the idea of plots having multiple layers. Let’s walk through some of the most important ones. We’ll begin by selecting variables to map to aesthetic properties. Then we’ll choose a geometric object to use to represent our data. Next, we’ll change the aesthetic properties of our chart (its color scheme, for example) using a <code>scale_</code> function. Finally, we’ll use a <code>theme_</code> function to set the overall look-and-feel of our plot.</p>
-<section id="the-first-layer-mapping-data-to-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="the-first-layer-mapping-data-to-aesthetic-properties">The First Layer: Mapping Data to Aesthetic Properties</h3>
-<p>When creating a graph with ggplot, we begin by mapping data to aesthetic properties. All this really means is that we use things like the x or y axis, color, and size (the so-called <em>aesthetic properties</em>) to represent variables. To make this concrete, we’ll use the data on life expectancy in Afghanistan, introduced in the previous section, to generate a plot. Access this data with the following code:</p>
+<p>The <code>ggplot2</code> R package (which I, like nearly everyone in the data visualization world, will refer to simply as <em>ggplot</em>) relies on the idea of plots having multiple layers. This section will walk you through some of the most impor- tant ones. You’ll begin by selecting variables to map to aesthetic properties. Then you’ll choose a geometric object to use to represent your data. Next, you’ll change the aesthetic properties of your chart (its color scheme, for example) using a scale_ function. Finally, you’ll use a <code>theme_</code> function to set the overall look and feel of your plot.</p>
+<section id="mapping-data-to-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="mapping-data-to-aesthetic-properties">Mapping Data to Aesthetic Properties</h3>
+<p>To create a graph with ggplot, you begin by mapping data to aesthetic properties. All this really means is that you use elements like the x- or y-axis, color, and size (the so-called <em>aesthetic properties</em>) to represent variables. You’ll use the data on life expectancy in Afghanistan, introduced in <a href="#fig-bar-line-chart" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>, to generate a plot. To access this data, enter the following code:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">gapminder_10_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rwithoutstatistics.com/gapminder_10_rows.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here’s what the <code>gapminder_10_rows</code> data frame looks like:</p>
+<p>This code first loads the <code>tidyverse</code> package, introduced in <a href="crash-course.html" class="quarto-xref"><span>Chapter 1</span></a>, and then uses the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function to access data from the book’s website and assign it to the <code>gapminder_10_rows</code> object.</p>
+<p>The resulting <code>gapminder_10_rows</code> tibble looks like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 6
@@ -388,8 +389,8 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 10 Afghanistan Asia       1997    41.8 22227415      635.</code></pre>
 </div>
 </div>
-<p>This is a shortened version of the full gapminder data frame, which includes over 1,700 rows of data.</p>
-<p>If we want to make a chart with ggplot, we need to first decide which variable to put on the x axis and which to put on the y axis. For data showing change over time, it is common to put the date on the x axis and the value of what you are showing on the y axis. That means we would use the variable <code>year</code> on the x axis and the variable <code>lifeExp</code> on the y axis. To do so, we begin by using the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function:</p>
+<p>This output is a shortened version of the full which includes over 1,700 rows of data.</p>
+<p>Before making a chart with ggplot, you need to decice which variable to put on the x-axis and which to put on the y-axis. For data showing change over time, it’s common to put the date (in this case, <code>year</code>) on the x-axis and the changing value (in this case, <code>lifeExp</code>) on the y-axis. To do so, define the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -399,8 +400,8 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Within this function, we tell R that we’re using the data frame <code>gapminder_10_rows</code>. We also map <code>year</code> to the x axis and <code>lifeExp</code> to the y axis.</p>
-<p>When we run the code, what we get in <a href="#fig-blank-ggplot" class="quarto-xref">Figure&nbsp;<span>2.5</span></a> doesn’t look like much.</p>
+<p>This function contains numerous arguments. Each argument goes on its own line, for the sake of readability, separated by commas. The <code>data</code> argument tells R to use the data frame gapminder_10_rows, and the <code>mapping</code> argument maps <code>year</code> to the x-axis and <code>lifeExp</code> to the y-axis.</p>
+<p>Running this code produces the chart in <a href="#fig-blank-ggplot" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>, which doesn’t look like much yet.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-blank-ggplot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -408,14 +409,14 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 <img src="data-viz_files/figure-html/fig-blank-ggplot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blank-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.5: A blank chart
+Figure&nbsp;2.5: A blank chart that maps year values to the x-axis and life expectancy values to the y-axis
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>If you look closely, however, you should see that the x axis corresponds to <code>year</code> and the y axis corresponds to <code>lifeExp</code>. Also, the values on the x and y axes match the scope of our data. In the <code>gapminder_10_rows</code> data frame, the first year is 1952 and the last year is 1997. The range of the x axis seems to have been created with this data in mind (because it was). Likewise, <code>lifeExp</code>, which goes from about 28 to about 42, will fit nicely on our y axis.</p>
-</section><section id="the-second-layer-choosing-the-geoms" class="level3"><h3 class="anchored" data-anchor-id="the-second-layer-choosing-the-geoms">The Second Layer: Choosing the geoms</h3>
-<p>Axes are nice, but we’re missing any type of visual representation of the data. To get this, we need to add the next ggplot layer: geoms. Short for <em>geometric objects</em>, <em>geoms</em> are functions that provide different ways of representing data. For example, if we want to add points to the graph, we use <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>:</p>
+<p>Notice that the x-axis corresponds to year and the y-axis corresponds to <code>lifeExp</code>, and the values on both axes match the scope of the data. In the <code>gapminder_10_rows</code> data frame, the first year is 1952 and the last year is 1997. The range of the x-axis has been created with this data in mind. Likewise, the values for <code>lifeExp</code>, which go from about 28 to about 42, will fit nicely on the y-axis.</p>
+</section><section id="choosing-the-geometric-objects" class="level3"><h3 class="anchored" data-anchor-id="choosing-the-geometric-objects">Choosing the Geometric Objects</h3>
+<p>Axes are nice, but the graph is missing any type of visual representation of the data. To get this, you need to add the next ggplot layer: geoms. Short for <em>geometric objects</em>, <em>geoms</em> are functions that provide different ways of representing data. For example, to add points to the graph, you use <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -426,7 +427,7 @@ Figure&nbsp;2.5: A blank chart
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, in <a href="#fig-gapminder-points-plot" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>, we see that people in 1952 had a life expectancy of about 28 and that this value rose every year included in the data.</p>
+<p>Now the graph shows that people in 1952 had a life expectancy of about 28 and that this value rose every year in the dataset (see <a href="#fig-gapminder-points-plot" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gapminder-points-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -434,12 +435,12 @@ Figure&nbsp;2.5: A blank chart
 <img src="data-viz_files/figure-html/fig-gapminder-points-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-points-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.6: The same chart but with points added
+Figure&nbsp;2.6: The life expectancy chart with points added
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>Let’s say we change our mind and want to make a line chart instead. All we have to do is replace <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>:</p>
+<p>Say you change your mind and want to make a line chart instead. All you have to do is replace <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> like so:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -463,7 +464,7 @@ Figure&nbsp;2.7: The data as a line chart
 </div>
 </div>
 </div>
-<p>To really get fancy, what if we add both <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>?</p>
+<p>To really get fancy, you could add both <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -483,12 +484,12 @@ Figure&nbsp;2.7: The data as a line chart
 <img src="data-viz_files/figure-html/fig-gapminder-points-line-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-points-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.8: The data with points and a line
+Figure&nbsp;2.8: The same data with both points and a line
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>We can swap in <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> to create a bar chart:</p>
+<p>You can swap in <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> to create a bar chart:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -499,7 +500,7 @@ Figure&nbsp;2.8: The data with points and a line
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note in <a href="#fig-gapminder-bar-plot" class="quarto-xref">Figure&nbsp;<span>2.9</span></a> that the y axis range has been automatically updated, going from 0 to 40 to account for the different geom.</p>
+<p>Notice in <a href="#fig-gapminder-bar-plot" class="quarto-xref">Figure&nbsp;<span>2.9</span></a> that the y-axis range has been automatically updated, going from 0 to 40 to account for the different geom.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gapminder-bar-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -507,14 +508,15 @@ Figure&nbsp;2.8: The data with points and a line
 <img src="data-viz_files/figure-html/fig-gapminder-bar-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-bar-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.9: The data as a bar chart
+Figure&nbsp;2.9: The life expectancy data as a bar chart
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>As you can see, the difference between a line chart and a bar chart isn’t as great as the Excel chart-type picker might have us think. Both can have the same underlying properties (namely, putting years on the x axis and life expectancies on the y axis). They simply use different geometric objects to visually represent the data.</p>
-</section><section id="the-third-layer-altering-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="the-third-layer-altering-aesthetic-properties">The Third Layer: Altering Aesthetic Properties</h3>
-<p>Before we return to the drought data visualization, let’s look at a few additional layers that can help us can alter the bar chart. Say we want to change the color of the bars. In the grammar of graphics approach to chart-making, this means mapping some variable to the aesthetic property of <code>fill</code>. (Slightly confusingly, the aesthetic property of <code>color</code> would, for a bar chart, change only the outline of each bar). In the same way that we mapped <code>year</code> to the x axis and <code>lifeExp</code> to the y axis, we can map <code>fill</code> to a variable, such as <code>year</code>:</p>
+<p>As you can see, the difference between a line chart and a bar chart isn’t as great as the Excel chart-type picker might have you believe. Both can have the same underlying properties (namely, years on the x-axis and life expectancies on the y-axis). They simply use different geometric objects to visually represent the data.</p>
+<p>Many geoms are built into ggplot. In addition to <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>, the geoms <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_area()</a></code> are among the most commonly used. To see all geoms, visit the ggplot documentation website at <a href="https://ggplot2.tidyverse.org/reference/index.html#geoms" class="uri">https://ggplot2.tidyverse.org/reference/index.html#geoms</a>.</p>
+</section><section id="altering-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="altering-aesthetic-properties">Altering Aesthetic Properties</h3>
+<p>Before we return to the drought data visualization, let’s look at a few additional layers you can use to alter the bar chart. Say you want to change the color of the bars. In the grammar of graphics approach to chart-making, this means mapping some variable to the aesthetic property of <code>fill</code>. (For a bar chart, the aesthetic property of color would change only the outline of each bar.) In the same way that you mapped <code>year</code> to the x-axis and <code>lifeExp</code> to the y-axis, you can map fill to a variable, such as <code>year</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -526,7 +528,7 @@ Figure&nbsp;2.9: The data as a bar chart
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><a href="#fig-gapminder-bar-colors-plot" class="quarto-xref">Figure&nbsp;<span>2.10</span></a> shows the result. We see now that, for earlier years, the fill is darker, while for later years, it is lighter (the legend, added to the right of our plot, also indicates this).</p>
+<p><a href="#fig-gapminder-bar-colors-plot" class="quarto-xref">Figure&nbsp;<span>2.10</span></a> shows the result. Now the fill is darker for earlier years and lighter for later years (as also indicated by the legend, added to the right of the plot).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gapminder-bar-colors-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -539,7 +541,7 @@ Figure&nbsp;2.10: The same chart, now with added colors
 </div>
 </div>
 </div>
-<p>What if we wanted to change the fill colors? For that, we use a new scale layer. To do this, I’ll use the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c()</a></code> function. The <em>c</em> at the end of the function name refers to the fact that the data is continuous, meaning it can take any numeric value:</p>
+<p>To change the fill colors, use a new scale layer with the <code>scale_fill _viridis_c()</code> function (the <code>c</code> at the end of the function name refers to the fact that the data is continuous, meaning it can take any numeric value):</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -552,9 +554,9 @@ Figure&nbsp;2.10: The same chart, now with added colors
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This function changes the default palette to one that is colorblind-friendly and prints well in grayscale. The <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c()</a></code> function is just one of many that start with <code>scale_</code> and can alter the fill scale.</p>
+<p>This function changes the default palette to one that is colorblind-friendly and prints well in grayscale. The <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c()</a></code> function is just one of many that start with scale_ and can alter the fill scale. Chapter 11 of <em>ggplot2: Elegant Graphics for Data Analysis</em>, 3rd edition, discusses various color and fill scales. You can read it online at <a href="https://ggplot2-book.org/scales-colour.html" class="uri">https://ggplot2-book.org/scales-colour.html</a>.</p>
 </section><section id="the-fourth-layer-setting-a-theme" class="level3"><h3 class="anchored" data-anchor-id="the-fourth-layer-setting-a-theme">The Fourth Layer: Setting a Theme</h3>
-<p>A final layer we’ll look at is the theme layer. This layer allows us to change the overall look-and-feel of plots (including the plot background, grid lines, and so on). Just as there are a number of <code>scale_</code> functions, there are also a number of functions that start with <code>theme_</code>. Here, we’ve added <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code>:</p>
+<p>The final layer we’ll look at is the theme layer, which allows you to change the overall look and feel of your plots (including their background and grid lines). As with the <code>scale_</code> functions, a number of functions also start with <code>theme_</code>. Add <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
@@ -568,7 +570,7 @@ Figure&nbsp;2.10: The same chart, now with added colors
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice in <a href="#fig-gapminder-theme-plot" class="quarto-xref">Figure&nbsp;<span>2.11</span></a> that this theme starts to declutter the plot.</p>
+<p>This theme starts to declutter the plot, as you can see in <a href="#fig-gapminder-theme-plot" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gapminder-theme-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -581,25 +583,30 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 </div>
 </div>
 </div>
-<p>By now, you should see why Hadley Wickham described the <code>ggplot2</code> package as using a layered grammar of graphics. It implements Wilkinson’s theory through the creation of multiple layers. First, we select variables to map to aesthetic properties, such as x or y axes, color, and fill. Second, we choose the geometric object (or geom) we want to use to represent our data. Third, if we want to change aesthetic properties (for example, to use a different color palette), we do this with a <code>scale_</code> function. Fourth, we use a <code>theme_</code> function to set the overall look-and-feel of the plot.</p>
-<p>We could improve the plot we’ve been working on in many ways, but rather than add to an ugly plot, let’s instead return to the drought data visualization by Cédric Scherer and Georgios Karamanis. By walking through their code, you’ll learn lessons about making high-quality data visualization with ggplot and R.</p>
+<p>By now, you should see why Hadley Wickham described the <code>ggplot2</code> package as using a layered grammar of graphics. It implements Wilkinson’s theory by creating multiple layers: first, variables to map to aesthetic prop- erties; second, geoms to represent the data; third, the <code>scale_</code> function to adjust aesthetic properties; and finally, the <code>theme_</code> function to set the plot’s overall look and feel.</p>
+<p>You could still improve this plot in many ways, but instead let’s return to the drought data visualization by Scherer and Karamanis. By walking through their code, you’ll learn about making high-quality data visualiza- tion with ggplot and R.</p>
 </section></section><section id="recreating-the-drought-visualization-with-ggplot" class="level2"><h2 class="anchored" data-anchor-id="recreating-the-drought-visualization-with-ggplot">Recreating the Drought Visualization with ggplot</h2>
-<p>fundamentals and some less-well-known tweaks that make it really shine. To understand how Scherer and Karamanis made their data visualization, we’ll start with a simplified version of their code, then build it up layer by layer, adding elements as we go.</p>
-<p>First, let’s import the data. Scherer and Karamanis do this with the <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> function from the <code>rio</code> package:</p>
+<p>The drought visualization code relies on a combination of ggplot fundamentals and some lesser-known tweaks that make it really shine. To understand how Scherer and Karamanis made their data visualization, we’ll start with a simplified version of their code, then build it up layer by layer, adding elements as we go.</p>
+<p>First, you’ll import the data. Scherer and Karamanis did a bunch of data wrangling on the raw data, but I’ve saved the simplified output for you. Because it’s in JavaScript Object Notation (JSON) format, Scherer and Karamanis use the <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> function from the <code>rio</code> package, which simplifies the process of importing JSON data:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gesistsa/rio">rio</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">dm_perc_cat_hubs_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://data.rwithoutstatistics.com/dm_export_20000101_20210909_perc_cat_hubs.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">ddm_perc_cat_hubs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/dm_perc_cat_hubs.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This function is helpful because the data they are working with is in JSON format, which can be complicated to work with. The <code>rio</code> package simplifies it into just one line.</p>
+<p><em>JSON</em> is a common format for data used in web applications, though it’s far less common in R, where it can be complicated to work with. Luckily, the <code>rio</code> package simplifies its import.</p>
 <section id="plotting-one-region-and-year" class="level3"><h3 class="anchored" data-anchor-id="plotting-one-region-and-year">Plotting One Region and Year</h3>
-<p>Let’s start by looking at just one region (the Southwest) in one year (2003). First, we filter our data and save it as a new object called <code>southwest_2003</code>:</p>
+<p>Scherer and Karamanis’s final plot consists of many years and regions. To see how they created it, we’ll start by looking at just the Southwest region in 2003.</p>
+<p>First, you need to create a data frame. You’ll use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function twice: the first time to keep only data for the Southwest region, and the second time to keep only data from 2003. In both cases, you use the following syntax:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">southwest_2003</span> <span class="op">&lt;-</span> <span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">variable_name</span> <span class="op">==</span> <span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This tells R to keep only observations where variable_name is equal to some value. The code starts with the <code>dm_perc_cat_hubs_raw</code> data frame before filtering it and then saving it as a new object called <code>southwest_2003</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">southwest_2003</span> <span class="op">&lt;-</span> <span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hub</span> <span class="op">==</span> <span class="st">"Southwest"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can take a look at this object to see the variables we have to work with by typing <code>southwest_2003</code> in the console, which will return this:</p>
+<p>To take a look at this object and see the variables you have to work with, enter <code>southwest_2003</code> in the console, which should return this output:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 255 × 7
@@ -618,10 +625,10 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 # ℹ 245 more rows</code></pre>
 </div>
 </div>
-<p>The <code>date</code> variable represents the start date of the week in which the observation took place. The <code>hub</code> variable is the region, and <code>category</code> is the level of drought: a value of <code>D0</code> indicates the lowest level of drought, while <code>D5</code> indicates the highest level. The <code>percentage</code> variable is the percentage of that region in that drought category, ranging from <code>0</code> to <code>1</code>. The <code>year</code> and <code>week</code> variables are the observation year and week number (beginning with week 1). The <code>max_week</code> variable is the maximum number of weeks in a given year.</p>
-<p>Now we can use this <code>southwest_2003</code> object for our plotting:</p>
+<p>The date variable represents the start date of the week in which the observation took place. The hub variable is the region, and category is the level of drought: a value of <code>D0</code> indicates the lowest level of drought, while <code>D5</code> indicates the highest level. The <code>percentage</code> variable is the percentage of that region in that drought category, ranging from 0 to 1. The <code>year</code> and <code>week</code> variables are the observation year and week number (beginning with week 1). The <code>max_week</code> variable is the maximum number of weeks in a given year.</p>
+<p>Now you can use this southwest_2003 object for your plot:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">southwest_2003</span>,</span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">week</span>,</span>
@@ -631,7 +638,7 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function, we tell R to put <code>week</code> on the x axis and <code>percentage</code> on the y axis. We also use the <code>category</code> variable for the <code>fill</code> color. We then use <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> to create a bar chart in which the <code>fill</code> color of each bar represents the percentage of the region in a single week at each drought level. You can see the result in in <a href="#fig-southwest-2003-no-style-plot" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>.</p>
+<p>The ggplot() function tells R to put <code>week</code> on the x-axis and <code>percentage</code> on the y-axis, as well as to use the category variable for the <code>fill</code> color. The <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> function creates a bar chart in which each bar’s fill color represents the percentage of the region at each drought level for that particular week, as shown in <a href="#fig-southwest-2003-no-style-plot" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-southwest-2003-no-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -639,16 +646,16 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 <img src="data-viz_files/figure-html/fig-southwest-2003-no-style-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-southwest-2003-no-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.12: One year and region of the drought visualization
+Figure&nbsp;2.12: One year (2003) and region (Southwest) of the drought visualization
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>The colors don’t match the final version of the plot, but we can start to see the outlines of Scherer and Karamanis’s data visualization.</p>
+<p>The colors, which include bright pinks, blues, greens, and reds, don’t match the final version of the plot, but you can start to see the outlines of Scherer and Karamanis’s data visualization.</p>
 </section><section id="changing-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="changing-aesthetic-properties">Changing Aesthetic Properties</h3>
-<p>Scherer and Karamanis next selected different <code>fill</code> colors for their bars. To do so, they used the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function. The <em>d</em> here means that the data to which the fill scale is being applied has discrete categories, called D0, D1, D2, D3, D4, and D5:</p>
+<p>Scherer and Karamanis next selected different <code>fill</code> colors for their bars. To do so, they used the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function. The <em>d</em> here means that the data to which the fill scale is being applied has discrete categories (D0, D1, D2, D3, D4, and D5):</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">southwest_2003</span>,</span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">week</span>,</span>
@@ -662,10 +669,11 @@ Figure&nbsp;2.12: One year and region of the drought visualization
 <span>    direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>They used the argument <code>option = "rocket"</code> to select the rocket palette (the function has several other palettes). Then they used the <code>direction = -1</code> argument to reverse the order of fill colors so that darker colors mean higher drought conditions.</p>
-<p>Scherer and Karamanis also tweaked the appearance of the x and y axes:</p>
+<p>They used the argument <code>option = "rocket"</code> to select the rocket palette, whose colors range from cream to nearly black. You could use several other palettes within the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function; see them at <a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="uri">https://sjmgarnier.github.io/viridisLite/reference/viridis.html</a>.</p>
+<p>Then they used the <code>direction = -1</code> argument to reverse the order of fill colors so that darker colors mean higher drought conditions.</p>
+<p>Scherer and Karamanis also tweaked the appearance of the x- and y-axes:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">southwest_2003</span>,</span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="va">week</span>,</span>
@@ -689,6 +697,7 @@ Figure&nbsp;2.12: One year and region of the drought visualization
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>On the x axis, they removed both the axis title (“week”) using <code>name = NULL</code> and the 0–50 text with <code>guide = "none"</code>. On the y axis, they removed the title and text showing percentages using <code>labels = NULL</code>, which functionally does the same thing as <code>guide = "none"</code>. They also moved the axis lines themselves to the right side using <code>position = "right"</code>. These axis lines are apparent only as tick marks at this point but will become more visible later. <a href="#fig-southwest-2003-xy-scales-plot" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> shows the result of these tweaks.</p>
+<p>On the x-axis, they removed both the axis title (“week”) using <code>name = NULL</code> and the axis labels (the weeks numbered 0 to 50) with <code>guide = "none"</code>. On the y-axis, they removed the title and text showing percentages using labels = NULL, which functionally does the same thing as <code>guide = "none"</code>. They also moved the axis lines themselves to the right side using <code>position = "right"</code>. These axis lines are apparent only as tick marks at this point but will become more visible later. <a href="#fig-southwest-2003-xy-scales-plot" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> shows the result of these tweaks.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-southwest-2003-xy-scales-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -696,16 +705,16 @@ Figure&nbsp;2.12: One year and region of the drought visualization
 <img src="data-viz_files/figure-html/fig-southwest-2003-xy-scales-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-southwest-2003-xy-scales-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.13: One year and region of the drought visualization with adjustments to the x and y axes
+Figure&nbsp;2.13: The 2003 drought data for the Southwest with adjustments to the x- and y-axes
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>Up to this point, we’ve focused on one of the single plots that make up the larger data visualization. But the final product that Scherer and Karamanis made is actually 176 plots visualizing 22 years and eight regions. Let’s discuss the ggplot feature they used to create all of these plots.</p>
+<p>Up to this point, we’ve focused on one of the single plots that make up the larger data visualization. But the final product that Scherer and Karamanis made is actually 176 plots visualizing 22 years and 8 regions. Let’s discuss the ggplot feature they used to create all of these plots.</p>
 </section><section id="sec-faceting-the-plot" class="level3"><h3 class="anchored" data-anchor-id="sec-faceting-the-plot">Faceting the Plot</h3>
-<p>One of the most useful features of ggplot is what’s known as <em>faceting</em> (or, more commonly in the data visualization world, small multiples). Faceting takes a single plot and makes it into multiple plots using a variable. For example, think of a line chart showing life expectancy by country over time; instead of multiple lines on one plot, we might create multiple plots with one line per plot). With the <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> function, we can select which variable to put in the rows and which to put in the columns of our faceted plot:</p>
+<p>One of ggplot’s most useful capabilities is <em>faceting</em> (or, as it’s more commonly known in the data visualization world, <em>small multiples</em>). Faceting uses a variable to break down a single plot into multiple plots. For example, think of a line chart showing life expectancy by country over time; instead of multiple lines on one plot, faceting would create multiple plots with one line per plot. To specify which variable to put in the rows and which to put in the columns of your faceted plot, you use the <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> function, as Scherer and Karamanis did in their code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hub</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Northwest"</span>,</span>
 <span>    <span class="st">"California"</span>,</span>
@@ -737,7 +746,7 @@ Figure&nbsp;2.13: One year and region of the drought visualization with adjustme
 <span>    switch <span class="op">=</span> <span class="st">"y"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Scherer and Karamanis put <code>year</code> in rows and <code>hub</code> (region) in columns. The <code>switch = "y"</code> argument moves the year label from the right side (where it appears by default) to the left. With this code in place, we can see the final plot coming together in <a href="#fig-drought-viz-faceted-plot" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>. Space considerations require me to include only four regions, but you get the idea.</p>
+<p>Scherer and Karamanis put <code>year</code> in rows and <code>hub</code> (region) in columns. The <code>switch = "y"</code> argument moves the year label from the right side (where it appears by default) to the left. With this code in place, you can see the final plot coming together in <a href="#fig-drought-viz-faceted-plot" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-drought-viz-faceted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -745,17 +754,18 @@ Figure&nbsp;2.13: One year and region of the drought visualization with adjustme
 <img src="data-viz_files/figure-html/fig-drought-viz-faceted-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-faceted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.14: The faceted version of the drought visualization. Space considerations require me to include only four regions, but you get the idea.
+Figure&nbsp;2.14: The faceted version of the drought visualization
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>Incredibly, the broad outlines of the plot took us just 10 lines to create. The rest of the code falls into the category of small polishes. That’s not to minimize how important small polishes are (very) or the time it takes to create them (lots). It does show, however, that a little bit of ggplot goes a long way.</p>
-</section><section id="applying-small-polishes" class="level3"><h3 class="anchored" data-anchor-id="applying-small-polishes">Applying Small Polishes</h3>
-<p>Let’s look at a few of the small polishes that Scherer and Karamanis made. The first is to apply a theme, as shown in <a href="#fig-drought-viz-theme-tweaks-plot" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>. They used <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>, which removes the default gray background and changes the font to Roboto.</p>
-<p>The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> function is what’s known as a <em>complete theme</em>. So-called complete themes change the overall look-and-feel of a plot. But Scherer and Karamanis didn’t stop there. They then used the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function to make additional tweaks to what <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> gave them:</p>
+<p>Incredibly, the broad outlines of the plot took just 10 lines of code to create. The rest of the code falls into the category of small polishes. That’s not to minimize how important small polishes are (very) or the time it takes to create them (a lot). It does show, however, that a little bit of ggplot goes a long way.</p>
+</section><section id="adding-final-polishes" class="level3"><h3 class="anchored" data-anchor-id="adding-final-polishes">Adding Final Polishes</h3>
+<p>Now let’s look at a few of the small polishes that Scherer and Karamanis made. The first is to apply a theme. They used <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>, which removes the default gray background and changes the font to Roboto using the base_family argument.</p>
+<p>The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> function is what’s known as a <em>complete theme</em>, one that changes the overall look and feel of a plot. The ggplot package has multiple complete themes that you can use (they’re listed at <a href="https://ggplot2.tidyverse.org/reference/index.html#themes" class="uri">https://ggplot2.tidyverse.org/reference/index.html#themes</a>). Individuals and organizations also make their own themes, as you’ll do in <a href="custom-theme.html" class="quarto-xref"><span>Chapter 3</span></a>. For a discussion of which themes you might consider using, see my blog post at <a href="https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures" class="uri">https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures</a>.</p>
+<p>Scherer and Karamanis didn’t stop by simply applying <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>. They also used the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function to make additional tweaks to the plot’s design:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hub</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Northwest"</span>,</span>
 <span>    <span class="st">"California"</span>,</span>
@@ -859,11 +869,11 @@ Figure&nbsp;2.14: The faceted version of the drought visualization. Space consid
 <span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The code in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function does many different things, but let’s take a look at a few of the most important. First, it moves the legend from the right side (the default) to the top of the plot. Then, an <code>angle = 0</code> argument rotates the year text in the columns so that it is no longer angled. Without this argument, the years would be much less readable.</p>
-<p>Next, the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function makes the distinctive axis lines and ticks that show up on the right side of the final plot. Calling <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code> removes all grid lines. Finally, three lines remove the borders and make each of the individual plots have a transparent background.</p>
-<p>Keen readers such as yourself may now be thinking, “Wait. Didn’t the individual plots have a gray background behind them?” Yes, dear reader, they did. Scherer and Karamanis made these with a separate geom, <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code>:</p>
+<p>The code in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function does many different things, but let’s look at a few of the most important. First, it moves the legend from the right side (the default) to the top of the plot. Then, the <code>angle = 0</code> argument rotates the year text in the columns from vertical to horizontal. Without this argument, the years would be much less legible.</p>
+<p>The theme() function also makes the distinctive axis lines and ticks that appear on the right side of the final plot. Calling element_blank() removes all grid lines. Finally, this code removes the borders and gives each individual plot a transparent background.</p>
+<p>You might be thinking, <em>Wait. Didn’t the individual plots have a gray back- ground behind them?</em> Yes, dear reader, they did. Scherer and Karamanis made these with a separate geom, <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
 <span>    xmin <span class="op">=</span> <span class="fl">.5</span>,</span>
 <span>    xmax <span class="op">=</span> <span class="va">max_week</span> <span class="op">+</span> <span class="fl">.5</span>,</span>
@@ -875,7 +885,7 @@ Figure&nbsp;2.14: The faceted version of the drought visualization. Space consid
 <span>  size <span class="op">=</span> <span class="fl">0.4</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>They set some additional aesthetic properties specific to this geom: <code>xmin</code>, <code>xmax</code>, <code>ymin</code>, and <code>ymax</code>, which determine the boundaries of the rectangle it produces. The result is a gray background drawn behind each small multiple, as shown in <a href="#fig-drought-viz-theme-tweaks-plot" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>.</p>
+<p>They also set some additional aesthetic properties specific to this geom — <code>xmin</code>, <code>xmax</code>, <code>ymin</code>, and <code>ymax</code> — which determine the boundaries of the rectangle it produces. The result is a gray background behind each small multiple, as shown in <a href="#fig-drought-viz-theme-tweaks-plot" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-drought-viz-theme-tweaks-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -888,9 +898,9 @@ Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgro
 </div>
 </div>
 </div>
-<p>Finally, consider the tweaks made to the legend. We previously saw a simplified version of the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function. Here is a more complete version:</p>
+<p>Finally, Scherer and Karamanis made some tweaks to the legend. Previously you saw a simplified version of the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function. Here’s a more complete version:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
 <span>  option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
 <span>  direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
 <span>  name <span class="op">=</span> <span class="st">"Category:"</span>,</span>
@@ -903,7 +913,7 @@ Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgro
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>name</code> argument sets the legend title, and the labels argument determines the <code>labels</code> that show up in the legend. <a href="#fig-drought-viz-legend-tweaks" class="quarto-xref">Figure&nbsp;<span>2.16</span></a> shows the result of these changes.</p>
+<p>The <code>name</code> argument sets the legend title, and the labels argument specifies the <code>labels</code> that show up in the legend. <a href="#fig-drought-viz-legend-tweaks" class="quarto-xref">Figure&nbsp;<span>2.16</span></a> shows the result of these changes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-drought-viz-legend-tweaks" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -911,16 +921,16 @@ Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgro
 <img src="data-viz_files/figure-html/fig-drought-viz-legend-tweaks-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-legend-tweaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.16: Drought visualization with changes made to the legend text
+Figure&nbsp;2.16: The drought visualization with changes to the legend text
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>Rather than D0, D1, D2, D3, and D4, we now have the legend text Abnormally Dry, Moderate Drought, Severe Drought, Extreme Drought, and Exceptional Drought.</p>
+<p>Rather than D0, D1, D2, D3, and D4, the legend text now reads Abnormally Dry, Moderate Drought, Severe Drought, Extreme Drought, and Exceptional Drought — much more user-friendly categories.</p>
 </section><section id="the-complete-visualization-code" class="level3"><h3 class="anchored" data-anchor-id="the-complete-visualization-code">The Complete Visualization Code</h3>
-<p>While I’ve showed you a nearly complete version of the code that Scherer and Karamanis wrote, I made some small changes to make it easier to understand. If you’re curious, the full code is here:</p>
+<p>While I’ve shown you a nearly complete version of the code that Scherer and Karamanis wrote, I made some small changes to make it easier to understand. If you’re curious, the full code is here:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dm_perc_cat_hubs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">percentage</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dm_perc_cat_hubs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">percentage</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
 <span>      xmin <span class="op">=</span> <span class="fl">.5</span>,</span>
@@ -1060,24 +1070,25 @@ Figure&nbsp;2.16: Drought visualization with changes made to the legend text
 <span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>There are a few additional tweaks to colors and spacing, but most of the code reflects what you’ve seen so far.</p>
+<p>There are a few additional tweaks to color and spacing, but most of the code reflects what you’ve seen so far.</p>
 </section></section><section id="in-conclusion-ggplot-is-your-data-visualization-secret-weapon" class="level2"><h2 class="anchored" data-anchor-id="in-conclusion-ggplot-is-your-data-visualization-secret-weapon">In Conclusion: ggplot is Your Data Visualization Secret Weapon</h2>
-<p>You may start to think of ggplot as a solution to all of your data visualization problems. And yes, you have a new hammer, but no, everything is not a nail. If you look at the version of the data visualization that appeared in <em>Scientific American</em> in November 2021, you’ll see that some of its annotations aren’t visible in our recreation. That’s because they were added in post-production. While you could have found ways to create them in ggplot, it’s often not the best use of your time. Get yourself 90 percent of the way there with ggplot and then use Illustrator, Figma, or a similar tool to finish your work.</p>
-<p>Even so, ggplot is a very powerful hammer, used to make plots that you’ve seen in <em>The New York Times</em>, FiveThirtyEight, the BBC, and other well-known news outlets. Although not the only tool that can generate high-quality data visualization, it makes the process straightforward. The graph by Scherer and Karamanis shows this in several ways:</p>
+<p>You may be thinking that ggplot is the solution to all of your data visualization problems. And yes, you have a new hammer, but not everything is a nail. If you look at the version of the data visualization that appeared in <em>Scientific American</em> in November 2021, you’ll see that some of its annotations aren’t visible in our re-creation. That’s because they were added in post-production. While you could have found ways to create them in ggplot, it’s often not the best use of your time. Get yourself 90 percent of the way there with ggplot and then use Illustrator, Figma, or a similar tool to finish your work.</p>
+<p>Even so, ggplot is a very powerful hammer, used to make plots that you’ve seen in the <em>New York Times</em>, FiveThirtyEight, the BBC, and other well-known news outlets. Although it’s not the only tool that can generate high-quality data visualizations, it makes the process straightforward. The graph by Scherer and Karamanis shows this in several ways:</p>
 <ul>
-<li><p><strong>It strips away extraneous elements, such as grid lines, to keep the focus on the data itself</strong>. Complete themes such as <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> and the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function allowed Scherer and Karamanis to create a decluttered visualization that communicates effectively.</p></li>
-<li><p><strong>It uses well-chosen colors</strong>. The <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function allowed them to create a color scheme that demonstrates differences between groups, is colorblind friendly, and shows up well when printed in grayscale.</p></li>
-<li><p><strong>It uses small multiples to break data from two decades and eight regions into a set of graphs that come together to create a single plot</strong>. With a single call to the <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> function, Scherer and Karamanis created over 100 small multiples that the tool automatically combined into a single plot.</p></li>
+<li><p>It strips away extraneous elements, such as grid lines, to keep the focus on the data itself. Complete themes such as <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> and the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function allowed Scherer and Karamanis to create a decluttered visualization that communicates effectively.</p></li>
+<li><p>It uses well-chosen colors. The <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function allowed them to create a color scheme that demonstrates differences between groups, is colorblind-friendly, and shows up well when printed in grayscale.</p></li>
+<li><p>It uses faceting to break down data from two decades and eight regions into a set of graphs that come together to create a single plot. With a single call to the <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> function, Scherer and Karamanis created over 100 small multiples that the tool automatically combined into a single plot.</p></li>
 </ul>
-<p>Learning to create data visualization in ggplot involves a significant time investment. But the long-term payoff is even greater. Once you learn how ggplot works, you can look at others’ code and learn how to improve your own. By contrast, when you make a data visualization in Excel, the series of point-and-click steps disappears into the ether. To recreate a visualization you made last week, you’ll need to remember the exact steps you used, and to make someone else’s data visualization, you’ll need them to write up their process for you.</p>
-<p>Because code-based data visualization tools allow you to keep that record of the steps you made, you don’t have to be the most talented designer to make high-quality data visualization with ggplot. You can study others’ code, adapt it to your own needs, and create your own data visualization that is beautiful and communicates effectively.</p>
-</section><section id="learn-more" class="level2"><h2 class="anchored" data-anchor-id="learn-more">Learn More</h2>
-<p>Consult the following resources to learn more about data visualization principles and the ggplot2 package:</p>
-<p><em>Data Visualization: A Practical Introduction</em> by Kieran Healy (Princeton University Press, 2018), https://socviz.co</p>
-<p><em>Fundamentals of Data Visualization</em> by Claus Wilke (O’Reilly Media, 2019). https://clauswilke.com/dataviz/</p>
-<p><em>ggplot2: Elegant Graphics for Data Analysis</em> by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen (Springer, Forthcoming), https://ggplot2-book.org</p>
-<p><em>Graphic Design with ggplot2</em> by Cédric Scherer (CRC Press, Forthcoming)</p>
-<p>“The Glamour of Graphics,” course by Will Chase, https://rfortherestofus.com/courses/glamour/</p>
+<p>Learning to create data visualizations in ggplot involves a significant time investment. But the long-term payoff is even greater. Once you learn how ggplot works, you can look at others’ code and learn how to improve your own. By contrast, when you make a data visualization in Excel, the series of point-and-click steps disappears into the ether. To re-create a visualization you made last week, you’ll need to remember the exact steps you used, and to make someone else’s data visualization, you’ll need them to write up their process for you.</p>
+<p>Because code-based data visualization tools allow you to keep a record of the steps you made, you don’t have to be the most talented designer to make high-quality data visualizations with ggplot. You can study others’ code, adapt it to your own needs, and create your own data visualization that not only is beautiful but also communicates effectively.</p>
+</section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p>Will Chase, “The Glamour of Graphics,” online course, accessed November 6, 2023, <a href="https://rfortherestofus.com/courses/glamour/" class="uri">https://rfortherestofus.com/courses/glamour/</a>.</p></li>
+<li><p>Kieran Healy, <em>Data Visualization: A Practical Introduction</em> (Princeton, NJ: Princeton University Press, 2018), <a href="https://socviz.co" class="uri">https://socviz.co</a>.</p></li>
+<li><p>Cédric Scherer, <em>Graphic Design with ggplot2</em> (Boca Raton, FL: CRC Press, forthcoming).</p></li>
+<li><p>Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen, <em>ggplot2: Elegant Graphics for Data Analysis</em>, 3rd ed.&nbsp;(New York: Springer, forthcoming), <a href="https://ggplot2-book.org" class="uri">https://ggplot2-book.org</a>.</p></li>
+<li><p>Claus Wilke, <em>Fundamentals of Data Visualization</em> (Sebastopol, CA: O’Reilly Media, 2019), <a href="https://clauswilke.com/dataviz/" class="uri">https://clauswilke.com/dataviz/</a>.</p></li>
+</ul>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
