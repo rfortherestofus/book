@@ -255,27 +255,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#using-a-custom-theme-to-style-a-plot" id="toc-using-a-custom-theme-to-style-a-plot" class="nav-link active" data-scroll-target="#using-a-custom-theme-to-style-a-plot">Using a Custom Theme to Style a Plot</a>
+<a href="#styling-a-plot-with-a-custom-theme" id="toc-styling-a-plot-with-a-custom-theme" class="nav-link active" data-scroll-target="#styling-a-plot-with-a-custom-theme">Styling a Plot with a Custom Theme</a>
   <ul class="collapse">
-<li><a href="#creating-an-example-plot" id="toc-creating-an-example-plot" class="nav-link" data-scroll-target="#creating-an-example-plot">Creating an Example Plot</a></li>
-  <li><a href="#applying-the-bbc_style-function" id="toc-applying-the-bbc_style-function" class="nav-link" data-scroll-target="#applying-the-bbc_style-function">Applying the <code>bbc_style()</code> Function</a></li>
+<li><a href="#an-example-plot" id="toc-an-example-plot" class="nav-link" data-scroll-target="#an-example-plot">An Example Plot</a></li>
+  <li><a href="#the-bbcs-custom-theme" id="toc-the-bbcs-custom-theme" class="nav-link" data-scroll-target="#the-bbcs-custom-theme">The BBC’s Custom Theme</a></li>
   </ul>
 </li>
   <li>
-<a href="#breaking-down-the-custom-theme" id="toc-breaking-down-the-custom-theme" class="nav-link" data-scroll-target="#breaking-down-the-custom-theme">Breaking Down the Custom Theme</a>
+<a href="#the-bbc-theme-components" id="toc-the-bbc-theme-components" class="nav-link" data-scroll-target="#the-bbc-theme-components">The BBC Theme Components</a>
   <ul class="collapse">
-<li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting Up</a></li>
-  <li><a href="#text-formatting" id="toc-text-formatting" class="nav-link" data-scroll-target="#text-formatting">Text Formatting</a></li>
-  <li><a href="#legend-formatting" id="toc-legend-formatting" class="nav-link" data-scroll-target="#legend-formatting">Legend Formatting</a></li>
-  <li><a href="#axis-formatting" id="toc-axis-formatting" class="nav-link" data-scroll-target="#axis-formatting">Axis Formatting</a></li>
-  <li><a href="#grid-lines-formatting" id="toc-grid-lines-formatting" class="nav-link" data-scroll-target="#grid-lines-formatting">Grid Lines Formatting</a></li>
-  <li><a href="#background-formatting" id="toc-background-formatting" class="nav-link" data-scroll-target="#background-formatting">Background Formatting</a></li>
-  <li><a href="#small-multiples-formatting" id="toc-small-multiples-formatting" class="nav-link" data-scroll-target="#small-multiples-formatting">Small Multiples Formatting</a></li>
+<li><a href="#function-definition" id="toc-function-definition" class="nav-link" data-scroll-target="#function-definition">Function Definition</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
+  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend">Legend</a></li>
+  <li><a href="#axes" id="toc-axes" class="nav-link" data-scroll-target="#axes">Axes</a></li>
+  <li><a href="#grid-lines" id="toc-grid-lines" class="nav-link" data-scroll-target="#grid-lines">Grid Lines</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#small-multiples" id="toc-small-multiples" class="nav-link" data-scroll-target="#small-multiples">Small Multiples</a></li>
   </ul>
 </li>
-  <li><a href="#what-about-colors" id="toc-what-about-colors" class="nav-link" data-scroll-target="#what-about-colors">What About Colors?</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
+  <li><a href="#color" id="toc-color" class="nav-link" data-scroll-target="#color">Color</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -294,24 +294,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>A custom theme is nothing more than a chunk of code that applies a set of small tweaks to all plots. So much of the work involved in making a professional chart consists of these adjustments. What font should you use? Where should the legend go? Should axes have titles? Should charts have grid lines? These questions may seem minor, but they have a big impact on the final product.</p>
-<p>In 2018, BBC data journalists Nassos Stylianou and Clara Guibourg, along with their team, developed a custom ggplot theme that matches the BBC’s style. By introducing this <code>bbplot</code> package for others to use, they changed their organization’s culture, removed bottlenecks, and allowed the BBC to visualize data more creatively.</p>
-<p>Rather than forcing everyone to copy the long code to tweak each plot they make, custom themes enable everyone who uses them to follow style guidelines and ensures that all data visualization meets a brand’s standards. For example, to understand the significance of the custom theme introduced at the BBC, it’s helpful to know how things worked before <code>bbplot</code>. In the mid-2010s, journalists who wanted to make data visualization had two choices:</p>
-<ol type="1">
-<li><p>They could use an internal tool. This tool could create data visualizations but was limited to the predefined charts it had been designed to generate.</p></li>
-<li><p>They could use Excel to create mockups and then work with a graphic designer to finalize the charts. This approach led to better results, and was way more flexible, but required extensive, time-consuming back-and-forth with a designer.</p></li>
-</ol>
-<p>Neither of these choices was ideal, and they limited the BBC’s data visualization output. R freed the journalists from having to work with a designer. It wasn’t that the designers were bad (they weren’t), but ggplot allowed the journalists to explore different visualizations on their own. As the team improved their ggplot skills, they realized that it might be possible to produce more than just exploratory data visualizations and create production-ready charts in R that could go straight onto the BBC website.</p>
-<p>In this chapter, we discuss the power of custom ggplot themes, then walk through the code in the <code>bbplot</code> package to demonstrate how custom themes work. You’ll learn how to consolidate your styling code into a reusable function and how to consistently modify your plots’ text, axes, grid lines, background, and other elements.</p>
-<section id="using-a-custom-theme-to-style-a-plot" class="level2"><h2 class="anchored" data-anchor-id="using-a-custom-theme-to-style-a-plot">Using a Custom Theme to Style a Plot</h2>
-<p>The bbplot package has two functions: <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> and <code><a href="https://rdrr.io/pkg/bbplot/man/finalise_plot.html">finalise_plot()</a></code>. The latter deals with things like adding the BBC logo and saving plots in the correct dimensions. For now, let’s look at the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function, which applies a custom ggplot theme to any plot, making all plots look consistent and follow BBC style guidelines.</p>
-<section id="creating-an-example-plot" class="level3"><h3 class="anchored" data-anchor-id="creating-an-example-plot">Creating an Example Plot</h3>
-<p>To show how this function works, let’s create a plot. We’ll do so using the <code>palmerpenguins</code> package, which contains data about penguins living on three islands in Antarctica. To give you a sense of what this data looks like, load the <code>palmerpenguins</code> and <code>tidyverse</code> packages:</p>
+</header><p>A <em>custom theme</em> is nothing more than a chunk of code that applies a set of small tweaks to all plots. So much of the work involved in making a professional chart consists of these kinds of adjustments. What font should you use? Where should the legend go? Should axes have titles? Should charts have grid lines? These questions may seem minor, but they have a major impact on the final product.</p>
+<p>In 2018, BBC data journalists Nassos Stylianou and Clara Guibourg, along with their team, developed a custom ggplot theme that matches the BBC’s style. By introducing this bbplot package for others to use, they changed their organization’s culture, removed bottlenecks, and allowed the BBC to visualize data more creatively.</p>
+<p>Rather than forcing everyone to copy the long code to tweak each plot they make, custom themes enable everyone who uses them to follow style guidelines and ensure that all data visualizations meet a brand’s standards. For example, to understand the significance of the custom theme intro- duced at the BBC, it’s helpful to know how things worked before bbplot.</p>
+<p>In the mid-2010s, journalists who wanted to make data visualization had two choices:</p>
+<ul>
+<li><p>Use an internal tool that could create data visualizations but was lim- ited to the predefined charts it had been designed to generate.</p></li>
+<li><p>Use Excel to create mockups and then work with a graphic designer to finalize the charts. This approach led to better results and was much more flexible, but it required extensive, time-consuming back-and-forth with a designer.</p></li>
+</ul>
+<p>Neither of these choices was ideal, and the BBC’s data visualization output was limited. R freed the journalists from having to work with a designer. It wasn’t that the designers were bad (they weren’t), but ggplot allowed the journalists to explore different visualizations on their own. As the team improved their ggplot skills, they realized that it might be possible to produce more than just exploratory data visualizations and to create production-ready charts in R that could go straight onto the BBC website.</p>
+<p>This chapter discusses the power of custom ggplot themes, then walks through the code in the bbplot package to demonstrate how custom themes work. You’ll learn how to consolidate your styling code into a reusable function and how to consistently modify your plots’ text, axes, grid lines, background, and other elements.</p>
+<section id="styling-a-plot-with-a-custom-theme" class="level2"><h2 class="anchored" data-anchor-id="styling-a-plot-with-a-custom-theme">Styling a Plot with a Custom Theme</h2>
+<p>The bbplot package has two functions: <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> and <code><a href="https://rdrr.io/pkg/bbplot/man/finalise_plot.html">finalise_plot()</a></code>. The latter deals with tasks like adding the BBC logo and saving plots in the correct dimensions. For now, let’s look at the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function, which applies a custom ggplot theme to make all the plots look consistent and follow BBC style guidelines.</p>
+<section id="an-example-plot" class="level3"><h3 class="anchored" data-anchor-id="an-example-plot">An Example Plot</h3>
+<p>To see how this function works, you’ll create a plot showing population data about several penguin species. You’ll be using the <code>palmerpenguins</code> package, which contains data about penguins living on three islands in Antarctica. For a sense of what this data looks like, load the <code>palmerpenguins</code> and <code>tidyverse</code> packages:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We now have data that we can work with in an object called <code>penguins</code>. Here’s what the first ten rows look like.</p>
+<p>Now you have data you can work with in an object called <code>penguins</code>. Here’s what the first 10 rows look like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 8
@@ -331,12 +332,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>To get our data in a more usable format, let’s count how many penguins live on each island. We do this with the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function from the <code>dplyr</code> package (one of several packages that are loaded when we load the <code>tidyverse</code>):</p>
+<p>To get the data in a more usable format, you’ll count how many penguins live on each island with the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function from the <code>dplyr</code> package (one of several packages that are loaded with the <code>tidyverse</code>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This gives us some simple data that we can use for plotting below.</p>
+<p>This gives you some simple data that you can use for plotting:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
@@ -347,12 +348,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3 Torgersen    52</code></pre>
 </div>
 </div>
-<p>Because we’ll use this data multiple times in the chapter, let’s save it as an object called <code>penguins_summary</code>:</p>
+<p>You’ll use this data multiple times in the chapter, so save it as an object called <code>penguins_summary</code> like so:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_summary</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that we’ve got some data to work with, we’re ready to create a plot. Before showing what <code>bbplot</code> does, let’s make our plot with the ggplot defaults. Here is the code we’ll use:</p>
+<p>Now you’re ready to create a plot. Before you see what <code>bbplot</code> does, make a plot with the ggplot defaults:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">penguins_summary</span>,</span>
@@ -369,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    caption <span class="op">=</span> <span class="st">"Data from palmerpenguins package"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We use our <code>penguins_summary</code> data frame, putting the island on the x axis and the count of the number of penguins (<code>n</code>) on the y axis, and making each bar a different color with the <code>fill</code> aesthetic property. We’ll modify this plot multiple times, so to simplify this process, we save it as an object called <code>penguins_plot</code>. Figure @ref(fig:basic-penguins-plot-plot) shows the resulting plot.</p>
+<p>This code tells R to use the <code>penguins_summary</code> data frame, putting the island on the x-axis and the count of the number of penguins (<code>n</code>) on the y-axis, and making each bar a different color with the <code>fill</code> aesthetic prop- erty. Since you’ll modify this plot multiple times, saving it as an object called <code>penguins_plot</code> simplifies the process. <a href="#fig-basic-penguins-plot-plot" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows the resulting plot.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-basic-penguins-plot-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -382,21 +383,21 @@ Figure&nbsp;3.1: A chart with the default theme
 </div>
 </div>
 </div>
-<p>It isn’t the most aesthetically pleasing chart. The gray background is ugly, the y axis title is hard to read because it’s angled, and the text size overall is quite small. But don’t worry: we’ll be improving it soon!</p>
-</section><section id="applying-the-bbc_style-function" class="level3"><h3 class="anchored" data-anchor-id="applying-the-bbc_style-function">Applying the <code>bbc_style()</code> Function</h3>
-<p>Now that we have a basic plot to work with, let’s make it look like a BBC chart. To do this, we must install the bbplot package. First, install the remotes package using <code>install.packages("remotes")</code>. From there, you can run the following code to install <code>bbplot</code>.</p>
+<p>This isn’t the most aesthetically pleasing chart. The gray background is ugly, the y-axis title is hard to read because it’s angled, and the text size overall is quite small. But don’t worry, you’ll be improving it soon.</p>
+</section><section id="the-bbcs-custom-theme" class="level3"><h3 class="anchored" data-anchor-id="the-bbcs-custom-theme">The BBC’s Custom Theme</h3>
+<p>Now that you have a basic plot to work with, you’ll start making it look like a BBC chart. To do this, you need to install the <code>bbplot</code> package. First, install the <code>remotes</code> package using <code>install.packages("remotes")</code> so that you can access packages from remote sources. Then, run the following code to install bbplot from the GitHub repository at <a href="https://github.com/bbc/bbplot" class="uri">https://github.com/bbc/bbplot</a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"bbc/bbplot"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Once the bbplot package is installed, we can then apply the bbc_style() function to our penguins_plot:</p>
+<p>Once you’ve installed the bbplot package, load it and apply the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function to the penguins_plot as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">bbplot</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">penguins_plot</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Take a look at what happens in Figure @ref(fig:penguins-bbc-style-plot) with the application of bbc_style() to our plot.</p>
+<p><a href="#fig-penguins-bbc-style-plot" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguins-bbc-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -409,10 +410,10 @@ Figure&nbsp;3.2: The same chart with BBC style
 </div>
 </div>
 </div>
-<p>Way different, right? The font size is larger, the legend is on top, there are no axis titles, the grid lines are stripped down, and there is a white background. These are the major changes that the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function makes. Let’s look at them one by one.</p>
-</section></section><section id="breaking-down-the-custom-theme" class="level2"><h2 class="anchored" data-anchor-id="breaking-down-the-custom-theme">Breaking Down the Custom Theme</h2>
-<p>This section walks through the code for the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function (taken from the <code>bbplot</code> GitHub repository at https://github.com/bbc/bbplot, with some minor tweaks for readability). We’ll discuss functions more in Chapter @ref(packages-chapter).</p>
-<section id="setting-up" class="level3"><h3 class="anchored" data-anchor-id="setting-up">Setting Up</h3>
+<p>Vastly different, right? The font size is larger, the legend is on top, there are no axis titles, the grid lines are stripped down, and the background is white. Let’s look at these changes one by one.</p>
+</section></section><section id="the-bbc-theme-components" class="level2"><h2 class="anchored" data-anchor-id="the-bbc-theme-components">The BBC Theme Components</h2>
+<p>You’ve just seen the difference that the bbc_style() function makes to a basic chart. This section walks you through the function’s code, with some minor tweaks for readability. Functions are discussed further in <a href="packages.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+<section id="function-definition" class="level3"><h3 class="anchored" data-anchor-id="function-definition">Function Definition</h3>
 <p>The first line gives the function a name and indicates that what follows is, in fact, a function definition:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bbc_style <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
@@ -420,27 +421,51 @@ Figure&nbsp;3.2: The same chart with BBC style
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We then define a variable called <code>font</code> and assign it the value Helvetica. This allows later sections to simply write <code>font</code> rather than repeating Helvetica over and over again. Also, if the BBC team ever wanted to use a different font, they could change Helvetica to, say, Comic Sans and update the font of all BBC plots (though I suspect higher-ups at the BBC might not be on board).</p>
-<p>Until recently, working custom fonts in R was notoriously tricky. However, recent changes have made the process much simpler. To ensure that custom fonts such as Helvetica work in ggplot, follow these steps. First, install two packages. <code>systemfonts</code> and <code>ragg</code>, by running this code in the console:</p>
+<p>The code then defines a variable called font and assigns it the value <code>Helvetica</code>. This allows later sections to simply use font rather than repeating <code>Helvetica</code> multiple times. If the BBC team ever wanted to use a different font, they could change <code>Helvetica</code> here to, say, <code>Comic Sans</code> and it would update the font for all of the BBC plots (though I suspect higher-ups at the BBC might not be on board with that choice).</p>
+<p>Historically, working with custom fonts in R was notoriously tricky, but recent changes have made the process much simpler. To ensure that custom fonts such as Helvetica work in ggplot, first install the <code>systemfonts</code> and <code>ragg</code> packages by running this code in the console:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"systemfonts"</span>, <span class="st">"ragg"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>systemfonts</code> package allows R to directly access fonts you’ve installed on your computer, while <code>ragg</code> allows ggplot to use these fonts when generating plots.</p>
-<p>Second, select <strong>Tools</strong> &gt; <strong>Global Options</strong>. Click the <strong>Graphics</strong> menu at the top of the interface, and under the Backend option, select <strong>AGG</strong>. This change should ensure that RStudio renders the previews of any plots with the <code>ragg</code> package. With these changes in place, you should be able to use any fonts you’d like (assuming you have them installed) in the same way that the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function uses Helvetica.</p>
-<p>After specifying the font to use, we call the <code>ggplot2</code> package’s <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function. Rather than first loading the package with the code <code><a href="https://ggplot2.tidyverse.org">library(ggplot2)</a></code> and then using its function, we use the syntax <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">ggplot2::theme()</a></code>, indicating that the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function comes from the <code>ggplot2</code> package. We write code in this way when making an R package, something we’ll discuss in Chapter @ref(packages-chapter).</p>
-<p>Nearly all of the code in the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function exists within this <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function. Remember from Chapter @ref(data-viz-chapter) that <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> makes additional tweaks to an existing theme; it isn’t a complete theme like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>, which will change the whole look-and-feel of your plot. In other words, by jumping straight into the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function, <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> makes tweaks to the ggplot defaults.</p>
-<p>As you’ll see, the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function does a lot of tweaking. Let’s go through the changes it makes, section by section.</p>
-</section><section id="text-formatting" class="level3"><h3 class="anchored" data-anchor-id="text-formatting">Text Formatting</h3>
-<p>The first code section within the theme() function formats the text:</p>
-<p>To make changes to the title, subtitle, and caption, it uses using the following pattern:</p>
+<p>The <code>systemfonts</code> package allows R to directly access fonts you’ve installed on your computer, and <code>ragg</code> allows ggplot to use those fonts when generating plots.</p>
+<p>Next, select <strong>Tools &gt; Global Options</strong> from RStudio’s main menu bar. Click the <strong>Graphics</strong> menu at the top of the interface and, under the Backend option, select <strong>AGG</strong>. This change should ensure that RStudio renders the previews of any plots with the <code>ragg</code> package. With these changes in place, you should be able to use any fonts you’d like (assuming you have them installed) in the same way that the b<code>bc_style()</code> function uses Helvetica.</p>
+<p>After specifying the font to use, the code calls ggplot’s <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function. Rather than first loading ggplot with <code><a href="https://ggplot2.tidyverse.org">library(ggplot2)</a></code> and then calling its <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function, the <code>ggplot2::theme(</code>) syntax indicates in one step that the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function comes from the ggplot2 package. You’ll write code in this way when making an R package in <a href="packages.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
+<p>Nearly all of the code in <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> exists within this <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function. Remember from <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a> that <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> makes additional tweaks to an existing theme; it isn’t a complete theme like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>, which will change the whole look and feel of your plot. In other words, by jumping straight into the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function, <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> makes adjustments to the ggplot defaults. As you’ll see, the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function does a lot of tweaking.</p>
+</section><section id="text" class="level3"><h3 class="anchored" data-anchor-id="text">Text</h3>
+<p>The first code section within the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function formats the text:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">AREA_OF_CHART</span> <span class="op">=</span> <span class="fu">ELEMENT_TYPE</span><span class="op">(</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot.title <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> font,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">28</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"#222222"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plot.subtitle <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> font,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">22</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> ggplot2<span class="sc">::</span><span class="fu">margin</span>(<span class="dv">9</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">0</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plot.caption <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To make changes to the title, subtitle, and caption, it follows this pattern:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">AREA_OF_CHART</span> <span class="op">=</span> <span class="fu">ELEMENT_TYPE</span><span class="op">(</span></span>
 <span>  PROPERTY <span class="op">=</span> <span class="va">VALUE</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For each area, we say what type of element it is: <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>, or <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code>. Within the element type, we give values to properties. This can be, say, setting the font family (the property) to Helvetica (the value).</p>
-<p>One of the main things the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function does is bump up the text size. Increasing font size helps with legibility, especially when plots made using the <code>bbplot</code> package are viewed on smaller mobile devices. The code first formats the title (with <code>plot.title</code>) using Helvetica 28-point bold font in a nearly black color (that’s the hex code #222222). The subtitle (using <code>plot.subtitle</code>) is 22-point Helvetica.</p>
-<p>We add some spacing between the title and subtitle using the <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code> function, which gives the spacing, in points, for the top (9), right (0), bottom (9), and left (0) sides. Finally, the caption (through the <code>plot.caption</code> argument) is removed using the <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code> function. This is done because the <code><a href="https://rdrr.io/pkg/bbplot/man/finalise_plot.html">finalise_plot()</a></code> function in the <code>bbplot</code> package adds elements, including a caption and the BBC logo, to the bottom of plots. Figure @ref(fig:penguins-plot-text-formatting-plot) shows these changes.</p>
+<p>For each area, this code specifies the element type: <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect()</a></code>, or <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code>. Within the element type is where you assign values to properties—for example, setting the font family (the property) to Helvetica (the value). The <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function uses the various <code>element_</code> functions to make tweaks, as you’ll see later in this chapter.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>For additional ways to customize pieces of your plots, see the ggplot2 package documentation (<a href="https://ggplot2.tidyverse.org/reference/element.html" class="uri">https://ggplot2.tidyverse.org/reference/element.html</a>), which provides a comprehensive list.</p>
+</div>
+</div>
+</div>
+<p>One of the main adjustments the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function makes is bumping up the font size to help with legibility, especially when plots made with the bbplot package are viewed on smaller mobile devices. The code first formats the title (with <code>plot.title</code>) using Helvetica 28-point bold font in a nearly black color (the hex code #222222). The subtitle (<code>plot.subtitle</code>) is 22-point Helvetica.</p>
+<p>The <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> code also adds some spacing between the title and subtitle with the <code><a href="https://ggplot2.tidyverse.org/reference/element.html">margin()</a></code> function, specifying the value in points for the top (9), right (0), bottom (9), and left (0) sides. Finally, the <code><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank()</a></code> function removes the default caption (set through the <code>caption</code> argument in the labs() function), “Data from palmer penguins package.” (As mentioned earlier, the <code><a href="https://rdrr.io/pkg/bbplot/man/finalise_plot.html">finalise_plot()</a></code> function in the <code>bbplot</code> package adds elements, including an updated caption and the BBC logo, to the bottom of the plots.)</p>
+<p><a href="#fig-penguins-plot-text-formatting-plot" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> shows these changes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguins-plot-text-formatting-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -453,22 +478,22 @@ Figure&nbsp;3.3: The penguin chart with only the text formatting changed
 </div>
 </div>
 </div>
-<p>With these changes in place, we’re on our way toward the BBC look. Let’s now tweak the legend.</p>
-</section><section id="legend-formatting" class="level3"><h3 class="anchored" data-anchor-id="legend-formatting">Legend Formatting</h3>
-<p>Next, we format the legend, putting it on top of the plot and left-aligning the text within it:</p>
+<p>With these changes in place, you’re on your way to the BBC look.</p>
+</section><section id="legend" class="level3"><h3 class="anchored" data-anchor-id="legend">Legend</h3>
+<p>Next up is formatting the legend, positioning it above the plot and left- aligning its text:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>legend.position <span class="ot">=</span> <span class="st">"top"</span>,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>legend.text.align <span class="ot">=</span> <span class="dv">0</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>legend.background <span class="ot">=</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>legend.title <span class="ot">=</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>legend.key <span class="ot">=</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>legend.text <span class="ot">=</span> <span class="fu">element_text</span>(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> font,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">18</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"#222222"</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>legend.position <span class="ot">=</span> <span class="st">"top"</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>legend.text.align <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>legend.background <span class="ot">=</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>legend.title <span class="ot">=</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>legend.key <span class="ot">=</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>legend.text <span class="ot">=</span> <span class="fu">element_text</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> font,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">18</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"#222222"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We remove the legend background (which would show up only if the background color of the entire plot were different), the title, and the legend key (the borders on the red, green, and blue boxes that show the island names). Finally, we make the legend’s text 18-point Helvetica with the same nearly black color. We can see the result in Figure @ref(fig:penguins-plot-legend-plot).</p>
+<p>This code removes the legend background (which would show up only if the background color of the entire plot weren’t white), the title, and the legend key (the borders on the boxes that show the island names, just barely visible in <a href="#fig-penguins-plot-text-formatting-plot" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>). Finally, the code sets the legend’s text to 18-point Helvetica with the same nearly black color. <a href="#fig-penguins-plot-legend-plot" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguins-plot-legend-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -476,26 +501,26 @@ Figure&nbsp;3.3: The penguin chart with only the text formatting changed
 <img src="custom-theme_files/figure-html/fig-penguins-plot-legend-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-legend-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.4: Our chart with changes to the legend
+Figure&nbsp;3.4: The penguin chart with changes to the legend
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>The legend is looking better, but now we need to format the rest of the chart so it matches.</p>
-</section><section id="axis-formatting" class="level3"><h3 class="anchored" data-anchor-id="axis-formatting">Axis Formatting</h3>
-<p>Next are the axes. The code first removes axis titles because these tend to take up a lot of chart real estate, and you can use the title and subtitle to make it clear what the axes show.</p>
+<p>The legend is looking better, but now it’s time to format the rest of the chart so it matches.</p>
+</section><section id="axes" class="level3"><h3 class="anchored" data-anchor-id="axes">Axes</h3>
+<p>The code first removes the axis titles because they tend to take up a lot of chart real estate, and you can use the title and subtitle to clarify what the axes show:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>axis.title <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>axis.text <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> font,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">18</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"#222222"</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>axis.text.x <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">margin =</span> ggplot2<span class="sc">::</span><span class="fu">margin</span>(<span class="dv">5</span>, <span class="at">b =</span> <span class="dv">10</span>)),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>axis.ticks <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>axis.line <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>axis.title <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>axis.text <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> font,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">18</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"#222222"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>axis.text.x <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">margin =</span> ggplot2<span class="sc">::</span><span class="fu">margin</span>(<span class="dv">5</span>, <span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>axis.ticks <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>axis.line <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>All text on the axes becomes 18-point Helevetica and nearly black. The text on the x axis (in our case, Biscoe, Dream, and Torgersen) gets a bit of spacing around it. Finally, we remove both axis ticks and axis lines. We can see the changes to the axes in Figure @ref(fig:penguins-plot-axes-plot).</p>
+<p>All text on the axes becomes 18-point Helvetica and nearly black. The text on the x-axis (Biscoe, Dream, and Torgersen) gets a bit of spacing around it. Finally, both axes’ ticks and lines are removed. <a href="#fig-penguins-plot-axes-plot" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> shows these changes, although the removal of the axis lines doesn’t make a difference to the display here.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguins-plot-axes-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -503,20 +528,20 @@ Figure&nbsp;3.4: Our chart with changes to the legend
 <img src="custom-theme_files/figure-html/fig-penguins-plot-axes-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-axes-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.5: Our chart with changes to axis formatting
+Figure&nbsp;3.5: The penguin chart with axis formatting changes
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>With the axis text now matching the legend text, and the axis ticks and lines removed, we’re ready to deal with the grid lines.</p>
-</section><section id="grid-lines-formatting" class="level3"><h3 class="anchored" data-anchor-id="grid-lines-formatting">Grid Lines Formatting</h3>
-<p>Now that we’ve tweaked the overall text formatting, the legend, and the axes, let’s move onto grid lines. The approach here is fairly straightforward: remove all minor grid lines and the major grid lines on the x axis, keeping only major grid lines on the y axis, but making them a light gray (using the #cbcbcb hex code).</p>
+<p>The axis text matches the legend text, and the axis tick marks and lines are gone.</p>
+</section><section id="grid-lines" class="level3"><h3 class="anchored" data-anchor-id="grid-lines">Grid Lines</h3>
+<p>Now for the grid lines:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>panel.grid.minor <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>panel.grid.major.y <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#cbcbcb"</span>),</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>panel.grid.major.x <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>panel.grid.minor <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>panel.grid.major.y <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#cbcbcb"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>panel.grid.major.x <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can see the result of these tweaks to the grid lines in Figure @ref(fig:penguins-plot-gridlines-plot).</p>
+<p>The approach here is fairly straightforward: this code removes minor grid lines for both axes, removes major grid lines on the x-axis, and keeps major grid lines on the y-axis but makes them a light gray (the #cbcbcb hex code). <a href="#fig-penguins-plot-gridlines-plot" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguins-plot-gridlines-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -529,10 +554,10 @@ Figure&nbsp;3.6: Our chart with tweaks to the grid lines
 </div>
 </div>
 </div>
-</section><section id="background-formatting" class="level3"><h3 class="anchored" data-anchor-id="background-formatting">Background Formatting</h3>
+</section><section id="background" class="level3"><h3 class="anchored" data-anchor-id="background">Background</h3>
 <p>The previous iteration of our plot still had a gray background. The <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function removes this with the following code.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>panel.background <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>panel.background <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The plot without the gray background is seen in Figure @ref(fig:penguins-plot-no-bg).</p>
 <div class="cell">
@@ -542,14 +567,14 @@ Figure&nbsp;3.6: Our chart with tweaks to the grid lines
 <img src="custom-theme_files/figure-html/fig-penguins-plot-no-bg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-no-bg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.7: Our chart with the #| gray background removed
+Figure&nbsp;3.7: The chart with the gray background removed
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>We’ve nearly recreated the penguin plot using the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function. There is just one more tweak to go.</p>
-</section><section id="small-multiples-formatting" class="level3"><h3 class="anchored" data-anchor-id="small-multiples-formatting">Small Multiples Formatting</h3>
-<p>The function contains a bit more code, to modify <code>strip.background</code> and <code>strip.text</code>. These elements become relevant in small multiples charts like the one discussed in Chapter @ref(data-viz-chapter). Let’s turn our penguin chart into a small multiples chart to see these components of the BBC’s theme. I’ve used the code from the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function, minus the sections that deal with small multiples, to make Figure @ref(fig:penguin-facetted-plot).</p>
+<p>You’ve nearly re-created the penguin plot using the bbc_style() function.</p>
+</section><section id="small-multiples" class="level3"><h3 class="anchored" data-anchor-id="small-multiples">Small Multiples</h3>
+<p>The <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function contains a bit more code to modify <code>strip.background</code> and <code>strip.text</code>. In ggplot, the <em>strip</em> refers to the text above faceted charts like the ones discussed in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>. Next, you’ll turn your penguin chart into a faceted chart to see these components of the BBC’s theme. I’ve used the code from the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function, minus the sections that deal with small multiples, to make <a href="#fig-penguin-facetted-plot" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguin-facetted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -557,42 +582,45 @@ Figure&nbsp;3.7: Our chart with the #| gray background removed
 <img src="custom-theme_files/figure-html/fig-penguin-facetted-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguin-facetted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.8: Small multiples chart with no changes to the strip text formatting
+Figure&nbsp;3.8: The faceted chart with no changes to the strip text formatting
 </figcaption></figure>
 </div>
 </div>
 </div>
-<p>When we use the <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> function to make a small multiples chart, we are left with one chart per island. But note that, by default, the text above each chart is noticeably smaller than the rest of the chart. What’s more, the gray background behind the text stands out when we have removed the gray background from other parts of the chart. The consistency we’ve worked toward is now gone, with small text that is out of proportion to the other text in the chart and a gray background that sticks out like a sore thumb.</p>
-<p>The following code changes the text that shows up above each small multiples chart (called the <em>strip</em> in ggplot):</p>
+<p>Using the <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> function to make a small multiples chart leaves you with one chart per island, but by default, the text above each small multiple is noticeably smaller than the rest of the chart. What’s more, the gray background behind the text stands out because you’ve already removed the gray background from the other parts of the chart. The consistency you’ve worked toward is now compromised, with small text that is out of proportion to the other chart text and a gray background that sticks out like a sore thumb.</p>
+<p>The following code changes the strip text above each small multiple:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_plot_weight</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
-<span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
-<span>    strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">17</span>, hjust <span class="op">=</span> <span class="fl">0</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>strip.background <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>strip.text <span class="ot">=</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We remove the background (or, more accurately, color it white). Then we make the text larger, bold, and left aligned using <code>hjust = 0</code>. I did have to make the text size slightly smaller to fit in the book and added code to make it bold. You can see the result in Figure @ref(fig: penguins-plot-facetted-bbc-plot).</p>
+<p>This code removes the background (or, more accurately, colors it white). Then it makes the text larger, bold, and left-aligned using hjust = 0. Note that I did have to make the text size slightly smaller than in the actual chart to fit the book, and I added code to make it bold. <a href="#fig-penguins-plot-facetted-bbc" class="quarto-xref">Figure&nbsp;<span>3.9</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="custom-theme_files/figure-html/penguins-plot-facetted-bbc-plot-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Small multiples chart in the BBC style</figcaption></figure>
+<div id="fig-penguins-plot-facetted-bbc" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-facetted-bbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-facetted-bbc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-facetted-bbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.9: The small multiples chart in the BBC style
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p>If you take a look at any chart on the BBC website, you’ll see how similar it looks to ours. The tweaks in the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function (to the text formatting, legends, axes, grid lines, and backgrounds) show up in charts seen by millions on the BBC.</p>
-</section></section><section id="what-about-colors" class="level2"><h2 class="anchored" data-anchor-id="what-about-colors">What About Colors?</h2>
-<p>You might be thinking: Wait, what about the color of the bars? Doesn’t the theme change those? It’s a common point of confusion, but the answer is that it doesn’t. If we read the documentation for the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function, it becomes clearer why this is the case: “Themes are a powerful way to customize the non-data components of your plots: i.e.&nbsp;titles, labels, fonts, background, gridlines, and legends.” In other words, ggplot themes change the elements of the chart that aren’t mapped to data.</p>
-<p>Plots, on the other hand, use color to communicate information about data. In our small multiples chart, for instance, the fill property is mapped to the island (Biscoe is salmon, Dream is green, and Torgersen is blue). As we saw in Chapter @ref(data-viz-chapter), we can change the fill using the various <code>scale_fill_</code> functions. In the world of ggplot, these <code>scale_</code> functions control color, while the custom themes control the overall look-and-feel of charts.</p>
-</section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>When Stylianou and Guibourg started developing a custom theme for the BBC, they had one question: Would they be able to create graphs in R that could go directly onto the BBC website? Using ggplot, they succeeded. The <code>bbplot</code> package allowed them to make plots with a consistent look-and-feel that followed BBC standards and, most importantly, did not need help from a designer.</p>
-<p>You can see many of the principles of high-quality data visualization discussed in Chapter @ref(data-viz-chapter) in this custom theme. In particular, the removal of extraneous elements (axis titles and grid lines, for instance) helps keep the focus on the data itself. And because applying the theme requires users to add only a single line to their ggplot code, it became simple to get others on board. Users had only to append <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> to their code to produce a BBC-style plot.</p>
-<p>Over time, others at the BBC noticed the data journalism team’s production-ready graphs and wanted to make their own. The team members set up R trainings for their colleagues and developed a “cookbook” (found at https://bbc.github.io/rcookbook/) that showed how to make various types of charts. Soon, the quality and quantity of BBC’s data visualization exploded. Stylianou told me, “I don’t think there’s been a day where someone at the BBC hasn’t used the package to produce a graphic.”</p>
+<p>If you look at any chart on the BBC website, you’ll see how similar it looks to your own. The tweaks in the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function to the text formatting, legends, axes, grid lines, and backgrounds show up in charts viewed by millions of people worldwide.</p>
+</section></section><section id="color" class="level2"><h2 class="anchored" data-anchor-id="color">Color</h2>
+<p>You might be thinking, <em>Wait, what about the color of the bars? Doesn’t the theme change those?</em> This is a common point of confusion, but the answer is that it doesn’t. The documentation for the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function explains why this is the case: “Themes are a powerful way to customize the non-data components of your plots: i.e.&nbsp;titles, labels, fonts, background, gridlines, and legends.” In other words, ggplot themes change the elements of the chart that aren’t mapped to data.</p>
+<p>Plots, on the other hand, use color to communicate information about data. In the faceted chart, for instance, the <code>fill</code> property is mapped to the island (Biscoe is salmon, Dream is green, and Torgersen is blue). As you saw in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>, you can change the fill using the various <code>scale_fill_</code> functions. In the world of ggplot, these <code>scale_</code> functions control color, while the custom themes control the chart’s overall look and feel.</p>
+</section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>When Stylianou and Guibourg started developing a custom theme for the BBC, they had one question: Would they be able to create graphs in R that could go directly onto the BBC website? Using ggplot, they succeeded. The <code>bbplot</code> package allowed them to make plots with a consistent look and feel that followed BBC standards and, most important, did not require a designer’s help.</p>
+<p>You can see many of the principles of high-quality data visualization discussed in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a> in this custom theme. In particular, the removal of extraneous elements (axis titles and grid lines, for instance) helps keep the focus on the data itself. And because applying the theme requires users to add only a single line to their ggplot code, it was easy to get others on board. They had only to append <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> to their code to produce a BBC-style plot.</p>
+<p>Over time, others at the BBC noticed the data journalism team’s production-ready graphs and wanted to make their own. The team members set up R trainings for their colleagues and developed a “cookbook” (<a href="https://bbc.github.io/rcookbook/" class="uri">https://bbc.github.io/rcookbook/</a>) showing how to make various types of charts. Soon, the quality and quantity of BBC’s data visualization exploded. Stylianou told me, “I don’t think there’s been a day where someone at the BBC hasn’t used the package to produce a graphic.”</p>
 <p>Now that you’ve seen how custom ggplot themes work, try making one of your own. After all, once you’ve written the code, you can apply it with only one line of code.</p>
-</section><section id="learn-more" class="level2"><h2 class="anchored" data-anchor-id="learn-more">Learn More</h2>
+</section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
 <p>Consult the following resources to learn more about how the BBC created and used their custom theme:</p>
-<p>BBC Visual and Data Journalism cookbook for R graphics (2019), https://bbc.github.io/rcookbook/</p>
-<p>“How the BBC Visual and Data Journalism team works with graphics in R” by the BBC Visual and Data Journalism team (2019), https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535</p>
+<ul>
+<li><p>BBC Visual and Data Journalism cookbook for R graphics (2019), <a href="https://bbc.github.io/rcookbook/" class="uri">https://bbc.github.io/rcookbook/</a></p></li>
+<li><p>“How the BBC Visual and Data Journalism team works with graphics in R” by the BBC Visual and Data Journalism team (2019), <a href="https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535" class="uri">https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535</a></p></li>
+</ul>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

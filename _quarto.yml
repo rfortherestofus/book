@@ -62,7 +62,6 @@ execute:
 
 format:
   html:
-    title-delim: \.
     page-layout: full
     callout-icon: false
     smooth-scroll: true
@@ -73,7 +72,11 @@ format:
     number-depth: 0
     grid:
       sidebar-width: 350px
+    filters:
+      - change-figure-formatting.lua
+      - quarto
 
     author-meta: "David Keyes"
     include-in-header: "fathom.html"
     callout-appearance: simple
+

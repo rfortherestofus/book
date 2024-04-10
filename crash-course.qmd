@@ -57,7 +57,7 @@ There is one more pane that you’ll typically use when working in RStudio, but 
 
 If you write all of your code in the console, you won’t have any record of it. Say you sit down today and import your data, analyze it, and then make some graphs. If you run these operations in the console, you’ll have to re-create that code from scratch tomorrow. But if you write your code in files instead, you can run it multiple times.
 
-R script files, which use the .R extension, save your code so you can run it later. To create an R script file, go to `File > New File > R Script`, and
+R script files, which use the .R extension, save your code so you can run it later. To create an R script file, go to *File > New File > R Script*, and
 the script file pane should appear in the top left of RStudio, as shown in @fig-rstudio-four-panels. Save this file in your Documents folder as `sample-code.R`.
 
 ```{r}
