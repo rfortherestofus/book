@@ -1,5 +1,7 @@
 project:
   type: book
+  preview:
+    port: 7777
 
 book:
   title: "R for the Rest of Us: A Statistics-Free Introduction"
@@ -46,12 +48,17 @@ book:
         - accessing-data.qmd
         - packages.qmd
 
+engine: knitr
+
 execute: 
   eval: true
+  echo: false
   warning: false
   message: false
   output: true
   include: true
+  cache: true
+  out-width: "100%"
 
 format:
   html:

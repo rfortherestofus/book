@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.553">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="David Keyes">
-
 <title>R for the Rest of Us: A Statistics-Free Introduction - 2&nbsp; Principles of Data Visualization</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -69,19 +98,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
+}</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -92,13 +115,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for the Rest of Us: A Statistics-Free Introduction</a> 
     </div>
@@ -110,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About the Book</span></a>
@@ -130,8 +149,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./crash-course.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></span></a>
@@ -162,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -171,8 +190,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rmarkdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Markdown Reports</span></span></a>
@@ -203,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -212,8 +231,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accessing-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accesing Online Data</span></span></a>
@@ -226,26 +245,48 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#the-drought-visualization" id="toc-the-drought-visualization" class="nav-link active" data-scroll-target="#the-drought-visualization">The Drought Visualization</a></li>
+  <li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics">The Grammar of Graphics</a></li>
+  <li>
+<a href="#working-with-ggplot2" id="toc-working-with-ggplot2" class="nav-link" data-scroll-target="#working-with-ggplot2">Working With ggplot2</a>
+  <ul class="collapse">
+<li><a href="#mapping-data-to-aesthetic-properties" id="toc-mapping-data-to-aesthetic-properties" class="nav-link" data-scroll-target="#mapping-data-to-aesthetic-properties">Mapping Data to Aesthetic Properties</a></li>
+  <li><a href="#choosing-the-geometric-objects" id="toc-choosing-the-geometric-objects" class="nav-link" data-scroll-target="#choosing-the-geometric-objects">Choosing the Geometric Objects</a></li>
+  <li><a href="#altering-aesthetic-properties" id="toc-altering-aesthetic-properties" class="nav-link" data-scroll-target="#altering-aesthetic-properties">Altering Aesthetic Properties</a></li>
+  <li><a href="#the-fourth-layer-setting-a-theme" id="toc-the-fourth-layer-setting-a-theme" class="nav-link" data-scroll-target="#the-fourth-layer-setting-a-theme">The Fourth Layer: Setting a Theme</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#recreating-the-drought-visualization-with-ggplot" id="toc-recreating-the-drought-visualization-with-ggplot" class="nav-link" data-scroll-target="#recreating-the-drought-visualization-with-ggplot">Recreating the Drought Visualization with ggplot</a>
+  <ul class="collapse">
+<li><a href="#plotting-one-region-and-year" id="toc-plotting-one-region-and-year" class="nav-link" data-scroll-target="#plotting-one-region-and-year">Plotting One Region and Year</a></li>
+  <li><a href="#changing-aesthetic-properties" id="toc-changing-aesthetic-properties" class="nav-link" data-scroll-target="#changing-aesthetic-properties">Changing Aesthetic Properties</a></li>
+  <li><a href="#sec-faceting-the-plot" id="toc-sec-faceting-the-plot" class="nav-link" data-scroll-target="#sec-faceting-the-plot">Faceting the Plot</a></li>
+  <li><a href="#adding-final-polishes" id="toc-adding-final-polishes" class="nav-link" data-scroll-target="#adding-final-polishes">Adding Final Polishes</a></li>
+  <li><a href="#the-complete-visualization-code" id="toc-the-complete-visualization-code" class="nav-link" data-scroll-target="#the-complete-visualization-code">The Complete Visualization Code</a></li>
+  </ul>
+</li>
+  <li><a href="#in-conclusion-ggplot-is-your-data-visualization-secret-weapon" id="toc-in-conclusion-ggplot-is-your-data-visualization-secret-weapon" class="nav-link" data-scroll-target="#in-conclusion-ggplot-is-your-data-visualization-secret-weapon">In Conclusion: ggplot is Your Data Visualization Secret Weapon</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./data-viz.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></a></li></ol></nav>
-<div class="quarto-title">
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./data-viz.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-data-viz-chapter" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -254,14 +295,803 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>In the spring of 2021, nearly all of the American West was in a drought. Officials in Southern California declared a water emergency in April, citing unprecedented conditions. This probably didn’t come as news to residents of California and other western states. Drought conditions like those in the West in 2021 are becoming increasingly common, yet communicating the extent of the problem remains difficult. How can this data be presented in a way that is both accurate and compelling enough to get people to take notice?</p>
+<p>Data visualization designers Cédric Scherer and Georgios Karamanis took on this challenge in the fall of 2021 to create a graph of US drought conditions over the last two decades for the magazine Scientific American. They turned to the ggplot2 package to transform dry data (pardon the pun) from the National Drought Center into a visually arresting and impactful visualization.</p>
+<p>This chapter delves into why the data visualization that Scherer and Karamanis created is effective and introduces you to the grammar of graphics, a theory to make sense of graphs that underlies the ggplot2 package. You’ll then learn how to use ggplot2 by re-creating the drought graph step-by-step. In the process, I’ll highlight some key principles of high-quality data visual- ization that you can use to improve your own work.</p>
+<section id="the-drought-visualization" class="level2"><h2 class="anchored" data-anchor-id="the-drought-visualization">The Drought Visualization</h2>
+<p>Other news organizations had relied on the same National Drought Center data in their stories, but Scherer and Karamanis visualized it so that it both grabs attention and communicates the scale of the phenomenon. <a href="#fig-final-viz" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows a section of the final visualization (due to space constraints, I could include only four regions). The graph makes apparent the increase in drought conditions over the last two decades, especially in California and the Southwest.</p>
+<p>To understand why this visualization is effective, let’s break it down.</p>
+<p>At the broadest level, the data visualization is notable for its minimalist aesthetic. For example, there are no grid lines and few text labels, as well as minimal text along the axes. Scherer and Karamanis removed what statistician Edward Tufte, in his 1983 book <em>The Visual Display of Quantitative Information</em> (Graphics Press), calls <em>chartjunk</em>. Tufte wrote that extraneous elements often hinder, rather than help, our understanding of charts (and researchers and data visualization designers have generally agreed).</p>
+<p>Need proof that Scherer and Karamanis’s decluttered graph is better than the alternative? <a href="#fig-cluttered-viz" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows a version with a few tweaks to the code to include grid lines and text labels on axes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-final-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-final-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-final-viz-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: A section of the final drought visualization, with a few tweaks made to fit this book
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cluttered-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cluttered-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-cluttered-viz-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cluttered-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: The cluttered version of the drought visualization
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>It’s not just that this cluttered version looks worse; the clutter actively inhibits understanding. Rather than focusing on overall drought patterns (the point of the graph), our brains get stuck reading repetitive and unnecessary axis text.</p>
+<p>One of the best ways to reduce clutter is to break a single chart into a set of component charts, as Scherer and Karamanis have done (this approach, known as <em>faceting</em>, will be discussed further in <a href="#sec-faceting-the-plot" class="quarto-xref"><span>Section 2.4.3</span></a>). Each rectangle represents one region in one year. Filtering the larger chart to show the Southwest region in 2003 produces the graph shown in <a href="#fig-viz-sw-2003" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>, where the x-axis indicates the week and the y-axis indicates the percentage of that region at different drought levels.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-viz-sw-2003" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-viz-sw-2003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-viz-sw-2003-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-viz-sw-2003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: A drought visualization for the Southwest in 2003
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Zooming in on a single region in a single year also makes the color choices more obvious. The lightest orange bars show the percentage of the region that is abnormally dry, and the darkest purple bars show the percentage experiencing exceptional drought conditions. As you’ll see shortly, this range of colors was intentionally chosen to make differences in the drought levels visible to all readers.</p>
+<p>Despite the graph’s complexity, the R code that Scherer and Karamanis wrote to produce it is relatively simple, due largely to a theory called the <em>grammar of graphics</em>.</p>
+</section><section id="the-grammar-of-graphics" class="level2"><h2 class="anchored" data-anchor-id="the-grammar-of-graphics">The Grammar of Graphics</h2>
+<p>When working in Excel, you begin by selecting the type of graph you want to make. Need a bar chart? Click the bar chart icon. Need a line chart? Click the line chart icon. If you’ve only ever made charts in Excel, this first step may seem so obvious that you’ve never even given the data visualization process much thought, but in fact there are many ways to think about graphs. For example, rather than thinking of graph types as distinct, we can recognize and use their commonalities as the starting point for making them.</p>
+<p>This approach to thinking about graphs comes from the late statistician Leland Wilkinson. For years, Wilkinson thought deeply about what data visualization is and how we can describe it. In 1999 he published a book called <em>The Grammar of Graphics</em> (Springer) that sought to develop a consistent way of describing all graphs. In it, Wilkinson argued that we should think of plots not as distinct types, à la Excel, but as following a grammar that we can use to describe any plot. Just as English grammar tells us that a noun is typically followed by a verb (which is why “he goes” works, while the opposite, “goes he,” does not), the grammar of graphics helps us understand why certain graph types “work.”</p>
+<p>Thinking about data visualization through the lens of the grammar of graphics helps highlight, for example, that graphs typically have some data that is plotted on the x-axis and other data that is plotted on the y-axis. This is the case whether the graph is a bar chart or a line chart, as <a href="#fig-bar-line-chart" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> shows.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bar-line-chart" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bar-line-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-bar-line-chart-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bar-line-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: A bar chart and a line chart showing identical data
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>While the graphs look different (and would, to the Excel user, be different types of graphs), Wilkinson’s grammar of graphics emphasizes their similarities. (Incidentally, Wilkinson’s feelings on graph-making tools like Excel became clear when he wrote that “most charting packages channel user requests into a rigid array of chart types.”)</p>
+<p>When Wilkinson wrote his book, no data visualization tool could imple- ment his grammar of graphics. This would change in 2010, when Hadley Wickham announced the <code>ggplot2</code> package for R in the article “A Layered Grammar of Graphics,” published in the <em>Journal of Computational and Graphical Statistics</em>. By providing the tools to implement Wilkinson’s ideas, ggplot2 would come to revolutionize the world of data visualization.</p>
+</section><section id="working-with-ggplot2" class="level2"><h2 class="anchored" data-anchor-id="working-with-ggplot2">Working With ggplot2</h2>
+<p>The <code>ggplot2</code> R package (which I, like nearly everyone in the data visualization world, will refer to simply as <em>ggplot</em>) relies on the idea of plots having multiple layers. This section will walk you through some of the most impor- tant ones. You’ll begin by selecting variables to map to aesthetic properties. Then you’ll choose a geometric object to use to represent your data. Next, you’ll change the aesthetic properties of your chart (its color scheme, for example) using a scale_ function. Finally, you’ll use a <code>theme_</code> function to set the overall look and feel of your plot.</p>
+<section id="mapping-data-to-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="mapping-data-to-aesthetic-properties">Mapping Data to Aesthetic Properties</h3>
+<p>To create a graph with ggplot, you begin by mapping data to aesthetic properties. All this really means is that you use elements like the x- or y-axis, color, and size (the so-called <em>aesthetic properties</em>) to represent variables. You’ll use the data on life expectancy in Afghanistan, introduced in <a href="#fig-bar-line-chart" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>, to generate a plot. To access this data, enter the following code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gapminder_10_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rwithoutstatistics.com/gapminder_10_rows.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code first loads the <code>tidyverse</code> package, introduced in <a href="crash-course.html" class="quarto-xref"><span>Chapter 1</span></a>, and then uses the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function to access data from the book’s website and assign it to the <code>gapminder_10_rows</code> object.</p>
+<p>The resulting <code>gapminder_10_rows</code> tibble looks like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.</code></pre>
+</div>
+</div>
+<p>This output is a shortened version of the full which includes over 1,700 rows of data.</p>
+<p>Before making a chart with ggplot, you need to decice which variable to put on the x-axis and which to put on the y-axis. For data showing change over time, it’s common to put the date (in this case, <code>year</code>) on the x-axis and the changing value (in this case, <code>lifeExp</code>) on the y-axis. To do so, define the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function contains numerous arguments. Each argument goes on its own line, for the sake of readability, separated by commas. The <code>data</code> argument tells R to use the data frame gapminder_10_rows, and the <code>mapping</code> argument maps <code>year</code> to the x-axis and <code>lifeExp</code> to the y-axis.</p>
+<p>Running this code produces the chart in <a href="#fig-blank-ggplot" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>, which doesn’t look like much yet.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-blank-ggplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blank-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-blank-ggplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blank-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.5: A blank chart that maps year values to the x-axis and life expectancy values to the y-axis
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Notice that the x-axis corresponds to year and the y-axis corresponds to <code>lifeExp</code>, and the values on both axes match the scope of the data. In the <code>gapminder_10_rows</code> data frame, the first year is 1952 and the last year is 1997. The range of the x-axis has been created with this data in mind. Likewise, the values for <code>lifeExp</code>, which go from about 28 to about 42, will fit nicely on the y-axis.</p>
+</section><section id="choosing-the-geometric-objects" class="level3"><h3 class="anchored" data-anchor-id="choosing-the-geometric-objects">Choosing the Geometric Objects</h3>
+<p>Axes are nice, but the graph is missing any type of visual representation of the data. To get this, you need to add the next ggplot layer: geoms. Short for <em>geometric objects</em>, <em>geoms</em> are functions that provide different ways of representing data. For example, to add points to the graph, you use <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now the graph shows that people in 1952 had a life expectancy of about 28 and that this value rose every year in the dataset (see <a href="#fig-gapminder-points-plot" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gapminder-points-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-points-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-gapminder-points-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-points-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.6: The life expectancy chart with points added
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Say you change your mind and want to make a line chart instead. All you have to do is replace <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> like so:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#fig-gapminder-line-plot" class="quarto-xref">Figure&nbsp;<span>2.7</span></a> shows the result.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gapminder-line-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-gapminder-line-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.7: The data as a line chart
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To really get fancy, you could add both <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code generates a line chart with points, as shown in <a href="#fig-gapminder-points-line-plot" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gapminder-points-line-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-points-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-gapminder-points-line-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-points-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8: The same data with both points and a line
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>You can swap in <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> to create a bar chart:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice in <a href="#fig-gapminder-bar-plot" class="quarto-xref">Figure&nbsp;<span>2.9</span></a> that the y-axis range has been automatically updated, going from 0 to 40 to account for the different geom.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gapminder-bar-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-bar-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-gapminder-bar-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-bar-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.9: The life expectancy data as a bar chart
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>As you can see, the difference between a line chart and a bar chart isn’t as great as the Excel chart-type picker might have you believe. Both can have the same underlying properties (namely, years on the x-axis and life expectancies on the y-axis). They simply use different geometric objects to visually represent the data.</p>
+<p>Many geoms are built into ggplot. In addition to <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>, the geoms <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_area()</a></code> are among the most commonly used. To see all geoms, visit the ggplot documentation website at <a href="https://ggplot2.tidyverse.org/reference/index.html#geoms" class="uri">https://ggplot2.tidyverse.org/reference/index.html#geoms</a>.</p>
+</section><section id="altering-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="altering-aesthetic-properties">Altering Aesthetic Properties</h3>
+<p>Before we return to the drought data visualization, let’s look at a few additional layers you can use to alter the bar chart. Say you want to change the color of the bars. In the grammar of graphics approach to chart-making, this means mapping some variable to the aesthetic property of <code>fill</code>. (For a bar chart, the aesthetic property of color would change only the outline of each bar.) In the same way that you mapped <code>year</code> to the x-axis and <code>lifeExp</code> to the y-axis, you can map fill to a variable, such as <code>year</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">year</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="#fig-gapminder-bar-colors-plot" class="quarto-xref">Figure&nbsp;<span>2.10</span></a> shows the result. Now the fill is darker for earlier years and lighter for later years (as also indicated by the legend, added to the right of the plot).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gapminder-bar-colors-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-bar-colors-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-gapminder-bar-colors-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-bar-colors-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.10: The same chart, now with added colors
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>To change the fill colors, use a new scale layer with the <code>scale_fill _viridis_c()</code> function (the <code>c</code> at the end of the function name refers to the fact that the data is continuous, meaning it can take any numeric value):</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">year</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function changes the default palette to one that is colorblind-friendly and prints well in grayscale. The <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c()</a></code> function is just one of many that start with scale_ and can alter the fill scale. Chapter 11 of <em>ggplot2: Elegant Graphics for Data Analysis</em>, 3rd edition, discusses various color and fill scales. You can read it online at <a href="https://ggplot2-book.org/scales-colour.html" class="uri">https://ggplot2-book.org/scales-colour.html</a>.</p>
+</section><section id="the-fourth-layer-setting-a-theme" class="level3"><h3 class="anchored" data-anchor-id="the-fourth-layer-setting-a-theme">The Fourth Layer: Setting a Theme</h3>
+<p>The final layer we’ll look at is the theme layer, which allows you to change the overall look and feel of your plots (including their background and grid lines). As with the <code>scale_</code> functions, a number of functions also start with <code>theme_</code>. Add <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">gapminder_10_rows</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">year</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This theme starts to declutter the plot, as you can see in <a href="#fig-gapminder-theme-plot" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gapminder-theme-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-theme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-gapminder-theme-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-theme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> added
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>By now, you should see why Hadley Wickham described the <code>ggplot2</code> package as using a layered grammar of graphics. It implements Wilkinson’s theory by creating multiple layers: first, variables to map to aesthetic prop- erties; second, geoms to represent the data; third, the <code>scale_</code> function to adjust aesthetic properties; and finally, the <code>theme_</code> function to set the plot’s overall look and feel.</p>
+<p>You could still improve this plot in many ways, but instead let’s return to the drought data visualization by Scherer and Karamanis. By walking through their code, you’ll learn about making high-quality data visualiza- tion with ggplot and R.</p>
+</section></section><section id="recreating-the-drought-visualization-with-ggplot" class="level2"><h2 class="anchored" data-anchor-id="recreating-the-drought-visualization-with-ggplot">Recreating the Drought Visualization with ggplot</h2>
+<p>The drought visualization code relies on a combination of ggplot fundamentals and some lesser-known tweaks that make it really shine. To understand how Scherer and Karamanis made their data visualization, we’ll start with a simplified version of their code, then build it up layer by layer, adding elements as we go.</p>
+<p>First, you’ll import the data. Scherer and Karamanis did a bunch of data wrangling on the raw data, but I’ve saved the simplified output for you. Because it’s in JavaScript Object Notation (JSON) format, Scherer and Karamanis use the <code><a href="https://rdrr.io/pkg/rio/man/import.html">import()</a></code> function from the <code>rio</code> package, which simplifies the process of importing JSON data:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gesistsa/rio">rio</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ddm_perc_cat_hubs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rio/man/import.html">import</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/dm_perc_cat_hubs.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>JSON</em> is a common format for data used in web applications, though it’s far less common in R, where it can be complicated to work with. Luckily, the <code>rio</code> package simplifies its import.</p>
+<section id="plotting-one-region-and-year" class="level3"><h3 class="anchored" data-anchor-id="plotting-one-region-and-year">Plotting One Region and Year</h3>
+<p>Scherer and Karamanis’s final plot consists of many years and regions. To see how they created it, we’ll start by looking at just the Southwest region in 2003.</p>
+<p>First, you need to create a data frame. You’ll use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function twice: the first time to keep only data for the Southwest region, and the second time to keep only data from 2003. In both cases, you use the following syntax:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">variable_name</span> <span class="op">==</span> <span class="va">value</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This tells R to keep only observations where variable_name is equal to some value. The code starts with the <code>dm_perc_cat_hubs_raw</code> data frame before filtering it and then saving it as a new object called <code>southwest_2003</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">southwest_2003</span> <span class="op">&lt;-</span> <span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hub</span> <span class="op">==</span> <span class="st">"Southwest"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2003</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To take a look at this object and see the variables you have to work with, enter <code>southwest_2003</code> in the console, which should return this output:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 255 × 7
+   date       hub       category percentage  year  week max_week
+   &lt;date&gt;     &lt;fct&gt;     &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+ 1 2003-12-30 Southwest D0           0.0718  2003    52       52
+ 2 2003-12-30 Southwest D1           0.0828  2003    52       52
+ 3 2003-12-30 Southwest D2           0.269   2003    52       52
+ 4 2003-12-30 Southwest D3           0.311   2003    52       52
+ 5 2003-12-30 Southwest D4           0.0796  2003    52       52
+ 6 2003-12-23 Southwest D0           0.0823  2003    51       52
+ 7 2003-12-23 Southwest D1           0.131   2003    51       52
+ 8 2003-12-23 Southwest D2           0.189   2003    51       52
+ 9 2003-12-23 Southwest D3           0.382   2003    51       52
+10 2003-12-23 Southwest D4           0.0828  2003    51       52
+# ℹ 245 more rows</code></pre>
+</div>
+</div>
+<p>The date variable represents the start date of the week in which the observation took place. The hub variable is the region, and category is the level of drought: a value of <code>D0</code> indicates the lowest level of drought, while <code>D5</code> indicates the highest level. The <code>percentage</code> variable is the percentage of that region in that drought category, ranging from 0 to 1. The <code>year</code> and <code>week</code> variables are the observation year and week number (beginning with week 1). The <code>max_week</code> variable is the maximum number of weeks in a given year.</p>
+<p>Now you can use this southwest_2003 object for your plot:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">southwest_2003</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">week</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">percentage</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">category</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The ggplot() function tells R to put <code>week</code> on the x-axis and <code>percentage</code> on the y-axis, as well as to use the category variable for the <code>fill</code> color. The <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> function creates a bar chart in which each bar’s fill color represents the percentage of the region at each drought level for that particular week, as shown in <a href="#fig-southwest-2003-no-style-plot" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-southwest-2003-no-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-southwest-2003-no-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-southwest-2003-no-style-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-southwest-2003-no-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.12: One year (2003) and region (Southwest) of the drought visualization
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The colors, which include bright pinks, blues, greens, and reds, don’t match the final version of the plot, but you can start to see the outlines of Scherer and Karamanis’s data visualization.</p>
+</section><section id="changing-aesthetic-properties" class="level3"><h3 class="anchored" data-anchor-id="changing-aesthetic-properties">Changing Aesthetic Properties</h3>
+<p>Scherer and Karamanis next selected different <code>fill</code> colors for their bars. To do so, they used the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function. The <em>d</em> here means that the data to which the fill scale is being applied has discrete categories (D0, D1, D2, D3, D4, and D5):</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">southwest_2003</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">week</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">percentage</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">category</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>    option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
+<span>    direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>They used the argument <code>option = "rocket"</code> to select the rocket palette, whose colors range from cream to nearly black. You could use several other palettes within the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function; see them at <a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="uri">https://sjmgarnier.github.io/viridisLite/reference/viridis.html</a>.</p>
+<p>Then they used the <code>direction = -1</code> argument to reverse the order of fill colors so that darker colors mean higher drought conditions.</p>
+<p>Scherer and Karamanis also tweaked the appearance of the x- and y-axes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">southwest_2003</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">week</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">percentage</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">category</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>    option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
+<span>    direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    position <span class="op">=</span> <span class="st">"right"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On the x axis, they removed both the axis title (“week”) using <code>name = NULL</code> and the 0–50 text with <code>guide = "none"</code>. On the y axis, they removed the title and text showing percentages using <code>labels = NULL</code>, which functionally does the same thing as <code>guide = "none"</code>. They also moved the axis lines themselves to the right side using <code>position = "right"</code>. These axis lines are apparent only as tick marks at this point but will become more visible later. <a href="#fig-southwest-2003-xy-scales-plot" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> shows the result of these tweaks.</p>
+<p>On the x-axis, they removed both the axis title (“week”) using <code>name = NULL</code> and the axis labels (the weeks numbered 0 to 50) with <code>guide = "none"</code>. On the y-axis, they removed the title and text showing percentages using labels = NULL, which functionally does the same thing as <code>guide = "none"</code>. They also moved the axis lines themselves to the right side using <code>position = "right"</code>. These axis lines are apparent only as tick marks at this point but will become more visible later. <a href="#fig-southwest-2003-xy-scales-plot" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> shows the result of these tweaks.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-southwest-2003-xy-scales-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-southwest-2003-xy-scales-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-southwest-2003-xy-scales-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-southwest-2003-xy-scales-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.13: The 2003 drought data for the Southwest with adjustments to the x- and y-axes
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Up to this point, we’ve focused on one of the single plots that make up the larger data visualization. But the final product that Scherer and Karamanis made is actually 176 plots visualizing 22 years and 8 regions. Let’s discuss the ggplot feature they used to create all of these plots.</p>
+</section><section id="sec-faceting-the-plot" class="level3"><h3 class="anchored" data-anchor-id="sec-faceting-the-plot">Faceting the Plot</h3>
+<p>One of ggplot’s most useful capabilities is <em>faceting</em> (or, as it’s more commonly known in the data visualization world, <em>small multiples</em>). Faceting uses a variable to break down a single plot into multiple plots. For example, think of a line chart showing life expectancy by country over time; instead of multiple lines on one plot, faceting would create multiple plots with one line per plot. To specify which variable to put in the rows and which to put in the columns of your faceted plot, you use the <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> function, as Scherer and Karamanis did in their code:</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hub</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Northwest"</span>,</span>
+<span>    <span class="st">"California"</span>,</span>
+<span>    <span class="st">"Southwest"</span>,</span>
+<span>    <span class="st">"Northern Plains"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">week</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">percentage</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">category</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>    option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
+<span>    direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    position <span class="op">=</span> <span class="st">"right"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>,</span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">hub</span><span class="op">)</span>,</span>
+<span>    switch <span class="op">=</span> <span class="st">"y"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Scherer and Karamanis put <code>year</code> in rows and <code>hub</code> (region) in columns. The <code>switch = "y"</code> argument moves the year label from the right side (where it appears by default) to the left. With this code in place, you can see the final plot coming together in <a href="#fig-drought-viz-faceted-plot" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-drought-viz-faceted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-faceted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-drought-viz-faceted-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-faceted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.14: The faceted version of the drought visualization
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Incredibly, the broad outlines of the plot took just 10 lines of code to create. The rest of the code falls into the category of small polishes. That’s not to minimize how important small polishes are (very) or the time it takes to create them (a lot). It does show, however, that a little bit of ggplot goes a long way.</p>
+</section><section id="adding-final-polishes" class="level3"><h3 class="anchored" data-anchor-id="adding-final-polishes">Adding Final Polishes</h3>
+<p>Now let’s look at a few of the small polishes that Scherer and Karamanis made. The first is to apply a theme. They used <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>, which removes the default gray background and changes the font to Roboto using the base_family argument.</p>
+<p>The <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> function is what’s known as a <em>complete theme</em>, one that changes the overall look and feel of a plot. The ggplot package has multiple complete themes that you can use (they’re listed at <a href="https://ggplot2.tidyverse.org/reference/index.html#themes" class="uri">https://ggplot2.tidyverse.org/reference/index.html#themes</a>). Individuals and organizations also make their own themes, as you’ll do in <a href="custom-theme.html" class="quarto-xref"><span>Chapter 3</span></a>. For a discussion of which themes you might consider using, see my blog post at <a href="https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures" class="uri">https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures</a>.</p>
+<p>Scherer and Karamanis didn’t stop by simply applying <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code>. They also used the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function to make additional tweaks to the plot’s design:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dm_perc_cat_hubs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hub</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Northwest"</span>,</span>
+<span>    <span class="st">"California"</span>,</span>
+<span>    <span class="st">"Southwest"</span>,</span>
+<span>    <span class="st">"Northern Plains"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">week</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">percentage</span>,</span>
+<span>    fill <span class="op">=</span> <span class="va">category</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      xmin <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>      xmax <span class="op">=</span> <span class="va">max_week</span> <span class="op">+</span> <span class="fl">.5</span>,</span>
+<span>      ymin <span class="op">=</span> <span class="op">-</span><span class="fl">0.005</span>,</span>
+<span>      ymax <span class="op">=</span> <span class="fl">1</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"#f4f4f9"</span>,</span>
+<span>    color <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">0.4</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>    option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
+<span>    direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    position <span class="op">=</span> <span class="st">"right"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>,</span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">hub</span><span class="op">)</span>,</span>
+<span>    switch <span class="op">=</span> <span class="st">"y"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Roboto"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      size <span class="op">=</span> <span class="fl">14</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      family <span class="op">=</span> <span class="st">"Roboto Mono"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">11</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.line.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.line.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">.2</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.ticks.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">.2</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.ticks.length.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"mm"</span><span class="op">)</span>,</span>
+<span>    legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"#2DAADA"</span>,</span>
+<span>      face <span class="op">=</span> <span class="st">"bold"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    legend.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#2DAADA"</span><span class="op">)</span>,</span>
+<span>    strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      hjust <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>      face <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">20</span>, b <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    strip.text.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      angle <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>      vjust <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>      face <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.spacing.x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>    panel.spacing.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">0</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">.4</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The code in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function does many different things, but let’s look at a few of the most important. First, it moves the legend from the right side (the default) to the top of the plot. Then, the <code>angle = 0</code> argument rotates the year text in the columns from vertical to horizontal. Without this argument, the years would be much less legible.</p>
+<p>The theme() function also makes the distinctive axis lines and ticks that appear on the right side of the final plot. Calling element_blank() removes all grid lines. Finally, this code removes the borders and gives each individual plot a transparent background.</p>
+<p>You might be thinking, <em>Wait. Didn’t the individual plots have a gray back- ground behind them?</em> Yes, dear reader, they did. Scherer and Karamanis made these with a separate geom, <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    xmin <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>    xmax <span class="op">=</span> <span class="va">max_week</span> <span class="op">+</span> <span class="fl">.5</span>,</span>
+<span>    ymin <span class="op">=</span> <span class="op">-</span><span class="fl">0.005</span>,</span>
+<span>    ymax <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  fill <span class="op">=</span> <span class="st">"#f4f4f9"</span>,</span>
+<span>  color <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  size <span class="op">=</span> <span class="fl">0.4</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>They also set some additional aesthetic properties specific to this geom — <code>xmin</code>, <code>xmax</code>, <code>ymin</code>, and <code>ymax</code> — which determine the boundaries of the rectangle it produces. The result is a gray background behind each small multiple, as shown in <a href="#fig-drought-viz-theme-tweaks-plot" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-drought-viz-theme-tweaks-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-theme-tweaks-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-drought-viz-theme-tweaks-plot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-theme-tweaks-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgrounds behind each small multiple
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Finally, Scherer and Karamanis made some tweaks to the legend. Previously you saw a simplified version of the <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function. Here’s a more complete version:</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>  option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
+<span>  direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"Category:"</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Abnormally Dry"</span>,</span>
+<span>    <span class="st">"Moderate Drought"</span>,</span>
+<span>    <span class="st">"Severe Drought"</span>,</span>
+<span>    <span class="st">"Extreme Drought"</span>,</span>
+<span>    <span class="st">"Exceptional Drought"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>name</code> argument sets the legend title, and the labels argument specifies the <code>labels</code> that show up in the legend. <a href="#fig-drought-viz-legend-tweaks" class="quarto-xref">Figure&nbsp;<span>2.16</span></a> shows the result of these changes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-drought-viz-legend-tweaks" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-legend-tweaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data-viz_files/figure-html/fig-drought-viz-legend-tweaks-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-legend-tweaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.16: The drought visualization with changes to the legend text
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Rather than D0, D1, D2, D3, and D4, the legend text now reads Abnormally Dry, Moderate Drought, Severe Drought, Extreme Drought, and Exceptional Drought — much more user-friendly categories.</p>
+</section><section id="the-complete-visualization-code" class="level3"><h3 class="anchored" data-anchor-id="the-complete-visualization-code">The Complete Visualization Code</h3>
+<p>While I’ve shown you a nearly complete version of the code that Scherer and Karamanis wrote, I made some small changes to make it easier to understand. If you’re curious, the full code is here:</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dm_perc_cat_hubs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">week</span>, <span class="va">percentage</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      xmin <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>      xmax <span class="op">=</span> <span class="va">max_week</span> <span class="op">+</span> <span class="fl">.5</span>,</span>
+<span>      ymin <span class="op">=</span> <span class="op">-</span><span class="fl">0.005</span>,</span>
+<span>      ymax <span class="op">=</span> <span class="fl">1</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"#f4f4f9"</span>,</span>
+<span>    color <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">0.4</span>,</span>
+<span>    show.legend <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="va">category</span>,</span>
+<span>      fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_scale</a></span><span class="op">(</span><span class="fu">addmix</span><span class="op">(</span></span>
+<span>        <span class="fu">darken</span><span class="op">(</span></span>
+<span>          <span class="va">fill</span>,</span>
+<span>          <span class="fl">.05</span>,</span>
+<span>          space <span class="op">=</span> <span class="st">"HLS"</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        <span class="st">"#d8005a"</span>,</span>
+<span>        <span class="fl">.15</span></span>
+<span>      <span class="op">)</span><span class="op">)</span>,</span>
+<span>      color <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">after_scale</a></span><span class="op">(</span><span class="fu">darken</span><span class="op">(</span></span>
+<span>        <span class="va">fill</span>,</span>
+<span>        <span class="fl">.2</span>,</span>
+<span>        space <span class="op">=</span> <span class="st">"HLS"</span></span>
+<span>      <span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    width <span class="op">=</span> <span class="fl">.9</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">0.12</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span></span>
+<span>    rows <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>,</span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">hub</span><span class="op">)</span>,</span>
+<span>    switch <span class="op">=</span> <span class="st">"y"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.02</span>, <span class="fl">.02</span><span class="op">)</span>,</span>
+<span>    guide <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>    position <span class="op">=</span> <span class="st">"right"</span>,</span>
+<span>    labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    name <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span></span>
+<span>    option <span class="op">=</span> <span class="st">"rocket"</span>,</span>
+<span>    name <span class="op">=</span> <span class="st">"Category:"</span>,</span>
+<span>    direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>    begin <span class="op">=</span> <span class="fl">.17</span>,</span>
+<span>    end <span class="op">=</span> <span class="fl">.97</span>,</span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Abnormally Dry"</span>,</span>
+<span>      <span class="st">"Moderate Drought"</span>,</span>
+<span>      <span class="st">"Severe Drought"</span>,</span>
+<span>      <span class="st">"Extreme Drought"</span>,</span>
+<span>      <span class="st">"Exceptional Drought"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span></span>
+<span>    nrow <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span></span>
+<span>    base_size <span class="op">=</span> <span class="fl">18</span>,</span>
+<span>    base_family <span class="op">=</span> <span class="st">"Roboto"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      size <span class="op">=</span> <span class="fl">14</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      family <span class="op">=</span> <span class="st">"Roboto Mono"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">11</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.line.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.line.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">.2</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.ticks.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">.2</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.ticks.length.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"mm"</span><span class="op">)</span>,</span>
+<span>    legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"#2DAADA"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">18</span>,</span>
+<span>      face <span class="op">=</span> <span class="st">"bold"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    legend.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"#2DAADA"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">16</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      size <span class="op">=</span> <span class="fl">16</span>,</span>
+<span>      hjust <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>      face <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>      margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">20</span>, b <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    strip.text.y.left <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      size <span class="op">=</span> <span class="fl">18</span>,</span>
+<span>      angle <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>      vjust <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>      face <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"black"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.spacing.x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>    panel.spacing.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">0</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span></span>
+<span>      fill <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>      size <span class="op">=</span> <span class="fl">.4</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    plot.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are a few additional tweaks to color and spacing, but most of the code reflects what you’ve seen so far.</p>
+</section></section><section id="in-conclusion-ggplot-is-your-data-visualization-secret-weapon" class="level2"><h2 class="anchored" data-anchor-id="in-conclusion-ggplot-is-your-data-visualization-secret-weapon">In Conclusion: ggplot is Your Data Visualization Secret Weapon</h2>
+<p>You may be thinking that ggplot is the solution to all of your data visualization problems. And yes, you have a new hammer, but not everything is a nail. If you look at the version of the data visualization that appeared in <em>Scientific American</em> in November 2021, you’ll see that some of its annotations aren’t visible in our re-creation. That’s because they were added in post-production. While you could have found ways to create them in ggplot, it’s often not the best use of your time. Get yourself 90 percent of the way there with ggplot and then use Illustrator, Figma, or a similar tool to finish your work.</p>
+<p>Even so, ggplot is a very powerful hammer, used to make plots that you’ve seen in the <em>New York Times</em>, FiveThirtyEight, the BBC, and other well-known news outlets. Although it’s not the only tool that can generate high-quality data visualizations, it makes the process straightforward. The graph by Scherer and Karamanis shows this in several ways:</p>
+<ul>
+<li><p>It strips away extraneous elements, such as grid lines, to keep the focus on the data itself. Complete themes such as <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light()</a></code> and the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function allowed Scherer and Karamanis to create a decluttered visualization that communicates effectively.</p></li>
+<li><p>It uses well-chosen colors. The <code><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_d()</a></code> function allowed them to create a color scheme that demonstrates differences between groups, is colorblind-friendly, and shows up well when printed in grayscale.</p></li>
+<li><p>It uses faceting to break down data from two decades and eight regions into a set of graphs that come together to create a single plot. With a single call to the <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> function, Scherer and Karamanis created over 100 small multiples that the tool automatically combined into a single plot.</p></li>
+</ul>
+<p>Learning to create data visualizations in ggplot involves a significant time investment. But the long-term payoff is even greater. Once you learn how ggplot works, you can look at others’ code and learn how to improve your own. By contrast, when you make a data visualization in Excel, the series of point-and-click steps disappears into the ether. To re-create a visualization you made last week, you’ll need to remember the exact steps you used, and to make someone else’s data visualization, you’ll need them to write up their process for you.</p>
+<p>Because code-based data visualization tools allow you to keep a record of the steps you made, you don’t have to be the most talented designer to make high-quality data visualizations with ggplot. You can study others’ code, adapt it to your own needs, and create your own data visualization that not only is beautiful but also communicates effectively.</p>
+</section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p>Will Chase, “The Glamour of Graphics,” online course, accessed November 6, 2023, <a href="https://rfortherestofus.com/courses/glamour/" class="uri">https://rfortherestofus.com/courses/glamour/</a>.</p></li>
+<li><p>Kieran Healy, <em>Data Visualization: A Practical Introduction</em> (Princeton, NJ: Princeton University Press, 2018), <a href="https://socviz.co" class="uri">https://socviz.co</a>.</p></li>
+<li><p>Cédric Scherer, <em>Graphic Design with ggplot2</em> (Boca Raton, FL: CRC Press, forthcoming).</p></li>
+<li><p>Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen, <em>ggplot2: Elegant Graphics for Data Analysis</em>, 3rd ed.&nbsp;(New York: Springer, forthcoming), <a href="https://ggplot2-book.org" class="uri">https://ggplot2-book.org</a>.</p></li>
+<li><p>Claus Wilke, <em>Fundamentals of Data Visualization</em> (Sebastopol, CA: O’Reilly Media, 2019), <a href="https://clauswilke.com/dataviz/" class="uri">https://clauswilke.com/dataviz/</a>.</p></li>
+</ul>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -669,9 +1499,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
       <a href="./crash-course.html" class="pagination-link" aria-label="An R Programming Crash Course">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></span>
       </a>          
@@ -683,8 +1511,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>R for the Rest of Us: A Statistics-Free Introduction</p>
 </div>   
@@ -696,8 +1523,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-
-
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>
