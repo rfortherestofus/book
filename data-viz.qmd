@@ -84,17 +84,21 @@ chapter_number <- 2
 source("_common.R")
 ```
 
-In the spring of 2021, nearly all of the American West was in a drought. By April of that year, officials in Southern California had declared a water emergency, citing unprecedented conditions.
+In the spring of 2021, nearly all of the American West was in a drought. Officials in Southern California declared a water emergency in April, citing unprecedented conditions. This probably didn’t come as news to residents of California and other western states. Drought conditions like those in the West in 2021 are becoming increasingly common, yet communicating the extent of the problem remains difficult. How can this data be presented in a way that is both accurate and compelling enough to get people to take notice?
 
-This wouldn’t have come as news to those living in California and other Western states. Drought conditions like those in the West in 2021 are becoming increasingly common. Yet communicating the extent of problem remains difficult. How can we show the data in a way that accurately represents it while making it compelling enough to get people to take notice?
+Data visualization designers Cédric Scherer and Georgios Karamanis took on this challenge in the fall of 2021 to create a graph of US drought conditions over the last two decades for the magazine Scientific American. They turned to the ggplot2 package to transform dry data (pardon the pun) from the National Drought Center into a visually arresting and impactful visualization.
 
-Data-visualization designers Cédric Scherer and Georgios Karamanis took on this challenge in the fall of 2021. By working with the magazine *Scientific American* to create a data visualization of drought conditions over the last two decades in the United States, they turned to the `ggplot2` package to transform what could have been dry data (pardon the pun) into a visually arresting and impactful graph.
-
-This chapter explores why the data visualization that Scherer and Karamanis created is effective and introduces you to the *grammar of graphics*, a theory to make sense of graphs that underlies the `ggplot2` package. You’ll then learn how to use `ggplot2` by recreating the drought graph step by step. In the process, we’ll highlight some key principles of high-quality data visualization that you can use to improve your own work.
+This chapter delves into why the data visualization that Scherer and Karamanis created is effective and introduces you to the grammar of graphics, a theory to make sense of graphs that underlies the ggplot2 package. You’ll then learn how to use ggplot2 by re-creating the drought graph step-by-step. In the process, I’ll highlight some key principles of high-quality data visual- ization that you can use to improve your own work.
 
 ## The Drought Visualization
 
-Other news organizations had relied on the same data as Scherer and Karamanis, from the National Drought Center, in their stories. But Scherer and Karamanis visualized it in a way that it both grabs attention and communicates the scale of the phenomenon. @fig-final-viz shows a section of the final visualization. Covering four regions over the last two decades, the graph makes apparent increase in drought conditions, especially in California and the Southwest.
+Other news organizations had relied on the same National Drought Center data in their stories, but Scherer and Karamanis visualized it so that it both grabs attention and communicates the scale of the phenomenon. @fig-final-viz shows a section of the final visualization (due to space constraints, I could include only four regions). The graph makes apparent the increase in drought conditions over the last two decades, especially in California and the Southwest.
+
+To understand why this visualization is effective, let’s break it down.
+
+At the broadest level, the data visualization is notable for its minimalist aesthetic. For example, there are no grid lines and few text labels, as well as minimal text along the axes. Scherer and Karamanis removed what statistician Edward Tufte, in his 1983 book *The Visual Display of Quantitative Information* (Graphics Press), calls *chartjunk*. Tufte wrote that extraneous elements often hinder, rather than help, our understanding of charts (and researchers and data visualization designers have generally agreed).
+
+Need proof that Scherer and Karamanis’s decluttered graph is better than the alternative? @fig-cluttered-viz shows a version with a few tweaks to the code to include grid lines and text labels on axes.
 
 ```{r}
 #| results: asis
@@ -105,7 +109,7 @@ print_nostarch_file_name()
 ```{r}
 #| label: fig-final-viz
 #| fig-height: 8
-#| fig-cap: "A section of the final drought visualization, with a few tweaks made so that the plots fit in this book"
+#| fig-cap: "A section of the final drought visualization, with a few tweaks made to fit this book"
 dm_perc_cat_hubs %>%
   filter(hub %in% c(
     "Northwest",
@@ -244,10 +248,6 @@ dm_perc_cat_hubs %>%
 #| results: asis
 save_figure_for_nostarch(figure_height = 8)
 ```
-
-To understand why this visualization is effective, let’s break it down into pieces. At the broadest level, the data visualization is notable for its minimalist aesthetic. There are, for example, no grid lines and few text labels, as well as little text along the axes. Scherer and Karamanis removed what statistician Edward Tufte, in his 1983 book *The Visual Display of Quantitative Information*, calls *chartjunk*. Tufte wrote that extraneous elements often hinder, rather than help, our understanding of charts (and researchers, as well as data visualization designers since, have generally agreed).
-
-Need proof that Scherer and Karamanis’s decluttered graph is better than the alternative? @fig-cluttered-viz shows a version with a few small tweaks to the code to include grid lines and text labels on axes. Prepare yourself for clutter!
 
 ```{r}
 #| results: asis
@@ -394,9 +394,9 @@ dm_perc_cat_hubs %>%
 save_figure_for_nostarch(figure_height = 8)
 ```
 
-Again, it’s not just that this cluttered version looks worse. The clutter actively inhibits understanding. Rather than focus on overall drought patterns (the point of the graph), our brain gets stuck reading repetitive and unnecessary axis text.
+It’s not just that this cluttered version looks worse; the clutter actively inhibits understanding. Rather than focusing on overall drought patterns (the point of the graph), our brains get stuck reading repetitive and unnecessary axis text.
 
-One of the best ways to reduce clutter is to break a single chart into what are known as *small multiples*. When we look closely at the data visualization, we see that it is not one chart but actually a set of charts. Each rectangle represents one region in one year. If we filter it to show the Southwest region in 2003 and add axis titles, we can see in @fig-viz-sw-2003 that the x axis shows the week while the y axis shows the percentage of that region at different drought levels.
+One of the best ways to reduce clutter is to break a single chart into a set of component charts, as Scherer and Karamanis have done (this approach, known as *faceting*, will be discussed further in @sec-faceting-the-plot). Each rectangle represents one region in one year. Filtering the larger chart to show the Southwest region in 2003 produces the graph shown in @fig-viz-sw-2003, where the x-axis indicates the week and the y-axis indicates the percentage of that region at different drought levels.
 
 ```{r}
 #| results: asis
@@ -542,31 +542,18 @@ dm_perc_cat_hubs %>%
 save_figure_for_nostarch(figure_height = 4)
 ```
 
+Zooming in on a single region in a single year also makes the color choices more obvious. The lightest orange bars show the percentage of the region that is abnormally dry, and the darkest purple bars show the percentage experiencing exceptional drought conditions. As you’ll see shortly, this range of colors was intentionally chosen to make differences in the drought levels visible to all readers.
 
-Zooming in on a single region in a single year also makes the color choices more obvious. The lightest bars show the percentage of the region that is abnormally dry while the darkest bars show the percentage in exceptional drought conditions. These colors, as we’ll see shortly, were intentionally chosen to make differences in the drought levels visible to all readers.
-Even so, the R code that Scherer and Karamanis wrote to produce this complex graph is relatively simple, due largely to a theory called the grammar of graphics.
+Despite the graph’s complexity, the R code that Scherer and Karamanis wrote to produce it is relatively simple, due largely to a theory called the *grammar of graphics*.
 
 ## The Grammar of Graphics
 
-If you’ve used Excel to make graphs, you’re probably familiar with the menu shown in @fig-excel-chart-chooser. When working in Excel, your graph-making journey begins by selecting the type of graph you want to make. Want a bar chart? Click the bar chart icon. Want a line chart? Click the line chart icon.
+When working in Excel, you begin by selecting the type of graph you want
+to make. Need a bar chart? Click the bar chart icon. Need a line chart? Click the line chart icon. If you’ve only ever made charts in Excel, this first step may seem so obvious that you’ve never even given the data visualization process much thought, but in fact there are many ways to think about graphs. For example, rather than thinking of graph types as distinct, we can recognize and use their commonalities as the starting point for making them.
 
-```{r}
-#| results: asis
-print_nostarch_file_name(file_type_to_print = "png")
-```
+This approach to thinking about graphs comes from the late statistician Leland Wilkinson. For years, Wilkinson thought deeply about what data visualization is and how we can describe it. In 1999 he published a book called *The Grammar of Graphics* (Springer) that sought to develop a consistent way of describing all graphs. In it, Wilkinson argued that we should think of plots not as distinct types, à la Excel, but as following a grammar that we can use to describe any plot. Just as English grammar tells us that a noun is typically followed by a verb (which is why “he goes” works, while the opposite, “goes he,” does not), the grammar of graphics helps us understand why certain graph types “work.”
 
-![The Excel chart chooser menu](assets/excel-chart-chooser.png){#fig-excel-chart-chooser}
-
-```{r}
-#| results: asis
-save_image_for_nostarch(here::here("assets/excel-chart-chooser.png"))
-```
-
-If you’ve only ever made data visualization in Excel, this first step may seem so obvious that you’ve never even considered the process of creating data visualization in any other way. But there are different models for thinking about graphs. Rather than conceptualizing graphs types as being distinct, we can recognize the things that they have in common and use these commonalities as the starting point for making them.
-
-This approach to thinking about graphs comes from the late statistician Leland Wilkinson. For years, Wilkinson thought deeply about what data visualization is and how we can describe it. In 1999, he published a book called *The Grammar of Graphics* that sought to develop a consistent way of describing all graphs. In it, Wilkinson argued that we should think of plots not as distinct types à la Excel, but as following a grammar that we can use to describe *any* plot. Just as English grammar tells us that a noun is typically followed by a verb (which is why "he goes" works, while the opposite, "goes he," does not), knowledge of the grammar of graphics allows us to understand why certain graph types "work." 
-
-Thinking about data visualization through the lens of the grammar of graphics allow us to see, for example, that graphs typically have some data that is plotted on the x axis and other data that is plotted on the y axis. This is the case no matter whether the graph is a bar chart or a line chart, for example. Consider @fig-bar-line-chart, which shows two charts that use identical data on life expectancy in Afghanistan.
+Thinking about data visualization through the lens of the grammar of graphics helps highlight, for example, that graphs typically have some data that is plotted on the x-axis and other data that is plotted on the y-axis. This is the case whether the graph is a bar chart or a line chart, as @fig-bar-line-chart shows.
 
 ```{r}
 #| results: asis
@@ -575,7 +562,7 @@ print_nostarch_file_name()
 
 ```{r}
 #| label: fig-bar-line-chart
-#| fig-cap: "A bar chart and a line chart showing identical data on Afghanistan life expectancy"
+#| fig-cap: "A bar chart and a line chart showing identical data"
 gapminder_10_rows <- gapminder %>%
   slice(1:10)
 
@@ -628,9 +615,9 @@ bar_chart + line_chart +
 save_figure_for_nostarch()
 ```
 
-While they look different (and would, to the Excel user, be different types of graphs), Wilkinson’s grammar of graphics allows us to see their similarities. (Incidentally, Wilkinson’s feelings on graph-making tools like Excel became clear when he wrote that "most charting packages channel user requests into a rigid array of chart types.")
+While the graphs look different (and would, to the Excel user, be different types of graphs), Wilkinson’s grammar of graphics emphasizes their similarities. (Incidentally, Wilkinson’s feelings on graph-making tools like Excel became clear when he wrote that “most charting packages channel user requests into a rigid array of chart types.”)
 
-When Wilkinson wrote his book, no data visualization tool could implement his grammar of graphics. This would change in 2010, when Hadley Wickham announced the `ggplot2` package for R in an article titled "A Layered Grammar of Graphics." By providing the tools to implement Wilkinson’s ideas, `ggplot2` would come to revolutionize the world of data visualization.
+When Wilkinson wrote his book, no data visualization tool could imple- ment his grammar of graphics. This would change in 2010, when Hadley Wickham announced the `ggplot2` package for R in the article “A Layered Grammar of Graphics,” published in the *Journal of Computational and Graphical Statistics*. By providing the tools to implement Wilkinson’s ideas, ggplot2 would come to revolutionize the world of data visualization.
 
 ## Working With ggplot2
 
@@ -1077,7 +1064,7 @@ save_figure_for_nostarch()
 
 Up to this point, we’ve focused on one of the single plots that make up the larger data visualization. But the final product that Scherer and Karamanis made is actually 176 plots visualizing 22 years and eight regions. Let’s discuss the ggplot feature they used to create all of these plots.
 
-### Faceting the Plot
+### Faceting the Plot {#sec-faceting-the-plot}
 
 One of the most useful features of ggplot is what’s known as *faceting* (or, more commonly in the data visualization world, small multiples). Faceting takes a single plot and makes it into multiple plots using a variable. For example, think of a line chart showing life expectancy by country over time; instead of multiple lines on one plot, we might create multiple plots with one line per plot). With the `facet_grid()` function, we can select which variable to put in the rows and which to put in the columns of our faceted plot:
 
