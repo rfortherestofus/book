@@ -310,10 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"_common.R"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>R has a well-earned reputation for being hard to learn, especially for those who come to it without prior programming experience. This chapter is designed to help anyone who has never used R before. You’ll set up an R programming environment with RStudio and learn how to use functions, objects, packages, and projects to work with data. You’ll also be introduced to the tidyverse package, which contains the core data analysis and manipulation functions used in this book. This chapter won’t provide a complete introduction to R programming; rather, it will focus on the knowledge you need to follow along with the rest of the book. If you have prior experience with R, feel free to skip ahead to <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
+</header><p>R has a well-earned reputation for being hard to learn, especially for those who come to it without prior programming experience. This chapter is designed to help anyone who has never used R before. You’ll set up an R programming environment with RStudio and learn how to use functions, objects, packages, and projects to work with data. You’ll also be introduced to the tidyverse package, which contains the core data analysis and manipulation functions used in this book. This chapter won’t provide a complete introduction to R programming; rather, it will focus on the knowledge you need to follow along with the rest of the book. If you have prior experience with R, feel free to skip ahead to <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
 <section id="setting-up" class="level2"><h2 class="anchored" data-anchor-id="setting-up">Setting Up</h2>
 <p>You’ll need two pieces of software to use R effectively. The first is R itself, which provides the underlying computational tools that make the language work. The second is an <em>integrated development environment (IDE)</em> like RStudio. This coding platform simplifies working with R. The best way to understand the relationship between R and RStudio is with this analogy from Chester Ismay and Albert Kim’s book <em>Statistical Inference via Data Science: A Modern Dive into R and the Tidyverse</em>: R is the engine that powers your data, and RStudio is like the dashboard that provides a user-friendly interface.</p>
 <section id="installing-r-and-rstudio" class="level3"><h3 class="anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h3>
@@ -359,45 +356,44 @@ Figure&nbsp;1.3: The script file pane (top left)
 <section id="arithmetic-operators" class="level3"><h3 class="anchored" data-anchor-id="arithmetic-operators">Arithmetic Operators</h3>
 <p>Besides <code>+</code>, R supports the common arithmetic operators <code>-</code> for subtraction, <code>*</code> for multiplication, and <code>/</code> for division. Try entering the following in the console:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">-</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">-</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 1</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">*</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">*</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 9</code></pre>
+<pre><code>[1] 9</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">16</span> <span class="op">/</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">16</span> <span class="op">/</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 4</code></pre>
+<pre><code>[1] 4</code></pre>
 </div>
 </div>
 <p>As you can see, R returns the result of each calculation you enter. You don’t have to add the spaces around operators as shown here, but doing so makes your code much more readable.</p>
 <p>You can also use parentheses to perform multiple operations at once and see their result. The parentheses specify the order in which R will evaluate the expression. Try running the following:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 6</code></pre>
+<pre><code>[1] 6</code></pre>
 </div>
 </div>
 <p>This code first evaluates the expression within the parentheses, <code>2 + 1</code>, before multiplying the result by 2 in order to get 6.</p>
 <p>R also has more advanced arithmetic operators, such as ** to calculate exponents:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span><span class="op">**</span><span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 8</code></pre>
+<pre><code>[1] 8</code></pre>
 </div>
 </div>
 <p>This is equivalent to 2<sup>3</sup>, which returns 8.</p>
 <p>To get the remainder of a division operation, you can use the <code>%%</code> operator:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 1</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <p>Dividing 10 by 3 produces a remainder of 1, the value R returns.</p>
@@ -405,23 +401,23 @@ Figure&nbsp;1.3: The script file pane (top left)
 </section><section id="comparison-operators" class="level3"><h3 class="anchored" data-anchor-id="comparison-operators">Comparison Operators</h3>
 <p>R also uses <em>comparison operators</em>, which let you test how one value compares to another. R will return either <code>TRUE</code> or <code>FALSE</code>. For example, enter <code>2 &gt; 1</code> in the console:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">&gt;</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">&gt;</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>R should return <code>TRUE</code>, because 2 is greater than 1.</p>
 <p>Other common comparison operators include less than (<code>&lt;</code>), greater than or equal to (<code>&gt;=</code>), less than or equal to (<code>&lt;=</code>), equal to (<code>==</code>), and not equal to (<code>!=</code>). Here are some examples:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">498</span> <span class="op">==</span> <span class="fl">498</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">498</span> <span class="op">==</span> <span class="fl">498</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">!=</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">!=</span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] FALSE</code></pre>
+<pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>When you enter <code>498 == 498</code> in the console, R should return <code>TRUE</code> because the two values are equal. If you run <code>2 != 2</code> in the console, R should return <code>FALSE</code> because 2 does not <em>not</em> equal 2.</p>
@@ -430,17 +426,17 @@ Figure&nbsp;1.3: The script file pane (top left)
 <p>You can perform even more useful operations by making use of R’s many <em>functions</em>, predefined sections of code that let you efficiently do specific things. Functions have a name and a set of parentheses containing <em>arguments</em>, which are values that affect the function’s behavior.</p>
 <p>Consider the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function, which displays information:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 1.1</code></pre>
+<pre><code>[1] 1.1</code></pre>
 </div>
 </div>
 <p>The name of the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function is <code>print</code>. Within the function’s parentheses, you specify the argument name – <code>x</code>, in this case — followed by the equal sign (<code>=</code>) and a value for the function to display. This code will print the number <code>1.1</code>.</p>
 <p>To separate multiple arguments, you use commas. For example, you can use the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function’s digits argument to indicate how many digits of a number to display:</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1.1</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1.1</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 1</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <p>This code will display only one digit (in other words, a whole number).</p>
@@ -460,9 +456,9 @@ Note
 </div>
 <p>A common R pattern is using a function within a function. For example, if you wanted to calculate the <em>mean</em>, or average, of the values 10, 20, and 30, you could use the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function to operate on the result of the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 20</code></pre>
+<pre><code>[1] 20</code></pre>
 </div>
 </div>
 <p>The <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function combines multiple values into one, which is necessary because the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function accepts only one argument. This is why the code has two matching sets of open and close parentheses: one for <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and a nested one for <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>.</p>
@@ -484,12 +480,12 @@ Figure&nbsp;1.4: The population-by-state.csv file in Excel
 <p>To work with this file in R, download it from <a href="https://data.rfortherestofus.com/population-by-state.csv" class="uri">https://data.rfortherestofus.com/population-by-state.csv</a>. Save it to a location on your computer, such as your <em>Documents</em> folder.</p>
 <p>Next, to import the file into R, add a line like the following to the <code>sample-code.R</code> file you created earlier in this chapter, replacing my filepath with the path to the file’s location on your system:</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The file argument in the <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function specifies the path to the file to open.</p>
 <p>The <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function can accept additional optional arguments, separated by commas. For example, the following line uses the <code>skip</code> argument in addition to file to import the same file but skip the first row:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span></span>
 <span>  file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span>,</span>
 <span>  skip <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -498,112 +494,112 @@ Figure&nbsp;1.4: The population-by-state.csv file in Excel
 <p>At this point, you can run the code to import your data (without the <code>skip</code> argument). Highlight the line you want to run in the script file pane in RStudio and click <strong>Run</strong>. You should see the following output in the console pane:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;    rank                State      Pop  Growth  Pop2018  Pop2010
-#&gt; 1     1           California 39613493  0.0038 39461588 37319502
-#&gt; 2     2                Texas 29730311  0.0385 28628666 25241971
-#&gt; 3     3              Florida 21944577  0.0330 21244317 18845537
-#&gt; 4     4             New York 19299981 -0.0118 19530351 19399878
-#&gt; 5     5         Pennsylvania 12804123  0.0003 12800922 12711160
-#&gt; 6     6             Illinois 12569321 -0.0121 12723071 12840503
-#&gt; 7     7                 Ohio 11714618  0.0033 11676341 11539336
-#&gt; 8     8              Georgia 10830007  0.0303 10511131  9711881
-#&gt; 9     9       North Carolina 10701022  0.0308 10381615  9574323
-#&gt; 10   10             Michigan  9992427  0.0008  9984072  9877510
-#&gt; 11   11           New Jersey  8874520 -0.0013  8886025  8799446
-#&gt; 12   12             Virginia  8603985  0.0121  8501286  8023699
-#&gt; 13   13           Washington  7796941  0.0363  7523869  6742830
-#&gt; 14   14              Arizona  7520103  0.0506  7158024  6407172
-#&gt; 15   15            Tennessee  6944260  0.0255  6771631  6355311
-#&gt; 16   16        Massachusetts  6912239  0.0043  6882635  6566307
-#&gt; 17   17              Indiana  6805663  0.0165  6695497  6490432
-#&gt; 18   18             Missouri  6169038  0.0077  6121623  5995974
-#&gt; 19   19             Maryland  6065436  0.0049  6035802  5788645
-#&gt; 20   20             Colorado  5893634  0.0356  5691287  5047349
-#&gt; 21   21            Wisconsin  5852490  0.0078  5807406  5690475
-#&gt; 22   22            Minnesota  5706398  0.0179  5606249  5310828
-#&gt; 23   23       South Carolina  5277830  0.0381  5084156  4635649
-#&gt; 24   24              Alabama  4934193  0.0095  4887681  4785437
-#&gt; 25   25            Louisiana  4627002 -0.0070  4659690  4544532
-#&gt; 26   26             Kentucky  4480713  0.0044  4461153  4348181
-#&gt; 27   27               Oregon  4289439  0.0257  4181886  3837491
-#&gt; 28   28             Oklahoma  3990443  0.0127  3940235  3759944
-#&gt; 29   29          Connecticut  3552821 -0.0052  3571520  3579114
-#&gt; 30   30                 Utah  3310774  0.0499  3153550  2775332
-#&gt; 31   31          Puerto Rico  3194374  0.0003  3193354  3721525
-#&gt; 32   32               Nevada  3185786  0.0523  3027341  2702405
-#&gt; 33   33                 Iowa  3167974  0.0061  3148618  3050745
-#&gt; 34   34             Arkansas  3033946  0.0080  3009733  2921964
-#&gt; 35   35          Mississippi  2966407 -0.0049  2981020  2970548
-#&gt; 36   36               Kansas  2917224  0.0020  2911359  2858190
-#&gt; 37   37           New Mexico  2105005  0.0059  2092741  2064552
-#&gt; 38   38             Nebraska  1951996  0.0137  1925614  1829542
-#&gt; 39   39                Idaho  1860123  0.0626  1750536  1570746
-#&gt; 40   40        West Virginia  1767859 -0.0202  1804291  1854239
-#&gt; 41   41               Hawaii  1406430 -0.0100  1420593  1363963
-#&gt; 42   42        New Hampshire  1372203  0.0138  1353465  1316762
-#&gt; 43   43                Maine  1354522  0.0115  1339057  1327629
-#&gt; 44   44              Montana  1085004  0.0229  1060665   990697
-#&gt; 45   45         Rhode Island  1061509  0.0030  1058287  1053959
-#&gt; 46   46             Delaware   990334  0.0257   965479   899593
-#&gt; 47   47         South Dakota   896581  0.0204   878698   816166
-#&gt; 48   48         North Dakota   770026  0.0158   758080   674715
-#&gt; 49   49               Alaska   724357 -0.0147   735139   713910
-#&gt; 50   50 District of Columbia   714153  0.0180   701547   605226
-#&gt; 51   51              Vermont   623251 -0.0018   624358   625879
-#&gt; 52   52              Wyoming   581075  0.0060   577601   564487
-#&gt;    growthSince2010 Percent    density
-#&gt; 1           0.0615  0.1184   254.2929
-#&gt; 2           0.1778  0.0889   113.8081
-#&gt; 3           0.1644  0.0656   409.2229
-#&gt; 4          -0.0051  0.0577   409.5400
-#&gt; 5           0.0073  0.0383   286.1704
-#&gt; 6          -0.0211  0.0376   226.3967
-#&gt; 7           0.0152  0.0350   286.6944
-#&gt; 8           0.1151  0.0324   188.3054
-#&gt; 9           0.1177  0.0320   220.1041
-#&gt; 10          0.0116  0.0299   176.7351
-#&gt; 11          0.0085  0.0265  1206.7609
-#&gt; 12          0.0723  0.0257   217.8776
-#&gt; 13          0.1563  0.0233   117.3249
-#&gt; 14          0.1737  0.0225    66.2016
-#&gt; 15          0.0927  0.0208   168.4069
-#&gt; 16          0.0527  0.0207   886.1845
-#&gt; 17          0.0486  0.0203   189.9644
-#&gt; 18          0.0289  0.0184    89.7419
-#&gt; 19          0.0478  0.0181   624.8518
-#&gt; 20          0.1677  0.0176    56.8653
-#&gt; 21          0.0285  0.0175   108.0633
-#&gt; 22          0.0745  0.0171    71.6641
-#&gt; 23          0.1385  0.0158   175.5707
-#&gt; 24          0.0311  0.0147    97.4271
-#&gt; 25          0.0181  0.0138   107.0966
-#&gt; 26          0.0305  0.0134   113.4760
-#&gt; 27          0.1178  0.0128    44.6872
-#&gt; 28          0.0613  0.0119    58.1740
-#&gt; 29         -0.0073  0.0106   733.7507
-#&gt; 30          0.1929  0.0099    40.2918
-#&gt; 31         -0.1416  0.0095   923.4964
-#&gt; 32          0.1789  0.0095    29.0195
-#&gt; 33          0.0384  0.0095    56.7158
-#&gt; 34          0.0383  0.0091    58.3059
-#&gt; 35         -0.0014  0.0089    63.2186
-#&gt; 36          0.0207  0.0087    35.6808
-#&gt; 37          0.0196  0.0063    17.3540
-#&gt; 38          0.0669  0.0058    25.4087
-#&gt; 39          0.1842  0.0056    22.5079
-#&gt; 40         -0.0466  0.0053    73.5443
-#&gt; 41          0.0311  0.0042   218.9678
-#&gt; 42          0.0421  0.0041   153.2674
-#&gt; 43          0.0203  0.0040    43.9167
-#&gt; 44          0.0952  0.0032     7.4547
-#&gt; 45          0.0072  0.0032  1026.6044
-#&gt; 46          0.1009  0.0030   508.1242
-#&gt; 47          0.0985  0.0027    11.8265
-#&gt; 48          0.1413  0.0023    11.1596
-#&gt; 49          0.0146  0.0022     1.2694
-#&gt; 50          0.1800  0.0021 11707.4262
-#&gt; 51         -0.0042  0.0019    67.6197
-#&gt; 52          0.0294  0.0017     5.9847</code></pre>
+<pre><code>   rank                State      Pop  Growth  Pop2018  Pop2010 growthSince2010
+1     1           California 39613493  0.0038 39461588 37319502          0.0615
+2     2                Texas 29730311  0.0385 28628666 25241971          0.1778
+3     3              Florida 21944577  0.0330 21244317 18845537          0.1644
+4     4             New York 19299981 -0.0118 19530351 19399878         -0.0051
+5     5         Pennsylvania 12804123  0.0003 12800922 12711160          0.0073
+6     6             Illinois 12569321 -0.0121 12723071 12840503         -0.0211
+7     7                 Ohio 11714618  0.0033 11676341 11539336          0.0152
+8     8              Georgia 10830007  0.0303 10511131  9711881          0.1151
+9     9       North Carolina 10701022  0.0308 10381615  9574323          0.1177
+10   10             Michigan  9992427  0.0008  9984072  9877510          0.0116
+11   11           New Jersey  8874520 -0.0013  8886025  8799446          0.0085
+12   12             Virginia  8603985  0.0121  8501286  8023699          0.0723
+13   13           Washington  7796941  0.0363  7523869  6742830          0.1563
+14   14              Arizona  7520103  0.0506  7158024  6407172          0.1737
+15   15            Tennessee  6944260  0.0255  6771631  6355311          0.0927
+16   16        Massachusetts  6912239  0.0043  6882635  6566307          0.0527
+17   17              Indiana  6805663  0.0165  6695497  6490432          0.0486
+18   18             Missouri  6169038  0.0077  6121623  5995974          0.0289
+19   19             Maryland  6065436  0.0049  6035802  5788645          0.0478
+20   20             Colorado  5893634  0.0356  5691287  5047349          0.1677
+21   21            Wisconsin  5852490  0.0078  5807406  5690475          0.0285
+22   22            Minnesota  5706398  0.0179  5606249  5310828          0.0745
+23   23       South Carolina  5277830  0.0381  5084156  4635649          0.1385
+24   24              Alabama  4934193  0.0095  4887681  4785437          0.0311
+25   25            Louisiana  4627002 -0.0070  4659690  4544532          0.0181
+26   26             Kentucky  4480713  0.0044  4461153  4348181          0.0305
+27   27               Oregon  4289439  0.0257  4181886  3837491          0.1178
+28   28             Oklahoma  3990443  0.0127  3940235  3759944          0.0613
+29   29          Connecticut  3552821 -0.0052  3571520  3579114         -0.0073
+30   30                 Utah  3310774  0.0499  3153550  2775332          0.1929
+31   31          Puerto Rico  3194374  0.0003  3193354  3721525         -0.1416
+32   32               Nevada  3185786  0.0523  3027341  2702405          0.1789
+33   33                 Iowa  3167974  0.0061  3148618  3050745          0.0384
+34   34             Arkansas  3033946  0.0080  3009733  2921964          0.0383
+35   35          Mississippi  2966407 -0.0049  2981020  2970548         -0.0014
+36   36               Kansas  2917224  0.0020  2911359  2858190          0.0207
+37   37           New Mexico  2105005  0.0059  2092741  2064552          0.0196
+38   38             Nebraska  1951996  0.0137  1925614  1829542          0.0669
+39   39                Idaho  1860123  0.0626  1750536  1570746          0.1842
+40   40        West Virginia  1767859 -0.0202  1804291  1854239         -0.0466
+41   41               Hawaii  1406430 -0.0100  1420593  1363963          0.0311
+42   42        New Hampshire  1372203  0.0138  1353465  1316762          0.0421
+43   43                Maine  1354522  0.0115  1339057  1327629          0.0203
+44   44              Montana  1085004  0.0229  1060665   990697          0.0952
+45   45         Rhode Island  1061509  0.0030  1058287  1053959          0.0072
+46   46             Delaware   990334  0.0257   965479   899593          0.1009
+47   47         South Dakota   896581  0.0204   878698   816166          0.0985
+48   48         North Dakota   770026  0.0158   758080   674715          0.1413
+49   49               Alaska   724357 -0.0147   735139   713910          0.0146
+50   50 District of Columbia   714153  0.0180   701547   605226          0.1800
+51   51              Vermont   623251 -0.0018   624358   625879         -0.0042
+52   52              Wyoming   581075  0.0060   577601   564487          0.0294
+   Percent    density
+1   0.1184   254.2929
+2   0.0889   113.8081
+3   0.0656   409.2229
+4   0.0577   409.5400
+5   0.0383   286.1704
+6   0.0376   226.3967
+7   0.0350   286.6944
+8   0.0324   188.3054
+9   0.0320   220.1041
+10  0.0299   176.7351
+11  0.0265  1206.7609
+12  0.0257   217.8776
+13  0.0233   117.3249
+14  0.0225    66.2016
+15  0.0208   168.4069
+16  0.0207   886.1845
+17  0.0203   189.9644
+18  0.0184    89.7419
+19  0.0181   624.8518
+20  0.0176    56.8653
+21  0.0175   108.0633
+22  0.0171    71.6641
+23  0.0158   175.5707
+24  0.0147    97.4271
+25  0.0138   107.0966
+26  0.0134   113.4760
+27  0.0128    44.6872
+28  0.0119    58.1740
+29  0.0106   733.7507
+30  0.0099    40.2918
+31  0.0095   923.4964
+32  0.0095    29.0195
+33  0.0095    56.7158
+34  0.0091    58.3059
+35  0.0089    63.2186
+36  0.0087    35.6808
+37  0.0063    17.3540
+38  0.0058    25.4087
+39  0.0056    22.5079
+40  0.0053    73.5443
+41  0.0042   218.9678
+42  0.0041   153.2674
+43  0.0040    43.9167
+44  0.0032     7.4547
+45  0.0032  1026.6044
+46  0.0030   508.1242
+47  0.0027    11.8265
+48  0.0023    11.1596
+49  0.0022     1.2694
+50  0.0021 11707.4262
+51  0.0019    67.6197
+52  0.0017     5.9847</code></pre>
 </div>
 </div>
 <p>This is R’s way of confirming that it imported the CSV file and understands the data within it. Four variables show each state’s rank (in terms of population size), name, current population, population growth between the <code>Pop</code> and <code>Pop2018</code> variables (expressed as a percentage), and 2018 population. Several other variables are hidden in the output, but you’ll see them if you import this CSV file yourself.</p>
@@ -623,7 +619,7 @@ Figure&nbsp;1.5: The population_data object in the environment pane
 <p>This message confirms that your data import worked and that the <code>population_data</code> object is ready for future use. Now, instead of having to rerun the code to import the data, you can simply enter <code>population_data</code> in an R script file or in the console to output the data.</p>
 <p>Data imported to an object in this way is known as a data frame. You can see that the <code>population_data</code> data frame has 52 observations and 9 variables. <em>Variables</em> are the data frame’s columns, each of which represents some value (for example, the population of each state). As you’ll see throughout the book, you can add new variables or modify existing ones using R code. The 52 observations come from the 50 states, as well as the District of Columbia and Puerto Rico.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="installing-packages" class="level3"><h3 class="anchored" data-anchor-id="installing-packages">Installing Packages</h3>
 <p>The <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function you’ve been using, as well as the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> functions you saw earlier, comes from <em>base</em> R, the set of built-in R functions. To use base R functions, you simply enter their names. However, one of the benefits of R being an open source language is that anyone can create their own code and share it with others. R users around the world make R <em>packages</em>, which provide custom functions to accomplish specific goals.</p>
@@ -632,31 +628,30 @@ Figure&nbsp;1.5: The population_data object in the environment pane
 <p>To confirm that the tidyverse package has been installed correctly, click the <strong>Packages</strong> tab on the bottom-right pane in RStudio. Search for <code>tidyverse</code>, and you should see it pop up.</p>
 <p>Now that you’ve installed the tidyverse, you’ll put it to use. Although you need to install packages only once per computer, you need to <em>load</em> them each time you restart RStudio. Return to the <code>sample-code.R</code> file and reimport your data using a function from the tidyverse package (your filepath will look slightly different):</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">population_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"/Users/davidkeyes/Documents/population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>At the top of the script, the line <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code> loads the <code>tidyverse</code> package. Then, the package’s <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function imports the data. Note the underscore (<code>_</code>) in place of the period (<code>.</code>) in the function’s name; this differs from the base R function you used earlier. Using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> to import CSV files achieves the same goal of creating an object, however — in this case, one called <code>population_data_2</code>. Enter <code>population_data_2</code> in the console, and you should see this output:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/population-by-state.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"data/population-by-state.csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">population_data_2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 52 × 9
-#&gt;     rank State        Pop  Growth  Pop2018  Pop2010 growthSince2010 Percent
-#&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1     1 Califo… 39613493  0.0038 39461588 37319502          0.0615  0.1184
-#&gt;  2     2 Texas   29730311  0.0385 28628666 25241971          0.1778  0.0889
-#&gt;  3     3 Florida 21944577  0.033  21244317 18845537          0.1644  0.0656
-#&gt;  4     4 New Yo… 19299981 -0.0118 19530351 19399878         -0.0051  0.0577
-#&gt;  5     5 Pennsy… 12804123  0.0003 12800922 12711160          0.0073  0.0383
-#&gt;  6     6 Illino… 12569321 -0.0121 12723071 12840503         -0.0211  0.0376
-#&gt;  7     7 Ohio    11714618  0.0033 11676341 11539336          0.0152  0.035 
-#&gt;  8     8 Georgia 10830007  0.0303 10511131  9711881          0.1151  0.0324
-#&gt;  9     9 North … 10701022  0.0308 10381615  9574323          0.1177  0.032 
-#&gt; 10    10 Michig…  9992427  0.0008  9984072  9877510          0.0116  0.0299
-#&gt; # ℹ 42 more rows
-#&gt; # ℹ 1 more variable: density &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 52 × 9
+    rank State       Pop  Growth Pop2018 Pop2010 growthSince2010 Percent density
+   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1     1 Califor… 3.96e7  0.0038  3.95e7  3.73e7          0.0615  0.118     254.
+ 2     2 Texas    2.97e7  0.0385  2.86e7  2.52e7          0.178   0.0889    114.
+ 3     3 Florida  2.19e7  0.033   2.12e7  1.88e7          0.164   0.0656    409.
+ 4     4 New York 1.93e7 -0.0118  1.95e7  1.94e7         -0.0051  0.0577    410.
+ 5     5 Pennsyl… 1.28e7  0.0003  1.28e7  1.27e7          0.0073  0.0383    286.
+ 6     6 Illinois 1.26e7 -0.0121  1.27e7  1.28e7         -0.0211  0.0376    226.
+ 7     7 Ohio     1.17e7  0.0033  1.17e7  1.15e7          0.0152  0.035     287.
+ 8     8 Georgia  1.08e7  0.0303  1.05e7  9.71e6          0.115   0.0324    188.
+ 9     9 North C… 1.07e7  0.0308  1.04e7  9.57e6          0.118   0.032     220.
+10    10 Michigan 9.99e6  0.0008  9.98e6  9.88e6          0.0116  0.0299    177.
+# ℹ 42 more rows</code></pre>
 </div>
 </div>
 <p>This data looks slightly different from the data you generated using the <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function. For example, R shows only the first 10 rows. This variation occurs because <code>read_csv(</code>) imports the data not as a data frame but as a data type called a <em>tibble</em>. Both data frames and tibbles are used to describe rectangular data like what you would see in a spreadsheet. There are some minor differences between data frames and tibbles, the most important of which is that tibbles print only the first 10 rows by default, while data frames print all rows. For the purposes of this book, the two terms are used interchangeably.</p>
@@ -676,7 +671,7 @@ Figure&nbsp;1.6: RStudio with an active project
 <p>Now that you’ve created a project, copy the <code>population-by-state.csv</code> file into the <code>example-project</code> directory. Once you’ve done so, you should see it in the RStudio files pane.</p>
 <p>With this CSV file in your project, you can now import it more easily. As before, start by loading the tidyverse package. Then, remove the reference to the <code>Documents</code> folder and import your data by simply using the name of the file:</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">population_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"population-by-state.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -686,17 +681,17 @@ Figure&nbsp;1.6: RStudio with an active project
 <section id="sec-tidyverse-functions" class="level3"><h3 class="anchored" data-anchor-id="sec-tidyverse-functions">tidyverse Functions</h3>
 <p>Because you’ve loaded the <code>tidyverse</code> package, you can now access its functions. For example, the package’s <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function takes a data frame or tibble and calculates some piece of information for one or more of the variables in that dataset. The following code uses <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> to calculate the mean population of all states:</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">population_data_2</span>, mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">population_data_2</span>, mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First, the code passes <code>population_data_2</code> to the <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function’s .data argument to tell R to use that data frame to perform the calculation. Next, it creates a new variable called <code>mean_population</code> and assigns it to the output of the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function introduced earlier. The <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function runs on Pop, one of the variables in the <code>population_data_2</code> data frame.</p>
 <p>You might be wondering why you don’t need to use the c() function within <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, as shown earlier in this chapter. The reason is that you’re passing the function only one argument here: Pop, which contains the set of population data for which you’re calculating the mean. In this case, there’s no need to use <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> to combine multiple values into one.</p>
 <p>Running this code should return a tibble with a single variable (<code>mean_population</code>), as shown here:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 1 × 1
-#&gt;   mean_population
-#&gt;             &lt;dbl&gt;
-#&gt; 1        6433422.</code></pre>
+<pre><code># A tibble: 1 × 1
+  mean_population
+            &lt;dbl&gt;
+1        6433422.</code></pre>
 </div>
 </div>
 <p>The variable is of type double (<code>dbl</code>), which is used to hold general numeric data. Other common data types are integer (for whole numbers, such as <code>4</code>, <code>82</code>, and <code>915</code>), character (for text values), and logical (for the <code>TRUE</code>/<code>FALSE</code> values returned from comparison operations). The <code>mean_population</code> variable has a value of <code>6433422</code>, the mean population of all states.</p>
@@ -704,24 +699,24 @@ Figure&nbsp;1.6: RStudio with an active project
 </section><section id="the-tidyverse-pipe" class="level3"><h3 class="anchored" data-anchor-id="the-tidyverse-pipe">The tidyverse Pipe</h3>
 <p>One advantage of working with the tidyverse is that it uses the <em>pipe</em> for multi-step operations. The <code>tidyverse</code> pipe, which is written as <code>%&gt;%</code>, allows you to break steps into multiple lines. For example, you could rewrite your code using the pipe like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This code says, “Start with the <code>population_data_2</code> data frame, then run the <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function on it, creating a variable called <code>mean_population</code> by calculating the mean of the <code>Pop</code> variable.”</p>
 <p>Notice that the line following the pipe is indented. To make the code easier to read, RStudio automatically adds two spaces to the start of lines that follow pipes.</p>
 <p>The pipe becomes even more useful when you use multiple steps in your data analysis. Say, for example, you want to calculate the mean population of the five largest states. The following code adds a line that uses the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function, also from the tidyverse package, to include only states where the rank variable is less than or equal to (<code>&lt;=</code>) 5. Then, it uses <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> to calculate the mean of those states:</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Running this code returns the mean population of the five largest states:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 1 × 1
-#&gt;   mean_population
-#&gt;             &lt;dbl&gt;
-#&gt; 1        24678497</code></pre>
+<pre><code># A tibble: 1 × 1
+  mean_population
+            &lt;dbl&gt;
+1        24678497</code></pre>
 </div>
 </div>
 <p>Using the pipe to combine functions lets you refine your data in multiple ways while keeping it readable and easy to understand. Indentation can also make your code more readable. You’ve seen only a few functions for analysis at this point, but the <code>tidyverse</code> has many more functions that enable you to do nearly anything you could hope to do with your data. Because of how useful the <code>tidyverse</code> is, it will appear in every single piece of R code you write in this book.</p>
@@ -738,7 +733,7 @@ Figure&nbsp;1.6: RStudio with an active project
 </section></section><section id="comments" class="level2"><h2 class="anchored" data-anchor-id="comments">Comments</h2>
 <p>In addition to code, R script files often contain <em>comments</em> — lines that begin with hash marks (<code>#</code>) and aren’t treated as runnable code but instead as notes for anyone reading the script. For example, you could add a comment to the code from the previous section, like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the mean population of the five largest states</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the mean population of the five largest states</span></span>
 <span><span class="va">population_data_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_population <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Pop</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

@@ -1,4 +1,6 @@
 ```{r}
+i <- 1
+chapter_number <- 1
 source("_common.R")
 ```
 
@@ -15,7 +17,17 @@ You’ll need two pieces of software to use R effectively. The first is R itself
 
 To download R, go to <https://cloud.r-project.org> and choose the link for your operating system. Once you’ve installed it, open the file. This should open an interface, like the one shown in @fig-r-console, that lets you work with R on your operating system’s command line. For example, enter `2 + 2`, and you should see `4`.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![The R console](assets/r-console.png){#fig-r-console}
+
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/r-console.png"))
+```
 
 A few brave souls work with R using only this command line, but most opt to use RStudio, which provides a way to see your files, the output of your code, and more. You can download RStudio at <https://posit.co/download/rstudio-desktop/>. Install RStudio as you would any other app and open it.
 
@@ -23,7 +35,17 @@ A few brave souls work with R using only this command line, but most opt to use 
 
 The first time you open RStudio, you should see the three panes shown in @fig-rstudio-no-project.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![The RStudio editor](assets/rstudio-no-project.png){#fig-rstudio-no-project}
+
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/rstudio-no-project.png"))
+```
 
 The left pane should look familiar. It’s similar to the screen you saw when working in R on the command line. This is known as the console. You’ll use it to enter code and see the results. This pane has several tabs, such as `Terminal` and `Background Jobs`, for more advanced uses. For now, you’ll stick to the default tab.
 
@@ -38,7 +60,17 @@ If you write all of your code in the console, you won’t have any record of it.
 R script files, which use the .R extension, save your code so you can run it later. To create an R script file, go to `File > New File > R Script`, and
 the script file pane should appear in the top left of RStudio, as shown in @fig-rstudio-four-panels. Save this file in your Documents folder as `sample-code.R`.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![The script file pane (top left)](assets/rstudio-four-panels.png){#fig-rstudio-four-panels}
+
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/rstudio-four-panels.png"))
+```
 
 Now you can enter R code into the new pane to add it to your script file. For example, try entering `2 + 2` in the script file pane to perform a simple addition operation.
 
@@ -55,14 +87,17 @@ If you’re trying to learn R, you probably want to perform more complex operati
 Besides `+`, R supports the common arithmetic operators `-` for subtraction, `*` for multiplication, and `/` for division. Try entering the following in the console:
 
 ```{r}
+#| echo: true
 2 - 1
 ```
 
 ```{r}
+#| echo: true
 3 * 3
 ```
 
 ```{r}
+#| echo: true
 16 / 4
 ```
 
@@ -71,6 +106,7 @@ As you can see, R returns the result of each calculation you enter. You don’t 
 You can also use parentheses to perform multiple operations at once and see their result. The parentheses specify the order in which R will evaluate the expression. Try running the following:
 
 ```{r}
+#| echo: true
 2 * (2 + 1)
 ```
 
@@ -87,6 +123,7 @@ This is equivalent to 2^3^, which returns 8.
 To get the remainder of a division operation, you can use the `%%` operator:
 
 ```{r}
+#| echo: true
 10 %% 3
 ```
 
@@ -99,6 +136,7 @@ You won’t need to use these advanced arithmetic operators for the activities i
 R also uses *comparison operators*, which let you test how one value compares to another. R will return either `TRUE` or `FALSE`. For example, enter `2 > 1` in the console:
 
 ```{r}
+#| echo: true
 2 > 1
 ```
 
@@ -107,10 +145,12 @@ R should return `TRUE`, because 2 is greater than 1.
 Other common comparison operators include less than (`<`), greater than or equal to (`>=`), less than or equal to (`<=`), equal to (`==`), and not equal to (`!=`). Here are some examples:
 
 ```{r}
+#| echo: true
 498 == 498
 ```
 
 ```{r}
+#| echo: true
 2 != 2
 ```
 
@@ -125,6 +165,7 @@ You can perform even more useful operations by making use of R’s many *functio
 Consider the `print()` function, which displays information:
 
 ```{r}
+#| echo: true
 print(x = 1.1)
 ```
 
@@ -133,6 +174,7 @@ The name of the `print()` function is `print`. Within the function’s parenthes
 To separate multiple arguments, you use commas. For example, you can use the `print()` function’s digits argument to indicate how many digits of a number to display:
 
 ```{r}
+#| echo: true
 print(x = 1.1, digits = 1)
 ```
 
@@ -150,6 +192,7 @@ For a list of all functions built into R, see <https://stat.ethz.ch/R-manual/R-d
 A common R pattern is using a function within a function. For example, if you wanted to calculate the *mean*, or average, of the values 10, 20, and 30, you could use the `mean()` function to operate on the result of the `c()` function like so:
 
 ```{r}
+#| echo: true
 mean(x = c(10, 20, 30))
 ```
 
@@ -169,7 +212,17 @@ R lets you do all of the same data manipulation tasks you might perform in a too
 
 You’ll import data from a `comma-separated values` (CSV) file, a text file that holds a series of related values separated by commas. You can open CSV files using most spreadsheet applications, which use columns rather than commas as separators. For example, @fig-population-by-state-csv shows the `population-by-state.csv` file in Excel.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![The population-by-state.csv file in Excel](assets/population-by-state-csv.png){#fig-population-by-state-csv}
+
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/population-by-state-csv.png"))
+```
 
 To work with this file in R, download it from <https://data.rfortherestofus.com/population-by-state.csv>. Save it to a location on your computer, such as your *Documents* folder.
 
@@ -177,6 +230,7 @@ Next, to import the file into R, add a line like the following to the `sample-co
 
 ```{r}
 #| eval: false
+#| echo: true
 read.csv(file = "/Users/davidkeyes/Documents/population-by-state.csv")
 ```
 
@@ -186,6 +240,7 @@ The `read.csv()` function can accept additional optional arguments, separated by
 
 ```{r}
 #| eval: false
+#| echo: true
 read.csv(
   file = "/Users/davidkeyes/Documents/population-by-state.csv",
   skip = 1
@@ -214,9 +269,17 @@ Now this line of code contains the `<-` *assignment operator*, which takes what 
 
 When you run this code, you should see `population_data` in your environment pane, as shown in @fig-population-data-environment.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![The population_data object in the environment pane](assets/population-data-environment.png){#fig-population-data-environment}
 
-
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/population-data-environment.png"))
+```
 
 This message confirms that your data import worked and that the `population_data` object is ready for future use. Now, instead of having to rerun the code to import the data, you can simply enter `population_data` in an R script file or in the console to output the data.
 
@@ -224,6 +287,7 @@ Data imported to an object in this way is known as a data frame. You can see tha
 
 ```{r}
 #| eval: false
+#| echo: true
 population_data <- read.csv(file = "/Users/davidkeyes/Documents/population-by-state.csv")
 ```
 
@@ -242,6 +306,7 @@ Now that you’ve installed the tidyverse, you’ll put it to use. Although you 
 
 ```{r}
 #| eval: false
+#| echo: true
 library(tidyverse)
 
 population_data_2 <- read_csv(file = "/Users/davidkeyes/Documents/population-by-state.csv")
@@ -251,6 +316,7 @@ At the top of the script, the line `library(tidyverse)` loads the `tidyverse` pa
 
 ```{r}
 #| eval: true
+#| echo: true
 population_data_2 <- read_csv(file = "data/population-by-state.csv")
 
 population_data_2
@@ -268,9 +334,17 @@ To create a new RStudio project, go to File New Project. Select either New Direc
 
 Once you’ve created this project, you should see two major differences in RStudio’s appearance. First, the files pane no longer shows every file on your computer. Instead, it shows only files in the `example-project` directory. Right now, that’s just the `example-project.Rproj` file, which indicates that the folder contains a project. Second, at the top right of RStudio, you can see the name `example-project`. This label previously read `Project: (None)`. If you want to make sure you’re working in a project, check for its name here. @fig-rstudio-active-project.png shows these changes.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![RStudio with an active project](assets/rstudio-active-project.png){#fig-rstudio-active-project.png}
 
-
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/rstudio-active-project.png"))
+```
 
 Now that you’ve created a project, copy the `population-by-state.csv` file into the `example-project` directory. Once you’ve done so, you should see it in the RStudio files pane.
 
@@ -278,6 +352,7 @@ With this CSV file in your project, you can now import it more easily. As before
 
 ```{r}
 #| eval: false
+#| echo: true
 
 library(tidyverse)
 
@@ -296,6 +371,8 @@ Because you’ve loaded the `tidyverse` package, you can now access its function
 
 ```{r}
 #| eval: false
+#| echo: true
+
 summarize(.data = population_data_2, mean_population = mean(Pop))
 ```
 
@@ -320,6 +397,7 @@ One advantage of working with the tidyverse is that it uses the *pipe* for multi
 
 ```{r}
 #| eval: false
+#| echo: true
 
 population_data_2 %>%
   summarize(mean_population = mean(Pop))
@@ -333,6 +411,7 @@ The pipe becomes even more useful when you use multiple steps in your data analy
 
 ```{r}
 #| eval: false
+#| echo: true
 
 population_data_2 %>%
   filter(rank <= 5) %>%
@@ -361,6 +440,7 @@ In addition to code, R script files often contain *comments* — lines that begi
 
 ```{r}
 #| eval: false
+#| echo: true
 
 # Calculate the mean population of the five largest states
 population_data_2 %>%
@@ -377,7 +457,17 @@ Now that you’ve learned the basics of how R works, you’re probably ready to 
 
 The first is to read the documentation for the functions you use. Remember, to access the documentation for any function, simply enter ? and then the name of the function in the console. In the bottom-right pane in @fig-readcsv-documentation, for example, you can see the result of running `?read.csv`.
 
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
 ![The documentation for the `read.csv()` function](assets/readcsv-documentation.png){#fig-readcsv-documentation}
+
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/readcsv-documentation.png"))
+```
 
 Help files can be a bit hard to decipher, but essentially they describe what package the function comes from, what the function does, what argu- ments it accepts, and some examples of how to use it.
 
