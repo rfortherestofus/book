@@ -747,7 +747,7 @@ You used the `gt` package to make your high-quality table, and as you’ve repea
 
 In @sec-rmarkdown-chapter, you’ll learn how to create reports using R Markdown, which can integrate your tables directly into the final document. What’s better than using just a few lines of code to make publication-ready tables?
 
-## Learn More
+## Additional Resources
 
 - Thomas Mock, “10+ Guidelines for Better Tables in R,” *The MockUp*, September 4, 2020, <https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/>.
 

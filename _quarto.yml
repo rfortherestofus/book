@@ -12,15 +12,15 @@ book:
     right: |
       This book can be purchased from No Starch Press.
   
-  # sidebar:
-    # logo: assets/cover.jpg
+  sidebar:
+    logo: assets/cover.jpg
     # style: "docked"
     # background: "white"
     # border: false
     # alignment: "center"
 
-  cover-image: assets/cover.jpg
-  favicon: assets/cover.jpg
+  # cover-image: assets/cover.jpg
+  favicon: assets/r-treasure-chest.png
   site-url: https://book.rfortherestofus.com/
 
   chapters:

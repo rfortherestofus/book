@@ -392,11 +392,11 @@
     ]
   },
   {
-    "objectID": "tables.html#learn-more",
-    "href": "tables.html#learn-more",
+    "objectID": "tables.html#additional-resources",
+    "href": "tables.html#additional-resources",
     "title": "5  Designing Effective Tables",
-    "section": "Learn More",
-    "text": "Learn More\n\nThomas Mock, “10+ Guidelines for Better Tables in R,” The MockUp, September 4, 2020, https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/.\nAlbert Rapp, “Creating Beautiful Tables in R with {gt},” November 27, 2022, https://gt.albert-rapp.de.\nJon Schwabish, “Ten Guidelines for Better Tables,” Journal of Benefit-Cost Analysis 11, no. 2 (2020), https://doi.org/10.1017/bca.2020.11.",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nThomas Mock, “10+ Guidelines for Better Tables in R,” The MockUp, September 4, 2020, https://themockup.blog/posts/2020-09-04-10-table-rules-in-r/.\nAlbert Rapp, “Creating Beautiful Tables in R with {gt},” November 27, 2022, https://gt.albert-rapp.de.\nJon Schwabish, “Ten Guidelines for Better Tables,” Journal of Benefit-Cost Analysis 11, no. 2 (2020), https://doi.org/10.1017/bca.2020.11.",
     "crumbs": [
       "Part I: Visualizations",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Designing Effective Tables</span>"
