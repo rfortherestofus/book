@@ -29,13 +29,11 @@ code {
 
 
 // Output of code chunks
-.cell-output {
-  // background-color: rgba(233, 236, 239, .65);
-  //   border: 1px solid rgba(233, 236, 239, .65);
-  //   border-radius: .25rem;
-  // padding: 1em 1em 0.05em 1em;
-  // margin-bottom: 1em;
-  // font-weight: 400;
+pre {
+  padding: 1em 0.5em;
+  margin-bottom: 1em;
+  border-radius: 0.5rem;
+  border: 1px solid #eeeeee;
 }
 
 div.callout-tip.callout {

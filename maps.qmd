@@ -1,3 +1,1043 @@
----
-title: "Maps and Geospatial Data"
----
+# Maps and Geospatial Data {#sec-maps-chapter}
+
+```{r}
+i <- 1
+chapter_number <- 4
+source("_common.R")
+```
+
+When I first started learning R, I considered it a tool for working with numbers, not shapes, so I was surprised when I saw people using it to make maps. For example, developer Abdoul Madjid used R to make a map that visualizes rates of COVID-19 in the United States in 2021.
+
+You might think you need specialized mapmaking software like ArcGIS to make maps, but it’s an expensive tool. And while Excel has added support for mapmaking in recent years, its features are limited (for example, you can’t use it to make maps based on street addresses). Even QGIS, an open source tool similar to ArcGIS, still requires learning new skills.
+
+Using R for mapmaking is more flexible than using Excel, less expen- sive than using ArcGIS, and based on syntax you already know. It also lets you perform all of your data manipulation tasks with one tool and apply the principles of high-quality data visualization discussed in @sec-data-viz-chapter. In this chapter, you’ll work with simple features of geospatial data and examine Madjid’s code to understand how he created this map. You’ll also learn where to find geospatial data and how to use it to make your own maps.
+
+## A Brief Primer on Geospatial Data
+
+```{r}
+# This code chunk is just to create the data
+
+# library(tigris)
+# library(sf)
+#
+# wyoming <- states(progress_bar = FALSE) %>%
+#   st_transform("WGS84") %>%
+#   select(NAME) %>%
+#   filter(NAME == "Wyoming") %>%
+#   st_cast(to = "POLYGON")
+#
+# wyoming %>%
+#   st_write("data/wyoming.geojson")
+#
+# wy_roads <- primary_secondary_roads(
+#   state = "Wyoming",
+#   progress_bar = FALSE
+# ) %>%
+#   janitor::clean_names()
+#
+# wy_roads %>%
+#   filter(linearid == 11010932011560) %>%
+#   st_write("data/wyoming-highway-30.geojson")
+#
+# wy_roads %>%
+#   st_write("data/wyoming-roads.geojson")
+#
+# wy_ev_stations <- read_csv("data/ev-charging-stations.csv") %>%
+#   janitor::clean_names() %>%
+#   filter(state == "WY") %>%
+#   filter(fuel_type_code == "ELEC") %>%
+#   st_as_sf(
+#     coords = c("x", "y"),
+#     crs = "WGS84"
+#   ) %>%
+#   select(objectid)
+#
+# wy_ev_stations %>%
+#   st_write("data/wyoming-all-ev-stations.geojson")
+#
+# wy_ev_stations %>%
+#   slice(1) %>%
+#   st_write("data/wyoming-one-ev-station.geojson")
+
+# wy_counties <- counties(state = "Wyoming",
+#                         progress_bar = FALSE) %>%
+#   st_transform("WGS84") %>%
+#   select(NAME)
+#
+# wy_counties %>%
+#   st_write("data/wyoming-counties.geojson")
+```
+
+
+You don’t need to be a GIS expert to make maps, but you do need to understand a few things about how geospatial data works, starting with its two main types: vector and raster. *Vector* data uses points, lines, and polygons to represent the world. *Raster* data, which often comes from digital photo- graphs, ties each pixel in an image to a specific geographic location. Vector data tends to be easier to work with, and you’ll be using it exclusively in this chapter.
+
+In the past, working with geospatial data meant mastering competing standards, each of which required learning a different approach. Today, though, most people use the *simple features* model (often abbreviated as *sf*) for working with vector geospatial data, which is easier to understand. For example, to import simple features data about the state of Wyoming, enter the following:
+
+```{r}
+#| echo: true
+library(sf)
+
+wyoming <- read_sf("https://data.rwithoutstatistics.com/wyoming.geojson")
+```
+
+And then you can look at the data like so:
+
+```{r}
+#| echo: true
+wyoming
+```
+
+The output has two columns, one for the state name (`NAME`) and another called `geometry`. This data looks like the data frames you’ve seen before, aside from two major differences. 
+
+First, there are five lines of metadata above the data frame. At the top is a line stating that the data contains one feature and one field. A *feature* is a row of data, and a *field* is any column containing nonspatial data. Second, the simple features data contains geographical data in a variable called geometry. Because the geometry column must be present for a data frame to be geospatial data, it isn’t counted as a field. Let’s look at each part of this simple features data.
+
+### The Geometry Type
+
+The *geometry type* represents the shape of the geospatial data you’re working with and is typically shown in all caps. In this case, the relatively simple `POLYGON` type represents a single polygon. You can use ggplot to display this data by calling `geom_sf()`, a special geom designed to work with simple features data:
+
+```{r wyoming-map-code}
+#| echo: true
+#| eval: false
+library(tidyverse)
+
+wyoming %>%
+  ggplot() +
+  geom_sf()
+```
+
+@fig-wyoming-map-plot shows the resulting map of Wyoming. It may not look like much, but I wasn’t the one who made Wyoming a nearly perfect rectangle!
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-wyoming-map-plot
+#| ref-label: wyoming-map-code
+#| fig-cap: "A map of Wyoming generated using `POLYGON` simple features data"
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+Other geometry types used in simple features data include `POINT`, to display elements such as a pin on a map that represents a single location. For example, the map in @fig-ev-station-map uses `POINT` data to show a single electric vehicle charging station in Wyoming.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+```{r}
+#| label: fig-ev-station-map
+#| fig-cap: "A map of Wyoming containing `POINT` simple features data"
+wyoming_one_ev_station <- read_sf("https://data.rwithoutstatistics.com/wyoming-one-ev-station.geojson")
+
+ggplot() +
+  geom_sf(data = wyoming) +
+  geom_sf(
+    data = wyoming_one_ev_station,
+    shape = 21,
+    fill = "#ff7400",
+    color = "white",
+    size = 3
+  )
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+The `LINESTRING` geometry type is for a set of points that can be con- nected with lines and is often used to represent roads. @fig-wy-roads-map shows a map that uses `LINESTRING` data to represent a section of US Highway 30 that runs through Wyoming.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-wy-roads-map
+#| fig-cap: "A road represented using `LINESTRING` simple features data"
+wyoming_highway_30 <- read_sf("data/wyoming-highway-30.geojson")
+
+wyoming_highway_30 %>%
+  ggplot() +
+  geom_sf(data = wyoming) +
+  geom_sf(
+    color = "#ff7400",
+    linewidth = 1
+  )
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+Each of these geometry types has a `MULTI` variation (`MULTIPOINT`, `MULTILINESTRING`, and `MULTIPOLYGON`) that combines multiple instances of the type in one row of data. For example, @fig-wyoming-ev-stations-map uses `MULTIPOINT` data to show all electric vehicle charging stations in Wyoming.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-wyoming-ev-stations-map
+#| fig-cap: "Using `MULTIPOINT` data to represent multiple electric vehicle charging stations"
+wyoming_all_ev_stations <- read_sf("data/wyoming-all-ev-stations.geojson")
+
+ggplot() +
+  geom_sf(data = wyoming) +
+  geom_sf(
+    data = wyoming_all_ev_stations,
+    fill = "#ff7400",
+    color = "white",
+    shape = 21,
+    size = 3
+  )
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+Likewise, you can use MULTILINESTRING data to show not just one road but all major roads in Wyoming (@fig-wyoming-roads-map).
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-wyoming-roads-map
+#| fig-cap: "Using MULTILINESTRING data to represent several roads"
+wyoming_roads <- read_sf("https://data.rwithoutstatistics.com/wyoming-roads.geojson")
+
+wyoming_roads %>%
+  ggplot() +
+  geom_sf(data = wyoming) +
+  geom_sf(
+    color = "#ff7400",
+    linewidth = 1
+  )
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+Finally, you could use `MULTIPOLYGON` data, for example, to depict a state made up of multiple polygons. The following data represents the 23 counties in the state of Wyoming:
+
+```{r}
+wyoming_counties <- read_sf("https://data.rwithoutstatistics.com/wyoming-counties.geojson")
+
+wyoming_counties
+```
+
+As you can see on the second line, the geometry type of this data is `MULTIPOLYGON`. In addition, the repeated `MULTIPOLYGON` text in the geometry column indicates that each row contains a shape of type `MULTIPOLYGON`. @fig-wyoming-counties-map shows a map made with this data.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-wyoming-counties-map
+#| fig-cap: "A map of Wyoming counties"
+wyoming_counties %>%
+  ggplot() +
+  geom_sf()
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+Notice that the map is made up entirely of polygons.
+
+### The Dimensions
+
+Next, the geospatial data frame contains the data’s *dimensions*, or the type of geospatial data you’re working with. In the Wyoming example, it looks like `Dimension: XY`, meaning the data is two-dimensional, as in the case of all the geospatial data used in this chapter. There are two other dimensions (`Z` and `M`) that you’ll see much more rarely. I’ll leave them for you to investigate further.
+
+### Bounding Box
+
+The penultimate element in the metadata is the `bounding box`, which represents the smallest area in which you can fit all of your geospatial data. For the `wyoming` object, it looks like this:
+
+```
+Bounding box:  xmin: -111.0569 ymin: 40.99475 xmax: -104.0522 ymax: 45.0059
+```
+
+The `ymin` value of 40.99475 and `ymax` value of 45.0059 represent the lowest and highest latitudes, respectively, that the state’s polygon can fit into. The x-values do the same for the longitude. Bounding boxes are calculated auto- matically, and typically you don’t have to worry about altering them.
+
+### The Coordinate Reference System
+
+The last piece of metadata specifies the *coordinate reference system* used to project the data when it’s plotted. The challenge with representing any geospatial data is that you’re displaying information about the three-dimensional Earth on a two-dimensional map. Doing so requires choosing a coordinate reference system that determines what type of correspondence, or *projection*, to use when making the map.
+
+The data for the Wyoming counties map includes the line `Geodetic CRS: WGS 84`, indicating the use of a coordinate reference system known as *WGS84*. To see a different projection, check out the same map using the *Albers equal-area conic convenience projection*. While Wyoming looked perfectly horizontal in @fig-wyoming-counties-map, the version in @fig-wyoming-counties-map-wgs84 appears to be tilted.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-wyoming-counties-map-wgs84
+#| fig-cap: "A map of Wyoming counties using the Albers equal-area conic convenience projection"
+wyoming_counties %>%
+  sf::st_transform(albersusa::us_laea_proj) %>%
+  ggplot() +
+  geom_sf()
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+
+If you’re wondering how to change projections when making maps of your own, fear not: you’ll see how to do this when we look at Madjid’s map in the next section. And if you want to know how to choose appropriate projections for your maps, check out “Using Appropriate Projections” (@sec-using-appropriate-projections).
+
+### The geometry Column
+
+In addition to the metadata, simple features data differs from traditional data frames in another respect: its geometry column. As you might have guessed from the name, this column holds the data needed to draw the maps.
+
+To understand how this works, consider the connect-the-dots drawings you probably completed as a kid. As you added lines to connect one point to the next, the subject of your drawing became clearer. The `geometry` column is similar. It has a set of numbers, each of which corresponds to a point. If you’re using `LINESTRING/MULTILINESTRING` or `POLYGON/MULTIPOLYGON` simple features data, ggplot uses the numbers in the geometry column to draw each point and then adds lines to connect the points. If you’re using `POINT/MULTIPOINT` data, it draws the points but doesn’t connect them.
+
+Once again, thanks to R, you never have to worry about these details or look in any depth at the geometry column.
+
+## Re-creating the COVID Map
+
+Now that you understand the basics of geospatial data, let’s walk through the code Madjid used to make his COVID-19 map. Shown in Figure 4-8, it makes use of the geometry types, dimensions, bounding boxes, projections, and the geometry column just discussed.
+
+```{r}
+#| results: asis
+print_nostarch_file_name(file_type_to_print = "png")
+```
+
+```{r}
+#| label: fig-madjid-covid-map
+#| fig-cap: "Abdoul Madjid’s map of COVID-19 in the United States in 2021"
+knitr::include_graphics(here::here("assets/covid-map.png"))
+```
+
+```{r}
+#| results: asis
+save_image_for_nostarch(here::here("assets/covid-map.png"))
+```
+
+I’ve made some small modifications to the code to make the final map fit on the page. You’ll begin by loading a few packages:
+
+```{r}
+#| echo: true
+library(tidyverse)
+library(albersusa)
+library(sf)
+library(zoo)
+library(colorspace)
+```
+
+The `albersusa` package will give you access to geospatial data. Install it as follows:
+
+```{r}
+#| echo: true
+#| eval: false
+remotes::install_github("hrbrmstr/albersusa")
+```
+
+You can install all of the other packages using the standard `install.packages()` code. You’ll use the `tidyverse` to import data, manipulate it, and plot it with ggplot. The `sf` package will enable you to change the coordinate reference system and use an appropriate projection for the data. The `zoo` package has functions for calculating rolling averages, and the `colorspace` package gives you a color scale that highlights the data well.
+
+### Importing the Data
+
+Next, you’ll import the data you need: COVID-19 rates by state over time, state populations, and geospatial information. Madjid imported each of these pieces of data separately and then merged them, and you’ll do the same.
+
+The COVID-19 data comes directly from the *New York Times*, which publishes daily case rates by state as a CSV file on its GitHub account. To import it, enter the following:
+
+```{r}
+#| echo: true
+covid_data <- 
+  read_csv("https://data.rwithoutstatistics.com/covid-us-states.csv") %>%
+  select(-fips)
+```
+
+Federal Information Processing Standards (FIPS) are numeric codes used to represent states, but you’ll reference states by their names instead, so the line `select(-fips)` drops the `fips` variable.
+
+Looking at this data, you can see the arrival of the first COVID-19 cases in the United States in January 2020:
+
+```{r}
+covid_data
+```
+
+Madjid’s map shows per capita rates (the rates per 100,000 people) rather than absolute rates (the rates without consideration for a state’s population). So, to re-create his maps, you also need to obtain data on each state’s population. Download this data as a CSV as follows:
+
+```{r}
+#| echo: true
+usa_states <- 
+  read_csv("https://data.rwithoutstatistics.com/population-by-state.csv") %>%
+  select(State, Pop)
+```
+
+This code imports the data, keeps the `State` and `Pop` (population) variables, and saves the data as an object called `usa_states`. Here’s what `usa_states` looks like:
+
+```{r}
+usa_states
+```
+
+Finally, import the geospatial data and save it as an object called `usa_states_geom` like so:
+
+```{r}
+#| echo: true
+usa_states_geom <- usa_sf() %>%
+  select(name) %>%
+  st_transform(us_laea_proj)
+```
+
+The `usa_sf()` function from the `albersusa` package gives you simple features data for all US states. Conveniently, it places Alaska and Hawaii at a position and scale that make them easy to see. This data includes multiple variables, but because you need only the state names, this code keeps just the `name` variable.
+
+The `st_transform()` function from the `sf` package changes the coordinate reference system. The one used here comes from the `us_laea_proj` object in the albersusa package. This is the Albers equal-area conic convenience projection you used earlier to change the appearance of the Wyoming counties map.
+
+### Calculating Daily COVID-19 Cases
+
+The `covid_data` data frame lists cumulative COVID-19 cases by state, but not the number of cases per day, so the next step is to calculate that number:
+
+```{r}
+#| echo: true
+covid_cases <- covid_data %>%
+  group_by(state) %>%
+  mutate(
+    pd_cases = lag(cases)
+  ) %>%
+  replace_na(list(pd_cases = 0)) %>%
+  mutate(
+    daily_cases = case_when(
+      cases > pd_cases ~ cases - pd_cases,
+      TRUE ~ 0
+    )
+  ) %>%
+  ungroup() %>%
+  arrange(state, date)
+```
+
+The `group_by()` function calculates totals for each state, then creates a new variable called pd_cases, which represents the number of cases in the previous day (the `lag()` function is used to assign data to this variable). Some days don’t have case counts for the previous day, so set this value to 0 using the `replace_na()` function. 
+
+Next, this code creates a new variable called `daily_cases`. To set the value of this variable, use the `case_when()` function to create a condition: if the cases variable (which holds the cases on that day) is greater than the pd_cases variable (which holds cases from one day prior), then `daily_cases` is equal to cases minus pd_cases. Otherwise, you set `daily_cases` to be equal to 0. 
+
+Finally, because you grouped the data by state at the beginning of the code, now you need to remove this grouping using the `ungroup()` function before arranging the data by state and date. 
+
+Here’s the resulting `covid_cases` data frame:
+
+```{r}
+covid_cases
+```
+
+In the next step, you’ll make use of the new `daily_cases` variable.
+
+### Calculating Incidence Rates
+
+You’re not quite done calculating values. The data that Madjid used to make his map didn’t include daily case counts. Instead, it contained a five-day rolling average of cases per 100,000 people. A *rolling average* is the average case rate in a certain time period. Quirks of reporting (for example, not reporting on weekends but instead rolling Saturday and Sunday cases into Monday) can make the value for any single day less reliable. Using a rolling average smooths out these quirks. Generate this data as follows:
+
+```{r}
+#| echo: true
+#| eval: false
+covid_cases %>%
+  mutate(roll_cases = rollmean(
+    daily_cases,
+    k = 5,
+    fill = NA
+  ))
+```
+
+This code creates a new data frame called `covid_cases_rm` (where *rm* stands for rolling mean). The first step in its creation is to use the `rollmean()` function from the `zoo` package to create a `roll_cases` variable, which holds the average number of cases in the five-day period surrounding a single date. The `k` argument is the number of days for which you want to calculate the rolling average (5, in this case), and the `fill` argument determines what happens in cases like the first day, where you can’t calculate a five-day rolling mean because there are no days prior to this day (Madjid set these values to `NA`).
+
+After calculating `roll_cases`, you need to calculate per capita case rates. To do this, you need population data, so join the population data from the `usa_states` data frame with the `covid_cases` data like so:
+
+```{r}
+#| echo: true
+#| eval: false
+covid_cases_rm <- covid_cases %>%
+  mutate(roll_cases = rollmean(
+    daily_cases,
+    k = 5,
+    fill = NA
+  )) %>%
+  left_join(
+    usa_states,
+    by = c("state" = "State")
+  ) %>%
+  drop_na(Pop)
+```
+
+To drop rows with missing population data, you call the `drop_na()` function with the `Pop` variable as an argument. In practice, this removes several US territories (American Samoa, Guam, the Northern Mariana Islands, and the Virgin Islands).
+
+Next, you create a per capita case rate variable called `incidence_rate` by multiplying the roll_cases variable by 100,000 and then dividing it by the population of each state:
+
+```{r}
+#| echo: true
+#| eval: false
+covid_cases_rm <- covid_cases_rm %>%
+  mutate(incidence_rate = 10^5 * roll_cases / Pop) %>%
+  mutate(
+    incidence_rate = cut(
+      incidence_rate,
+      breaks = c(seq(0, 50, 5), Inf),
+      include.lowest = TRUE
+    ) %>%
+      factor(labels = paste0(">", seq(0, 50, 5)))
+  )
+```
+
+Rather than keeping raw values (for example, on June 29, 2021, Florida had a rate of 57.77737 cases per 100,000 people), you use the `cut()` function to convert the values into categories: values of >0 (greater than zero), values of >5 (greater than five), and values of >50 (greater than 50).
+
+The last step is to filter the data so it includes only 2021 data (the only year depicted in Madjid’s map) and then select just the variables (`state`, `date`, and `incidence_rate`) you’ll need to create the map:
+
+```{r}
+# This is just to create the covid_cases_rm data frame
+covid_cases_rm <- covid_cases %>%
+  mutate(roll_cases = rollmean(
+    daily_cases,
+    k = 5,
+    fill = NA
+  )) %>%
+  left_join(
+    usa_states,
+    by = c("state" = "State")
+  ) %>%
+  drop_na(Pop) %>%
+  mutate(incidence_rate = 10^5 * roll_cases / Pop) %>%
+  mutate(
+    incidence_rate = cut(
+      incidence_rate,
+      breaks = c(seq(0, 50, 5), Inf),
+      include.lowest = TRUE
+    ) %>%
+      factor(labels = paste0(">", seq(0, 50, 5)))
+  ) %>%
+  filter(year(date) == 2021) %>%
+  select(state, date, incidence_rate)
+```
+
+Here’s the final `covid_cases_rm` data frame:
+
+```{r}
+covid_cases_rm
+```
+
+You now have a data frame that you can combine with your geospatial data.
+
+### Adding Geospatial Data
+
+You’ve used two of the three data sources (COVID-19 case data and state population data) to create the `covid_cases_rm` data frame you’ll need to make the map. Now it’s time to use the third data source: the geospatial data you saved as `usa_states_geom`. Simple features data allows you to merge regular data frames and geospatial data (another point in its favor):
+
+```{r}
+#| echo: true
+#| eval: false
+usa_states_geom %>%
+  left_join(covid_cases_rm, by = c("name" = "state"))
+```
+
+This code merges the `covid_cases_rm` data frame into the geospatial data, matching the name variable from `usa_states_geom` to the state variable in `covid_cases_rm`.
+
+Next, you create a new variable called `fancy_date` to format the date nicely (for example, Jan. 01 instead of 2021-01-01):
+
+```{r}
+#| echo: true
+usa_states_geom_covid <- usa_states_geom %>%
+  left_join(covid_cases_rm, by = c("name" = "state")) %>%
+  mutate(fancy_date = fct_inorder(format(date, "%b. %d"))) %>%
+  relocate(fancy_date, .before = incidence_rate)
+```
+
+The `format()` function does the formatting, while the `fct_inorder()` function makes the `fancy_date` variable sort data by date (rather than, say, alphabetically, which would put August before January). Last, the `relocate()` function puts the `fancy_date` column next to the `date` column. 
+
+Save this data frame as `usa_states_geom_covid` and take a look at the result:
+
+```{r}
+usa_states_geom_covid
+```
+
+You can see the metadata and `geometry` columns discussed earlier in the chapter.
+
+### Making the Map
+
+It took a lot of work to end up with the surprisingly simple `usa_states_geom_covid` data frame. While the data may be simple, the code Madjid used to make his map is quite complex. This section walks you through it in pieces.
+
+The final map is actually multiple maps, one for each day in 2021. Combining 365 days makes for a large final product, so instead of showing the code for every single day, filter the `usa_states_geom_covid` to show just the first six days in January:
+
+```{r}
+#| echo: true
+usa_states_geom_covid_six_days <- usa_states_geom_covid %>%
+  filter(date <= as.Date("2021-01-06"))
+```
+
+Save the result as a data frame called `usa_states_geom_covid_six_days`. Here’s what this data looks like:
+
+```{r}
+usa_states_geom_covid_six_days
+```
+
+Madjid’s map is giant, as it includes all 365 days. The size of a few elements have been changed so that they fit in this book.
+
+#### Generating the Basic Map
+
+With your six days of data, you’re ready to make some maps. Madjid’s map-making code has two main parts: generating the basic map, then tweaking its appearance. First, you’ll revisit the three lines of code used to make the Wyoming maps, with some adornments to improve the quality of the visualization:
+
+```{r}
+#| label: basic-map-code
+#| echo: true
+#| eval: false
+usa_states_geom_covid_six_days %>%
+  ggplot() +
+  geom_sf(
+    aes(fill = incidence_rate),
+    size = .05,
+    color = "grey55"
+  ) +
+  facet_wrap(
+    vars(fancy_date),
+    strip.position = "bottom"
+  )
+```
+
+The `geom_sf()` function plots the geospatial data, modifying a couple
+of arguments: `size = .05` makes the state borders less prominent and `color = "grey55"` sets them to a medium-gray color. Then, the `facet_wrap()` function is used for the faceting (that is, to make one map for each day). The `vars(fancy _date)` code specifies that the fancy_date variable should be used for the faceted maps, and `strip.position = "bottom"` moves the labels Jan. 01, Jan. 02, and so on to the bottom of the maps. Figure @fig-basic-map shows the result.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-basic-map
+#| ref-label: basic-map-code
+#| fig-cap: "A map showing the incidence rate of COVID-19 for the first six days of 2021"
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+Having generated the basic map, let’s now make it look good. 
+
+#### Applying Data Visualization Principles
+
+From now on, all of the code that Madjid uses is to improve the appearance of the maps. Many of the tweaks shown here should be familiar if you’ve read @sec-data-viz-chapter, highlighting a benefit of making maps with ggplot: you can apply the same data visualization principles you learned about when making charts.
+
+```{r final-map}
+#| echo: true
+#| eval: false
+usa_states_geom_covid_six_days %>%
+  ggplot() +
+  geom_sf(
+    aes(fill = incidence_rate),
+    size = .05,
+    color = "transparent"
+  ) +
+  facet_wrap(
+    vars(fancy_date),
+    strip.position = "bottom"
+  ) +
+  scale_fill_discrete_sequential(
+    palette = "Rocket",
+    name = "COVID-19 INCIDENCE RATE",
+    guide = guide_legend(
+      title.position = "top",
+      title.hjust = .5,
+      title.theme = element_text(
+        family = "Times New Roman",
+        size = rel(9),
+        margin = margin(
+          b = .1,
+          unit = "cm"
+        )
+      ),
+      nrow = 1,
+      keyheight = unit(.3, "cm"),
+      keywidth = unit(.3, "cm"),
+      label.theme = element_text(
+        family = "Times New Roman",
+        size = rel(6),
+        margin = margin(
+          r = 5,
+          unit = "pt"
+        )
+      )
+    )
+  ) +
+  labs(
+    title = "2021 · A pandemic year",
+    caption = "Incidence rates are calculated for 100,000 people in each state.
+                  Inspired from a graphic in the DIE ZEIT newspaper of November 18, 2021.
+                  Data from NY Times · Tidytuesday Week-1 2022 · Abdoul ISSA BIDA."
+  ) +
+  theme_minimal() +
+  theme(
+    text = element_text(
+      family = "Times New Roman",
+      color = "#111111"
+    ),
+    plot.title = element_text(
+      size = rel(2.5),
+      face = "bold",
+      hjust = 0.5,
+      margin = margin(
+        t = .25,
+        b = .25,
+        unit = "cm"
+      )
+    ),
+    plot.caption = element_text(
+      hjust = .5,
+      face = "bold",
+      margin = margin(
+        t = .25,
+        b = .25,
+        unit = "cm"
+      )
+    ),
+    strip.text = element_text(
+      size = rel(0.75),
+      face = "bold"
+    ),
+    legend.position = "top",
+    legend.box.spacing = unit(.25, "cm"),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    plot.margin = margin(
+      t = .25,
+      r = .25,
+      b = .25,
+      l = .25,
+      unit = "cm"
+    ),
+    plot.background = element_rect(
+      fill = "#e5e4e2",
+      color = NA
+    )
+  )
+```
+
+The `scale_fill_discrete_sequential()` function, from the colorspace package, sets the color scale. This code uses the rocket palette (the same palette that Cédric Scherer and Georgios Karamanis used in Chapter 2) and changes the legend title to “COVID-19 INCIDENCE RATE.” The `guide_legend()` function adjusts the position, alignment, and text properties of the title. The code then puts the colored squares in one row, adjusts their height and width, and tweaks the text properties of the labels (>0, >5, and so on).
+
+Next, the `labs()` function adds a title and caption. Following `theme_minimal()`, the `theme()` function makes some design tweaks, including setting the font and text color; making the title and caption bold; and adjusting their size, alignment, and margins. The code then adjusts the size of the strip text (Jan. 01, Jan. 02, and so on) and makes it bold, puts the legend at the top of the maps, and adds a bit of spacing around it. Grid lines, as well as the longitude and latitude lines, are removed, and then the entire visual- ization gets a bit of padding and a light gray background.
+
+There you have it! @fig-final-map shows the re-creation of his COVID-19 map.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-final-map
+#| fig-cap: "The re-creation of Abdoul Madjid’s map"
+#| fig-height: 6
+#| out-width: "100%"
+usa_states_geom_covid_six_days %>%
+  ggplot() +
+  geom_sf(
+    aes(fill = incidence_rate),
+    size = .05,
+    color = "transparent"
+  ) +
+  facet_wrap(
+    vars(fancy_date),
+    strip.position = "bottom"
+  ) +
+  scale_fill_discrete_sequential(
+    palette = "Rocket",
+    name = "COVID-19 INCIDENCE RATE",
+    guide = guide_legend(
+      title.position = "top",
+      title.hjust = .5,
+      title.theme = element_text(
+        family = "Times New Roman",
+        size = rel(4),
+        margin = margin(
+          b = .1,
+          unit = "cm"
+        )
+      ),
+      nrow = 1,
+      keyheight = unit(.3, "cm"),
+      keywidth = unit(.3, "cm"),
+      label.theme = element_text(
+        family = "Times New Roman",
+        size = rel(4),
+        margin = margin(
+          r = 5,
+          unit = "pt"
+        )
+      )
+    )
+  ) +
+  labs(
+    title = "2021 · A pandemic year",
+    caption = "Incidence rates are calculated for 100,000 people in each state.
+                  Inspired from a graphic in the DIE ZEIT newspaper of November 18, 2021.
+                  Data from NY Times · Tidytuesday Week-1 2022 · Abdoul ISSA BIDA."
+  ) +
+  theme_minimal(base_size = 2) +
+  theme(
+    text = element_text(
+      family = "Times New Roman",
+      color = "#111111"
+    ),
+    plot.title = element_text(
+      size = rel(10),
+      face = "bold",
+      hjust = 0.5,
+      margin = margin(
+        t = 1,
+        b = .25,
+        unit = "cm"
+      )
+    ),
+    # plot.caption = element_blank(),
+    plot.caption = element_text(
+      hjust = .5,
+      size = rel(5),
+      face = "bold",
+      margin = margin(t = .75,
+                      b = .25,
+                      unit = "cm")),
+    strip.text = element_text(
+      size = rel(5),
+      face = "bold"
+    ),
+    legend.position = "top",
+    legend.box.spacing = unit(.25, "cm"),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    plot.margin = margin(
+      t = .25,
+      r = .25,
+      b = .25,
+      l = .25,
+      unit = "cm"
+    ),
+    plot.background = element_rect(
+      fill = "#e5e4e2",
+      color = NA
+    )
+  )
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+From data import and data cleaning to analysis and visualization, you’ve seen how Madjid made a beautiful map in R.
+
+## Making Your Own Maps
+
+You may now be wondering, *Okay, great, but how do I actually make my own maps?* In this section you’ll learn where you can find geospatial data, how to choose a projection, and how to prepare the data for mapping. 
+
+There are two ways to access simple features geospatial data. The first is to import raw data, and the second is to access it with R functions.
+
+### Importing Raw Data
+
+Geospatial data can come in various formats. While ESRI shapefiles (with the *.shp* extension) are the most common, you might also encounter GeoJSON files (*.geojson*) like the ones we used in the Wyoming example at the beginning of this chapter, KML files (*.kml*), and others. Chapter 8 of *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow discusses this range of formats.
+
+The good news is that a single function can read pretty much any type of geospatial data: `read_sf()` from the `sf` package. Say you’ve downloaded geospatial data about US state boundaries from the website <geojson.xyz> in GeoJSON format, then saved it in the *data* folder as *states.geojson*. To import this data, use the *read_sf()* function like so:
+
+```{r}
+#| echo: true
+us_states <- read_sf(dsn = "https://data.rfortherestofus.com/states.geojson")
+```
+
+The `dsn` argument (which stands for data source name) tells `read_sf()` where to find the file. You save the data as the object `us_states`.
+
+### Accessing Geospatial Data Using R Functions
+
+Sometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. Madjid used the `usa_sf()` function from the `albersusa` package to acquire his data. Another package for accessing geospatial data related to the United States, `tigris`, has a number of well-named functions for different types of data. For example, load the `tigris` package and run the `states()` function like so:
+
+```{r}
+#| echo: true
+library(tigris)
+
+states_tigris <- states(
+  cb = TRUE,
+  resolution = "20m",
+  progress_bar = FALSE
+)
+```
+
+The `cb = TRUE` argument opts out of using the most detailed shapefile and sets the resolution to a more manageable `20m` (1:20 million). Without these changes, the resulting shapefile would be large and slow to work with. Setting `progress_bar = FALSE` hides the messages that tigris generates as it loads data. The result is saved as states_tigris. The tigris package has functions to get geospatial data about counties, census tracts, roads, and more.
+
+If you’re looking for data outside the United States, the `rnaturalearth` package provides functions for importing geospatial data from across the world. For example, use `ne_countries()` to retrieve geospatial data about various countries:
+
+```{r}
+#| echo: true
+library(rnaturalearth)
+
+africa_countries <- ne_countries(
+  returnclass = "sf",
+  continent = "Africa"
+)
+```
+
+This code uses two arguments: `returnclass = "sf"` to get data in simple features format, and `continent = "Africa"` to get only countries on the African continent. If you save the result to an object called `africa_countries`, you can plot the data on a map as follows:
+
+```{r}
+#| label: africa-map-code
+#| echo: true
+#| eval: false
+africa_countries %>%
+  ggplot() +
+  geom_sf()
+```
+
+@fig-africa-map shows the resulting map.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-africa-map
+#| ref-label: africa-map-code
+#| fig-cap: "A map of Africa made with data from the `rnaturalearth` package"
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+If you can’t find an appropriate package, you can always fall back on using `read_sf()` from the `sf` package.
+
+### Using Appropriate Projections {#sec-using-appropriate-projections}
+
+Once you have access to geospatial data, you need to decide which projection to use. If you’re looking for a simple answer to this question, you’ll be disappointed. As *Geocomputation with R* puts it, “The question of *which* CRS [to use] is tricky, and there is rarely a ‘right’ answer.”
+
+If you’re overwhelmed by the task of choosing a projection, the `crsuggest` package from Kyle Walker can give you ideas. Its `suggest_top_crs()` function returns a coordinate reference system that is well suited for your data. Load `crsuggest` and try it out on your africa_countries data:
+
+```{r}
+#| echo: true
+#| eval: false
+library(crsuggest)
+
+africa_countries %>%
+  suggest_top_crs()
+```
+
+The `suggest_top_crs()` function should return projection number `28232`. Pass this value to the `st_transform()` function to change the projection before you plot:
+
+```{r}
+#| label: africa-map-different-projection-code
+#| echo: true
+#| eval: false
+africa_countries %>%
+  st_transform(28232) %>%
+  ggplot() +
+  geom_sf()
+```
+
+When run, this code generates the map in @fig-africa-map-different-projection.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-africa-map-different-projection
+#| ref-label: africa-map-different-projection-code
+#| fig-cap: "A map of Africa made with projection number 28232"
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+As you can see, you’ve successfully mapped Africa with a different projection.
+
+### Wrangling Your Geospatial Data
+
+The ability to merge traditional data frames with geospatial data is a huge benefit of working with simple features data. Remember that for his COVID-19 map, Madjid analyzed traditional data frames before merging them with geospatial data. But because simple features data acts just like traditional data frames, you can just as easily apply the data-wrangling and analysis functions from the `tidyverse` directly to a simple features object. To see how this works, revisit the `africa_countries` simple features data and select two variables (`name` and `pop_est`) to see the name and population of the countries:
+
+```{r}
+#| echo: true
+#| eval: false
+africa_countries %>%
+  select(name, pop_est)
+```
+
+The output looks like the following:
+
+```{r}
+africa_countries %>%
+  select(name, pop_est)
+```
+
+Say you want to make a map showing which African countries have pop- ulations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the `mutate()` and `if_else()` functions, which will return `TRUE` if a country’s population is over 20 million and `FALSE` otherwise, and then store the result in a variable called `population_above_20_million`:
+
+```{r}
+#| echo: true
+#| eval: false
+africa_countries %>%
+  select(name, pop_est) %>%
+  mutate(population_above_20_million = if_else(pop_est > 20000000, TRUE, FALSE))
+```
+
+You can then take this code and pipe it into ggplot, setting the fill aes- thetic property to be equal to population_above_20_million:
+
+```{r}
+#| label: africa-map-20m-code
+#| echo: true
+#| eval: false
+africa_countries %>%
+  select(name, pop_est) %>%
+  mutate(population_above_20_million = if_else(pop_est > 20000000, TRUE, FALSE)) %>%
+  ggplot(aes(fill = population_above_20_million)) +
+  geom_sf()
+```
+
+This code generates the map shown in Figure 4-13.
+
+```{r}
+#| results: asis
+print_nostarch_file_name()
+```
+
+```{r}
+#| label: fig-africa-map-20m
+#| ref-label: africa-map-20m-code
+#| fig-cap: "A map of Africa that highlights countries with populations above 20 million people"
+africa_countries %>%
+  select(name, pop_est) %>%
+  mutate(population_above_20_million = if_else(pop_est > 20000000, TRUE, FALSE)) %>%
+  ggplot(aes(fill = population_above_20_million)) +
+  geom_sf()
+```
+
+```{r}
+#| results: asis
+save_figure_for_nostarch()
+```
+
+This is a basic example of the data wrangling and analysis you can perform on simple features data. The larger lesson is this: any skill you’ve developed for working with data in R will serve you well when working with geospatial data.
+
+## Summary
+
+In this short romp through the world of mapmaking in R, you learned the basics of simple features geospatial data, reviewed how Abdoul Madjid applied this knowledge to make his map, explored how to get your own geo- spatial data, and saw how to project it appropriately to make your own maps.
+
+R may very well be the best tool for making maps. It also lets you use the skills you’ve developed for working with traditional data frames and the ggplot code to make your visualizations look great. After all, Madjid isn’t a GIS expert, but he combined a basic understanding of geospatial data, fun- damental R skills, and knowledge of data visualization principles to make a beautiful map. Now it’s your turn to do the same.
+
+## Additional Resources
+
+- Kieran Healy, “Draw Maps,” in *Data Visualization: A Practical Introduction* (Princeton, NJ: Princeton University Press, 2018), <https://socviz.co>.
+
+- Andrew Heiss, “Lessons on Space from Data Visualization: Use R, ggplot2, and the Principles of Graphic Design to Create Beautiful and Truthful Visualizations of Data,” online course, last updated July 11, 2022, <https://datavizs22.classes.andrewheiss.com/content/12-content/>.
+
+- Robin Lovelace, Jakub Nowosad, and Jannes Muenchow, *Geocomputation with R* (Boca Raton, FL: CRC Press, 2019), <https://r.geocompx.org>.
+
+- Kyle Walker, *Analyzing US Census Data: Methods, Maps, and Models in R* (Boca Raton, FL: CRC Press, 2023). <https://walker-data.com/census-r/>
