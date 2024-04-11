@@ -315,21 +315,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now you have data you can work with in an object called <code>penguins</code>. Here’s what the first 10 rows look like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 344 × 8
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
- 1 Adelie  Torgersen           39.1          18.7               181        3750
- 2 Adelie  Torgersen           39.5          17.4               186        3800
- 3 Adelie  Torgersen           40.3          18                 195        3250
- 4 Adelie  Torgersen           NA            NA                  NA          NA
- 5 Adelie  Torgersen           36.7          19.3               193        3450
- 6 Adelie  Torgersen           39.3          20.6               190        3650
- 7 Adelie  Torgersen           38.9          17.8               181        3625
- 8 Adelie  Torgersen           39.2          19.6               195        4675
- 9 Adelie  Torgersen           34.1          18.1               193        3475
-10 Adelie  Torgersen           42            20.2               190        4250
-# ℹ 334 more rows
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre><code>#&gt; # A tibble: 344 × 8
+#&gt;    species island    bill_length_mm bill_depth_mm flipper_length_mm
+#&gt;    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+#&gt;  1 Adelie  Torgersen           39.1          18.7               181
+#&gt;  2 Adelie  Torgersen           39.5          17.4               186
+#&gt;  3 Adelie  Torgersen           40.3          18                 195
+#&gt;  4 Adelie  Torgersen           NA            NA                  NA
+#&gt;  5 Adelie  Torgersen           36.7          19.3               193
+#&gt;  6 Adelie  Torgersen           39.3          20.6               190
+#&gt;  7 Adelie  Torgersen           38.9          17.8               181
+#&gt;  8 Adelie  Torgersen           39.2          19.6               195
+#&gt;  9 Adelie  Torgersen           34.1          18.1               193
+#&gt; 10 Adelie  Torgersen           42            20.2               190
+#&gt; # ℹ 334 more rows
+#&gt; # ℹ 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
 <p>To get the data in a more usable format, you’ll count how many penguins live on each island with the <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> function from the <code>dplyr</code> package (one of several packages that are loaded with the <code>tidyverse</code>):</p>
@@ -340,12 +340,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This gives you some simple data that you can use for plotting:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  island        n
-  &lt;fct&gt;     &lt;int&gt;
-1 Biscoe      168
-2 Dream       124
-3 Torgersen    52</code></pre>
+<pre><code>#&gt; # A tibble: 3 × 2
+#&gt;   island        n
+#&gt;   &lt;fct&gt;     &lt;int&gt;
+#&gt; 1 Biscoe      168
+#&gt; 2 Dream       124
+#&gt; 3 Torgersen    52</code></pre>
 </div>
 </div>
 <p>You’ll use this data multiple times in the chapter, so save it as an object called <code>penguins_summary</code> like so:</p>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-basic-penguins-plot-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-basic-penguins-plot-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-basic-penguins-plot-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-basic-penguins-plot-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-basic-penguins-plot-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.1: A chart with the default theme
@@ -402,7 +402,7 @@ Figure&nbsp;3.1: A chart with the default theme
 <div class="cell-output-display">
 <div id="fig-penguins-bbc-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-bbc-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-bbc-style-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-bbc-style-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-bbc-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.2: The same chart with BBC style
@@ -470,7 +470,7 @@ Figure&nbsp;3.2: The same chart with BBC style
 <div class="cell-output-display">
 <div id="fig-penguins-plot-text-formatting-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-text-formatting-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-plot-text-formatting-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-text-formatting-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-text-formatting-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.3: The penguin chart with only the text formatting changed
@@ -498,7 +498,7 @@ Figure&nbsp;3.3: The penguin chart with only the text formatting changed
 <div class="cell-output-display">
 <div id="fig-penguins-plot-legend-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-legend-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-plot-legend-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-legend-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-legend-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.4: The penguin chart with changes to the legend
@@ -525,7 +525,7 @@ Figure&nbsp;3.4: The penguin chart with changes to the legend
 <div class="cell-output-display">
 <div id="fig-penguins-plot-axes-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-axes-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-plot-axes-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-axes-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-axes-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.5: The penguin chart with axis formatting changes
@@ -546,7 +546,7 @@ Figure&nbsp;3.5: The penguin chart with axis formatting changes
 <div class="cell-output-display">
 <div id="fig-penguins-plot-gridlines-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-gridlines-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-plot-gridlines-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-gridlines-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-gridlines-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.6: Our chart with tweaks to the grid lines
@@ -564,7 +564,7 @@ Figure&nbsp;3.6: Our chart with tweaks to the grid lines
 <div class="cell-output-display">
 <div id="fig-penguins-plot-no-bg" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-no-bg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-plot-no-bg-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-no-bg-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-no-bg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.7: The chart with the gray background removed
@@ -579,7 +579,7 @@ Figure&nbsp;3.7: The chart with the gray background removed
 <div class="cell-output-display">
 <div id="fig-penguin-facetted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguin-facetted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguin-facetted-plot-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguin-facetted-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguin-facetted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.8: The faceted chart with no changes to the strip text formatting
@@ -598,7 +598,7 @@ Figure&nbsp;3.8: The faceted chart with no changes to the strip text formatting
 <div class="cell-output-display">
 <div id="fig-penguins-plot-facetted-bbc" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-facetted-bbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="custom-theme_files/figure-html/fig-penguins-plot-facetted-bbc-1.png" class="img-fluid figure-img" width="672">
+<img src="custom-theme_files/figure-html/fig-penguins-plot-facetted-bbc-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-plot-facetted-bbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3.9: The small multiples chart in the BBC style

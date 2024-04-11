@@ -287,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>In his book <em>Fundamentals of Data Visualization</em>, Claus Wilke writes that tables are “an important tool for visualizing data.” This statement might seem odd. Tables are often considered the opposite of data visualizations such as plots: a place to dump numbers for the few nerds who care to read them. But Wilke sees things differently.</p>
-<p>Tables need not—and should not—be data dumps devoid of design. While bars, lines, and points in graphs are visualizations, so are numbers in a table, and we should care about their appearance. As an example, take a look at the tables made by reputable news sources; data dumps these are not. Media organizations, whose job it is to communicate effectively, pay a lot of attention to table design. But elsewhere, because of their apparent simplicity, Wilke writes, “[tables] may not always receive the attention they need.”</p>
+<p>Tables need not — and should not — be data dumps devoid of design. While bars, lines, and points in graphs are visualizations, so are numbers in a table, and we should care about their appearance. As an example, take a look at the tables made by reputable news sources; data dumps these are not. Media organizations, whose job it is to communicate effectively, pay a lot of attention to table design. But elsewhere, because of their apparent simplicity, Wilke writes, “[tables] may not always receive the attention they need.”</p>
 <p>Many people use Microsoft Word to make tables, a strategy that has potential pitfalls. Wilke found that his version of Word included 105 built-in table styles. Of those, around 80 percent, including the default style, violated some key principle of table design. The good news is that R is a great tool for making high-quality tables. It has a number of packages for this purpose and, within these packages, several functions designed to make sure your tables follow important design principles.</p>
 <p>Moreover, if you’re writing reports in R Markdown (which you’ll learn about in <a href="rmarkdown.html" class="quarto-xref"><span>Chapter 6</span></a>), you can include code that will generate a table when you export your document. By working with a single tool to create tables, text, and other visualizations, you won’t have to copy and paste your data, lowering the risk of human error.</p>
 <p>This chapter examines table design principles and shows you how to apply them to your tables using R’s <code>gt</code> package, one of the most popular table-making packages (and, as you’ll soon see, one that uses good design principles by default). These principles, and the code in this chapter, are adapted from Tom Mock’s blog post “10+ Guidelines for Better Tables in R.” Mock works at Posit, the company that makes RStudio, and has become something of an R table connoisseur. This chapter walks you through examples of Mock’s code to show you how small tweaks can make a big difference.</p>
@@ -316,13 +316,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s what gdp looks like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-  Country     `1952` `1972` `1992`
-  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 Afghanistan   779.   740.   649.
-2 Albania      1601.  3313.  2497.
-3 Algeria      2449.  4183.  5023.
-4 Angola       3521.  5473.  2628.</code></pre>
+<pre><code>#&gt; # A tibble: 4 × 4
+#&gt;   Country      `1952`  `1972`  `1992`
+#&gt;   &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1 Afghanistan  779.45  739.98  649.34
+#&gt; 2 Albania     1601.1  3313.4  2497.4 
+#&gt; 3 Algeria     2449.0  4182.7  5023.2 
+#&gt; 4 Angola      3520.6  5473.3  2627.8</code></pre>
 </div>
 </div>
 <p>Now that you have some data, you’ll use it to make a table.</p>
@@ -334,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-table-with-gridlines" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-with-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="387">
+<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-with-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.1: A table with grid lines everywhere can be distracting.
@@ -347,7 +347,7 @@ Figure&nbsp;5.1: A table with grid lines everywhere can be distracting.
 <div class="cell-output-display">
 <div id="fig-table-horizontal-gridlines" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-horizontal-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="383">
+<img src="nostarch/temp/F05002.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-horizontal-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.2: A table with only horizontal grid lines is more effective.
@@ -407,7 +407,7 @@ Figure&nbsp;5.2: A table with only horizontal grid lines is more effective.
 <div class="cell-output-display">
 <div id="fig-table-no-body-gridlines" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-no-body-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="387">
+<img src="nostarch/temp/F05003.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-no-body-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.3: A clean-looking table with grid lines only on the header row and the bottom
@@ -422,7 +422,7 @@ Figure&nbsp;5.3: A clean-looking table with grid lines only on the header row an
 <div class="cell-output-display">
 <div id="fig-table-no-gridlines-at-all" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-no-gridlines-at-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="383">
+<img src="nostarch/temp/F05004.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-no-gridlines-at-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.4: An unclear table with all grid lines removed
@@ -443,7 +443,7 @@ Figure&nbsp;5.4: An unclear table with all grid lines removed
 <div class="cell-output-display">
 <div id="fig-table-bold-header" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-bold-header-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="387">
+<img src="nostarch/temp/F05005.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-bold-header-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.5: Making the header row more obvious using bold
@@ -466,7 +466,7 @@ Figure&nbsp;5.5: Making the header row more obvious using bold
 <div class="cell-output-display">
 <div id="fig-table-cols-aligned-lcr" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-cols-aligned-lcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="383">
+<img src="nostarch/temp/F05006.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-cols-aligned-lcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.6: Comparing numerical data aligned to the left (1952), center (1972), and right (1992)
@@ -492,19 +492,19 @@ Figure&nbsp;5.6: Comparing numerical data aligned to the left (1952), center (19
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By default, <code>gt</code> will right-align numeric values. Don’t change anything, and you’ll be golden.</p>
-<p>Right alignment is best practice for numeric columns, but for text col- umns, use left alignment. As Jon Schwabish points out in his article “Ten Guidelines for Better Tables” in the <em>Journal of Benefit-Cost Analysis</em>, it’s much easier to read longer text cells when they are left-aligned. To see the ben- efit of left-aligning text, add a country with a long name to your table. I’ve added Bosnia and Herzegovina and saved this as a data frame called <code>gdp_with_bosnia</code>. You’ll see that I’m using nearly the same code I used previously to create the gdp data frame:</p>
+<p>Right alignment is best practice for numeric columns, but for text col- umns, use left alignment. As Jon Schwabish points out in his article “Ten Guidelines for Better Tables” in the <em>Journal of Benefit-Cost Analysis</em>, it’s much easier to read longer text cells when they are left-aligned. To see the ben- efit of left-aligning text, add a country with a long name to your table. I’ve added Bosnia and Herzegovina and saved this as a data frame called <code>gdp_with_bosnia</code>. You’ll see that I’m using nearly the same code I used previously to create the <code>gdp</code> data frame:</p>
 <p>Here’s what the <code>gdp_with_bosnia</code> data frame looks like:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp_with_bosnia</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 4
-  Country                `1952` `1972` `1992`
-  &lt;chr&gt;                   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 Afghanistan              779.   740.   649.
-2 Albania                 1601.  3313.  2497.
-3 Algeria                 2449.  4183.  5023.
-4 Angola                  3521.  5473.  2628.
-5 Bosnia and Herzegovina   974.  2860.  2547.</code></pre>
+<pre><code>#&gt; # A tibble: 5 × 4
+#&gt;   Country                 `1952`  `1972`  `1992`
+#&gt;   &lt;chr&gt;                    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1 Afghanistan             779.45  739.98  649.34
+#&gt; 2 Albania                1601.1  3313.4  2497.4 
+#&gt; 3 Algeria                2449.0  4182.7  5023.2 
+#&gt; 4 Angola                 3520.6  5473.3  2627.8 
+#&gt; 5 Bosnia and Herzegovina  973.53 2860.2  2546.8</code></pre>
 </div>
 </div>
 <p>Now take the <code>gdp_with_bosnia</code> data frame and create a table with the Country column center-aligned. In the table in <a href="#fig-table-country-centered" class="quarto-xref">Figure&nbsp;<span>5.7</span></a>, it’s hard to scan the country names, and that center-aligned column just looks a bit weird.</p>
@@ -512,7 +512,7 @@ Figure&nbsp;5.6: Comparing numerical data aligned to the left (1952), center (19
 <div class="cell-output-display">
 <div id="fig-table-country-centered" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-country-centered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="476">
+<img src="nostarch/temp/F05007.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-country-centered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.7: Center-aligned text can be hard to read, especially when it includes longer values.
@@ -556,7 +556,7 @@ Figure&nbsp;5.7: Center-aligned text can be hard to read, especially when it inc
 <div class="cell-output-display">
 <div id="fig-table-whole-numbers" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-whole-numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="299">
+<img src="nostarch/temp/F05008.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-whole-numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.8: Rounding dollar amounts to whole numbers and adding dollar signs can simplify data.
@@ -586,7 +586,7 @@ Figure&nbsp;5.8: Rounding dollar amounts to whole numbers and adding dollar sign
 <div class="cell-output-display">
 <div id="fig-table-highlight-values" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-highlight-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="312">
+<img src="nostarch/temp/F05009.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-highlight-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.9: Using color to highlight important values, such as the largest number in each year
@@ -661,7 +661,7 @@ Figure&nbsp;5.9: Using color to highlight important values, such as the largest 
 <div class="cell-output-display">
 <div id="fig-table-sparkline" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-sparkline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="436">
+<img src="nostarch/temp/F05010.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-sparkline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.10: A table with sparklines can show changes in data over time.
@@ -675,7 +675,7 @@ Figure&nbsp;5.10: A table with sparklines can show changes in data over time.
 <div class="cell-output-display">
 <div id="fig-table-fivethirtyeight" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-fivethirtyeight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="424">
+<img src="nostarch/temp/F05011.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-fivethirtyeight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.11: A table redone in the <em>FiveThirtyEight</em> style
@@ -683,7 +683,7 @@ Figure&nbsp;5.11: A table redone in the <em>FiveThirtyEight</em> style
 </div>
 </div>
 </div>
-<p>Add-on packages like <code>gtExtras</code> are common in the table-making landscape. If you’re working with the <code>reactable</code> package to make interactive tables, for example, you can also use the <code>reactablefmtr</code> to add interactive sparklines, themes, and more. You’ll learn more about making inter- active tables in <span class="quarto-unresolved-ref">?sec-websites-chapter</span>.</p>
+<p>Add-on packages like <code>gtExtras</code> are common in the table-making landscape. If you’re working with the <code>reactable</code> package to make interactive tables, for example, you can also use the <code>reactablefmtr</code> to add interactive sparklines, themes, and more. You’ll learn more about making interactive tables in <a href="websites.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
 </section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <p>Many of the tweaks you made to your table in this chapter are quite subtle. Changes like removing excess grid lines, bolding header text, right-aligning numeric values, and adjusting the level of precision can often go unnoticed, but if you skip them, your table will be far less effective. The final product isn’t flashy, but it does communicate clearly.</p>
 <p>You used the <code>gt</code> package to make your high-quality table, and as you’ve repeatedly seen, this package has good defaults built in. Often, you don’t need to change much in your code to make effective tables. But no matter which package you use, it’s essential to treat tables as worthy of just as much thought as other kinds of data visualization.</p>

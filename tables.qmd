@@ -10,7 +10,7 @@ In his book *Fundamentals of Data Visualization*, Claus Wilke writes that tables
 “an important tool for visualizing data.” This statement might seem odd. Tables are
 often considered the opposite of data visualizations such as plots: a place to dump numbers for the few nerds who care to read them. But Wilke sees things differently.
 
-Tables need not—and should not—be data dumps devoid of design. While bars, lines, and points in graphs are visualizations, so are numbers in a table, and we should care about their appearance. As an example, take a look at the tables made by reputable news sources; data dumps these are not. Media organizations, whose job it is to communicate effectively, pay a lot of attention to table design. But elsewhere, because of their apparent simplicity, Wilke writes, “[tables] may not always receive the attention they need.”
+Tables need not — and should not — be data dumps devoid of design. While bars, lines, and points in graphs are visualizations, so are numbers in a table, and we should care about their appearance. As an example, take a look at the tables made by reputable news sources; data dumps these are not. Media organizations, whose job it is to communicate effectively, pay a lot of attention to table design. But elsewhere, because of their apparent simplicity, Wilke writes, “[tables] may not always receive the attention they need.”
 
 Many people use Microsoft Word to make tables, a strategy that has potential pitfalls. Wilke found that his version of Word included 105 built-in table styles. Of those, around 80 percent, including the default style, violated some key principle of table design. The good news is that R is a great tool for making high-quality tables. It has a number of packages for this purpose and, within these packages, several functions designed to make sure your tables follow important design principles.
 
@@ -67,7 +67,7 @@ You can minimize clutter in your tables by removing unnecessary elements. For ex
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp %>%
+table_gridlines <- gdp %>%
   gt() %>%
   tab_style(
     style = cell_borders(
@@ -91,7 +91,7 @@ table <- gdp %>%
 ```{r}
 #| label: fig-table-with-gridlines
 #| fig-cap: "A table with grid lines everywhere can be distracting."
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_gridlines)
 ```
 
 Having grid lines around every single cell in your table is unnecessary and distracts from the goal of communicating clearly. A table with minimal or even no grid lines (@fig-table-horizontal-gridlines) is a much more effective communication tool.
@@ -100,14 +100,15 @@ Having grid lines around every single cell in your table is unnecessary and dist
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp %>%
+table_default <- gdp %>%
   gt()
 ```
 
 ```{r}
 #| label: fig-table-horizontal-gridlines
 #| fig-cap: "A table with only horizontal grid lines is more effective."
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_default)
+
 ```
 
 I mentioned that `gt` uses good table design principles by default, and this is a great example. The second table, with minimal grid lines, requires just two lines of code—piping the gdp data into the `gt()` function, which creates a table:
@@ -168,7 +169,7 @@ Running this code outputs a table with no grid lines at all in the body (@fig-ta
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp %>%
+table_clean <- gdp %>%
   gt() %>%
   tab_style(
     style = cell_borders(color = "transparent"),
@@ -179,7 +180,7 @@ table <- gdp %>%
 ```{r}
 #| label: fig-table-no-body-gridlines
 #| fig-cap: "A clean-looking table with grid lines only on the header row and the bottom"
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_clean)
 ```
 
 Save this table as an object called `table_no_gridlines` so that you can add to it later.
@@ -201,7 +202,7 @@ While reducing clutter is an important goal, going too far can have negative con
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp %>%
+table_no_grid_lines <- gdp %>%
   gt() %>%
   opt_table_lines(extent = "none")
 ```
@@ -209,7 +210,7 @@ table <- gdp %>%
 ```{r}
 #| label: fig-table-no-gridlines-at-all
 #| fig-cap: "An unclear table with all grid lines removed"
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_no_grid_lines)
 ```
 
 By making the header row bold, you can make it stand out better:
@@ -266,7 +267,7 @@ Let’s look at this principle in action. In @fig-table-cols-aligned-lcr, the 19
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- table_bold_header %>%
+table_mixed_alignment <- table_bold_header %>%
   cols_align(
     align = "left",
     columns = 2
@@ -284,7 +285,7 @@ table <- table_bold_header %>%
 ```{r}
 #| label: fig-table-cols-aligned-lcr
 #| fig-cap: "Comparing numerical data aligned to the left (1952), center (1972), and right (1992)"
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_mixed_alignment)
 ```
 
 You can see how much easier it is to compare the values in the 1992 column than those in the other two columns. In both the 1952 and 1972 columns, it’s challenging to compare the values because the numbers in the same position (the tens place, for example) aren’t aligned vertically. In the 1992 column, however, the number in the tens place in Afghanistan (4) aligns with the number in the tens place in Albania (9) and all other coun- tries, making it much easier to scan the table.
@@ -311,7 +312,7 @@ table_bold_header %>%
 
 By default, `gt` will right-align numeric values. Don’t change anything, and you’ll be golden.
 
-Right alignment is best practice for numeric columns, but for text col- umns, use left alignment. As Jon Schwabish points out in his article “Ten Guidelines for Better Tables” in the *Journal of Benefit-Cost Analysis*, it’s much easier to read longer text cells when they are left-aligned. To see the ben- efit of left-aligning text, add a country with a long name to your table. I’ve added Bosnia and Herzegovina and saved this as a data frame called `gdp_with_bosnia`. You’ll see that I’m using nearly the same code I used previously to create the gdp data frame:
+Right alignment is best practice for numeric columns, but for text col- umns, use left alignment. As Jon Schwabish points out in his article “Ten Guidelines for Better Tables” in the *Journal of Benefit-Cost Analysis*, it’s much easier to read longer text cells when they are left-aligned. To see the ben- efit of left-aligning text, add a country with a long name to your table. I’ve added Bosnia and Herzegovina and saved this as a data frame called `gdp_with_bosnia`. You’ll see that I’m using nearly the same code I used previously to create the `gdp` data frame:
 
 ```{r}
 gdp_with_bosnia <- gapminder %>%
@@ -340,7 +341,7 @@ Now take the `gdp_with_bosnia` data frame and create a table with the Country co
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp_with_bosnia %>%
+table_center_aligned <- gdp_with_bosnia %>%
   gt() %>%
   tab_style(
     style = cell_borders(color = "transparent"),
@@ -359,7 +360,7 @@ table <- gdp_with_bosnia %>%
 ```{r}
 #| label: fig-table-country-centered
 #| fig-cap: "Center-aligned text can be hard to read, especially when it includes longer values."
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_center_aligned)
 ```
 
 This is another example where you have to change the `gt` defaults to mess things up. In addition to right-aligning numeric columns by default, `gt` left-aligns character columns. As long as you don’t touch anything, you’ll get the alignment you’re looking for. 
@@ -413,7 +414,7 @@ This produces values formatted as dollars. The fmt_currency() function automatic
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- table_bold_header %>%
+table_dollar_signs <- table_bold_header %>%
   fmt_currency(
     columns = c(`1952`, `1972`, `1992`),
     decimals = 0
@@ -423,7 +424,7 @@ table <- table_bold_header %>%
 ```{r}
 #| label: fig-table-whole-numbers
 #| fig-cap: "Rounding dollar amounts to whole numbers and adding dollar signs can simplify data."
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_dollar_signs)
 ```
 
 Save your table for reuse as `table_whole_numbers`.
@@ -466,7 +467,7 @@ Repeating this code for the 1972 and 1992 columns generates the result shown in 
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- table_whole_numbers %>%
+table_highlight_values <- table_whole_numbers %>%
   tab_style(
     style = cell_text(
       color = "orange",
@@ -502,7 +503,7 @@ table <- table_whole_numbers %>%
 ```{r}
 #| label: fig-table-highlight-values
 #| fig-cap: "Using color to highlight important values, such as the largest number in each year"
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_highlight_values)
 ```
 
 The `gt` package makes it straightforward to add color to highlight outlier values.
@@ -617,7 +618,7 @@ Setting `label = FALSE` removes text labels that `gt_plt_sparkline()` adds by de
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp_with_trend %>%
+table_with_sparklines <- gdp_with_trend %>%
   gt() %>%
   tab_style(
     style = cell_borders(color = "transparent"),
@@ -671,7 +672,7 @@ table <- gdp_with_trend %>%
 ```{r}
 #| label: fig-table-sparkline
 #| fig-cap: "A table with sparklines can show changes in data over time."
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_with_sparklines)
 ```
 
 The `gtExtras` package can do much more than merely create sparklines. Its set of theme functions allows you to make your tables look like those published by FiveThirtyEight, the `New York Times`, the `Guardian`, and other news outlets.
@@ -682,7 +683,7 @@ As an example, try removing the formatting you’ve applied so far and instead u
 #| results: asis
 print_nostarch_file_name(file_type_to_print = "png")
 
-table <- gdp %>%
+table_fivethirtyeight <- gdp %>%
   group_by(Country) %>%
   mutate(Trend = list(c(`1952`, `1972`, `1992`))) %>%
   ungroup() %>%
@@ -732,10 +733,10 @@ table <- gdp %>%
 ```{r}
 #| label: fig-table-fivethirtyeight
 #| fig-cap: "A table redone in the *FiveThirtyEight* style"
-save_table_for_nostarch(table)
+save_table_for_nostarch(table_fivethirtyeight)
 ```
 
-Add-on packages like `gtExtras` are common in the table-making landscape. If you’re working with the `reactable` package to make interactive tables, for example, you can also use the `reactablefmtr` to add interactive sparklines, themes, and more. You’ll learn more about making inter- active tables in @sec-websites-chapter.
+Add-on packages like `gtExtras` are common in the table-making landscape. If you’re working with the `reactable` package to make interactive tables, for example, you can also use the `reactablefmtr` to add interactive sparklines, themes, and more. You’ll learn more about making interactive tables in @sec-websites-chapter.
  
 
 ## Summary

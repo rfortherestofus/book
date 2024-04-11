@@ -64,7 +64,8 @@ save_table_for_nostarch <- function(table_object) {
   
   save_image_for_nostarch(file_name_with_path) 
   
-  knitr::include_graphics(file_name_with_path)
+  knitr::include_graphics(file_name_with_path,
+  dpi = 300)
   
 }
 
