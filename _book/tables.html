@@ -318,13 +318,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here’s what gdp looks like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 4 × 4
-#&gt;   Country      `1952`  `1972`  `1992`
-#&gt;   &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 Afghanistan  779.45  739.98  649.34
-#&gt; 2 Albania     1601.1  3313.4  2497.4 
-#&gt; 3 Algeria     2449.0  4182.7  5023.2 
-#&gt; 4 Angola      3520.6  5473.3  2627.8</code></pre>
+<pre><code># A tibble: 4 × 4
+  Country     `1952` `1972` `1992`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghanistan   779.   740.   649.
+2 Albania      1601.  3313.  2497.
+3 Algeria      2449.  4183.  5023.
+4 Angola       3521.  5473.  2628.</code></pre>
 </div>
 </div>
 <p>Now that you have some data, you’ll use it to make a table.</p>
@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-table-with-gridlines" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-with-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05001.png" class="img-fluid figure-img" width="248">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-with-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.1: A table with grid lines everywhere can be distracting.
@@ -349,7 +349,7 @@ Figure&nbsp;5.1: A table with grid lines everywhere can be distracting.
 <div class="cell-output-display">
 <div id="fig-table-horizontal-gridlines" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-horizontal-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05002.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05002.png" class="img-fluid figure-img" width="245">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-horizontal-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.2: A table with only horizontal grid lines is more effective.
@@ -409,7 +409,7 @@ Figure&nbsp;5.2: A table with only horizontal grid lines is more effective.
 <div class="cell-output-display">
 <div id="fig-table-no-body-gridlines" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-no-body-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05003.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05003.png" class="img-fluid figure-img" width="248">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-no-body-gridlines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.3: A clean-looking table with grid lines only on the header row and the bottom
@@ -424,7 +424,7 @@ Figure&nbsp;5.3: A clean-looking table with grid lines only on the header row an
 <div class="cell-output-display">
 <div id="fig-table-no-gridlines-at-all" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-no-gridlines-at-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05004.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05004.png" class="img-fluid figure-img" width="245">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-no-gridlines-at-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.4: An unclear table with all grid lines removed
@@ -445,7 +445,7 @@ Figure&nbsp;5.4: An unclear table with all grid lines removed
 <div class="cell-output-display">
 <div id="fig-table-bold-header" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-bold-header-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05005.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05005.png" class="img-fluid figure-img" width="248">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-bold-header-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.5: Making the header row more obvious using bold
@@ -468,7 +468,7 @@ Figure&nbsp;5.5: Making the header row more obvious using bold
 <div class="cell-output-display">
 <div id="fig-table-cols-aligned-lcr" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-cols-aligned-lcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05006.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05006.png" class="img-fluid figure-img" width="245">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-cols-aligned-lcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.6: Comparing numerical data aligned to the left (1952), center (1972), and right (1992)
@@ -499,14 +499,14 @@ Figure&nbsp;5.6: Comparing numerical data aligned to the left (1952), center (19
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gdp_with_bosnia</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 5 × 4
-#&gt;   Country                 `1952`  `1972`  `1992`
-#&gt;   &lt;chr&gt;                    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 Afghanistan             779.45  739.98  649.34
-#&gt; 2 Albania                1601.1  3313.4  2497.4 
-#&gt; 3 Algeria                2449.0  4182.7  5023.2 
-#&gt; 4 Angola                 3520.6  5473.3  2627.8 
-#&gt; 5 Bosnia and Herzegovina  973.53 2860.2  2546.8</code></pre>
+<pre><code># A tibble: 5 × 4
+  Country                `1952` `1972` `1992`
+  &lt;chr&gt;                   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghanistan              779.   740.   649.
+2 Albania                 1601.  3313.  2497.
+3 Algeria                 2449.  4183.  5023.
+4 Angola                  3521.  5473.  2628.
+5 Bosnia and Herzegovina   974.  2860.  2547.</code></pre>
 </div>
 </div>
 <p>Now take the <code>gdp_with_bosnia</code> data frame and create a table with the Country column center-aligned. In the table in <a href="#fig-table-country-centered" class="quarto-xref">Figure&nbsp;<span>5.7</span></a>, it’s hard to scan the country names, and that center-aligned column just looks a bit weird.</p>
@@ -514,7 +514,7 @@ Figure&nbsp;5.6: Comparing numerical data aligned to the left (1952), center (19
 <div class="cell-output-display">
 <div id="fig-table-country-centered" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-country-centered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05007.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05007.png" class="img-fluid figure-img" width="305">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-country-centered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.7: Center-aligned text can be hard to read, especially when it includes longer values.
@@ -558,7 +558,7 @@ Figure&nbsp;5.7: Center-aligned text can be hard to read, especially when it inc
 <div class="cell-output-display">
 <div id="fig-table-whole-numbers" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-whole-numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05008.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05008.png" class="img-fluid figure-img" width="191">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-whole-numbers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.8: Rounding dollar amounts to whole numbers and adding dollar signs can simplify data.
@@ -588,7 +588,7 @@ Figure&nbsp;5.8: Rounding dollar amounts to whole numbers and adding dollar sign
 <div class="cell-output-display">
 <div id="fig-table-highlight-values" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-highlight-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05009.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05009.png" class="img-fluid figure-img" width="200">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-highlight-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.9: Using color to highlight important values, such as the largest number in each year
@@ -663,7 +663,7 @@ Figure&nbsp;5.9: Using color to highlight important values, such as the largest 
 <div class="cell-output-display">
 <div id="fig-table-sparkline" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-sparkline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05010.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05010.png" class="img-fluid figure-img" width="279">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-sparkline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.10: A table with sparklines can show changes in data over time.
@@ -677,7 +677,7 @@ Figure&nbsp;5.10: A table with sparklines can show changes in data over time.
 <div class="cell-output-display">
 <div id="fig-table-fivethirtyeight" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-table-fivethirtyeight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="nostarch/temp/F05011.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="nostarch/temp/F05011.png" class="img-fluid figure-img" width="271">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-fivethirtyeight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5.11: A table redone in the <em>FiveThirtyEight</em> style

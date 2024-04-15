@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./custom-theme.html" rel="next">
 <link href="./crash-course.html" rel="prev">
-<link href="./assets/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./assets/r-treasure-chest.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/cover.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for the Rest of Us: A Statistics-Free Introduction</a> 
     </div>
@@ -307,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-final-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-final-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-final-viz-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-final-viz-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-final-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: A section of the final drought visualization, with a few tweaks made to fit this book
@@ -319,7 +321,7 @@ Figure&nbsp;2.1: A section of the final drought visualization, with a few tweaks
 <div class="cell-output-display">
 <div id="fig-cluttered-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cluttered-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-cluttered-viz-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-cluttered-viz-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cluttered-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.2: The cluttered version of the drought visualization
@@ -333,7 +335,7 @@ Figure&nbsp;2.2: The cluttered version of the drought visualization
 <div class="cell-output-display">
 <div id="fig-viz-sw-2003" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-viz-sw-2003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-viz-sw-2003-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-viz-sw-2003-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-viz-sw-2003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.3: A drought visualization for the Southwest in 2003
@@ -351,7 +353,7 @@ Figure&nbsp;2.3: A drought visualization for the Southwest in 2003
 <div class="cell-output-display">
 <div id="fig-bar-line-chart" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bar-line-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-bar-line-chart-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-bar-line-chart-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bar-line-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.4: A bar chart and a line chart showing identical data
@@ -374,19 +376,19 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 <p>The resulting <code>gapminder_10_rows</code> tibble looks like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 10 × 6
-#&gt;    country     continent  year lifeExp      pop gdpPercap
-#&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt;  1 Afghanistan Asia       1952  28.801  8425333    779.45
-#&gt;  2 Afghanistan Asia       1957  30.332  9240934    820.85
-#&gt;  3 Afghanistan Asia       1962  31.997 10267083    853.10
-#&gt;  4 Afghanistan Asia       1967  34.02  11537966    836.20
-#&gt;  5 Afghanistan Asia       1972  36.088 13079460    739.98
-#&gt;  6 Afghanistan Asia       1977  38.438 14880372    786.11
-#&gt;  7 Afghanistan Asia       1982  39.854 12881816    978.01
-#&gt;  8 Afghanistan Asia       1987  40.822 13867957    852.40
-#&gt;  9 Afghanistan Asia       1992  41.674 16317921    649.34
-#&gt; 10 Afghanistan Asia       1997  41.763 22227415    635.34</code></pre>
+<pre><code># A tibble: 10 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.</code></pre>
 </div>
 </div>
 <p>This output is a shortened version of the full which includes over 1,700 rows of data.</p>
@@ -406,7 +408,7 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 <div class="cell-output-display">
 <div id="fig-blank-ggplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blank-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-blank-ggplot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-blank-ggplot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blank-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.5: A blank chart that maps year values to the x-axis and life expectancy values to the y-axis
@@ -432,7 +434,7 @@ Figure&nbsp;2.5: A blank chart that maps year values to the x-axis and life expe
 <div class="cell-output-display">
 <div id="fig-gapminder-points-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-points-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-gapminder-points-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-gapminder-points-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-points-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.6: The life expectancy chart with points added
@@ -456,7 +458,7 @@ Figure&nbsp;2.6: The life expectancy chart with points added
 <div class="cell-output-display">
 <div id="fig-gapminder-line-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-gapminder-line-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-gapminder-line-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.7: The data as a line chart
@@ -481,7 +483,7 @@ Figure&nbsp;2.7: The data as a line chart
 <div class="cell-output-display">
 <div id="fig-gapminder-points-line-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-points-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-gapminder-points-line-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-gapminder-points-line-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-points-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.8: The same data with both points and a line
@@ -505,7 +507,7 @@ Figure&nbsp;2.8: The same data with both points and a line
 <div class="cell-output-display">
 <div id="fig-gapminder-bar-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-bar-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-gapminder-bar-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-gapminder-bar-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-bar-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.9: The life expectancy data as a bar chart
@@ -533,7 +535,7 @@ Figure&nbsp;2.9: The life expectancy data as a bar chart
 <div class="cell-output-display">
 <div id="fig-gapminder-bar-colors-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-bar-colors-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-gapminder-bar-colors-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-gapminder-bar-colors-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-bar-colors-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.10: The same chart, now with added colors
@@ -575,7 +577,7 @@ Figure&nbsp;2.10: The same chart, now with added colors
 <div class="cell-output-display">
 <div id="fig-gapminder-theme-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-theme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-gapminder-theme-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-gapminder-theme-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gapminder-theme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> added
@@ -609,20 +611,20 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 <p>To take a look at this object and see the variables you have to work with, enter <code>southwest_2003</code> in the console, which should return this output:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 255 × 7
-#&gt;    date       hub       category percentage  year  week max_week
-#&gt;    &lt;date&gt;     &lt;fct&gt;     &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 2003-12-30 Southwest D0           0.0718  2003    52       52
-#&gt;  2 2003-12-30 Southwest D1           0.0828  2003    52       52
-#&gt;  3 2003-12-30 Southwest D2           0.2693  2003    52       52
-#&gt;  4 2003-12-30 Southwest D3           0.3108  2003    52       52
-#&gt;  5 2003-12-30 Southwest D4           0.0796  2003    52       52
-#&gt;  6 2003-12-23 Southwest D0           0.0823  2003    51       52
-#&gt;  7 2003-12-23 Southwest D1           0.1312  2003    51       52
-#&gt;  8 2003-12-23 Southwest D2           0.1886  2003    51       52
-#&gt;  9 2003-12-23 Southwest D3           0.3822  2003    51       52
-#&gt; 10 2003-12-23 Southwest D4           0.0828  2003    51       52
-#&gt; # ℹ 245 more rows</code></pre>
+<pre><code># A tibble: 255 × 7
+   date       hub       category percentage  year  week max_week
+   &lt;date&gt;     &lt;fct&gt;     &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+ 1 2003-12-30 Southwest D0           0.0718  2003    52       52
+ 2 2003-12-30 Southwest D1           0.0828  2003    52       52
+ 3 2003-12-30 Southwest D2           0.269   2003    52       52
+ 4 2003-12-30 Southwest D3           0.311   2003    52       52
+ 5 2003-12-30 Southwest D4           0.0796  2003    52       52
+ 6 2003-12-23 Southwest D0           0.0823  2003    51       52
+ 7 2003-12-23 Southwest D1           0.131   2003    51       52
+ 8 2003-12-23 Southwest D2           0.189   2003    51       52
+ 9 2003-12-23 Southwest D3           0.382   2003    51       52
+10 2003-12-23 Southwest D4           0.0828  2003    51       52
+# ℹ 245 more rows</code></pre>
 </div>
 </div>
 <p>The date variable represents the start date of the week in which the observation took place. The hub variable is the region, and category is the level of drought: a value of <code>D0</code> indicates the lowest level of drought, while <code>D5</code> indicates the highest level. The <code>percentage</code> variable is the percentage of that region in that drought category, ranging from 0 to 1. The <code>year</code> and <code>week</code> variables are the observation year and week number (beginning with week 1). The <code>max_week</code> variable is the maximum number of weeks in a given year.</p>
@@ -643,7 +645,7 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 <div class="cell-output-display">
 <div id="fig-southwest-2003-no-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-southwest-2003-no-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-southwest-2003-no-style-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-southwest-2003-no-style-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-southwest-2003-no-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.12: One year (2003) and region (Southwest) of the drought visualization
@@ -702,7 +704,7 @@ Figure&nbsp;2.12: One year (2003) and region (Southwest) of the drought visualiz
 <div class="cell-output-display">
 <div id="fig-southwest-2003-xy-scales-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-southwest-2003-xy-scales-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-southwest-2003-xy-scales-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-southwest-2003-xy-scales-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-southwest-2003-xy-scales-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.13: The 2003 drought data for the Southwest with adjustments to the x- and y-axes
@@ -751,7 +753,7 @@ Figure&nbsp;2.13: The 2003 drought data for the Southwest with adjustments to th
 <div class="cell-output-display">
 <div id="fig-drought-viz-faceted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-faceted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-drought-viz-faceted-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-drought-viz-faceted-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-faceted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.14: The faceted version of the drought visualization
@@ -890,7 +892,7 @@ Figure&nbsp;2.14: The faceted version of the drought visualization
 <div class="cell-output-display">
 <div id="fig-drought-viz-theme-tweaks-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-theme-tweaks-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-drought-viz-theme-tweaks-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-drought-viz-theme-tweaks-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-theme-tweaks-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgrounds behind each small multiple
@@ -918,7 +920,7 @@ Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgro
 <div class="cell-output-display">
 <div id="fig-drought-viz-legend-tweaks" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-legend-tweaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="data-viz_files/figure-html/fig-drought-viz-legend-tweaks-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="data-viz_files/figure-html/fig-drought-viz-legend-tweaks-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-drought-viz-legend-tweaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.16: The drought visualization with changes to the legend text

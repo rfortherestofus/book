@@ -256,20 +256,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#how-r-markdown-works" id="toc-how-r-markdown-works" class="nav-link active" data-scroll-target="#how-r-markdown-works">How R Markdown Works</a></li>
+<li><a href="#creating-an-r-markdown-document" id="toc-creating-an-r-markdown-document" class="nav-link active" data-scroll-target="#creating-an-r-markdown-document">Creating an R Markdown Document</a></li>
   <li>
 <a href="#document-structure" id="toc-document-structure" class="nav-link" data-scroll-target="#document-structure">Document Structure</a>
   <ul class="collapse">
 <li><a href="#the-yaml-metadata" id="toc-the-yaml-metadata" class="nav-link" data-scroll-target="#the-yaml-metadata">The YAML Metadata</a></li>
-  <li><a href="#the-code-chunks" id="toc-the-code-chunks" class="nav-link" data-scroll-target="#the-code-chunks">The Code Chunks</a></li>
+  <li><a href="#the-r-code-chunks" id="toc-the-r-code-chunks" class="nav-link" data-scroll-target="#the-r-code-chunks">The R Code Chunks</a></li>
   <li><a href="#markdown-text" id="toc-markdown-text" class="nav-link" data-scroll-target="#markdown-text">Markdown Text</a></li>
   <li><a href="#inline-r-code" id="toc-inline-r-code" class="nav-link" data-scroll-target="#inline-r-code">Inline R Code</a></li>
   <li><a href="#running-code-chunks-interactively" id="toc-running-code-chunks-interactively" class="nav-link" data-scroll-target="#running-code-chunks-interactively">Running Code Chunks Interactively</a></li>
   </ul>
 </li>
   <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -288,227 +288,265 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Imagine this: You’ve collected surveys about customer satisfaction with your new product. Now you’re ready to analyze the data and write up your results. Your workflow looks something like this:</p>
-<ol type="1">
-<li>Download your data from Google Sheets and import it into a statistical analysis tool like SPSS.</li>
-<li>Use SPSS to clean and analyze your data.</li>
-<li>Export summaries of your data as Excel spreadsheets.</li>
-<li>Use Excel to make some charts.</li>
-<li>Write your report in Word, pasting in your charts from Excel along the way.</li>
-</ol>
-<p>Sound familiar? If so, you’re not alone. Many people use this workflow for data analysis. But what happens when, the next month, new surveys roll in, and you have to redo your report? Yup, back through steps one through five. This multi-tool process might work for one-time project, but let’s be honest: Few projects are really one-time. For example, you might realize you forgot to include a couple of surveys in your original analysis or catch a mistake.</p>
-<p>R Markdown combines data analysis, data visualization, and other R code with narrative text to create a document that can be exported to many formats, including Word, PDF, and HTML, to share with non-R users. When you use a single tool, your workflow becomes way more efficient. If you need to recreate that January customer satisfaction report in February, you can rerun your code to produce a new document with the newest data, and to fix an error in your analysis, you can simply adjust your code.</p>
-<p>In this chapter, we’ll break down the pieces of an R Markdown document, then talk about some potential pitfalls and best practices. You’ll learn how to work with YAML metadata, R code chunks, and Markdown-formatted text, create in-line R code that can change the report’s text dynamically, and run the document’s code in various ways.</p>
-<section id="how-r-markdown-works" class="level2"><h2 class="anchored" data-anchor-id="how-r-markdown-works">How R Markdown Works</h2>
-<p>To create an R Markdown document in RStudio, go to <strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Markdown</strong>. Choose a title, author, and date, as well as your default output format (HTML, PDF, or Word). These values can be changed later. Click <strong>OK</strong>, and RStudio will create an R Markdown document with some placeholder content, as shown in Figure @ref(fig:default-rmd-content).</p>
-<p>Delete this content and replace it with your own. As an example, let’s create a report about penguins using data from the <code>palmerpenguins</code> package. I’ve separated the data by year, and we’ll use just the 2007 data. Add the following content to add to your R Markdown document:</p>
+</header><p>Imagine that you’ve collected surveys about customer satisfaction with your new product. Now you’re ready to analyze the data and write up your results. First, you download your data from Google Sheets and import it into a statistical analysis tool like SPSS. Next, you use SPSS to clean and analyze your data, export summaries of your data as Excel spreadsheets, and then use Excel to make some charts. Finally, you write your report in Word, pasting in your charts from Excel along the way.</p>
+<p>Sound familiar? If so, you’re not alone. Many people use this workflow for data analysis. But what happens when, the next month, new surveys roll in, and you have to redo your report? Yup, back through steps one through five. This multi-tool process might work for a one-time project, but let’s be honest: few projects are really one-time. For example, you might catch a mistake or realize you forgot to include a couple of surveys in your original analysis.</p>
+<p>R Markdown combines data analysis, data visualization, and other R code with narrative text to create a document that can be exported to many formats, including Word, PDF, and HTML, to share with non-R users. When you use a single tool, your workflow becomes much more efficient. If you need to re-create that January customer satisfaction report in February, you can rerun your code to produce a new document with the newest data, and to fix an error in your analysis, you can simply adjust your code.</p>
+<p>The ability to easily update reports at any time is known as <em>reproducibility</em>, and it’s central to the value of R Markdown. This chapter breaks down the pieces of an R Markdown document, then describes some potential pitfalls and best practices. You’ll learn how to work with YAML metadata, R code chunks, and Markdown-formatted text; create inline R code that can change the report’s text dynamically; and run the document’s code in various ways.</p>
+<section id="creating-an-r-markdown-document" class="level2"><h2 class="anchored" data-anchor-id="creating-an-r-markdown-document">Creating an R Markdown Document</h2>
+<p>To create an R Markdown document in RStudio, go to <strong>File &gt; New File &gt; R Markdown</strong>. Choose a title, author, and date, as well as your default output format (HTML, PDF, or Word). These values can be changed later. Click <strong>OK</strong>, and RStudio will create an R Markdown document with some placeholder content, as shown in <a href="#fig-default-rmd-content" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins Report"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "David"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-01-12"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> word_document</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include = FALSE}</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">  include = TRUE,</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">  echo = FALSE,</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE,</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">  warning = FALSE</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">penguins &lt;- read_csv("https://raw.githubusercontent.com/rfortherestofus/r-without-statistics/main/data/penguins-2007.csv")</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>We are writing a report about the **Palmer Penguins**. These penguins are *really* amazing. There are three species:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Adelie</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gentoo</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chinstrap</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bill Length</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>We can make a histogram to see the distribution of bill lengths.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">average_bill_length &lt;- penguins %&gt;%</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">  summarize(avg_bill_length = mean(</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">    bill_length_mm,</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">    na.rm = TRUE</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">  )) %&gt;%</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">  pull(avg_bill_length)</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>The chart shows the distribution of bill lengths. The average bill length is <span class="in">`r average_bill_length`</span> millimeters.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-default-rmd-content" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-default-rmd-content-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/default-rmd-content.png" class="img-fluid figure-img" width="428">
 </div>
-<p>This document contains several sections, each of which we will discuss below. First, though, let’s skip to the finish line by doing what’s called <em>knitting</em> our document (also known as rendering, or in plain English, exporting). The <strong>Knit</strong> button at the top of RStudio converts the R Markdown document into whatever format we selected upon creating it (Figure @ref(fig:knit-button)).</p>
-<p>We’ve set the output format to be Word (see the <code>output_format: word_document</code> line), so you should now have a Word document. Some features not visible in R Markdown should appear in Word, including the histogram. This is because the R Markdown document doesn’t directly include this plot. Rather, it includes the code needed to produce the plot when knitted.</p>
-<p>It may seem convoluted to constantly knit R Markdown documents to Word, but this workflow allows us to update our reports at any point with new code or data. This ability is known as <em>reproducibility</em>, and it is central to the value of R Markdown.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-default-rmd-content-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: The placeholder content in a new R Markdown document
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The Knit menu at the top of RStudio converts an R Markdown document to the format you selected when creating it. In this example, the output format is set to be Word, so RStudio will create a Word document when you knit.</p>
+<p>Delete the document’s placeholder content. In the next section, you’ll replace it with your own.</p>
 </section><section id="document-structure" class="level2"><h2 class="anchored" data-anchor-id="document-structure">Document Structure</h2>
-<p>All R Markdown documents have three main pieces: one YAML section, multiple R code chunks, and sections of Markdown text. Figure @ref(fig:rmarkdown-pieces) shows these parts of an R Markdown document.</p>
-<p>Let’s discuss these pieces one at a time.</p>
-<section id="the-yaml-metadata" class="level3"><h3 class="anchored" data-anchor-id="the-yaml-metadata">The YAML Metadata</h3>
-<p>The YAML section is the very beginning of an R Markdown document. The name YAML comes from the recursive acronym <em>YAML ain’t markup language</em>, whose meaning isn’t important for our purposes. Three dashes indicate its beginning and end, and the text inside of it contains metadata about the R Markdown document. Here is my YAML:</p>
+<p>To explore the structure of an R Markdown document, you’ll create a report about penguins using data from the palmerpenguins package intro- duced in <a href="custom-theme.html" class="quarto-xref"><span>Chapter 3</span></a>. I’ve separated the data by year, and you’ll use just the 2007 data. <a href="#fig-rmarkdown-pieces" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> shows the complete R Markdown document, with boxes surrounding each section.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Penguins Report"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"David Keyes"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2024-01-12"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> word_document</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-rmarkdown-pieces" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rmarkdown-pieces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/rmarkdown-pieces-color.png" class="img-fluid figure-img" width="476">
 </div>
-<p>As you can see, it provides the title, author, date, and output format. All elements of the YAML are given in <code>key: value</code> syntax, where each key is a label for a piece of metadata (for example, the title) followed by a value in quotes.</p>
-</section><section id="the-code-chunks" class="level3"><h3 class="anchored" data-anchor-id="the-code-chunks">The Code Chunks</h3>
-<p>R Markdown documents have a different structure from the R script files you might be familiar with (those with the <em>.R</em> extension). R script files treat all content as code unless you comment out a line by putting a pound sign (<code>#</code>) in front of it. In the following code, the first line is a comment while the second line is code.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rmarkdown-pieces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Components of an R Markdown document
+</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="the-yaml-metadata" class="level3"><h3 class="anchored" data-anchor-id="the-yaml-metadata">The YAML Metadata</h3>
+<p>The YAML section is the very beginning of an R Markdown document. The name YAML comes from the recursive acronym <em>YAML ain’t markup language</em>, whose meaning isn’t important for our purposes. Three dashes indicate its beginning and end, and the text inside of it contains metadata about the R Markdown document:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Penguins Report"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"David Keyes"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2024-01-12"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> word_document</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you can see, the YAML provides the title, author, date, and output format. All elements of the YAML are given in <code>key: value</code> syntax, where each key is a label for a piece of metadata (for example, the title) followed by the value.</p>
+</section><section id="the-r-code-chunks" class="level3"><h3 class="anchored" data-anchor-id="the-r-code-chunks">The R Code Chunks</h3>
+<p>R Markdown documents have a different structure from the R script files you might be familiar with (those with the <em>.R</em> extension). R script files treat all content as code unless you comment out a line by putting a hash mark (<code>#</code>) in front of it. In the following listing, the first line is a comment, and the second line is code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Import our data</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">data &lt;- read_csv("data.csv")</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In R Markdown, the situation is reversed. Everything after the YAML is treated as text unless you specify otherwise by creating <em>code chunks</em>. These start with three backticks (```), followed by the lowercase letter r surrounded by curly brackets (<code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>). Another three backticks indicate the end of the code chunk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Import our data</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">data &lt;- read_csv("data.csv")</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In R Markdown, the situation is reversed. Everything after the YAML is treated as text unless we specify otherwise by creating what are known as code chunks. These start with three back ticks (```), followed by the lowercase letter <em>r</em> surrounded by curly brackets ( <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code> ). Another three back ticks indicate the end of the code chunk:</p>
+<p>If you’re working in RStudio, code chunks should have a light gray background. R Markdown treats anything in the code chunk as R code when you knit. For example, this code chunk will produce a histogram in the final Word document:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you’re working in RStudio, code chunks should have a light gray background.</p>
-<p>R Markdown treats anything in the code chunk as R code when we knit. For example, this code chunk will produce a histogram in the final Word document.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The histogram can be seen in Figure @ref(fig:simple-histogram).</p>
-<p>A special code chunk at the top of each R Markdown document, known as the setup code chunk, gives instructions for what should happen when knitting a document. It contains the following code chunk options:</p>
-<p><code>echo</code> Do you want to show the code itself in the knitted document?</p>
-<p><code>include</code> Do you want to show the output of the code chunk?</p>
-<p><code>message</code> Do you want to include any messages that code might generate? For example, this message shows up when you run library(tidyverse):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>── Attaching core tidyverse packages ───── tidyverse 1.3.2.9000 ──</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>✔ dplyr     1.0.10     ✔ readr     2.1.3 </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>✔ forcats   0.5.2      ✔ stringr   1.5.0 </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>✔ ggplot2   3.4.0      ✔ tibble    3.1.8 </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>✔ lubridate 1.9.0      ✔ tidyr     1.2.1 </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>✔ purrr     1.0.1      </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>── Conflicts───── tidyverse_conflicts() ──</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>✖ dplyr::filter() masks stats::filter()</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>✖ dplyr::lag()    masks stats::lag()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>warning</code> Do you want to include any messages that the code might generate? For example, here is the message you get when creating a histogram using <code>geom_histogram()</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In cases where you’re using R Markdown to generate a report for a non-R user, you likely want to hide the code, messages, and warnings but show the output (which would include any visualizations you generate). To do this, create a <code>setup</code> code chunk that looks like this:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include = FALSE}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">  include = TRUE,</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">  echo = FALSE,</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE,</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">  warning = FALSE</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>include = FALSE</code> option on the first line applies to the setup code chunk itself. It tells R Markdown to not include the output of the setup code chunk when knitting. The options within <code>knitr::opts_chunk$set()</code> apply to all future code chunks. However, you can also override these global code chunk options on individual chunks. If I wanted my Word document to show both the plot itself and the code used to make it, I could set <code>echo = TRUE</code> for that code chunk only:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Because <code>include</code> is already set to <code>TRUE</code> within <code>knitr::opts_chunk$set()</code> in the setup code chunk, I don’t need to specify it again.</p>
+<p><a href="#fig-simple-histogram" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows the resulting histogram.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-simple-histogram" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simple-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="rmarkdown_files/figure-html/fig-simple-histogram-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: A simple histogram generated by an R Markdown code chunk
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>A code chunk at the top of each R Markdown document, known as the <em>setup code chunk</em>, gives instructions for what should happen when knitting a document. It contains the following options:</p>
+<ul>
+<li><p><code>echo</code> Do you want to show the code itself in the knitted document?</p></li>
+<li><p><code>include</code> Do you want to show the output of the code chunk?</p></li>
+<li><p><code>message</code> Do you want to include any messages that code might generate? For example, this message shows up when you run <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>:</p></li>
+</ul>
+<pre><code>── Attaching core tidyverse packages ───── tidyverse 1.3.2.9000 ──
+✔ dplyr     1.0.10     ✔ readr     2.1.3 
+✔ forcats   0.5.2      ✔ stringr   1.5.0 
+✔ ggplot2   3.4.0      ✔ tibble    3.1.8 
+✔ lubridate 1.9.0      ✔ tidyr     1.2.1 
+✔ purrr     1.0.1      
+── Conflicts───── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+<ul>
+<li>
+<code>warning</code> Do you want to include any messages that the code might generate? For example, here’s the message you get when creating a histogram using <code>geom_histogram()</code>:</li>
+</ul>
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>To see the full list of code chunk options, visit <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a>.</p>
+</div>
+</div>
+</div>
+<p>In cases where you’re using R Markdown to generate a report for a non-R user, you likely would want to hide the code, messages, and warnings but show the output (which would include any visualizations you generate). The following setup code chunk does this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include = FALSE}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">  include = TRUE,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">  echo = FALSE,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">  warning = FALSE</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>include = FALSE</code> option on the first line applies to the setup code chunk itself. It tells R Markdown not to include the output of the setup code chunk when knitting. The options within <code>knitr::opts_chunk$set()</code> apply to all future code chunks. However, you can also override these global code chunk options on individual chunks. If you wanted your Word document to show both the plot itself and the code used to make it, for example, you could set <code>echo = TRUE</code> for that code chunk only:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r echo = TRUE}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because <code>include</code> is already set to <code>TRUE</code> within <code>knitr::opts_chunk$set()</code> in the setup code chunk, you don’t need to specify it again.</p>
 </section><section id="markdown-text" class="level3"><h3 class="anchored" data-anchor-id="markdown-text">Markdown Text</h3>
-<p>Markdown is a way to style plain text. If you were writing directly in Word, you could just press the B button to make text bold, for example, but R doesn’t have such a button. If you want your knitted Word document to include bold text, you need to use Markdown indicate this style in the document.</p>
-<p>Markdown text sections (which have a white background in R Studio) will be converted into formatted text in the Word document after knitting. Figure @ref(fig:markdown-text-to-word) highlights the equivalent sections in our R Markdown and Word documents.</p>
-<p>As you can see, the text <code># Introduction</code> in R Markdown gets converted to a first-level heading, while <code>## Bill Length</code> becomes a second-level heading. By adding hashes, you can create up to six levels of headings. In RStudio, headings are easy to find because they show up in blue.</p>
+<p>Markdown is a way to style text. If you were writing directly in Word, you could just press the B button to make text bold, for example, but R doesn’t have such a button. If you want your knitted Word document to include bold text, you need to use Markdown to indicate this style in the document.</p>
+<p>Markdown text sections (which have a white background in RStudio) will be converted into formatted text in the Word document after knitting. <a href="#fig-markdown-text-to-word" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> highlights the equivalent sections in the R Markdown and Word documents.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-markdown-text-to-word" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-markdown-text-to-word-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/markdown-text-to-word.png" class="img-fluid figure-img" width="838">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-markdown-text-to-word-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: Markdown text in R Markdown and its equivalent in a knitted Word document
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The text <code># Introduction</code> in R Markdown gets converted to a first-level heading, while <code>## Bill Length</code> becomes a second-level heading. By adding hashes, you can create up to six levels of headings. In RStudio, headings are easy to find because they show up in blue.</p>
 <p>Text without anything before it becomes body text in Word. To create italic text, add single asterisks around it (*like this*). To make text bold, use double asterisks (**as shown here**).</p>
 <p>You can make bulleted lists by placing a dash at the beginning of a line and adding your text after it:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Adelie</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gentoo</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chinstrap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To make ordered lists, replace the dashes with numbers. You can either number each line consecutively, or as I’ve done below, repeat 1. In the knitted document, the proper numbers will automatically generate.</p>
-<pre><code>1. Adelie
-1. Gentoo
-1. Chinstrap</code></pre>
-<p>Formatting text in Markdown might seem more complicated than doing so in Word. But if we want to switch from a multi-tool workflow to a reproducible R Markdown-based workflow, we need to remove all manual actions from the process so we can easily repeat it in the future.</p>
-</section><section id="inline-r-code" class="level3"><h3 class="anchored" data-anchor-id="inline-r-code">Inline R Code</h3>
-<p>R Markdown documents can also include little bits of code within Markdown text. To see how this inline code works, take a look at the following sentence of the R Markdown document:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>The average bill length is <span class="in">`r average_bill_length`</span> millimeters.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Inline R code begins with a backtick and the lowercase letter r and ends with another backtick. In this example, the code tells R to print the value of the variable <code>average_bill_length</code>, which we’ve defined as follows in the code chunk above the inline code:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="in">average_bill_length &lt;- penguins %&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="in">  summarize(avg_bill_length = mean(</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="in">    bill_length_mm,</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="in">    na.rm = TRUE</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="in">  )) %&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="in">  pull(avg_bill_length)</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This code calculates the average bill length and saves it as <code>average_bill_length</code>. Having created this variable, we can then use it in the inline code. As a result, the Word document includes the sentence “The average bill length is 43.9219298.”</p>
-<p>One benefit of using inline R code is that you avoid having to copy and paste values, which is error-prone. Inline R code also makes it possible to automatically calculate values on the fly whenever we re-knit the R Markdown document with new data. To show you how this works, let’s make a new report using data from 2008. To do this, we need to change only one line, the one that reads the data:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/rfortherestofus/r-without-statistics/main/data/penguins-2008.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Adelie</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gentoo</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chinstrap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that we’ve switched <em>penguins-2007.csv</em> to <em>penguins-2008.csv</em>, we can re-knit the report and produce a new Word document, complete with updated results. Figure @ref(fig:penguins-report-2008) shows the new document.</p>
-<p>The new histogram is based on the 2008 data, as is the average bill length of 43.5412281. These values update automatically, because every time we hit knit, the code is rerun, regenerating plots and recalculating values. As long as the data we use has a consistent structure, updating a report requires just a click of the knit button.</p>
+<p>To make ordered lists, replace the dashes with numbers. You can either number each line consecutively or, as done below, repeat 1. In the knitted document, the proper numbers will automatically generate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Adelie</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gentoo</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Chinstrap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Formatting text in Markdown might seem more complicated than doing so in Word. But if you want to switch from a multi-tool workflow to a reproducible R Markdown–based workflow, you need to remove all manual actions from the process so that you can easily repeat it in the future.</p>
+</section><section id="inline-r-code" class="level3"><h3 class="anchored" data-anchor-id="inline-r-code">Inline R Code</h3>
+<p>R Markdown documents can also include little bits of code within Markdown text. To see how this inline code works, take a look at the following sentence in the R Markdown document:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>The average bill length is <span class="in">`r average_bill_length`</span> millimeters.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Inline R code begins with a backtick and the lowercase letter r and ends with another backtick. In this example, the code tells R to print the value of the variable <code>average_bill_length</code>, which is defined as follows in the code chunk before the inline code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="in">average_bill_length &lt;- penguins %&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">  summarize(avg_bill_length = mean(</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="in">    bill_length_mm,</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">    na.rm = TRUE</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="in">  )) %&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="in">  pull(avg_bill_length)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code calculates the average bill length and saves it as <code>average_bill_length</code>. Having created this variable, you can now use it in the inline code. As a result, the Word document includes the sentence “The average bill length is 43.9219298.”</p>
+<p>One benefit of using inline R code is that you avoid having to copy and paste values, which is error-prone. Inline R code also makes it possible to automatically calculate values on the fly whenever you reknit the R Markdown document with new data. To see how this works, you’ll make a new report using data from 2008. To do this, you need to change only one line, the one that reads the data:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/penguins-2008.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that you’ve switched <em>penguins-2007.csv</em> to <em>penguins-2008.csv</em>, you can reknit the report and produce a new Word document, complete with updated results. <a href="#fig-penguins-report-2008" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> shows the new document.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-penguins-report-2008" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-report-2008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/penguins-report-2008.png" class="img-fluid figure-img" width="291">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-report-2008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: The knitted Word document with 2008 data
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The new histogram is based on the 2008 data, as is the average bill length of 43.5412281. These values update automatically because every time you press Knit, the code is rerun, regenerating plots and recalculating values. As long as the data you use has a consistent structure, updating a report requires just a click of the Knit button.</p>
 </section><section id="running-code-chunks-interactively" class="level3"><h3 class="anchored" data-anchor-id="running-code-chunks-interactively">Running Code Chunks Interactively</h3>
-<p>You can run the code in an R Markdown document in two ways. The first way is by knitting the entire document. The second way is to run code chunks manually (also known as <em>interactively</em>) by hitting the little green play button at the top-right of a code chunk. The down arrow next to the green play button will run all code until that point. You can see these buttons in Figure @ref(fig:code-chunk-buttons-annotated).</p>
-<p>You can also use <strong>CMD-ENTER</strong> on Mac and <strong>CTRL-ENTER</strong> on Windows to run sections of code, as in an R script file. Running code interactively is a good way to test that portions of code work before you knit the entire document.</p>
-<p>The one downside to running code interactively is that you can sometimes make mistakes that cause your R Markdown document to fail to knit. That is because, in order to knit, an R Markdown document must contain all the code it uses. If you are working interactively and, say, load data from a separate file, you will be unable to knit your document. When working in R Markdown, always keep all code within a single document.</p>
+<p>You can run the code in an R Markdown document in two ways. The first is by knitting the entire document. The second is to run code chunks manually (also known as <em>interactively</em>) by pressing the green play button at the top right of a code chunk. The down arrow next to the green play button will run all code until that point. You can see these buttons in <a href="#fig-code-chunk-buttons-annotated" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-code-chunk-buttons-annotated" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-code-chunk-buttons-annotated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/code-chunk-buttons-annotated-color.png" class="img-fluid figure-img" width="613">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-code-chunk-buttons-annotated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.6: The buttons on code chunks in RStudio
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>You can also use <strong>command-enter</strong> on macOS or <strong>ctrl-enter</strong> on Windows to run sections of code, as in an R script file. Running code interactively is a good way to test that portions of it work before you knit the entire document.</p>
+<p>The one downside to running code interactively is that you can sometimes make mistakes that cause your R Markdown document to fail to knit. That is because, in order to knit, an R Markdown document must contain all the code it uses. If you’re working interactively and, say, load data from a separate file, you won’t be able to knit your document. When working in R Markdown, always keep all your code within a single document.</p>
 <p>The code must also appear in the right order. An R Markdown document that looks like this, for example, will give you an error if you try to knit it:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins Report"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "David Keyes"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-01-12"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> word_document</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="in">  include = TRUE,</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="in">  echo = FALSE,</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE,</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="in">  warning = FALSE</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="in">penguins &lt;- read_csv("https://raw.githubusercontent.com/rfortherestofus/r-without-statistics/main/data/penguins-2008.csv")</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguins Report"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "David Keyes"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-01-12"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> word_document</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="in">  include = TRUE,</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="in">  echo = FALSE,</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="in">  message = FALSE,</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="in">  warning = FALSE</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="in">penguins &lt;- read_csv("https://data.rfortherestofus.com/penguins-2008.csv")</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="in">penguins %&gt;%</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_length_mm)) +</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram() +</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>This error happens because you are attempting to use <code>tidyverse</code> functions like <code>read_csv()</code>, as well as various ggplot functions, before you load the <code>tidyverse</code> package.</p>
-<p>Alison Hill, one of the most prolific R Markdown educators, tells her students to knit early and often. This practice makes it easier to isolate issues that make knitting fail. Hill describes her typical R Markdown workflow as spending 75 percent of her time working on a new document and 25 percent of her time knitting to check that the R Markdown document works</p>
+<p>Alison Hill, a research scientist and one of the most prolific R Markdown educators, tells her students to knit early and often. This practice makes it easier to isolate issues that make knitting fail. Hill describes her typical R Markdown workflow as spending 75 percent of her time working on a new document and 25 percent of her time knitting to check that the R Markdown document works.</p>
 </section></section><section id="quarto" class="level2"><h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>In 2022, Posit released a publishing tool similar to R Markdown. Known as Quarto, this tool takes what R Markdown has done for R and extends it to other languages, including Python, Julia, and Observable JS. As I write this book, Quarto is gaining traction. Luckily, the concepts you’ve learned in this chapter apply to Quarto as well. Quarto documents have a YAML section, code chunks, and Markdown text. You can export Quarto documents to HTML, PDF, and Word. However, R Markdown and Quarto documents have some syntactic differences. We’ll explore these differences further in Chapter @ref(quarto-chapter).</p>
-</section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>We started this chapter by considering a report that needs to be regenerated monthly. Using R Markdown, we can reproduce this report every month without changing our code. Even if we lost the final Word document, we could quickly recreate it.</p>
-<p>Best of all, working with R Markdown makes it possible to do in seconds tasks that would have previously taken hours. In a world where making a single report requires three tools and five steps, you may not want to work on it. As a research scientist who used R Markdown regularly, Alison Hill says it enabled her to work on reports before she had received all of the data. She could write code that worked with partial data and rerun it with the final data at any time.</p>
-<p>In this chapter, we’ve just scratched the surface of what R Markdown can do. The next chapter will show you how to use it to instantly generate hundreds of reports. Magic indeed!</p>
-</section><section id="learn-more" class="level2"><h2 class="anchored" data-anchor-id="learn-more">Learn More</h2>
-<p>The following resources are great general guides for using R Markdown:</p>
-<p><em>R Markdown: The Definitive Guide</em> by Yihui Xie, J. J. Allaire, and Garrett Grolemund (CRC Press, 2019), https://bookdown.org/yihui/rmarkdown/</p>
-<p><em>R Markdown Cookbook</em> by Yihui Xie, Christophe Dervieux, Emily Riederer (CRC Press, 2021), https://bookdown.org/yihui/rmarkdown-cookbook/</p>
+<p>In 2022, Posit released a publishing tool similar to R Markdown. Known as Quarto, this tool takes what R Markdown has done for R and extends it to other languages, including Python, Julia, and Observable JS. As I write this book, Quarto is gaining traction. Luckily, the concepts you’ve learned in this chapter apply to Quarto as well. Quarto documents have a YAML section, code chunks, and Markdown text. You can export Quarto documents to HTML, PDF, and Word. However, R Markdown and Quarto documents have some syntactic differences, which are explored further in <a href="quarto.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
+</section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>You started this chapter by considering the scenario of a report that needs to be regenerated monthly. You learned how you can use R Markdown to reproduce this report every month without changing your code. Even if you lost the final Word document, you could quickly re-create it.</p>
+<p>Best of all, working with R Markdown makes it possible to do in seconds what would have previously taken hours. When making a single report requires three tools and five steps, you may not want to work on it. But, as Alison Hill has pointed out, with R Markdown you can even work on reports before you receive all of the data. You could simply write code that works with partial data and rerun it with the final data at any time.</p>
+<p>This chapter has just scratched the surface of what R Markdown can do. The next chapter will show you how to use it to instantly generate hundreds of reports. Magic indeed!</p>
+</section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p>Yihui Xie, J. J. Allaire, and Garrett Grolemund, <em>R Markdown: The Definitive Guide</em> (Boca Raton, FL: CRC Press, 2019), <a href="https://bookdown.org/yihui/rmarkdown/" class="uri">https://bookdown.org/yihui/rmarkdown/</a>.</p></li>
+<li><p>Yihui Xie, Christophe Dervieux, and Emily Riederer, R <em>Markdown Cookbook</em> (Boca Raton, FL: CRC Press, 2021), <a href="https://bookdown.org/yihui/rmarkdown-cookbook/" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/</a>.</p></li>
+</ul>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

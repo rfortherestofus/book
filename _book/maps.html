@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./tables.html" rel="next">
 <link href="./custom-theme.html" rel="prev">
-<link href="./assets/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./assets/r-treasure-chest.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/cover.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for the Rest of Us: A Statistics-Free Introduction</a> 
     </div>
@@ -318,15 +320,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wyoming</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Simple feature collection with 1 feature and 1 field
-#&gt; Geometry type: POLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -111.0546 ymin: 40.99477 xmax: -104.0522 ymax: 45.00582
-#&gt; Geodetic CRS:  WGS 84
-#&gt; # A tibble: 1 × 2
-#&gt;   NAME                                                             geometry
-#&gt;   &lt;chr&gt;                                                       &lt;POLYGON [°]&gt;
-#&gt; 1 Wyoming ((-106.32 40.999, -106.33 40.999, -106.33 40.999, -106.34 41, -1…</code></pre>
+<pre><code>Simple feature collection with 1 feature and 1 field
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: -111.0546 ymin: 40.99477 xmax: -104.0522 ymax: 45.00582
+Geodetic CRS:  WGS 84
+# A tibble: 1 × 2
+  NAME                                                                  geometry
+  &lt;chr&gt;                                                            &lt;POLYGON [°]&gt;
+1 Wyoming ((-106.3212 40.99912, -106.3262 40.99927, -106.3265 40.99927, -106.33…</code></pre>
 </div>
 </div>
 <p>The output has two columns, one for the state name (<code>NAME</code>) and another called <code>geometry</code>. This data looks like the data frames you’ve seen before, aside from two major differences.</p>
@@ -345,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-wyoming-map-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-map-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-wyoming-map-plot-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-wyoming-map-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wyoming-map-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.1: A map of Wyoming generated using <code>POLYGON</code> simple features data
@@ -358,7 +360,7 @@ Figure&nbsp;4.1: A map of Wyoming generated using <code>POLYGON</code> simple fe
 <div class="cell-output-display">
 <div id="fig-ev-station-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ev-station-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-ev-station-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-ev-station-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ev-station-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.2: A map of Wyoming containing <code>POINT</code> simple features data
@@ -371,7 +373,7 @@ Figure&nbsp;4.2: A map of Wyoming containing <code>POINT</code> simple features 
 <div class="cell-output-display">
 <div id="fig-wy-roads-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wy-roads-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-wy-roads-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-wy-roads-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wy-roads-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.3: A road represented using <code>LINESTRING</code> simple features data
@@ -384,7 +386,7 @@ Figure&nbsp;4.3: A road represented using <code>LINESTRING</code> simple feature
 <div class="cell-output-display">
 <div id="fig-wyoming-ev-stations-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-ev-stations-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-wyoming-ev-stations-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-wyoming-ev-stations-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wyoming-ev-stations-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.4: Using <code>MULTIPOINT</code> data to represent multiple electric vehicle charging stations
@@ -397,7 +399,7 @@ Figure&nbsp;4.4: Using <code>MULTIPOINT</code> data to represent multiple electr
 <div class="cell-output-display">
 <div id="fig-wyoming-roads-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-roads-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-wyoming-roads-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-wyoming-roads-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wyoming-roads-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.5: Using MULTILINESTRING data to represent several roads
@@ -408,25 +410,25 @@ Figure&nbsp;4.5: Using MULTILINESTRING data to represent several roads
 <p>Finally, you could use <code>MULTIPOLYGON</code> data, for example, to depict a state made up of multiple polygons. The following data represents the 23 counties in the state of Wyoming:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Simple feature collection with 23 features and 1 field
-#&gt; Geometry type: MULTIPOLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -111.0546 ymin: 40.99477 xmax: -104.0522 ymax: 45.00582
-#&gt; Geodetic CRS:  WGS 84
-#&gt; # A tibble: 23 × 2
-#&gt;    NAME                                                            geometry
-#&gt;    &lt;chr&gt;                                                 &lt;MULTIPOLYGON [°]&gt;
-#&gt;  1 Lincoln     (((-110.54 42.287, -110.54 42.286, -110.54 42.285, -110.54 …
-#&gt;  2 Fremont     (((-109.33 42.869, -109.33 42.869, -109.33 42.87, -109.33 4…
-#&gt;  3 Uinta       (((-110.58 41.579, -110.58 41.579, -110.58 41.579, -110.58 …
-#&gt;  4 Big Horn    (((-107.5 44.64, -107.5 44.64, -107.5 44.641, -107.5 44.641…
-#&gt;  5 Hot Springs (((-108.16 43.471, -108.16 43.46, -108.16 43.46, -108.16 43…
-#&gt;  6 Washakie    (((-107.68 44.166, -107.68 44.166, -107.68 44.166, -107.68 …
-#&gt;  7 Converse    (((-105.92 43.495, -105.92 43.495, -105.91 43.495, -105.91 …
-#&gt;  8 Sweetwater  (((-109.57 40.998, -109.57 40.998, -109.57 40.998, -109.57 …
-#&gt;  9 Crook       (((-104.46 44.181, -104.46 44.181, -104.46 44.181, -104.47 …
-#&gt; 10 Carbon      (((-106.32 41.383, -106.32 41.382, -106.32 41.382, -106.32 …
-#&gt; # ℹ 13 more rows</code></pre>
+<pre><code>Simple feature collection with 23 features and 1 field
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -111.0546 ymin: 40.99477 xmax: -104.0522 ymax: 45.00582
+Geodetic CRS:  WGS 84
+# A tibble: 23 × 2
+   NAME                                                                 geometry
+   &lt;chr&gt;                                                      &lt;MULTIPOLYGON [°]&gt;
+ 1 Lincoln     (((-110.5417 42.28652, -110.5417 42.28638, -110.5417 42.28471, -…
+ 2 Fremont     (((-109.3258 42.86878, -109.3258 42.86894, -109.3261 42.86956, -…
+ 3 Uinta       (((-110.5849 41.57916, -110.5837 41.57916, -110.5796 41.57917, -…
+ 4 Big Horn    (((-107.5034 44.64004, -107.5029 44.64047, -107.5023 44.64078, -…
+ 5 Hot Springs (((-108.1563 43.47063, -108.1563 43.45961, -108.1564 43.45961, -…
+ 6 Washakie    (((-107.6841 44.1664, -107.684 44.1664, -107.684 44.1664, -107.6…
+ 7 Converse    (((-105.9232 43.49501, -105.9152 43.49503, -105.9072 43.49505, -…
+ 8 Sweetwater  (((-109.5651 40.99839, -109.5652 40.99839, -109.5656 40.99839, -…
+ 9 Crook       (((-104.4611 44.18075, -104.4612 44.18075, -104.4643 44.18075, -…
+10 Carbon      (((-106.3227 41.38265, -106.3227 41.38245, -106.3227 41.38242, -…
+# ℹ 13 more rows</code></pre>
 </div>
 </div>
 <p>As you can see on the second line, the geometry type of this data is <code>MULTIPOLYGON</code>. In addition, the repeated <code>MULTIPOLYGON</code> text in the geometry column indicates that each row contains a shape of type <code>MULTIPOLYGON</code>. <a href="#fig-wyoming-counties-map" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> shows a map made with this data.</p>
@@ -434,7 +436,7 @@ Figure&nbsp;4.5: Using MULTILINESTRING data to represent several roads
 <div class="cell-output-display">
 <div id="fig-wyoming-counties-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-counties-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-wyoming-counties-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-wyoming-counties-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wyoming-counties-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.6: A map of Wyoming counties
@@ -456,7 +458,7 @@ Figure&nbsp;4.6: A map of Wyoming counties
 <div class="cell-output-display">
 <div id="fig-wyoming-counties-map-wgs84" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-counties-map-wgs84-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-wyoming-counties-map-wgs84-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-wyoming-counties-map-wgs84-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wyoming-counties-map-wgs84-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.7: A map of Wyoming counties using the Albers equal-area conic convenience projection
@@ -475,7 +477,7 @@ Figure&nbsp;4.7: A map of Wyoming counties using the Albers equal-area conic con
 <div class="cell-output-display">
 <div id="fig-madjid-covid-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-madjid-covid-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="assets/covid-map.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="assets/covid-map.png" class="img-fluid figure-img" width="1280">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-madjid-covid-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
@@ -508,20 +510,20 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Looking at this data, you can see the arrival of the first COVID-19 cases in the United States in January 2020:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 61,102 × 4
-#&gt;    date       state      cases deaths
-#&gt;    &lt;date&gt;     &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
-#&gt;  1 2020-01-21 Washington     1      0
-#&gt;  2 2020-01-22 Washington     1      0
-#&gt;  3 2020-01-23 Washington     1      0
-#&gt;  4 2020-01-24 Illinois       1      0
-#&gt;  5 2020-01-24 Washington     1      0
-#&gt;  6 2020-01-25 California     1      0
-#&gt;  7 2020-01-25 Illinois       1      0
-#&gt;  8 2020-01-25 Washington     1      0
-#&gt;  9 2020-01-26 Arizona        1      0
-#&gt; 10 2020-01-26 California     2      0
-#&gt; # ℹ 61,092 more rows</code></pre>
+<pre><code># A tibble: 61,102 × 4
+   date       state      cases deaths
+   &lt;date&gt;     &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+ 1 2020-01-21 Washington     1      0
+ 2 2020-01-22 Washington     1      0
+ 3 2020-01-23 Washington     1      0
+ 4 2020-01-24 Illinois       1      0
+ 5 2020-01-24 Washington     1      0
+ 6 2020-01-25 California     1      0
+ 7 2020-01-25 Illinois       1      0
+ 8 2020-01-25 Washington     1      0
+ 9 2020-01-26 Arizona        1      0
+10 2020-01-26 California     2      0
+# ℹ 61,092 more rows</code></pre>
 </div>
 </div>
 <p>Madjid’s map shows per capita rates (the rates per 100,000 people) rather than absolute rates (the rates without consideration for a state’s population). So, to re-create his maps, you also need to obtain data on each state’s population. Download this data as a CSV as follows:</p>
@@ -533,20 +535,20 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>This code imports the data, keeps the <code>State</code> and <code>Pop</code> (population) variables, and saves the data as an object called <code>usa_states</code>. Here’s what <code>usa_states</code> looks like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 52 × 2
-#&gt;    State               Pop
-#&gt;    &lt;chr&gt;             &lt;dbl&gt;
-#&gt;  1 California     39613493
-#&gt;  2 Texas          29730311
-#&gt;  3 Florida        21944577
-#&gt;  4 New York       19299981
-#&gt;  5 Pennsylvania   12804123
-#&gt;  6 Illinois       12569321
-#&gt;  7 Ohio           11714618
-#&gt;  8 Georgia        10830007
-#&gt;  9 North Carolina 10701022
-#&gt; 10 Michigan        9992427
-#&gt; # ℹ 42 more rows</code></pre>
+<pre><code># A tibble: 52 × 2
+   State               Pop
+   &lt;chr&gt;             &lt;dbl&gt;
+ 1 California     39613493
+ 2 Texas          29730311
+ 3 Florida        21944577
+ 4 New York       19299981
+ 5 Pennsylvania   12804123
+ 6 Illinois       12569321
+ 7 Ohio           11714618
+ 8 Georgia        10830007
+ 9 North Carolina 10701022
+10 Michigan        9992427
+# ℹ 42 more rows</code></pre>
 </div>
 </div>
 <p>Finally, import the geospatial data and save it as an object called <code>usa_states_geom</code> like so:</p>
@@ -581,20 +583,20 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Here’s the resulting <code>covid_cases</code> data frame:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 61,102 × 6
-#&gt;    date       state   cases deaths pd_cases daily_cases
-#&gt;    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
-#&gt;  1 2020-03-13 Alabama     6      0        0           6
-#&gt;  2 2020-03-14 Alabama    12      0        6           6
-#&gt;  3 2020-03-15 Alabama    23      0       12          11
-#&gt;  4 2020-03-16 Alabama    29      0       23           6
-#&gt;  5 2020-03-17 Alabama    39      0       29          10
-#&gt;  6 2020-03-18 Alabama    51      0       39          12
-#&gt;  7 2020-03-19 Alabama    78      0       51          27
-#&gt;  8 2020-03-20 Alabama   106      0       78          28
-#&gt;  9 2020-03-21 Alabama   131      0      106          25
-#&gt; 10 2020-03-22 Alabama   157      0      131          26
-#&gt; # ℹ 61,092 more rows</code></pre>
+<pre><code># A tibble: 61,102 × 6
+   date       state   cases deaths pd_cases daily_cases
+   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+ 1 2020-03-13 Alabama     6      0        0           6
+ 2 2020-03-14 Alabama    12      0        6           6
+ 3 2020-03-15 Alabama    23      0       12          11
+ 4 2020-03-16 Alabama    29      0       23           6
+ 5 2020-03-17 Alabama    39      0       29          10
+ 6 2020-03-18 Alabama    51      0       39          12
+ 7 2020-03-19 Alabama    78      0       51          27
+ 8 2020-03-20 Alabama   106      0       78          28
+ 9 2020-03-21 Alabama   131      0      106          25
+10 2020-03-22 Alabama   157      0      131          26
+# ℹ 61,092 more rows</code></pre>
 </div>
 </div>
 <p>In the next step, you’ll make use of the new <code>daily_cases</code> variable.</p>
@@ -642,20 +644,20 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Here’s the final <code>covid_cases_rm</code> data frame:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 18,980 × 3
-#&gt;    state   date       incidence_rate
-#&gt;    &lt;chr&gt;   &lt;date&gt;     &lt;fct&gt;         
-#&gt;  1 Alabama 2021-01-01 &gt;50           
-#&gt;  2 Alabama 2021-01-02 &gt;50           
-#&gt;  3 Alabama 2021-01-03 &gt;50           
-#&gt;  4 Alabama 2021-01-04 &gt;50           
-#&gt;  5 Alabama 2021-01-05 &gt;50           
-#&gt;  6 Alabama 2021-01-06 &gt;50           
-#&gt;  7 Alabama 2021-01-07 &gt;50           
-#&gt;  8 Alabama 2021-01-08 &gt;50           
-#&gt;  9 Alabama 2021-01-09 &gt;50           
-#&gt; 10 Alabama 2021-01-10 &gt;50           
-#&gt; # ℹ 18,970 more rows</code></pre>
+<pre><code># A tibble: 18,980 × 3
+   state   date       incidence_rate
+   &lt;chr&gt;   &lt;date&gt;     &lt;fct&gt;         
+ 1 Alabama 2021-01-01 &gt;50           
+ 2 Alabama 2021-01-02 &gt;50           
+ 3 Alabama 2021-01-03 &gt;50           
+ 4 Alabama 2021-01-04 &gt;50           
+ 5 Alabama 2021-01-05 &gt;50           
+ 6 Alabama 2021-01-06 &gt;50           
+ 7 Alabama 2021-01-07 &gt;50           
+ 8 Alabama 2021-01-08 &gt;50           
+ 9 Alabama 2021-01-09 &gt;50           
+10 Alabama 2021-01-10 &gt;50           
+# ℹ 18,970 more rows</code></pre>
 </div>
 </div>
 <p>You now have a data frame that you can combine with your geospatial data.</p>
@@ -677,34 +679,23 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Save this data frame as <code>usa_states_geom_covid</code> and take a look at the result:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Simple feature collection with 18615 features and 4 fields
-#&gt; Geometry type: MULTIPOLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -2100000 ymin: -2500000 xmax: 2516374 ymax: 732103.3
-#&gt; Projected CRS: +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
-#&gt; First 10 features:
-#&gt;       name       date fancy_date incidence_rate
-#&gt; 1  Arizona 2021-01-01    Jan. 01            &gt;50
-#&gt; 2  Arizona 2021-01-02    Jan. 02            &gt;50
-#&gt; 3  Arizona 2021-01-03    Jan. 03            &gt;50
-#&gt; 4  Arizona 2021-01-04    Jan. 04            &gt;50
-#&gt; 5  Arizona 2021-01-05    Jan. 05            &gt;50
-#&gt; 6  Arizona 2021-01-06    Jan. 06            &gt;50
-#&gt; 7  Arizona 2021-01-07    Jan. 07            &gt;50
-#&gt; 8  Arizona 2021-01-08    Jan. 08            &gt;50
-#&gt; 9  Arizona 2021-01-09    Jan. 09            &gt;50
-#&gt; 10 Arizona 2021-01-10    Jan. 10            &gt;50
-#&gt;                          geometry
-#&gt; 1  MULTIPOLYGON (((-1111066 -8...
-#&gt; 2  MULTIPOLYGON (((-1111066 -8...
-#&gt; 3  MULTIPOLYGON (((-1111066 -8...
-#&gt; 4  MULTIPOLYGON (((-1111066 -8...
-#&gt; 5  MULTIPOLYGON (((-1111066 -8...
-#&gt; 6  MULTIPOLYGON (((-1111066 -8...
-#&gt; 7  MULTIPOLYGON (((-1111066 -8...
-#&gt; 8  MULTIPOLYGON (((-1111066 -8...
-#&gt; 9  MULTIPOLYGON (((-1111066 -8...
-#&gt; 10 MULTIPOLYGON (((-1111066 -8...</code></pre>
+<pre><code>Simple feature collection with 18615 features and 4 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -2100000 ymin: -2500000 xmax: 2516374 ymax: 732103.3
+Projected CRS: +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
+First 10 features:
+      name       date fancy_date incidence_rate                       geometry
+1  Arizona 2021-01-01    Jan. 01            &gt;50 MULTIPOLYGON (((-1111066 -8...
+2  Arizona 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((-1111066 -8...
+3  Arizona 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((-1111066 -8...
+4  Arizona 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((-1111066 -8...
+5  Arizona 2021-01-05    Jan. 05            &gt;50 MULTIPOLYGON (((-1111066 -8...
+6  Arizona 2021-01-06    Jan. 06            &gt;50 MULTIPOLYGON (((-1111066 -8...
+7  Arizona 2021-01-07    Jan. 07            &gt;50 MULTIPOLYGON (((-1111066 -8...
+8  Arizona 2021-01-08    Jan. 08            &gt;50 MULTIPOLYGON (((-1111066 -8...
+9  Arizona 2021-01-09    Jan. 09            &gt;50 MULTIPOLYGON (((-1111066 -8...
+10 Arizona 2021-01-10    Jan. 10            &gt;50 MULTIPOLYGON (((-1111066 -8...</code></pre>
 </div>
 </div>
 <p>You can see the metadata and <code>geometry</code> columns discussed earlier in the chapter.</p>
@@ -718,34 +709,23 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Save the result as a data frame called <code>usa_states_geom_covid_six_days</code>. Here’s what this data looks like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Simple feature collection with 306 features and 4 fields
-#&gt; Geometry type: MULTIPOLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -2100000 ymin: -2500000 xmax: 2516374 ymax: 732103.3
-#&gt; Projected CRS: +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
-#&gt; First 10 features:
-#&gt;        name       date fancy_date incidence_rate
-#&gt; 1   Arizona 2021-01-01    Jan. 01            &gt;50
-#&gt; 2   Arizona 2021-01-02    Jan. 02            &gt;50
-#&gt; 3   Arizona 2021-01-03    Jan. 03            &gt;50
-#&gt; 4   Arizona 2021-01-04    Jan. 04            &gt;50
-#&gt; 5   Arizona 2021-01-05    Jan. 05            &gt;50
-#&gt; 6   Arizona 2021-01-06    Jan. 06            &gt;50
-#&gt; 7  Arkansas 2021-01-01    Jan. 01            &gt;50
-#&gt; 8  Arkansas 2021-01-02    Jan. 02            &gt;50
-#&gt; 9  Arkansas 2021-01-03    Jan. 03            &gt;50
-#&gt; 10 Arkansas 2021-01-04    Jan. 04            &gt;50
-#&gt;                          geometry
-#&gt; 1  MULTIPOLYGON (((-1111066 -8...
-#&gt; 2  MULTIPOLYGON (((-1111066 -8...
-#&gt; 3  MULTIPOLYGON (((-1111066 -8...
-#&gt; 4  MULTIPOLYGON (((-1111066 -8...
-#&gt; 5  MULTIPOLYGON (((-1111066 -8...
-#&gt; 6  MULTIPOLYGON (((-1111066 -8...
-#&gt; 7  MULTIPOLYGON (((557903.1 -1...
-#&gt; 8  MULTIPOLYGON (((557903.1 -1...
-#&gt; 9  MULTIPOLYGON (((557903.1 -1...
-#&gt; 10 MULTIPOLYGON (((557903.1 -1...</code></pre>
+<pre><code>Simple feature collection with 306 features and 4 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -2100000 ymin: -2500000 xmax: 2516374 ymax: 732103.3
+Projected CRS: +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
+First 10 features:
+       name       date fancy_date incidence_rate                       geometry
+1   Arizona 2021-01-01    Jan. 01            &gt;50 MULTIPOLYGON (((-1111066 -8...
+2   Arizona 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((-1111066 -8...
+3   Arizona 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((-1111066 -8...
+4   Arizona 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((-1111066 -8...
+5   Arizona 2021-01-05    Jan. 05            &gt;50 MULTIPOLYGON (((-1111066 -8...
+6   Arizona 2021-01-06    Jan. 06            &gt;50 MULTIPOLYGON (((-1111066 -8...
+7  Arkansas 2021-01-01    Jan. 01            &gt;50 MULTIPOLYGON (((557903.1 -1...
+8  Arkansas 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((557903.1 -1...
+9  Arkansas 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((557903.1 -1...
+10 Arkansas 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((557903.1 -1...</code></pre>
 </div>
 </div>
 <p>Madjid’s map is giant, as it includes all 365 days. The size of a few elements have been changed so that they fit in this book.</p>
@@ -769,7 +749,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <div class="cell-output-display">
 <div id="fig-basic-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-basic-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-basic-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-basic-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-basic-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.9: A map showing the incidence rate of COVID-19 for the first six days of 2021
@@ -929,7 +909,7 @@ Figure&nbsp;4.10: The re-creation of Abdoul Madjid’s map
 <div class="cell-output-display">
 <div id="fig-africa-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-africa-map-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-africa-map-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-africa-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.11: A map of Africa made with data from the <code>rnaturalearth</code> package
@@ -959,7 +939,7 @@ Figure&nbsp;4.11: A map of Africa made with data from the <code>rnaturalearth</c
 <div class="cell-output-display">
 <div id="fig-africa-map-different-projection" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-map-different-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-africa-map-different-projection-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-africa-map-different-projection-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-africa-map-different-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.12: A map of Africa made with projection number 28232
@@ -977,23 +957,23 @@ Figure&nbsp;4.12: A map of Africa made with projection number 28232
 <p>The output looks like the following:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; Simple feature collection with 51 features and 2 fields
-#&gt; Geometry type: MULTIPOLYGON
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: -17.62504 ymin: -34.81917 xmax: 51.13387 ymax: 37.34999
-#&gt; Geodetic CRS:  WGS 84
-#&gt; First 10 features:
-#&gt;               name  pop_est                       geometry
-#&gt; 2         Tanzania 58005463 MULTIPOLYGON (((33.90371 -0...
-#&gt; 3        W. Sahara   603253 MULTIPOLYGON (((-8.66559 27...
-#&gt; 12 Dem. Rep. Congo 86790567 MULTIPOLYGON (((29.34 -4.49...
-#&gt; 13         Somalia 10192317 MULTIPOLYGON (((41.58513 -1...
-#&gt; 14           Kenya 52573973 MULTIPOLYGON (((39.20222 -4...
-#&gt; 15           Sudan 42813238 MULTIPOLYGON (((24.56737 8....
-#&gt; 16            Chad 15946876 MULTIPOLYGON (((23.83766 19...
-#&gt; 26    South Africa 58558270 MULTIPOLYGON (((16.34498 -2...
-#&gt; 27         Lesotho  2125268 MULTIPOLYGON (((28.97826 -2...
-#&gt; 49        Zimbabwe 14645468 MULTIPOLYGON (((31.19141 -2...</code></pre>
+<pre><code>Simple feature collection with 51 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -17.62504 ymin: -34.81917 xmax: 51.13387 ymax: 37.34999
+Geodetic CRS:  WGS 84
+First 10 features:
+              name  pop_est                       geometry
+2         Tanzania 58005463 MULTIPOLYGON (((33.90371 -0...
+3        W. Sahara   603253 MULTIPOLYGON (((-8.66559 27...
+12 Dem. Rep. Congo 86790567 MULTIPOLYGON (((29.34 -4.49...
+13         Somalia 10192317 MULTIPOLYGON (((41.58513 -1...
+14           Kenya 52573973 MULTIPOLYGON (((39.20222 -4...
+15           Sudan 42813238 MULTIPOLYGON (((24.56737 8....
+16            Chad 15946876 MULTIPOLYGON (((23.83766 19...
+26    South Africa 58558270 MULTIPOLYGON (((16.34498 -2...
+27         Lesotho  2125268 MULTIPOLYGON (((28.97826 -2...
+49        Zimbabwe 14645468 MULTIPOLYGON (((31.19141 -2...</code></pre>
 </div>
 </div>
 <p>Say you want to make a map showing which African countries have pop- ulations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> functions, which will return <code>TRUE</code> if a country’s population is over 20 million and <code>FALSE</code> otherwise, and then store the result in a variable called <code>population_above_20_million</code>:</p>
@@ -1015,7 +995,7 @@ Figure&nbsp;4.12: A map of Africa made with projection number 28232
 <div class="cell-output-display">
 <div id="fig-africa-map-20m" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-map-20m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="maps_files/figure-html/fig-africa-map-20m-1.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="maps_files/figure-html/fig-africa-map-20m-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-africa-map-20m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.13: A map of Africa that highlights countries with populations above 20 million people
