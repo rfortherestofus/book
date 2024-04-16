@@ -5,6 +5,11 @@ project:
 
 book:
   title: "R for the Rest of Us: A Statistics-Free Introduction"
+  repo-url: https://github.com/rfortherestofus/book
+  repo-actions: issue
+  open-graph: 
+    site-name: "R for the Rest of Us: A Statistics-Free Introduction"
+    image: assets/r-treasure-chest.png
 
   page-footer:
     left: |
@@ -31,7 +36,7 @@ book:
       chapters:
         - crash-course.qmd
         - data-viz.qmd
-        - custom-theme.qmd
+        - themes.qmd
         - maps.qmd
         - tables.qmd
 
@@ -75,6 +80,7 @@ format:
     filters:
       - change-figure-formatting.lua
       - quarto
+      
 
     author-meta: "David Keyes"
     include-in-header: "fathom.html"

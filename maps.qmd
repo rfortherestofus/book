@@ -10,7 +10,7 @@ When I first started learning R, I considered it a tool for working with numbers
 
 You might think you need specialized mapmaking software like ArcGIS to make maps, but it’s an expensive tool. And while Excel has added support for mapmaking in recent years, its features are limited (for example, you can’t use it to make maps based on street addresses). Even QGIS, an open source tool similar to ArcGIS, still requires learning new skills.
 
-Using R for mapmaking is more flexible than using Excel, less expen- sive than using ArcGIS, and based on syntax you already know. It also lets you perform all of your data manipulation tasks with one tool and apply the principles of high-quality data visualization discussed in @sec-data-viz-chapter. In this chapter, you’ll work with simple features of geospatial data and examine Madjid’s code to understand how he created this map. You’ll also learn where to find geospatial data and how to use it to make your own maps.
+Using R for mapmaking is more flexible than using Excel, less expensive than using ArcGIS, and based on syntax you already know. It also lets you perform all of your data manipulation tasks with one tool and apply the principles of high-quality data visualization discussed in @sec-data-viz-chapter. In this chapter, you’ll work with simple features of geospatial data and examine Madjid’s code to understand how he created this map. You’ll also learn where to find geospatial data and how to use it to make your own maps.
 
 ## A Brief Primer on Geospatial Data
 
@@ -69,7 +69,7 @@ Using R for mapmaking is more flexible than using Excel, less expen- sive than u
 ```
 
 
-You don’t need to be a GIS expert to make maps, but you do need to understand a few things about how geospatial data works, starting with its two main types: vector and raster. *Vector* data uses points, lines, and polygons to represent the world. *Raster* data, which often comes from digital photo- graphs, ties each pixel in an image to a specific geographic location. Vector data tends to be easier to work with, and you’ll be using it exclusively in this chapter.
+You don’t need to be a GIS expert to make maps, but you do need to understand a few things about how geospatial data works, starting with its two main types: vector and raster. *Vector* data uses points, lines, and polygons to represent the world. *Raster* data, which often comes from digital photographs, ties each pixel in an image to a specific geographic location. Vector data tends to be easier to work with, and you’ll be using it exclusively in this chapter.
 
 In the past, working with geospatial data meant mastering competing standards, each of which required learning a different approach. Today, though, most people use the *simple features* model (often abbreviated as *sf*) for working with vector geospatial data, which is easier to understand. For example, to import simple features data about the state of Wyoming, enter the following:
 
@@ -77,7 +77,7 @@ In the past, working with geospatial data meant mastering competing standards, e
 #| echo: true
 library(sf)
 
-wyoming <- read_sf("https://data.rwithoutstatistics.com/wyoming.geojson")
+wyoming <- read_sf("https://data.rfortherestofus.com/wyoming.geojson")
 ```
 
 And then you can look at the data like so:
@@ -132,7 +132,7 @@ print_nostarch_file_name()
 ```{r}
 #| label: fig-ev-station-map
 #| fig-cap: "A map of Wyoming containing `POINT` simple features data"
-wyoming_one_ev_station <- read_sf("https://data.rwithoutstatistics.com/wyoming-one-ev-station.geojson")
+wyoming_one_ev_station <- read_sf("https://data.rfortherestofus.com/wyoming-one-ev-station.geojson")
 
 ggplot() +
   geom_sf(data = wyoming) +
@@ -150,7 +150,7 @@ ggplot() +
 save_figure_for_nostarch()
 ```
 
-The `LINESTRING` geometry type is for a set of points that can be con- nected with lines and is often used to represent roads. @fig-wy-roads-map shows a map that uses `LINESTRING` data to represent a section of US Highway 30 that runs through Wyoming.
+The `LINESTRING` geometry type is for a set of points that can be connected with lines and is often used to represent roads. @fig-wy-roads-map shows a map that uses `LINESTRING` data to represent a section of US Highway 30 that runs through Wyoming.
 
 ```{r}
 #| results: asis
@@ -214,7 +214,7 @@ print_nostarch_file_name()
 ```{r}
 #| label: fig-wyoming-roads-map
 #| fig-cap: "Using MULTILINESTRING data to represent several roads"
-wyoming_roads <- read_sf("https://data.rwithoutstatistics.com/wyoming-roads.geojson")
+wyoming_roads <- read_sf("https://data.rfortherestofus.com/wyoming-roads.geojson")
 
 wyoming_roads %>%
   ggplot() +
@@ -233,7 +233,7 @@ save_figure_for_nostarch()
 Finally, you could use `MULTIPOLYGON` data, for example, to depict a state made up of multiple polygons. The following data represents the 23 counties in the state of Wyoming:
 
 ```{r}
-wyoming_counties <- read_sf("https://data.rwithoutstatistics.com/wyoming-counties.geojson")
+wyoming_counties <- read_sf("https://data.rfortherestofus.com/wyoming-counties.geojson")
 
 wyoming_counties
 ```
@@ -272,7 +272,7 @@ The penultimate element in the metadata is the `bounding box`, which represents 
 Bounding box:  xmin: -111.0569 ymin: 40.99475 xmax: -104.0522 ymax: 45.0059
 ```
 
-The `ymin` value of 40.99475 and `ymax` value of 45.0059 represent the lowest and highest latitudes, respectively, that the state’s polygon can fit into. The x-values do the same for the longitude. Bounding boxes are calculated auto- matically, and typically you don’t have to worry about altering them.
+The `ymin` value of 40.99475 and `ymax` value of 45.0059 represent the lowest and highest latitudes, respectively, that the state’s polygon can fit into. The x-values do the same for the longitude. Bounding boxes are calculated automatically, and typically you don’t have to worry about altering them.
 
 ### The Coordinate Reference System
 
@@ -360,7 +360,7 @@ The COVID-19 data comes directly from the *New York Times*, which publishes dail
 ```{r}
 #| echo: true
 covid_data <- 
-  read_csv("https://data.rwithoutstatistics.com/covid-us-states.csv") %>%
+  read_csv("https://data.rfortherestofus.com/covid-us-states.csv") %>%
   select(-fips)
 ```
 
@@ -377,7 +377,7 @@ Madjid’s map shows per capita rates (the rates per 100,000 people) rather than
 ```{r}
 #| echo: true
 usa_states <- 
-  read_csv("https://data.rwithoutstatistics.com/population-by-state.csv") %>%
+  read_csv("https://data.rfortherestofus.com/population-by-state.csv") %>%
   select(State, Pop)
 ```
 
@@ -723,7 +723,7 @@ usa_states_geom_covid_six_days %>%
 
 The `scale_fill_discrete_sequential()` function, from the colorspace package, sets the color scale. This code uses the rocket palette (the same palette that Cédric Scherer and Georgios Karamanis used in Chapter 2) and changes the legend title to “COVID-19 INCIDENCE RATE.” The `guide_legend()` function adjusts the position, alignment, and text properties of the title. The code then puts the colored squares in one row, adjusts their height and width, and tweaks the text properties of the labels (>0, >5, and so on).
 
-Next, the `labs()` function adds a title and caption. Following `theme_minimal()`, the `theme()` function makes some design tweaks, including setting the font and text color; making the title and caption bold; and adjusting their size, alignment, and margins. The code then adjusts the size of the strip text (Jan. 01, Jan. 02, and so on) and makes it bold, puts the legend at the top of the maps, and adds a bit of spacing around it. Grid lines, as well as the longitude and latitude lines, are removed, and then the entire visual- ization gets a bit of padding and a light gray background.
+Next, the `labs()` function adds a title and caption. Following `theme_minimal()`, the `theme()` function makes some design tweaks, including setting the font and text color; making the title and caption bold; and adjusting their size, alignment, and margins. The code then adjusts the size of the strip text (Jan. 01, Jan. 02, and so on) and makes it bold, puts the legend at the top of the maps, and adds a bit of spacing around it. Grid lines, as well as the longitude and latitude lines, are removed, and then the entire visualization gets a bit of padding and a light gray background.
 
 There you have it! @fig-final-map shows the re-creation of his COVID-19 map.
 
@@ -978,7 +978,7 @@ africa_countries %>%
   select(name, pop_est)
 ```
 
-Say you want to make a map showing which African countries have pop- ulations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the `mutate()` and `if_else()` functions, which will return `TRUE` if a country’s population is over 20 million and `FALSE` otherwise, and then store the result in a variable called `population_above_20_million`:
+Say you want to make a map showing which African countries have populations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the `mutate()` and `if_else()` functions, which will return `TRUE` if a country’s population is over 20 million and `FALSE` otherwise, and then store the result in a variable called `population_above_20_million`:
 
 ```{r}
 #| echo: true
@@ -988,7 +988,7 @@ africa_countries %>%
   mutate(population_above_20_million = if_else(pop_est > 20000000, TRUE, FALSE))
 ```
 
-You can then take this code and pipe it into ggplot, setting the fill aes- thetic property to be equal to population_above_20_million:
+You can then take this code and pipe it into ggplot, setting the fill aesthetic property to be equal to population_above_20_million:
 
 ```{r}
 #| label: africa-map-20m-code
@@ -1028,9 +1028,9 @@ This is a basic example of the data wrangling and analysis you can perform on si
 
 ## Summary
 
-In this short romp through the world of mapmaking in R, you learned the basics of simple features geospatial data, reviewed how Abdoul Madjid applied this knowledge to make his map, explored how to get your own geo- spatial data, and saw how to project it appropriately to make your own maps.
+In this short romp through the world of mapmaking in R, you learned the basics of simple features geospatial data, reviewed how Abdoul Madjid applied this knowledge to make his map, explored how to get your own geospatial data, and saw how to project it appropriately to make your own maps.
 
-R may very well be the best tool for making maps. It also lets you use the skills you’ve developed for working with traditional data frames and the ggplot code to make your visualizations look great. After all, Madjid isn’t a GIS expert, but he combined a basic understanding of geospatial data, fun- damental R skills, and knowledge of data visualization principles to make a beautiful map. Now it’s your turn to do the same.
+R may very well be the best tool for making maps. It also lets you use the skills you’ve developed for working with traditional data frames and the ggplot code to make your visualizations look great. After all, Madjid isn’t a GIS expert, but he combined a basic understanding of geospatial data, fundamental R skills, and knowledge of data visualization principles to make a beautiful map. Now it’s your turn to do the same.
 
 ## Additional Resources
 

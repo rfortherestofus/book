@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -371,7 +371,7 @@ Figure&nbsp;9.2: The website navigation bar
 <p>Within the <code>navbar</code> code, the <code>text</code> argument specifies what text shows up in the menu. (Try, for example, changing About to <em>About This Website</em>, and then change it back.) The <code>href</code> argument determines which HTML file the text in the navigation bar links to. If you want to include additional pages on your menu, you’ll need to add both the <code>text</code> and <code>href</code> parameters.</p>
 <p>Finally, the <code>output</code> argument specifies that all R Markdown documents should be rendered using the <code>distill_article</code> format. This format allows for layouts of different widths, <em>asides</em> (parenthetical items that live in a sidebar next to the main content), easily customizable CSS, and more.</p>
 </section></section><section id="building-the-site" class="level2"><h2 class="anchored" data-anchor-id="building-the-site">Building the Site</h2>
-<p>We’ve explored the project’s files but haven’t yet used them to create the website. To do this, click <strong>Build Website</strong> in the Build tab of RStudio’s top- right pane. (You could also run <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render_site.html">rmarkdown::render_site()</a></code> in the console or in an R script file.)</p>
+<p>We’ve explored the project’s files but haven’t yet used them to create the website. To do this, click <strong>Build Website</strong> in the Build tab of RStudio’s topright pane. (You could also run <code><a href="https://pkgs.rstudio.com/rmarkdown/reference/render_site.html">rmarkdown::render_site()</a></code> in the console or in an R script file.)</p>
 <p>This should render all R Markdown documents and add the top navigation bar to them with the options specified in the *_site.yml* file. To find the rendered files, look in <em>docs</em> (or whatever output directory you specified). Open the <em>index.html</em> file and you’ll find your website, which should look like <a href="#fig-covid-website-default-content" class="quarto-xref">Figure&nbsp;<span>9.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">

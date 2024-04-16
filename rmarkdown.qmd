@@ -45,7 +45,7 @@ Delete the document’s placeholder content. In the next section, you’ll repla
 
 ## Document Structure
 
-To explore the structure of an R Markdown document, you’ll create a report about penguins using data from the palmerpenguins package intro- duced in @sec-themes-chapter. I’ve separated the data by year, and you’ll use just the 2007 data. @fig-rmarkdown-pieces shows the complete R Markdown document, with boxes surrounding each section.
+To explore the structure of an R Markdown document, you’ll create a report about penguins using data from the palmerpenguins package introduced in @sec-themes-chapter. I’ve separated the data by year, and you’ll use just the 2007 data. @fig-rmarkdown-pieces shows the complete R Markdown document, with boxes surrounding each section.
 
 ```{r}
 #| results: asis

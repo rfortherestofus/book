@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -643,7 +643,7 @@ Figure&nbsp;7.3: The named list column in the RStudio viewer
 <p>While powerful, parameterized reporting can present some challenges. For example, make sure to consider outliers in your data. In the case of the state reports, Washington, DC, is an outlier because it isn’t technically a state. The Urban Institute team altered the language in the report text so that it didn’t refer to Washington, DC, as a state by using an <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> statement, as you saw at the beginning of this chapter.</p>
 <p>Another best practice is to manually generate and review the reports whose parameter values have the shortest (Iowa, Ohio, and Utah in the state fiscal briefs) and longest (District of Columbia) text lengths. This way, you can identify places where the text length may have unexpected results, such as cut-off chart titles or page breaks disrupted by text running onto multiple lines. A few minutes of manual review can make the process of autogenerating multiple reports much smoother.</p>
 </section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this chapter, you re-created the Urban Institute’s state fiscal briefs using parameterized reporting. You learned how to add a parameter to your R Markdown document, then use an R script to set the value of that param- eter and knit the report.</p>
+<p>In this chapter, you re-created the Urban Institute’s state fiscal briefs using parameterized reporting. You learned how to add a parameter to your R Markdown document, then use an R script to set the value of that parameter and knit the report.</p>
 <p>Automating report production can be a huge time-saver, especially as the number of reports you need to generate grows. Consider another project at the Urban Institute: making county-level reports. With over 3,000 counties in the United States, creating these reports by hand isn’t realistic. Not only that, but if the Urban Institute employees were to make their reports using SPSS, Excel, and Word, they would have to copy and paste values between programs. Humans are fallible, and mistakes occur, no matter how hard we try to avoid them. Computers, on the other hand, never make copy-and-paste errors. Letting computers handle the tedious work of generating multiple reports reduces the chance of error significantly.</p>
 <p>When you’re starting out, parameterized reporting might feel like a heavy lift, as you have to make sure that your code works for every version of your report. But once you have your R Markdown document and accompanying R script file, you should find it easy to produce multiple reports at once, saving you work in the end.</p>
 </section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>

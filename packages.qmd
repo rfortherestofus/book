@@ -126,7 +126,7 @@ Rodrigues could have copied the code within the `show_in_excel()` function and r
 
 ### Creating a Function to Automatically Format Race and Ethnicity Data
 
-Hopefully now you better understand how functions work, so let’s walk through an example function you could use to simplify some of the activi- ties from previous chapters.
+Hopefully now you better understand how functions work, so let’s walk through an example function you could use to simplify some of the activities from previous chapters.
 
 In Chapter 11, when you used the `tidycensus` package to automatically import data from the US Census Bureau, you learned that the census data has many variables with nonintuitive names. Say you regularly want to access data about race and ethnicity from the American Community Survey, but you can never remember which variables enable you to do so. To make your task more efficient, you’ll create a `get_acs_race_ethnicity()` function step-by-step in this section, learning some important concepts about custom functions along the way.
 
@@ -341,7 +341,7 @@ Now let’s look at how to put your custom functions into a package.
 
 Packages bundle your functions so you can use them in multiple projects. If you find yourself copying functions from one project to another, or from a *functions.R* file into each new project, that’s a good indication that you should make a package.
 
-While you can run the functions from a *functions.R* file in your own environment, this code might not work on someone else’s computer. Other users may not have the necessary packages installed, or they may be con- fused about how your functions’ arguments work and not know where to go for help. Putting your functions in a package makes them more likely to work for everyone, as they include the necessary dependencies as well as built-in documentation to help others use the functions on their own.
+While you can run the functions from a *functions.R* file in your own environment, this code might not work on someone else’s computer. Other users may not have the necessary packages installed, or they may be confused about how your functions’ arguments work and not know where to go for help. Putting your functions in a package makes them more likely to work for everyone, as they include the necessary dependencies as well as built-in documentation to help others use the functions on their own.
 
 ### Starting the Package
 
@@ -422,7 +422,7 @@ The last part is the most important, so let’s review the output from bottom to
 We’ll start by addressing the note. To help you understand what
 `R CMD check` is saying here, I need to explain a bit about how packages work. When you install a package using the `install.packages()` function, it often takes a while. That’s because the package you’re telling R to install likely uses functions from other packages. To access these functions, R must install these packages (known as *dependencies*) for you; after all, it would be a pain if you had to manually install a whole set of dependencies every time you installed a new package. But to make sure that the appropriate packages are installed for any user of the `dk` package, you still have to make a few changes.
 
-`R CMD check` is saying this package includes several “undefined global functions or variables” and “no visible global function definition” for various functions. This is because you’re trying to use functions from the tidycensus and janitor packages, but you haven’t specified where these func- tions come from. I can run this code in my environment because I have `tidycensus` and `janitor` installed, but you can’t assume the same of everyone.
+`R CMD check` is saying this package includes several “undefined global functions or variables” and “no visible global function definition” for various functions. This is because you’re trying to use functions from the tidycensus and janitor packages, but you haven’t specified where these functions come from. I can run this code in my environment because I have `tidycensus` and `janitor` installed, but you can’t assume the same of everyone.
 
 ### Adding Dependency Packages
 

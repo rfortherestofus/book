@@ -62,7 +62,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./tables.html" rel="next">
-<link href="./custom-theme.html" rel="prev">
+<link href="./themes.html" rel="prev">
 <link href="./assets/r-treasure-chest.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -307,14 +307,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>When I first started learning R, I considered it a tool for working with numbers, not shapes, so I was surprised when I saw people using it to make maps. For example, developer Abdoul Madjid used R to make a map that visualizes rates of COVID-19 in the United States in 2021.</p>
 <p>You might think you need specialized mapmaking software like ArcGIS to make maps, but it’s an expensive tool. And while Excel has added support for mapmaking in recent years, its features are limited (for example, you can’t use it to make maps based on street addresses). Even QGIS, an open source tool similar to ArcGIS, still requires learning new skills.</p>
-<p>Using R for mapmaking is more flexible than using Excel, less expen- sive than using ArcGIS, and based on syntax you already know. It also lets you perform all of your data manipulation tasks with one tool and apply the principles of high-quality data visualization discussed in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>. In this chapter, you’ll work with simple features of geospatial data and examine Madjid’s code to understand how he created this map. You’ll also learn where to find geospatial data and how to use it to make your own maps.</p>
+<p>Using R for mapmaking is more flexible than using Excel, less expensive than using ArcGIS, and based on syntax you already know. It also lets you perform all of your data manipulation tasks with one tool and apply the principles of high-quality data visualization discussed in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>. In this chapter, you’ll work with simple features of geospatial data and examine Madjid’s code to understand how he created this map. You’ll also learn where to find geospatial data and how to use it to make your own maps.</p>
 <section id="a-brief-primer-on-geospatial-data" class="level2"><h2 class="anchored" data-anchor-id="a-brief-primer-on-geospatial-data">A Brief Primer on Geospatial Data</h2>
-<p>You don’t need to be a GIS expert to make maps, but you do need to understand a few things about how geospatial data works, starting with its two main types: vector and raster. <em>Vector</em> data uses points, lines, and polygons to represent the world. <em>Raster</em> data, which often comes from digital photo- graphs, ties each pixel in an image to a specific geographic location. Vector data tends to be easier to work with, and you’ll be using it exclusively in this chapter.</p>
+<p>You don’t need to be a GIS expert to make maps, but you do need to understand a few things about how geospatial data works, starting with its two main types: vector and raster. <em>Vector</em> data uses points, lines, and polygons to represent the world. <em>Raster</em> data, which often comes from digital photographs, ties each pixel in an image to a specific geographic location. Vector data tends to be easier to work with, and you’ll be using it exclusively in this chapter.</p>
 <p>In the past, working with geospatial data meant mastering competing standards, each of which required learning a different approach. Today, though, most people use the <em>simple features</em> model (often abbreviated as <em>sf</em>) for working with vector geospatial data, which is easier to understand. For example, to import simple features data about the state of Wyoming, enter the following:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">wyoming</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"https://data.rwithoutstatistics.com/wyoming.geojson"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">wyoming</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/wyoming.geojson"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then you can look at the data like so:</p>
 <div class="cell">
@@ -368,7 +368,7 @@ Figure&nbsp;4.2: A map of Wyoming containing <code>POINT</code> simple features 
 </div>
 </div>
 </div>
-<p>The <code>LINESTRING</code> geometry type is for a set of points that can be con- nected with lines and is often used to represent roads. <a href="#fig-wy-roads-map" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> shows a map that uses <code>LINESTRING</code> data to represent a section of US Highway 30 that runs through Wyoming.</p>
+<p>The <code>LINESTRING</code> geometry type is for a set of points that can be connected with lines and is often used to represent roads. <a href="#fig-wy-roads-map" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> shows a map that uses <code>LINESTRING</code> data to represent a section of US Highway 30 that runs through Wyoming.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-wy-roads-map" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -450,7 +450,7 @@ Figure&nbsp;4.6: A map of Wyoming counties
 </section><section id="bounding-box" class="level3"><h3 class="anchored" data-anchor-id="bounding-box">Bounding Box</h3>
 <p>The penultimate element in the metadata is the <code>bounding box</code>, which represents the smallest area in which you can fit all of your geospatial data. For the <code>wyoming</code> object, it looks like this:</p>
 <pre><code>Bounding box:  xmin: -111.0569 ymin: 40.99475 xmax: -104.0522 ymax: 45.0059</code></pre>
-<p>The <code>ymin</code> value of 40.99475 and <code>ymax</code> value of 45.0059 represent the lowest and highest latitudes, respectively, that the state’s polygon can fit into. The x-values do the same for the longitude. Bounding boxes are calculated auto- matically, and typically you don’t have to worry about altering them.</p>
+<p>The <code>ymin</code> value of 40.99475 and <code>ymax</code> value of 45.0059 represent the lowest and highest latitudes, respectively, that the state’s polygon can fit into. The x-values do the same for the longitude. Bounding boxes are calculated automatically, and typically you don’t have to worry about altering them.</p>
 </section><section id="the-coordinate-reference-system" class="level3"><h3 class="anchored" data-anchor-id="the-coordinate-reference-system">The Coordinate Reference System</h3>
 <p>The last piece of metadata specifies the <em>coordinate reference system</em> used to project the data when it’s plotted. The challenge with representing any geospatial data is that you’re displaying information about the three-dimensional Earth on a two-dimensional map. Doing so requires choosing a coordinate reference system that determines what type of correspondence, or <em>projection</em>, to use when making the map.</p>
 <p>The data for the Wyoming counties map includes the line <code>Geodetic CRS: WGS 84</code>, indicating the use of a coordinate reference system known as <em>WGS84</em>. To see a different projection, check out the same map using the <em>Albers equal-area conic convenience projection</em>. While Wyoming looked perfectly horizontal in <a href="#fig-wyoming-counties-map" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>, the version in <a href="#fig-wyoming-counties-map-wgs84" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> appears to be tilted.</p>
@@ -503,7 +503,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>The COVID-19 data comes directly from the <em>New York Times</em>, which publishes daily case rates by state as a CSV file on its GitHub account. To import it, enter the following:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rwithoutstatistics.com/covid-us-states.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/covid-us-states.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">fips</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Federal Information Processing Standards (FIPS) are numeric codes used to represent states, but you’ll reference states by their names instead, so the line <code>select(-fips)</code> drops the <code>fips</code> variable.</p>
@@ -529,7 +529,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Madjid’s map shows per capita rates (the rates per 100,000 people) rather than absolute rates (the rates without consideration for a state’s population). So, to re-create his maps, you also need to obtain data on each state’s population. Download this data as a CSV as follows:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rwithoutstatistics.com/population-by-state.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/population-by-state.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">State</span>, <span class="va">Pop</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This code imports the data, keeps the <code>State</code> and <code>Pop</code> (population) variables, and saves the data as an object called <code>usa_states</code>. Here’s what <code>usa_states</code> looks like:</p>
@@ -852,7 +852,7 @@ Figure&nbsp;4.9: A map showing the incidence rate of COVID-19 for the first six 
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code><a href="https://colorspace.R-Forge.R-project.org/reference/scale_colour_discrete_sequential.html">scale_fill_discrete_sequential()</a></code> function, from the colorspace package, sets the color scale. This code uses the rocket palette (the same palette that Cédric Scherer and Georgios Karamanis used in Chapter 2) and changes the legend title to “COVID-19 INCIDENCE RATE.” The <code><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend()</a></code> function adjusts the position, alignment, and text properties of the title. The code then puts the colored squares in one row, adjusts their height and width, and tweaks the text properties of the labels (&gt;0, &gt;5, and so on).</p>
-<p>Next, the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> function adds a title and caption. Following <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code>, the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function makes some design tweaks, including setting the font and text color; making the title and caption bold; and adjusting their size, alignment, and margins. The code then adjusts the size of the strip text (Jan.&nbsp;01, Jan.&nbsp;02, and so on) and makes it bold, puts the legend at the top of the maps, and adds a bit of spacing around it. Grid lines, as well as the longitude and latitude lines, are removed, and then the entire visual- ization gets a bit of padding and a light gray background.</p>
+<p>Next, the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> function adds a title and caption. Following <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code>, the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> function makes some design tweaks, including setting the font and text color; making the title and caption bold; and adjusting their size, alignment, and margins. The code then adjusts the size of the strip text (Jan.&nbsp;01, Jan.&nbsp;02, and so on) and makes it bold, puts the legend at the top of the maps, and adds a bit of spacing around it. Grid lines, as well as the longitude and latitude lines, are removed, and then the entire visualization gets a bit of padding and a light gray background.</p>
 <p>There you have it! <a href="#fig-final-map" class="quarto-xref">Figure&nbsp;<span>4.10</span></a> shows the re-creation of his COVID-19 map.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -976,13 +976,13 @@ First 10 features:
 49        Zimbabwe 14645468 MULTIPOLYGON (((31.19141 -2...</code></pre>
 </div>
 </div>
-<p>Say you want to make a map showing which African countries have pop- ulations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> functions, which will return <code>TRUE</code> if a country’s population is over 20 million and <code>FALSE</code> otherwise, and then store the result in a variable called <code>population_above_20_million</code>:</p>
+<p>Say you want to make a map showing which African countries have populations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> functions, which will return <code>TRUE</code> if a country’s population is over 20 million and <code>FALSE</code> otherwise, and then store the result in a variable called <code>population_above_20_million</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">pop_est</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>population_above_20_million <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">pop_est</span> <span class="op">&gt;</span> <span class="fl">20000000</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can then take this code and pipe it into ggplot, setting the fill aes- thetic property to be equal to population_above_20_million:</p>
+<p>You can then take this code and pipe it into ggplot, setting the fill aesthetic property to be equal to population_above_20_million:</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">pop_est</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1005,8 +1005,8 @@ Figure&nbsp;4.13: A map of Africa that highlights countries with populations abo
 </div>
 <p>This is a basic example of the data wrangling and analysis you can perform on simple features data. The larger lesson is this: any skill you’ve developed for working with data in R will serve you well when working with geospatial data.</p>
 </section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this short romp through the world of mapmaking in R, you learned the basics of simple features geospatial data, reviewed how Abdoul Madjid applied this knowledge to make his map, explored how to get your own geo- spatial data, and saw how to project it appropriately to make your own maps.</p>
-<p>R may very well be the best tool for making maps. It also lets you use the skills you’ve developed for working with traditional data frames and the ggplot code to make your visualizations look great. After all, Madjid isn’t a GIS expert, but he combined a basic understanding of geospatial data, fun- damental R skills, and knowledge of data visualization principles to make a beautiful map. Now it’s your turn to do the same.</p>
+<p>In this short romp through the world of mapmaking in R, you learned the basics of simple features geospatial data, reviewed how Abdoul Madjid applied this knowledge to make his map, explored how to get your own geospatial data, and saw how to project it appropriately to make your own maps.</p>
+<p>R may very well be the best tool for making maps. It also lets you use the skills you’ve developed for working with traditional data frames and the ggplot code to make your visualizations look great. After all, Madjid isn’t a GIS expert, but he combined a basic understanding of geospatial data, fundamental R skills, and knowledge of data visualization principles to make a beautiful map. Now it’s your turn to do the same.</p>
 </section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
 <ul>
 <li><p>Kieran Healy, “Draw Maps,” in <em>Data Visualization: A Practical Introduction</em> (Princeton, NJ: Princeton University Press, 2018), <a href="https://socviz.co" class="uri">https://socviz.co</a>.</p></li>
@@ -1425,7 +1425,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
-      <a href="./custom-theme.html" class="pagination-link" aria-label="Custom Data Visualization Themes">
+      <a href="./themes.html" class="pagination-link" aria-label="Custom Data Visualization Themes">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span>
       </a>          
   </div>

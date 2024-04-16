@@ -335,7 +335,7 @@ average_bill_length <- penguins %>%
 The chart shows the distribution of bill lengths. The average bill length is `r average_bill_length` millimeters.
 ````
 
-This code sets `format: revealjs` in the YAML to make a presentation and adds several global code chunk options in the execute section. It then removes the three dashes used to make slide breaks because first- or second- level headings make new slides in Quarto (though you could still use three dashes to manually add slide breaks). When you render this code, you should get an HTML file with your slides. The output should look similar to the default xaringan slides from @sec-presentations-chapter.
+This code sets `format: revealjs` in the YAML to make a presentation and adds several global code chunk options in the execute section. It then removes the three dashes used to make slide breaks because firstor secondlevel headings make new slides in Quarto (though you could still use three dashes to manually add slide breaks). When you render this code, you should get an HTML file with your slides. The output should look similar to the default xaringan slides from @sec-presentations-chapter.
 
 ### Revealing Content Incrementally
 
@@ -828,7 +828,7 @@ most_recent %>%
 :::
 ````
 
-This code adds `:::{.column-screen-inset}` to the beginning of the map- making code chunk and `:::` to the end of it. This code chunk now also includes the line `#| out-width: 100%` to specify that the map should take up all of the available width. Without this line, the map would take up only a portion of the window. There are a number of different output widths you can use; see the full list at <https://quarto.org/docs/authoring/article-layout.html>.
+This code adds `:::{.column-screen-inset}` to the beginning of the mapmaking code chunk and `:::` to the end of it. This code chunk now also includes the line `#| out-width: 100%` to specify that the map should take up all of the available width. Without this line, the map would take up only a portion of the window. There are a number of different output widths you can use; see the full list at <https://quarto.org/docs/authoring/article-layout.html>.
 
 ### Hosting Your Website on GitHub Pages and Quarto Pub
 
@@ -884,16 +884,16 @@ When you make updates to your site, you can republish it to Quarto Pub using the
 
 ## Summary
 
-As you’ve seen in this chapter, you can do everything you did in R Markdown using Quarto, without loading any external packages. In addition, Quarto’s different output formats use a more consistent syntax. For example, because you can make new slides in Quarto by adding first- or second-level headers, the Quarto documents you use to create reports should translate easily to presentations.
+As you’ve seen in this chapter, you can do everything you did in R Markdown using Quarto, without loading any external packages. In addition, Quarto’s different output formats use a more consistent syntax. For example, because you can make new slides in Quarto by adding firstor second-level headers, the Quarto documents you use to create reports should translate easily to presentations.
 
 You’re probably wondering at this point whether you should use R Markdown or Quarto. It’s a good question, and one many in the R community are thinking about. R Markdown isn’t going away, so if you already use it, you don’t need to switch. If you’re new to R, however, you may be a good candidate for Quarto, as its future features may not be backported to R Markdown.
 
-Ultimately, the differences between R Markdown and Quarto are rela- tively small, and the impact of switching between tools should be minor. Both R Markdown and Quarto can help you become more efficient, avoid manual errors, and share results in a wide variety of formats.
+Ultimately, the differences between R Markdown and Quarto are relatively small, and the impact of switching between tools should be minor. Both R Markdown and Quarto can help you become more efficient, avoid manual errors, and share results in a wide variety of formats.
 
 ## Additional Resources
 
 Consult the following resources to learn the fundamentals of Quarto:
 
-- Andrew Bray, Rebecca Barter, Silvia Canelón, Christophe Dervieu, Devin Pastor, and Tatsu Shigeta, “From R Markdown to Quarto,” work- shop materials from rstudio::conf 2022, Washington, DC, July 25–26, 2022, <https://rstudio-conf-2022.github.io/rmd-to-quarto/>.
+- Andrew Bray, Rebecca Barter, Silvia Canelón, Christophe Dervieu, Devin Pastor, and Tatsu Shigeta, “From R Markdown to Quarto,” workshop materials from rstudio::conf 2022, Washington, DC, July 25–26, 2022, <https://rstudio-conf-2022.github.io/rmd-to-quarto/>.
 
 - Tom Mock, “Getting Started with Quarto,” online course, accessed December 1, 2023, <https://jthomasmock.github.io/quarto-in-two-hours/>.

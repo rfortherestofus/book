@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -421,7 +421,7 @@ Figure&nbsp;1.3: The script file pane (top left)
 </div>
 </div>
 <p>When you enter <code>498 == 498</code> in the console, R should return <code>TRUE</code> because the two values are equal. If you run <code>2 != 2</code> in the console, R should return <code>FALSE</code> because 2 does not <em>not</em> equal 2.</p>
-<p>You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see com- parison operators used in this way in “tidyverse Functions” (<a href="#sec-tidyverse-functions" class="quarto-xref"><span>Section 1.6.1</span></a>).</p>
+<p>You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see comparison operators used in this way in “tidyverse Functions” (<a href="#sec-tidyverse-functions" class="quarto-xref"><span>Section 1.6.1</span></a>).</p>
 </section><section id="functions" class="level3"><h3 class="anchored" data-anchor-id="functions">Functions</h3>
 <p>You can perform even more useful operations by making use of R’s many <em>functions</em>, predefined sections of code that let you efficiently do specific things. Functions have a name and a set of parentheses containing <em>arguments</em>, which are values that affect the function’s behavior.</p>
 <p>Consider the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> function, which displays information:</p>
@@ -606,7 +606,7 @@ Figure&nbsp;1.4: The population-by-state.csv file in Excel
 <p>You might think you’re ready to work with your data now, but all you’ve really done at this point is display the result of running the code that imports the data. To actually use the data, you need to save it to an object.</p>
 </section><section id="saving-data-as-objects" class="level3"><h3 class="anchored" data-anchor-id="saving-data-as-objects">Saving Data as Objects</h3>
 <p>To save your data for reuse, you need to create an object. For the purposes of this discussion, an object is a data structure that is stored for later use. To create an object, update your data-importing syntax so it looks like this:</p>
-<p>Now this line of code contains the <code>&lt;-</code> <em>assignment operator</em>, which takes what follows it and assigns it to the item on the left. To the left of the assign- ment operator is the <code>population_data</code> object. Put together, the whole line imports the CSV file and assigns it to an object called <code>population_data</code>.</p>
+<p>Now this line of code contains the <code>&lt;-</code> <em>assignment operator</em>, which takes what follows it and assigns it to the item on the left. To the left of the assignment operator is the <code>population_data</code> object. Put together, the whole line imports the CSV file and assigns it to an object called <code>population_data</code>.</p>
 <p>When you run this code, you should see <code>population_data</code> in your environment pane, as shown in <a href="#fig-population-data-environment" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>.</p>
 <div id="fig-population-data-environment" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-population-data-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -624,7 +624,7 @@ Figure&nbsp;1.5: The population_data object in the environment pane
 </section><section id="installing-packages" class="level3"><h3 class="anchored" data-anchor-id="installing-packages">Installing Packages</h3>
 <p>The <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function you’ve been using, as well as the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> and <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> functions you saw earlier, comes from <em>base</em> R, the set of built-in R functions. To use base R functions, you simply enter their names. However, one of the benefits of R being an open source language is that anyone can create their own code and share it with others. R users around the world make R <em>packages</em>, which provide custom functions to accomplish specific goals.</p>
 <p>The best analogy for understanding packages also comes from the book <em>Statistical Inference via Data Science</em>. The functionality in base R is like the features built into a smartphone. A smartphone can do a lot on its own, but you usually want to install additional apps for specific tasks. Packages are like apps, giving you functionality beyond what’s built into base R. In <a href="packages.html" class="quarto-xref"><span>Chapter 12</span></a>, you’ll create your own R package.</p>
-<p>You can install packages using the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function. You’ll be working with the tidyverse package, which provides a range of functions for data import, cleaning, analysis, visualization, and more. To install it, enter <code>install.packages("tidyverse")</code>. Typically, you’ll enter package installation code in the console rather than in a script file because you need to install a pack- age only once on your computer to access its code in the future.</p>
+<p>You can install packages using the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function. You’ll be working with the tidyverse package, which provides a range of functions for data import, cleaning, analysis, visualization, and more. To install it, enter <code>install.packages("tidyverse")</code>. Typically, you’ll enter package installation code in the console rather than in a script file because you need to install a package only once on your computer to access its code in the future.</p>
 <p>To confirm that the tidyverse package has been installed correctly, click the <strong>Packages</strong> tab on the bottom-right pane in RStudio. Search for <code>tidyverse</code>, and you should see it pop up.</p>
 <p>Now that you’ve installed the tidyverse, you’ll put it to use. Although you need to install packages only once per computer, you need to <em>load</em> them each time you restart RStudio. Return to the <code>sample-code.R</code> file and reimport your data using a function from the tidyverse package (your filepath will look slightly different):</p>
 <div class="cell">
@@ -750,7 +750,7 @@ Figure&nbsp;1.6: RStudio with an active project
 Figure&nbsp;1.7: The documentation for the <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> function
 </figcaption></figure>
 </div>
-<p>Help files can be a bit hard to decipher, but essentially they describe what package the function comes from, what the function does, what argu- ments it accepts, and some examples of how to use it.</p>
+<p>Help files can be a bit hard to decipher, but essentially they describe what package the function comes from, what the function does, what arguments it accepts, and some examples of how to use it.</p>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -763,7 +763,7 @@ Figure&nbsp;1.7: The documentation for the <code><a href="https://rdrr.io/r/util
 </div>
 <p>The second approach is to read the documentation websites associated with many R packages. These can be easier to read than RStudio’s help files. In addition, they often contain longer articles, known as <em>vignettes</em>, that provide an overview of how a given package works. Reading these can help you understand how to combine individual functions in the context of a larger project. Every package discussed in this book has a good documentation website.</p>
 </section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this chapter, you learned the basics of R programming. You saw how to download and set up R and RStudio, what the various RStudio panes are for, and how R script files work. You also learned how to import CSV files and explore them in R, how to save data as objects, and how to install packages to access additional functions. Then, to make the files used in your code more accessible, you created an RStudio project. Finally, you experi- mented with <code>tidyverse</code> functions and the <code>tidyverse</code> pipe, and you learned how to get help when those functions don’t work as expected.</p>
+<p>In this chapter, you learned the basics of R programming. You saw how to download and set up R and RStudio, what the various RStudio panes are for, and how R script files work. You also learned how to import CSV files and explore them in R, how to save data as objects, and how to install packages to access additional functions. Then, to make the files used in your code more accessible, you created an RStudio project. Finally, you experimented with <code>tidyverse</code> functions and the <code>tidyverse</code> pipe, and you learned how to get help when those functions don’t work as expected.</p>
 <p>Now that you understand the basics, you’re ready to start using R to work with your data. See you in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>!</p>
 </section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
 <ul>

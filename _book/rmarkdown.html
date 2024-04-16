@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>R Markdown combines data analysis, data visualization, and other R code with narrative text to create a document that can be exported to many formats, including Word, PDF, and HTML, to share with non-R users. When you use a single tool, your workflow becomes much more efficient. If you need to re-create that January customer satisfaction report in February, you can rerun your code to produce a new document with the newest data, and to fix an error in your analysis, you can simply adjust your code.</p>
 <p>The ability to easily update reports at any time is known as <em>reproducibility</em>, and it’s central to the value of R Markdown. This chapter breaks down the pieces of an R Markdown document, then describes some potential pitfalls and best practices. You’ll learn how to work with YAML metadata, R code chunks, and Markdown-formatted text; create inline R code that can change the report’s text dynamically; and run the document’s code in various ways.</p>
 <section id="creating-an-r-markdown-document" class="level2"><h2 class="anchored" data-anchor-id="creating-an-r-markdown-document">Creating an R Markdown Document</h2>
-<p>To create an R Markdown document in RStudio, go to <strong>File &gt; New File &gt; R Markdown</strong>. Choose a title, author, and date, as well as your default output format (HTML, PDF, or Word). These values can be changed later. Click <strong>OK</strong>, and RStudio will create an R Markdown document with some placeholder content, as shown in <a href="#fig-default-rmd-content" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-default-rmd-content</span></a>.</p>
+<p>To create an R Markdown document in RStudio, go to <strong>File &gt; New File &gt; R Markdown</strong>. Choose a title, author, and date, as well as your default output format (HTML, PDF, or Word). These values can be changed later. Click <strong>OK</strong>, and RStudio will create an R Markdown document with some placeholder content, as shown in <a href="#fig-default-rmd-content" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-default-rmd-content" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -309,7 +309,7 @@ Figure&nbsp;6.1: The placeholder content in a new R Markdown document
 <p>The Knit menu at the top of RStudio converts an R Markdown document to the format you selected when creating it. In this example, the output format is set to be Word, so RStudio will create a Word document when you knit.</p>
 <p>Delete the document’s placeholder content. In the next section, you’ll replace it with your own.</p>
 </section><section id="document-structure" class="level2"><h2 class="anchored" data-anchor-id="document-structure">Document Structure</h2>
-<p>To explore the structure of an R Markdown document, you’ll create a report about penguins using data from the palmerpenguins package intro- duced in <a href="#sec-themes-chapter" class="quarto-xref"><span class="quarto-unresolved-ref">sec-themes-chapter</span></a>. I’ve separated the data by year, and you’ll use just the 2007 data. <a href="#fig-rmarkdown-pieces" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-rmarkdown-pieces</span></a> shows the complete R Markdown document, with boxes surrounding each section.</p>
+<p>To explore the structure of an R Markdown document, you’ll create a report about penguins using data from the palmerpenguins package introduced in <a href="themes.html" class="quarto-xref"><span>Chapter 3</span></a>. I’ve separated the data by year, and you’ll use just the 2007 data. <a href="#fig-rmarkdown-pieces" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> shows the complete R Markdown document, with boxes surrounding each section.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rmarkdown-pieces" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -356,7 +356,7 @@ Figure&nbsp;6.2: Components of an R Markdown document
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><a href="#fig-simple-histogram" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-simple-histogram</span></a> shows the resulting histogram.</p>
+<p><a href="#fig-simple-histogram" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows the resulting histogram.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-simple-histogram" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -422,7 +422,7 @@ Figure&nbsp;6.3: A simple histogram generated by an R Markdown code chunk
 <p>Because <code>include</code> is already set to <code>TRUE</code> within <code>knitr::opts_chunk$set()</code> in the setup code chunk, you don’t need to specify it again.</p>
 </section><section id="markdown-text" class="level3"><h3 class="anchored" data-anchor-id="markdown-text">Markdown Text</h3>
 <p>Markdown is a way to style text. If you were writing directly in Word, you could just press the B button to make text bold, for example, but R doesn’t have such a button. If you want your knitted Word document to include bold text, you need to use Markdown to indicate this style in the document.</p>
-<p>Markdown text sections (which have a white background in RStudio) will be converted into formatted text in the Word document after knitting. <a href="#fig-markdown-text-to-word" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-markdown-text-to-word</span></a> highlights the equivalent sections in the R Markdown and Word documents.</p>
+<p>Markdown text sections (which have a white background in RStudio) will be converted into formatted text in the Word document after knitting. <a href="#fig-markdown-text-to-word" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> highlights the equivalent sections in the R Markdown and Word documents.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-markdown-text-to-word" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -471,7 +471,7 @@ Figure&nbsp;6.4: Markdown text in R Markdown and its equivalent in a knitted Wor
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/penguins-2008.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now that you’ve switched <em>penguins-2007.csv</em> to <em>penguins-2008.csv</em>, you can reknit the report and produce a new Word document, complete with updated results. <a href="#fig-penguins-report-2008" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-penguins-report-2008</span></a> shows the new document.</p>
+<p>Now that you’ve switched <em>penguins-2007.csv</em> to <em>penguins-2008.csv</em>, you can reknit the report and produce a new Word document, complete with updated results. <a href="#fig-penguins-report-2008" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> shows the new document.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-penguins-report-2008" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -486,7 +486,7 @@ Figure&nbsp;6.5: The knitted Word document with 2008 data
 </div>
 <p>The new histogram is based on the 2008 data, as is the average bill length of 43.5412281. These values update automatically because every time you press Knit, the code is rerun, regenerating plots and recalculating values. As long as the data you use has a consistent structure, updating a report requires just a click of the Knit button.</p>
 </section><section id="running-code-chunks-interactively" class="level3"><h3 class="anchored" data-anchor-id="running-code-chunks-interactively">Running Code Chunks Interactively</h3>
-<p>You can run the code in an R Markdown document in two ways. The first is by knitting the entire document. The second is to run code chunks manually (also known as <em>interactively</em>) by pressing the green play button at the top right of a code chunk. The down arrow next to the green play button will run all code until that point. You can see these buttons in <a href="#fig-code-chunk-buttons-annotated" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-code-chunk-buttons-annotated</span></a>.</p>
+<p>You can run the code in an R Markdown document in two ways. The first is by knitting the entire document. The second is to run code chunks manually (also known as <em>interactively</em>) by pressing the green play button at the top right of a code chunk. The down arrow next to the green play button will run all code until that point. You can see these buttons in <a href="#fig-code-chunk-buttons-annotated" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-code-chunk-buttons-annotated" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -537,7 +537,7 @@ Figure&nbsp;6.6: The buttons on code chunks in RStudio
 <p>This error happens because you are attempting to use <code>tidyverse</code> functions like <code>read_csv()</code>, as well as various ggplot functions, before you load the <code>tidyverse</code> package.</p>
 <p>Alison Hill, a research scientist and one of the most prolific R Markdown educators, tells her students to knit early and often. This practice makes it easier to isolate issues that make knitting fail. Hill describes her typical R Markdown workflow as spending 75 percent of her time working on a new document and 25 percent of her time knitting to check that the R Markdown document works.</p>
 </section></section><section id="quarto" class="level2"><h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>In 2022, Posit released a publishing tool similar to R Markdown. Known as Quarto, this tool takes what R Markdown has done for R and extends it to other languages, including Python, Julia, and Observable JS. As I write this book, Quarto is gaining traction. Luckily, the concepts you’ve learned in this chapter apply to Quarto as well. Quarto documents have a YAML section, code chunks, and Markdown text. You can export Quarto documents to HTML, PDF, and Word. However, R Markdown and Quarto documents have some syntactic differences, which are explored further in <a href="#sec-quarto-chapter" class="quarto-xref"><span class="quarto-unresolved-ref">sec-quarto-chapter</span></a>.</p>
+<p>In 2022, Posit released a publishing tool similar to R Markdown. Known as Quarto, this tool takes what R Markdown has done for R and extends it to other languages, including Python, Julia, and Observable JS. As I write this book, Quarto is gaining traction. Luckily, the concepts you’ve learned in this chapter apply to Quarto as well. Quarto documents have a YAML section, code chunks, and Markdown text. You can export Quarto documents to HTML, PDF, and Word. However, R Markdown and Quarto documents have some syntactic differences, which are explored further in <a href="quarto.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
 </section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <p>You started this chapter by considering the scenario of a report that needs to be regenerated monthly. You learned how you can use R Markdown to reproduce this report every month without changing your code. Even if you lost the final Word document, you could quickly re-create it.</p>
 <p>Best of all, working with R Markdown makes it possible to do in seconds what would have previously taken hours. When making a single report requires three tools and five steps, you may not want to work on it. But, as Alison Hill has pointed out, with R Markdown you can even work on reports before you receive all of the data. You could simply write code that works with partial data and rerun it with the final data at any time.</p>

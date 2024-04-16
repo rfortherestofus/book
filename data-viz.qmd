@@ -88,7 +88,7 @@ In the spring of 2021, nearly all of the American West was in a drought. Officia
 
 Data visualization designers Cédric Scherer and Georgios Karamanis took on this challenge in the fall of 2021 to create a graph of US drought conditions over the last two decades for the magazine Scientific American. They turned to the ggplot2 package to transform dry data (pardon the pun) from the National Drought Center into a visually arresting and impactful visualization.
 
-This chapter delves into why the data visualization that Scherer and Karamanis created is effective and introduces you to the grammar of graphics, a theory to make sense of graphs that underlies the ggplot2 package. You’ll then learn how to use ggplot2 by re-creating the drought graph step-by-step. In the process, I’ll highlight some key principles of high-quality data visual- ization that you can use to improve your own work.
+This chapter delves into why the data visualization that Scherer and Karamanis created is effective and introduces you to the grammar of graphics, a theory to make sense of graphs that underlies the ggplot2 package. You’ll then learn how to use ggplot2 by re-creating the drought graph step-by-step. In the process, I’ll highlight some key principles of high-quality data visualization that you can use to improve your own work.
 
 ## The Drought Visualization
 
@@ -617,11 +617,11 @@ save_figure_for_nostarch()
 
 While the graphs look different (and would, to the Excel user, be different types of graphs), Wilkinson’s grammar of graphics emphasizes their similarities. (Incidentally, Wilkinson’s feelings on graph-making tools like Excel became clear when he wrote that “most charting packages channel user requests into a rigid array of chart types.”)
 
-When Wilkinson wrote his book, no data visualization tool could imple- ment his grammar of graphics. This would change in 2010, when Hadley Wickham announced the `ggplot2` package for R in the article “A Layered Grammar of Graphics,” published in the *Journal of Computational and Graphical Statistics*. By providing the tools to implement Wilkinson’s ideas, ggplot2 would come to revolutionize the world of data visualization.
+When Wilkinson wrote his book, no data visualization tool could implement his grammar of graphics. This would change in 2010, when Hadley Wickham announced the `ggplot2` package for R in the article “A Layered Grammar of Graphics,” published in the *Journal of Computational and Graphical Statistics*. By providing the tools to implement Wilkinson’s ideas, ggplot2 would come to revolutionize the world of data visualization.
 
 ## Working With ggplot2
 
-The `ggplot2` R package (which I, like nearly everyone in the data visualization world, will refer to simply as *ggplot*) relies on the idea of plots having multiple layers. This section will walk you through some of the most impor- tant ones. You’ll begin by selecting variables to map to aesthetic properties. Then you’ll choose a geometric object to use to represent your data. Next, you’ll change the aesthetic properties of your chart (its color scheme, for example) using a scale_ function. Finally, you’ll use a `theme_` function to set the overall look and feel of your plot.
+The `ggplot2` R package (which I, like nearly everyone in the data visualization world, will refer to simply as *ggplot*) relies on the idea of plots having multiple layers. This section will walk you through some of the most important ones. You’ll begin by selecting variables to map to aesthetic properties. Then you’ll choose a geometric object to use to represent your data. Next, you’ll change the aesthetic properties of your chart (its color scheme, for example) using a scale_ function. Finally, you’ll use a `theme_` function to set the overall look and feel of your plot.
 
 ### Mapping Data to Aesthetic Properties
 
@@ -631,7 +631,7 @@ To create a graph with ggplot, you begin by mapping data to aesthetic properties
 #| echo: true
 library(tidyverse)
 
-gapminder_10_rows <- read_csv("https://data.rwithoutstatistics.com/gapminder_10_rows.csv")
+gapminder_10_rows <- read_csv("https://data.rfortherestofus.com/gapminder_10_rows.csv")
 ```
 
 This code first loads the `tidyverse` package, introduced in @sec-crash-course-chapter, and then uses the `read_csv()` function to access data from the book’s website and assign it to the `gapminder_10_rows` object.
@@ -921,9 +921,9 @@ print_nostarch_file_name()
 save_figure_for_nostarch()
 ```
 
-By now, you should see why Hadley Wickham described the `ggplot2` package as using a layered grammar of graphics. It implements Wilkinson’s theory by creating multiple layers: first, variables to map to aesthetic prop- erties; second, geoms to represent the data; third, the `scale_` function to adjust aesthetic properties; and finally, the `theme_` function to set the plot’s overall look and feel.
+By now, you should see why Hadley Wickham described the `ggplot2` package as using a layered grammar of graphics. It implements Wilkinson’s theory by creating multiple layers: first, variables to map to aesthetic properties; second, geoms to represent the data; third, the `scale_` function to adjust aesthetic properties; and finally, the `theme_` function to set the plot’s overall look and feel.
 
-You could still improve this plot in many ways, but instead let’s return to the drought data visualization by Scherer and Karamanis. By walking through their code, you’ll learn about making high-quality data visualiza- tion with ggplot and R.
+You could still improve this plot in many ways, but instead let’s return to the drought data visualization by Scherer and Karamanis. By walking through their code, you’ll learn about making high-quality data visualization with ggplot and R.
 
 ## Recreating the Drought Visualization with ggplot
 
@@ -1271,7 +1271,7 @@ The code in the `theme()` function does many different things, but let’s look 
 
 The theme() function also makes the distinctive axis lines and ticks that appear on the right side of the final plot. Calling element_blank() removes all grid lines. Finally, this code removes the borders and gives each individual plot a transparent background.
 
-You might be thinking, *Wait. Didn’t the individual plots have a gray back- ground behind them?* Yes, dear reader, they did. Scherer and Karamanis made these with a separate geom, `geom_rect()`:
+You might be thinking, *Wait. Didn’t the individual plots have a gray background behind them?* Yes, dear reader, they did. Scherer and Karamanis made these with a separate geom, `geom_rect()`:
 
 ```{r}
 #| echo: true

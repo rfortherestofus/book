@@ -557,7 +557,7 @@ get_acs(
 
 You should notice two differences in the output from `get_acs()` compared to that from `get_decennial()`. First, instead of the value column, `get_acs()` produces a column called estimate. Second, it adds a column called `moe`, for the margin of error. These changes are the result of American Community Survey being given only to a sample of the population, since extrapolating values from that sample to produce an estimate for the population as a whole introduces a margin of error.
 
-In the state-level data, the margins of error are relatively low, but in smaller geographies, they tend to be higher. Cases in which your margins of error are high relative to your estimates indicate a greater level of uncer- tainty about how well the data represents the population as a whole, so you should interpret such results with caution.
+In the state-level data, the margins of error are relatively low, but in smaller geographies, they tend to be higher. Cases in which your margins of error are high relative to your estimates indicate a greater level of uncertainty about how well the data represents the population as a whole, so you should interpret such results with caution.
 
 ### Making Charts
 

@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -569,7 +569,7 @@ Figure&nbsp;10.1: The RStudio menu for creating a new Quarto document
 <span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>The chart shows the distribution of bill lengths. The average bill length is <span class="in">`r average_bill_length`</span> millimeters.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This code sets <code>format: revealjs</code> in the YAML to make a presentation and adds several global code chunk options in the execute section. It then removes the three dashes used to make slide breaks because first- or second- level headings make new slides in Quarto (though you could still use three dashes to manually add slide breaks). When you render this code, you should get an HTML file with your slides. The output should look similar to the default xaringan slides from <a href="presentations.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
+<p>This code sets <code>format: revealjs</code> in the YAML to make a presentation and adds several global code chunk options in the execute section. It then removes the three dashes used to make slide breaks because firstor secondlevel headings make new slides in Quarto (though you could still use three dashes to manually add slide breaks). When you render this code, you should get an HTML file with your slides. The output should look similar to the default xaringan slides from <a href="presentations.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
 <section id="revealing-content-incrementally" class="level3"><h3 class="anchored" data-anchor-id="revealing-content-incrementally">Revealing Content Incrementally</h3>
 <p>Quarto slides can incrementally reveal content. To reveal bulleted and numbered lists one item at a time by default, add <code>incremental: true</code> to the document’s YAML like so:</p>
 <div class="cell">
@@ -913,7 +913,7 @@ Figure&nbsp;10.9: The changes to the navigation bar
 <span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This code adds <code>:::{.column-screen-inset}</code> to the beginning of the map- making code chunk and <code>:::</code> to the end of it. This code chunk now also includes the line <code>#| out-width: 100%</code> to specify that the map should take up all of the available width. Without this line, the map would take up only a portion of the window. There are a number of different output widths you can use; see the full list at <a href="https://quarto.org/docs/authoring/article-layout.html" class="uri">https://quarto.org/docs/authoring/article-layout.html</a>.</p>
+<p>This code adds <code>:::{.column-screen-inset}</code> to the beginning of the mapmaking code chunk and <code>:::</code> to the end of it. This code chunk now also includes the line <code>#| out-width: 100%</code> to specify that the map should take up all of the available width. Without this line, the map would take up only a portion of the window. There are a number of different output widths you can use; see the full list at <a href="https://quarto.org/docs/authoring/article-layout.html" class="uri">https://quarto.org/docs/authoring/article-layout.html</a>.</p>
 </section><section id="hosting-your-website-on-github-pages-and-quarto-pub" class="level3"><h3 class="anchored" data-anchor-id="hosting-your-website-on-github-pages-and-quarto-pub">Hosting Your Website on GitHub Pages and Quarto Pub</h3>
 <p>You can host your Quarto website using GitHub Pages, just as you did with your <code>distill</code> website. Recall that GitHub Pages requires you to save the website’s files in the <em>docs</em> folder. Change the <code>_quarto.yml</code> file so that the site outputs to this folder:</p>
 <div class="cell">
@@ -950,13 +950,13 @@ Figure&nbsp;10.11: The website published on Quarto Pub
 </div>
 <p>When you make updates to your site, you can republish it to Quarto Pub using the same steps. Quarto Pub is probably the easiest way to publish HTML files made with Quarto.</p>
 </section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>As you’ve seen in this chapter, you can do everything you did in R Markdown using Quarto, without loading any external packages. In addition, Quarto’s different output formats use a more consistent syntax. For example, because you can make new slides in Quarto by adding first- or second-level headers, the Quarto documents you use to create reports should translate easily to presentations.</p>
+<p>As you’ve seen in this chapter, you can do everything you did in R Markdown using Quarto, without loading any external packages. In addition, Quarto’s different output formats use a more consistent syntax. For example, because you can make new slides in Quarto by adding firstor second-level headers, the Quarto documents you use to create reports should translate easily to presentations.</p>
 <p>You’re probably wondering at this point whether you should use R Markdown or Quarto. It’s a good question, and one many in the R community are thinking about. R Markdown isn’t going away, so if you already use it, you don’t need to switch. If you’re new to R, however, you may be a good candidate for Quarto, as its future features may not be backported to R Markdown.</p>
-<p>Ultimately, the differences between R Markdown and Quarto are rela- tively small, and the impact of switching between tools should be minor. Both R Markdown and Quarto can help you become more efficient, avoid manual errors, and share results in a wide variety of formats.</p>
+<p>Ultimately, the differences between R Markdown and Quarto are relatively small, and the impact of switching between tools should be minor. Both R Markdown and Quarto can help you become more efficient, avoid manual errors, and share results in a wide variety of formats.</p>
 </section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
 <p>Consult the following resources to learn the fundamentals of Quarto:</p>
 <ul>
-<li><p>Andrew Bray, Rebecca Barter, Silvia Canelón, Christophe Dervieu, Devin Pastor, and Tatsu Shigeta, “From R Markdown to Quarto,” work- shop materials from rstudio::conf 2022, Washington, DC, July 25–26, 2022, <a href="https://rstudio-conf-2022.github.io/rmd-to-quarto/" class="uri">https://rstudio-conf-2022.github.io/rmd-to-quarto/</a>.</p></li>
+<li><p>Andrew Bray, Rebecca Barter, Silvia Canelón, Christophe Dervieu, Devin Pastor, and Tatsu Shigeta, “From R Markdown to Quarto,” workshop materials from rstudio::conf 2022, Washington, DC, July 25–26, 2022, <a href="https://rstudio-conf-2022.github.io/rmd-to-quarto/" class="uri">https://rstudio-conf-2022.github.io/rmd-to-quarto/</a>.</p></li>
 <li><p>Tom Mock, “Getting Started with Quarto,” online course, accessed December 1, 2023, <a href="https://jthomasmock.github.io/quarto-in-two-hours/" class="uri">https://jthomasmock.github.io/quarto-in-two-hours/</a>.</p></li>
 </ul>
 

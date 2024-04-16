@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./custom-theme.html" class="sidebar-item-text sidebar-link">
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
   </div>
 </li>
@@ -781,7 +781,7 @@ $ `What's your favorite game?`      &lt;chr&gt; "It's hard to choose. House Flip
 </div>
 </div>
 <p>You should notice two differences in the output from <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> compared to that from <code><a href="https://walker-data.com/tidycensus/reference/get_decennial.html">get_decennial()</a></code>. First, instead of the value column, <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> produces a column called estimate. Second, it adds a column called <code>moe</code>, for the margin of error. These changes are the result of American Community Survey being given only to a sample of the population, since extrapolating values from that sample to produce an estimate for the population as a whole introduces a margin of error.</p>
-<p>In the state-level data, the margins of error are relatively low, but in smaller geographies, they tend to be higher. Cases in which your margins of error are high relative to your estimates indicate a greater level of uncer- tainty about how well the data represents the population as a whole, so you should interpret such results with caution.</p>
+<p>In the state-level data, the margins of error are relatively low, but in smaller geographies, they tend to be higher. Cases in which your margins of error are high relative to your estimates indicate a greater level of uncertainty about how well the data represents the population as a whole, so you should interpret such results with caution.</p>
 <section id="making-charts" class="level3"><h3 class="anchored" data-anchor-id="making-charts">Making Charts</h3>
 <p>To pipe your data on median age into ggplot to create a bar chart, add the following lines:</p>
 <div class="cell">

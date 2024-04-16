@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://book.rfortherestofus.com/index.html</loc>
-    <lastmod>2024-04-11T22:55:47.578Z</lastmod>
+    <lastmod>2024-04-16T21:33:00.489Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/introduction.html</loc>
-    <lastmod>2024-04-04T20:53:12.625Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.867Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/crash-course.html</loc>
-    <lastmod>2024-04-10T17:50:52.903Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.862Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/data-viz.html</loc>
-    <lastmod>2024-04-10T03:59:12.140Z</lastmod>
+    <lastmod>2024-04-16T21:25:53.074Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/custom-theme.html</loc>
@@ -22,19 +22,19 @@
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/maps.html</loc>
-    <lastmod>2024-04-11T18:08:11.802Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.840Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/tables.html</loc>
-    <lastmod>2024-04-11T22:46:22.581Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.840Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/rmarkdown.html</loc>
-    <lastmod>2024-04-15T18:57:04.875Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.862Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/parameterized-reporting.html</loc>
-    <lastmod>2024-04-16T04:07:24.768Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.845Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/presentations.html</loc>
@@ -42,18 +42,22 @@
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/websites.html</loc>
-    <lastmod>2024-04-16T17:29:12.455Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.867Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/quarto.html</loc>
-    <lastmod>2024-04-16T18:23:11.623Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.846Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/accessing-data.html</loc>
-    <lastmod>2024-04-16T19:07:43.736Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.851Z</lastmod>
   </url>
   <url>
     <loc>https://book.rfortherestofus.com/packages.html</loc>
-    <lastmod>2024-04-16T21:03:47.087Z</lastmod>
+    <lastmod>2024-04-16T21:25:40.840Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.rfortherestofus.com/themes.html</loc>
+    <lastmod>2024-04-16T21:25:40.836Z</lastmod>
   </url>
 </urlset>

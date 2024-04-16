@@ -196,7 +196,7 @@ table_no_gridlines <- gdp %>%
 
 ### Differentiate the Header from the Body
 
-While reducing clutter is an important goal, going too far can have negative consequences. A table with no grid lines at all can make it hard to differen- tiate between the header row and the table body. Consider @fig-table-no-gridlines-at-all, for example.
+While reducing clutter is an important goal, going too far can have negative consequences. A table with no grid lines at all can make it hard to differentiate between the header row and the table body. Consider @fig-table-no-gridlines-at-all, for example.
 
 ```{r}
 #| results: asis
@@ -288,7 +288,7 @@ table_mixed_alignment <- table_bold_header %>%
 save_table_for_nostarch(table_mixed_alignment)
 ```
 
-You can see how much easier it is to compare the values in the 1992 column than those in the other two columns. In both the 1952 and 1972 columns, it’s challenging to compare the values because the numbers in the same position (the tens place, for example) aren’t aligned vertically. In the 1992 column, however, the number in the tens place in Afghanistan (4) aligns with the number in the tens place in Albania (9) and all other coun- tries, making it much easier to scan the table.
+You can see how much easier it is to compare the values in the 1992 column than those in the other two columns. In both the 1952 and 1972 columns, it’s challenging to compare the values because the numbers in the same position (the tens place, for example) aren’t aligned vertically. In the 1992 column, however, the number in the tens place in Afghanistan (4) aligns with the number in the tens place in Albania (9) and all other countries, making it much easier to scan the table.
 
 As with other tables, you actually have to override the defaults to get the `gt` package to misalign the columns, as demonstrated in the following code:
 
@@ -312,7 +312,7 @@ table_bold_header %>%
 
 By default, `gt` will right-align numeric values. Don’t change anything, and you’ll be golden.
 
-Right alignment is best practice for numeric columns, but for text col- umns, use left alignment. As Jon Schwabish points out in his article “Ten Guidelines for Better Tables” in the *Journal of Benefit-Cost Analysis*, it’s much easier to read longer text cells when they are left-aligned. To see the ben- efit of left-aligning text, add a country with a long name to your table. I’ve added Bosnia and Herzegovina and saved this as a data frame called `gdp_with_bosnia`. You’ll see that I’m using nearly the same code I used previously to create the `gdp` data frame:
+Right alignment is best practice for numeric columns, but for text columns, use left alignment. As Jon Schwabish points out in his article “Ten Guidelines for Better Tables” in the *Journal of Benefit-Cost Analysis*, it’s much easier to read longer text cells when they are left-aligned. To see the benefit of left-aligning text, add a country with a long name to your table. I’ve added Bosnia and Herzegovina and saved this as a data frame called `gdp_with_bosnia`. You’ll see that I’m using nearly the same code I used previously to create the `gdp` data frame:
 
 ```{r}
 gdp_with_bosnia <- gapminder %>%

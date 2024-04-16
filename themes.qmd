@@ -10,11 +10,11 @@ A *custom theme* is nothing more than a chunk of code that applies a set of smal
 
 In 2018, BBC data journalists Nassos Stylianou and Clara Guibourg, along with their team, developed a custom ggplot theme that matches the BBC’s style. By introducing this bbplot package for others to use, they changed their organization’s culture, removed bottlenecks, and allowed the BBC to visualize data more creatively.
 
-Rather than forcing everyone to copy the long code to tweak each plot they make, custom themes enable everyone who uses them to follow style guidelines and ensure that all data visualizations meet a brand’s standards. For example, to understand the significance of the custom theme intro- duced at the BBC, it’s helpful to know how things worked before bbplot.
+Rather than forcing everyone to copy the long code to tweak each plot they make, custom themes enable everyone who uses them to follow style guidelines and ensure that all data visualizations meet a brand’s standards. For example, to understand the significance of the custom theme introduced at the BBC, it’s helpful to know how things worked before bbplot.
 
 In the mid-2010s, journalists who wanted to make data visualization had two choices:
 
-- Use an internal tool that could create data visualizations but was lim- ited to the predefined charts it had been designed to generate. 
+- Use an internal tool that could create data visualizations but was limited to the predefined charts it had been designed to generate. 
 
 - Use Excel to create mockups and then work with a graphic designer to finalize the charts. This approach led to better results and was much more flexible, but it required extensive, time-consuming back-and-forth with a designer.
 
@@ -87,7 +87,7 @@ penguins_plot <- ggplot(
   )
 ```
 
-This code tells R to use the `penguins_summary` data frame, putting the island on the x-axis and the count of the number of penguins (`n`) on the y-axis, and making each bar a different color with the `fill` aesthetic prop- erty. Since you’ll modify this plot multiple times, saving it as an object called `penguins_plot` simplifies the process. @fig-basic-penguins-plot-plot shows the resulting plot.
+This code tells R to use the `penguins_summary` data frame, putting the island on the x-axis and the count of the number of penguins (`n`) on the y-axis, and making each bar a different color with the `fill` aesthetic property. Since you’ll modify this plot multiple times, saving it as an object called `penguins_plot` simplifies the process. @fig-basic-penguins-plot-plot shows the resulting plot.
 
 ```{r}
 #| results: asis
@@ -267,7 +267,7 @@ With these changes in place, you’re on your way to the BBC look.
 
 ### Legend
 
-Next up is formatting the legend, positioning it above the plot and left- aligning its text:
+Next up is formatting the legend, positioning it above the plot and leftaligning its text:
 
 ```{r penguins-plot-legend}
 #| echo: true

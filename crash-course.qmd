@@ -156,7 +156,7 @@ Other common comparison operators include less than (`<`), greater than or equal
 
 When you enter `498 == 498` in the console, R should return `TRUE` because the two values are equal. If you run `2 != 2` in the console, R should return `FALSE` because 2 does not *not* equal 2.
 
-You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see com- parison operators used in this way in “tidyverse Functions” (@sec-tidyverse-functions).
+You’ll rarely use comparison operators to directly test how one value compares to another; instead, you’ll use them to perform tasks like keeping only data where a value is greater than a certain threshold. You’ll see comparison operators used in this way in “tidyverse Functions” (@sec-tidyverse-functions).
 
 ### Functions
 
@@ -265,7 +265,7 @@ You might think you’re ready to work with your data now, but all you’ve real
 
 To save your data for reuse, you need to create an object. For the purposes of this discussion, an object is a data structure that is stored for later use. To create an object, update your data-importing syntax so it looks like this:
 
-Now this line of code contains the `<-` *assignment operator*, which takes what follows it and assigns it to the item on the left. To the left of the assign- ment operator is the `population_data` object. Put together, the whole line imports the CSV file and assigns it to an object called `population_data`.
+Now this line of code contains the `<-` *assignment operator*, which takes what follows it and assigns it to the item on the left. To the left of the assignment operator is the `population_data` object. Put together, the whole line imports the CSV file and assigns it to an object called `population_data`.
 
 When you run this code, you should see `population_data` in your environment pane, as shown in @fig-population-data-environment.
 
@@ -298,7 +298,7 @@ The `read.csv()` function you’ve been using, as well as the `mean()` and `c()`
 
 The best analogy for understanding packages also comes from the book *Statistical Inference via Data Science*. The functionality in base R is like the features built into a smartphone. A smartphone can do a lot on its own, but you usually want to install additional apps for specific tasks. Packages are like apps, giving you functionality beyond what’s built into base R. In @sec-packages-chapter, you’ll create your own R package.
 
-You can install packages using the `install.packages()` function. You’ll be working with the tidyverse package, which provides a range of functions for data import, cleaning, analysis, visualization, and more. To install it, enter `install.packages("tidyverse")`. Typically, you’ll enter package installation code in the console rather than in a script file because you need to install a pack- age only once on your computer to access its code in the future.
+You can install packages using the `install.packages()` function. You’ll be working with the tidyverse package, which provides a range of functions for data import, cleaning, analysis, visualization, and more. To install it, enter `install.packages("tidyverse")`. Typically, you’ll enter package installation code in the console rather than in a script file because you need to install a package only once on your computer to access its code in the future.
 
 To confirm that the tidyverse package has been installed correctly, click the **Packages** tab on the bottom-right pane in RStudio. Search for `tidyverse`, and you should see it pop up.
 
@@ -469,7 +469,7 @@ print_nostarch_file_name(file_type_to_print = "png")
 save_image_for_nostarch(here::here("assets/readcsv-documentation.png"))
 ```
 
-Help files can be a bit hard to decipher, but essentially they describe what package the function comes from, what the function does, what argu- ments it accepts, and some examples of how to use it.
+Help files can be a bit hard to decipher, but essentially they describe what package the function comes from, what the function does, what arguments it accepts, and some examples of how to use it.
 
 ::: {.callout-tip}
 For additional guidance on reading documentation, I recommend the appendix of Kieran Healy’s book *Data Visualization: A Practical Introduction*. A free online version is available at <https://socviz.co/appendix>.html.
@@ -479,7 +479,7 @@ The second approach is to read the documentation websites associated with many R
 
 ## Summary
 
-In this chapter, you learned the basics of R programming. You saw how to download and set up R and RStudio, what the various RStudio panes are for, and how R script files work. You also learned how to import CSV files and explore them in R, how to save data as objects, and how to install packages to access additional functions. Then, to make the files used in your code more accessible, you created an RStudio project. Finally, you experi- mented with `tidyverse` functions and the `tidyverse` pipe, and you learned how to get help when those functions don’t work as expected.
+In this chapter, you learned the basics of R programming. You saw how to download and set up R and RStudio, what the various RStudio panes are for, and how R script files work. You also learned how to import CSV files and explore them in R, how to save data as objects, and how to install packages to access additional functions. Then, to make the files used in your code more accessible, you created an RStudio project. Finally, you experimented with `tidyverse` functions and the `tidyverse` pipe, and you learned how to get help when those functions don’t work as expected.
 
 Now that you understand the basics, you’re ready to start using R to work with your data. See you in @sec-data-viz-chapter!
 

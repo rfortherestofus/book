@@ -114,7 +114,7 @@ Finally, the `output` argument specifies that all R Markdown documents should be
 
 ## Building the Site
 
-We’ve explored the project’s files but haven’t yet used them to create the website. To do this, click **Build Website** in the Build tab of RStudio’s top- right pane. (You could also run `rmarkdown::render_site()` in the console or in an R script file.)
+We’ve explored the project’s files but haven’t yet used them to create the website. To do this, click **Build Website** in the Build tab of RStudio’s topright pane. (You could also run `rmarkdown::render_site()` in the console or in an R script file.)
 
 This should render all R Markdown documents and add the top navigation bar to them with the options specified in the *_site.yml* file. To find the rendered files, look in *docs* (or whatever output directory you specified). Open the *index.html* file and you’ll find your website, which should look like @fig-covid-website-default-content.
 

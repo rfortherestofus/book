@@ -40,7 +40,7 @@ In Part I, you’ll learn how to use R to visualize data.
 
 - **Chapter 2: Principles of Data Visualization** Breaks down a visualization created for Scientific American on drought conditions in the United States. In doing so, this chapter introduces the ggplot2 package for data visualization and addresses important principles that can help you make high-quality graphics.
 
-- **Chapter 3: Custom Data Visualization Themes** Describes how journalists at the BBC made a custom theme for the ggplot2 data visual- ization package. As the chapter walks you through the package they created, you’ll learn how to make your own theme.
+- **Chapter 3: Custom Data Visualization Themes** Describes how journalists at the BBC made a custom theme for the ggplot2 data visualization package. As the chapter walks you through the package they created, you’ll learn how to make your own theme.
 
 - **Chapter 4: Maps and Geospatial Data** Explores the process of making maps in R using simple features data. You’ll learn how to write map-making code, find geospatial data, choose appropriate projections, and apply data visualization principles to make your map appealing.
 
@@ -64,4 +64,4 @@ Part III focuses on ways you can use R to automate your work and share it with o
 
 - **Chapter 12: Creating Functions and Packages** Shows you how to create your own functions and packages and share them with others, which is one of R’s major benefits. Bundling your custom functions into a package can enable other R users to streamline their work, as you’ll read about with the packages that a group of R developers built for researchers working at the Moffitt Cancer Center.
 
-By the end of this book, you should be able to use R for a wide range of nonstatistical tasks. You’ll know how to effectively visualize data and com- municate your findings using maps and tables. You’ll be able to integrate your results into reports using R Markdown, as well as efficiently generate slideshow presentations and websites. And you’ll understand how to automate many tedious tasks using packages others have built or ones you develop yourself. Let’s dive in!
+By the end of this book, you should be able to use R for a wide range of nonstatistical tasks. You’ll know how to effectively visualize data and communicate your findings using maps and tables. You’ll be able to integrate your results into reports using R Markdown, as well as efficiently generate slideshow presentations and websites. And you’ll understand how to automate many tedious tasks using packages others have built or ones you develop yourself. Let’s dive in!

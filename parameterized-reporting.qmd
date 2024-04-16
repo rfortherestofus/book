@@ -13,7 +13,7 @@ source("_common.R")
 cases <- tibble(state.name) %>%
   rbind(state.name = "District of Columbia") %>%
   left_join(
-    read_csv("https://data.rwithoutstatistics.com/united_states_covid19_cases_deaths_and_testing_by_state.csv", skip = 2),
+    read_csv("https://data.rfortherestofus.com/united_states_covid19_cases_deaths_and_testing_by_state.csv", skip = 2),
     by = c("state.name" = "State/Territory")
   ) %>%
   select(
@@ -413,7 +413,7 @@ Another best practice is to manually generate and review the reports whose param
 
 ## Summary
 
-In this chapter, you re-created the Urban Institute’s state fiscal briefs using parameterized reporting. You learned how to add a parameter to your R Markdown document, then use an R script to set the value of that param- eter and knit the report.
+In this chapter, you re-created the Urban Institute’s state fiscal briefs using parameterized reporting. You learned how to add a parameter to your R Markdown document, then use an R script to set the value of that parameter and knit the report.
 
 Automating report production can be a huge time-saver, especially as the number of reports you need to generate grows. Consider another project at the Urban Institute: making county-level reports. With over 3,000 counties in the United States, creating these reports by hand isn’t realistic. Not only that, but if the Urban Institute employees were to make their reports using SPSS, Excel, and Word, they would have to copy and paste values between programs. Humans are fallible, and mistakes occur, no matter how hard we try to avoid them. Computers, on the other hand, never make copy-and-paste errors. Letting computers handle the tedious work of generating multiple reports reduces the chance of error significantly.
 
