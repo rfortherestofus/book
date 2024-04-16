@@ -9,7 +9,7 @@ book:
   repo-actions: issue
   open-graph: 
     site-name: "R for the Rest of Us: A Statistics-Free Introduction"
-    image: assets/r-treasure-chest.png
+    image: assets/featured-image.png
 
   page-footer:
     left: |
