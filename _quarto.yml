@@ -10,6 +10,8 @@ book:
   open-graph: 
     site-name: "R for the Rest of Us: A Statistics-Free Introduction"
     image: assets/featured-image.png
+  body-header: | 
+    ###### You are reading the free online version of this book. If you'd like to purchase a physical or electronic copy, you can buy it from [No Starch Press](https://nostarch.com/r-rest-us), [Powell's](https://www.powells.com/book/r-for-the-rest-of-us-9781718503328), or [Amazon](https://a.co/d/fzAMxMV). 
 
   page-footer:
     left: |
