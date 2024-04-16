@@ -744,7 +744,7 @@ In this chapter, you learned to use the `distill` package to make websites in R.
 
 - Use GitHub Pages to host an always-up-to-date version of your website
 
-Matt Herman has continued building websites with R. He and his col- leagues at the Council of State Governments Justice Center have made a great website using Quarto, the language-agnostic version of R Markdown. This website, found at <https://projects.csgjusticecenter.org/tools-for-states-to-address-crime/>, highlights crime trends throughout the United States using many of the same techniques you saw in this chapter.
+Matt Herman has continued building websites with R. He and his colleagues at the Council of State Governments Justice Center have made a great website using Quarto, the language-agnostic version of R Markdown. This website, found at <https://projects.csgjusticecenter.org/tools-for-states-to-address-crime/>, highlights crime trends throughout the United States using many of the same techniques you saw in this chapter.
 
 Whether you prefer `distill` or Quarto, using R is a quick way to develop complex websites without having to be a sophisticated frontend web developer. The websites look good and communicate well. They are one more example of how R can help you efficiently share your work with the world.
 
