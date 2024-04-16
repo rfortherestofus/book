@@ -1,5 +1,7 @@
 # R for the Rest of Us: A Statistics-Free Introduction
 
+![](assets/cover.jpg)
+
 This repository holds the materials for the book *R for the Rest of Us: A Statistics-Free Introduction*, published by No Starch Press. [The book is available to read online](https://book.rfortherestofus.com).
 
 ## About the Book
@@ -24,7 +26,7 @@ Unlock a treasure trove of techniques to transform the way you work. With R for 
 
 ## About the Author
 
-![](assets/david-keyes.jpg){.headshot fig-alt="David Keyes"}
+![](assets/david-keyes.jpg)
 
 David Keyes is the founder and CEO of [R for the Rest of Us](https://rfortherestofus.com/), which offers online courses, workshops, and custom training sessions that help organizations take control of their data. He has a PhD in anthropology from UC San Diego, as well as a master's degree in education from Ohio State, and has dedicated his professional life to teaching people to embrace R as the most powerful tool for data analysis and visualization.
 
