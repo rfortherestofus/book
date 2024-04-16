@@ -1,5 +1,7 @@
 ![](assets/cover.jpg)
 
+# R for the Rest of Us: A Statistics-Free Introduction
+
 This repository holds the materials for the book *R for the Rest of Us: A Statistics-Free Introduction*, published by No Starch Press. [The book is available to read online](https://book.rfortherestofus.com).
 
 ## About the Book
