@@ -6,7 +6,7 @@ project:
 book:
   title: "R for the Rest of Us: A Statistics-Free Introduction"
   repo-url: https://github.com/rfortherestofus/book
-  repo-actions: issue
+  repo-actions: [source, issue]
   open-graph: 
     site-name: "R for the Rest of Us: A Statistics-Free Introduction"
     image: assets/featured-image.png
