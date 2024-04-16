@@ -1,6 +1,8 @@
 # R for the Rest of Us: A Statistics-Free Introduction
 
-## About the Book {.unnumbered}
+This repository holds the materials for the book *R for the Rest of Us: A Statistics-Free Introduction*, published by No Starch Press. [The book is available to read online](https://book.rfortherestofus.com).
+
+## About the Book
 
 The R programming language is a remarkably powerful tool for data analysis and visualization, but its steep learning curve can be intimidating for some. If you just want to automate repetitive tasks or visualize your data, without the need for complex math, R for the Rest of Us is for you.
 
