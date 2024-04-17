@@ -59,6 +59,7 @@ execute:
 
 format:
   html:
+  include-after-body: figure-caption.html
     page-layout: full
     callout-icon: false
     smooth-scroll: true

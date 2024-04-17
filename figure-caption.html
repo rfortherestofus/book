@@ -1,0 +1,13 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var figcaptions = document.querySelectorAll("figcaption");
+
+    figcaptions.forEach(function(figcaption) {
+        var captionText = figcaption.textContent;
+        var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+        var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+        
+        figcaption.textContent = updatedCaption;
+    });
+});
+</script>
