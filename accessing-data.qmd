@@ -1,4 +1,4 @@
-# Automatically Accesing Online Data {#sec-accessing-data-chapter}
+# Automatically Accessing Online Data {#sec-accessing-data-chapter}
 
 ```{r}
 i <- 1
