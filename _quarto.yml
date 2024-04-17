@@ -71,8 +71,7 @@ format:
     grid:
       sidebar-width: 350px
     filters:
-      - change-figure-formatting.lua
-      - quarto
+       - quarto
       
 
     author-meta: "David Keyes"
