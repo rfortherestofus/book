@@ -30,11 +30,11 @@
     ]
   },
   {
-    "objectID": "index.html#acknowldgements",
-    "href": "index.html#acknowldgements",
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
     "title": "R for the Rest of Us: A Statistics-Free Introduction",
-    "section": "Acknowldgements",
-    "text": "Acknowldgements\nThis book is a testament to the many members of the R community who share their knowledge freely and encourage others generously. I call myself self-taught, but really what I am is community-taught. Throughout this book, you will read about several R users from whom I have learned so much; still, many others go unmentioned. To everyone who has worked to develop R, share your knowledge about R, and make R a welcoming place, thank you.\nI’d also like to thank the team at R for the Rest of Us. Working directly with talented R users has taught me so much about what is possible with R.\nFinally, I’d like to thank people who have provided feedback as I’ve written this book. Technical reviewer Rita Giordano has helped me make sure everything works and suggested great ideas for improvement. My editor, Frances Saux, has provided fantastic input along the way. To Bill Pollock and the entire team at No Starch: thank you for taking a flyer on me and my strange idea to write a book about nonstatistical uses of a tool created for statistics.",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis book is a testament to the many members of the R community who share their knowledge freely and encourage others generously. I call myself self-taught, but really what I am is community-taught. Throughout this book, you will read about several R users from whom I have learned so much; still, many others go unmentioned. To everyone who has worked to develop R, share your knowledge about R, and make R a welcoming place, thank you.\nI’d also like to thank the team at R for the Rest of Us. Working directly with talented R users has taught me so much about what is possible with R.\nFinally, I’d like to thank people who have provided feedback as I’ve written this book. Technical reviewer Rita Giordano has helped me make sure everything works and suggested great ideas for improvement. My editor, Frances Saux, has provided fantastic input along the way. To Bill Pollock and the entire team at No Starch: thank you for taking a flyer on me and my strange idea to write a book about nonstatistical uses of a tool created for statistics.",
     "crumbs": [
       "About the Book"
     ]

@@ -24,7 +24,7 @@ Unlock a treasure trove of techniques to transform the way you work. With R for 
 
 David Keyes is the founder and CEO of [R for the Rest of Us](https://rfortherestofus.com/), which offers online courses, workshops, and custom training sessions that help organizations take control of their data. He has a PhD in anthropology from UC San Diego, as well as a master's degree in education from Ohio State, and has dedicated his professional life to teaching people to embrace R as the most powerful tool for data analysis and visualization.
 
-## Acknowldgements
+## Acknowledgements
 
 This book is a testament to the many members of the R community who share their knowledge freely and encourage others generously. I call myself self-taught, but really what I am is community-taught. Throughout this book, you will read about several R users from whom I have learned so much; still, many others go unmentioned. To everyone who has worked to develop R, share your knowledge about R, and make R a welcoming place, thank you.
 
