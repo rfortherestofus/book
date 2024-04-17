@@ -1,0 +1,13 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var elements = document.querySelectorAll("figcaption, .quarto-xref");
+    
+        elements.forEach(function(element) {
+            var captionText = element.textContent;
+            var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+            var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+    
+            element.textContent = updatedCaption;
+        });
+    });
+</script>

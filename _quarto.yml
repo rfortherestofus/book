@@ -59,6 +59,7 @@ execute:
 
 format:
   html:
+    include-after-body: figure-caption.html
     page-layout: full
     callout-icon: false
     smooth-scroll: true
@@ -70,8 +71,7 @@ format:
     grid:
       sidebar-width: 350px
     filters:
-      - change-figure-formatting.lua
-      - quarto
+       - quarto
       
 
     author-meta: "David Keyes"
