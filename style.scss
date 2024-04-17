@@ -35,11 +35,6 @@ figcaption {
   font-style: italic;
 }
 
-code {
-  // font-weight: 500;
-}
-
-
 // Output of code chunks
 pre {
   padding: 1em 0.5em;
@@ -84,6 +79,11 @@ div.callout-title-container {
   margin-top: 0.6em;
 }
 
+#quarto-sidebar > div.sidebar-menu-container > ul > li:nth-child(3) > div > a.sidebar-item-text.sidebar-link.text-start > span,
+#quarto-sidebar > div.sidebar-menu-container > ul > li:nth-child(4) > div > a.sidebar-item-text.sidebar-link.text-start > span,
+#quarto-sidebar > div.sidebar-menu-container > ul > li:nth-child(5) > div > a.sidebar-item-text.sidebar-link.text-start > span {
+  font-weight: 700;
+}
 
 
 // body {
