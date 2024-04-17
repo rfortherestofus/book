@@ -310,6 +310,24 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var elements = document.querySelectorAll("figcaption, .quarto-xref");
+    
+        elements.forEach(function(element) {
+            if (element.classList.contains("quarto-xref")) {
+                // Handle elements with class "quarto-xref" differently
+            } else {
+                var captionText = element.textContent;
+                var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+                var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+    
+                element.textContent = updatedCaption;
+            }
+        });
+    });
+    
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
