@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="David Keyes">
+<title>R for the Rest of Us: A Statistics-Free Introduction - 12&nbsp; Creating Functions and Packages</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./accessing-data.html" rel="prev">
+<link href="./assets/r-treasure-chest.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
+<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 12&nbsp; Creating Functions and Packages">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
+<meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
+<meta property="og:image:height" content="547">
+<meta property="og:image:width" content="1114">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./accessing-data.html">Part III: Automation and Collaboration</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Functions and Packages</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./assets/cover.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R for the Rest of Us: A Statistics-Free Introduction</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rfortherestofus/book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Part I: Visualizations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./crash-course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./themes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maps and Geospatial Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Designing Effective Tables</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rmarkdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Markdown Reports</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./parameterized-reporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Parameterized Reporting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./presentations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Slideshow Presentations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./websites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Part III: Automation and Collaboration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./accessing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accessing Online Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Functions and Packages</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#creating-your-own-functions" id="toc-creating-your-own-functions" class="nav-link active" data-scroll-target="#creating-your-own-functions">Creating Your Own Functions</a>
+  <ul class="collapse">
+<li><a href="#writing-a-simple-function" id="toc-writing-a-simple-function" class="nav-link" data-scroll-target="#writing-a-simple-function">Writing a Simple Function</a></li>
+  <li><a href="#adding-arguments" id="toc-adding-arguments" class="nav-link" data-scroll-target="#adding-arguments">Adding Arguments</a></li>
+  <li><a href="#creating-a-function-to-automatically-format-race-and-ethnicity-data" id="toc-creating-a-function-to-automatically-format-race-and-ethnicity-data" class="nav-link" data-scroll-target="#creating-a-function-to-automatically-format-race-and-ethnicity-data">Creating a Function to Automatically Format Race and Ethnicity Data</a></li>
+  <li><a href="#using-to-pass-arguments-to-another-function" id="toc-using-to-pass-arguments-to-another-function" class="nav-link" data-scroll-target="#using-to-pass-arguments-to-another-function">Using … to Pass Arguments to Another Function</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#creating-a-package" id="toc-creating-a-package" class="nav-link" data-scroll-target="#creating-a-package">Creating a Package</a>
+  <ul class="collapse">
+<li><a href="#starting-the-package" id="toc-starting-the-package" class="nav-link" data-scroll-target="#starting-the-package">Starting the Package</a></li>
+  <li><a href="#adding-functions-with-use_r" id="toc-adding-functions-with-use_r" class="nav-link" data-scroll-target="#adding-functions-with-use_r">Adding Functions with use_r()</a></li>
+  <li><a href="#checking-our-package-with-devtools" id="toc-checking-our-package-with-devtools" class="nav-link" data-scroll-target="#checking-our-package-with-devtools">Checking our Package with devtools</a></li>
+  <li><a href="#adding-dependency-packages" id="toc-adding-dependency-packages" class="nav-link" data-scroll-target="#adding-dependency-packages">Adding Dependency Packages</a></li>
+  <li><a href="#referring-to-functions-correctly" id="toc-referring-to-functions-correctly" class="nav-link" data-scroll-target="#referring-to-functions-correctly">Referring to Functions Correctly</a></li>
+  <li><a href="#creating-documentation-with-roxygen" id="toc-creating-documentation-with-roxygen" class="nav-link" data-scroll-target="#creating-documentation-with-roxygen">Creating Documentation with Roxygen</a></li>
+  <li><a href="#adding-a-license-and-metadata" id="toc-adding-a-license-and-metadata" class="nav-link" data-scroll-target="#adding-a-license-and-metadata">Adding a License and Metadata</a></li>
+  <li><a href="#adding-additional-functions" id="toc-adding-additional-functions" class="nav-link" data-scroll-target="#adding-additional-functions">Adding Additional Functions</a></li>
+  <li><a href="#installing-the-package" id="toc-installing-the-package" class="nav-link" data-scroll-target="#installing-the-package">Installing the Package</a></li>
+  </ul>
+</li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping Up</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/rfortherestofus/book/blob/main/packages.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rfortherestofus/book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./accessing-data.html">Part III: Automation and Collaboration</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Functions and Packages</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-packages-chapter" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Creating Functions and Packages</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><h6 class="anchored">You are reading the free online version of this book. If you’d like to purchase a physical or electronic copy, you can buy it from <a href="https://nostarch.com/r-rest-us">No Starch Press</a>, <a href="https://www.powells.com/book/r-for-the-rest-of-us-9781718503328">Powell’s</a>, <a href="https://www.barnesandnoble.com/w/r-for-the-rest-of-us-david-keyes/1145069854?ean=9781718503328">Barnes and Noble</a> or <a href="https://a.co/d/fzAMxMV">Amazon</a>.</h6><p>In this chapter, you will learn how to define your own R functions, including the parameters they should accept. Then, you’ll create a package to distribute those functions, add your code and dependencies to it, write its documentation, and choose the license under which to release it.</p>
+<p>Saving your code as custom functions and then distributing them in packages can have numerous benefits. First, packages make your code easier for others to use. For example, when researchers at the Moffitt Cancer Center needed to access code from a database, data scientists Travis Gerke and Garrick Aden-Buie used to write R code for each researcher, but they quickly realized they were reusing the same code over and over. Instead, they made a package with functions for accessing databases. Now researchers no longer had to ask for help; they could simply install the package Gerke and Aden-Buie had made and use its functions themselves.</p>
+<p>What’s more, developing packages allows you to shape how others work. Say you make a ggplot theme that follows the principles of high-quality data visualization discussed in <a href="themes.html" class="quarto-xref"><span>Chapter 3</span></a>. If you put this theme in a package, you can give others an easy way to follow these design principles. In short, functions and packages help you work with others using shared code.</p>
+<section id="creating-your-own-functions" class="level2"><h2 class="anchored" data-anchor-id="creating-your-own-functions">Creating Your Own Functions</h2>
+<p>Hadley Wickham, developer of the <code>tidyverse</code> set of packages, recommends creating a function once you’ve copied some code three times. Functions have three pieces: a name, a body, and arguments.</p>
+<section id="writing-a-simple-function" class="level3"><h3 class="anchored" data-anchor-id="writing-a-simple-function">Writing a Simple Function</h3>
+<p>You’ll begin by writing an example of a relatively simple function. This function, called <code>show_in_excel_penguins()</code>, opens the penguin data from <a href="parameterized-reporting.html" class="quarto-xref"><span>Chapter 7</span></a> in Microsoft Excel:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fs.r-lib.org">fs</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/penguins-2007.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">show_in_excel_penguins</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">csv_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{tempfile()}.csv"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>    file <span class="op">=</span> <span class="va">csv_file</span>,</span>
+<span>    na <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://fs.r-lib.org/reference/file_show.html">file_show</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">csv_file</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code first loads the <code>tidyverse</code> and <code>fs</code> packages. You’ll use <code>tidyverse</code> to create a filename for the CSV file and save it, and <code>fs</code> to open the CSV file in Excel (or whichever program your computer uses to open CSV files by default).</p>
+<p>Next, the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> function imports the penguin data and names the data frame penguins. Then it creates the new <code>show_in_excel_penguins</code> function, using the assignment operator (<code>&lt;-</code>) and <code>function()</code> to specify that <code>show_in_excel_penguins</code> isn’t a variable name but a function name. The open curly bracket <code>({</code>) at the end of the line indicates the start of the function body, where the “meat” of the function can be found. In this case, the body does three things:</p>
+<ul>
+<li><p>Creates a location for a CSV file to be saved using the <code><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue()</a></code> function combined with the <code><a href="https://rdrr.io/r/base/tempfile.html">tempfile()</a></code> function. This creates a file at a temporary location with the .csv extension and saves it as <code>csv_file</code>.</p></li>
+<li><p>Writes penguins to the location set in <code>csv_file</code>. The <code>x</code> argument in <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> refers to the data frame to be saved. It also specifies that all <code>NA</code> values should show up as blanks. (By default, they would display the text <em>NA</em>.)</p></li>
+<li><p>Uses the <code><a href="https://fs.r-lib.org/reference/file_show.html">file_show()</a></code> function from the <code>fs</code> package to open the temporary CSV file in Excel.</p></li>
+</ul>
+<p>To use the <code>show_in_excel_penguins()</code> function, highlight the lines that define the function and then press <strong>command-enter</strong> on macOS or <strong>ctrl-enter</strong> on Windows. You should now see the function in your global environment, as shown in <a href="#fig-function-in-global-environment" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-function-in-global-environment" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-function-in-global-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/function-in-global-environment.png" class="img-fluid figure-img" width="608">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-function-in-global-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: The new function in the global environment
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>From now on, any time you run the code <code>show_in_excel_penguins()</code>, R will open the penguins data frame in Excel.</p>
+</section><section id="adding-arguments" class="level3"><h3 class="anchored" data-anchor-id="adding-arguments">Adding Arguments</h3>
+<p>You’re probably thinking that this function doesn’t seem very useful. All it does is open the penguins data frame. Why would you want to keep doing that? A more practical function would let you open any data in Excel so you can use it in a variety of contexts.</p>
+<p>The <code>show_in_excel()</code> function does just that: it takes any data frame from R, saves it as a CSV file, and opens the CSV file in Excel. Bruno Rodrigues, head of the Department of Statistics and Data Strategy at the Ministry of Higher Education and Research in Luxembourg, wrote <code>show_in_excel()</code> to easily share data with his non-R-user colleagues. Whenever he needed data in a CSV file, he could run this function.</p>
+<p>Replace your <code>show_in_excel_penguins()</code> function definition with this slightly simplified version of the code that Rodrigues used:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">show_in_excel</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">csv_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{tempfile()}.csv"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">data</span>,</span>
+<span>    file <span class="op">=</span> <span class="va">csv_file</span>,</span>
+<span>    na <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://fs.r-lib.org/reference/file_show.html">file_show</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">csv_file</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code looks the same as <code>show_in_excel_penguins()</code>, with two exceptions. Notice that the first line now says <code>function(data)</code>. Items listed within the parentheses of the function definition are arguments. If you look farther down, you’ll see the second change. Within <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code>, instead of <code>x = penguins</code>, it now says <code>x = data</code>. This allows you to use the function with any data, not just <code>penguins</code>.</p>
+<p>To use this function, you simply tell <code>show_in_excel()</code> what data to use, and the function opens the data in Excel. For example, tell it to open the <code>penguins</code> data frame as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_in_excel</span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Having created the function with the <code>data</code> argument, now you can run it with any data you want to. This code, for example, imports the COVID case data from <a href="maps.html" class="quarto-xref"><span>Chapter 4</span></a> and opens it in Excel:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/us-states-covid-rolling-average.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">show_in_excel</span><span class="op">(</span>data <span class="op">=</span> <span class="va">covid_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also use show_in_excel() at the end of a pipeline. This code filters the <code>covid_data</code> data frame to include only data from California before opening it in Excel:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">state</span> <span class="op">==</span> <span class="st">"California"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">show_in_excel</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Rodrigues could have copied the code within the <code>show_in_excel()</code> function and rerun it every time he wanted to view his data in Excel. But, by creating a function, he was able to write the code just once and then run it as many times as necessary.</p>
+</section><section id="creating-a-function-to-automatically-format-race-and-ethnicity-data" class="level3"><h3 class="anchored" data-anchor-id="creating-a-function-to-automatically-format-race-and-ethnicity-data">Creating a Function to Automatically Format Race and Ethnicity Data</h3>
+<p>Hopefully now you better understand how functions work, so let’s walk through an example function you could use to simplify some of the activities from previous chapters.</p>
+<p>In Chapter 11, when you used the <code>tidycensus</code> package to automatically import data from the US Census Bureau, you learned that the census data has many variables with nonintuitive names. Say you regularly want to access data about race and ethnicity from the American Community Survey, but you can never remember which variables enable you to do so. To make your task more efficient, you’ll create a <code>get_acs_race_ethnicity()</code> function step-by-step in this section, learning some important concepts about custom functions along the way.</p>
+<p>A first version of the <code>get_acs_race_ethnicity()</code> function might look like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://walker-data.com/tidycensus/">tidycensus</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
+<span>      geography <span class="op">=</span> <span class="st">"state"</span>,</span>
+<span>      variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>        <span class="st">"White"</span> <span class="op">=</span> <span class="st">"B03002_003"</span>,</span>
+<span>        <span class="st">"Black/African American"</span> <span class="op">=</span> <span class="st">"B03002_004"</span>,</span>
+<span>        <span class="st">"American Indian/Alaska Native"</span> <span class="op">=</span> <span class="st">"B03002_005"</span>,</span>
+<span>        <span class="st">"Asian"</span> <span class="op">=</span> <span class="st">"B03002_006"</span>,</span>
+<span>        <span class="st">"Native Hawaiian/Pacific Islander"</span> <span class="op">=</span> <span class="st">"B03002_007"</span>,</span>
+<span>        <span class="st">"Other race"</span> <span class="op">=</span> <span class="st">"B03002_008"</span>,</span>
+<span>        <span class="st">"Multi-Race"</span> <span class="op">=</span> <span class="st">"B03002_009"</span>,</span>
+<span>        <span class="st">"Hispanic/Latino"</span> <span class="op">=</span> <span class="st">"B03002_012"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">race_ethnicity_data</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Within the function body, this code calls the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> function from <code>tidycensus</code> to retrieve population data at the state level. But instead of returning the function’s default output, it updates the hard-to-remember variable names to human-readable names, such as White and Black/African American, and saves them as an object called <code>race_ethnicity_data</code>. The code then uses the <code>race_ethnicity_data</code> object to return that data when the <code>get_acs_race_ethnicity()</code> function is run.</p>
+<p>To run this function, enter the following:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">get_acs_race_ethnicity</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Doing so should return data with easy-to-read race and ethnicity group names:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 416 × 5
+   GEOID NAME    variable                         estimate   moe
+   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                               &lt;dbl&gt; &lt;dbl&gt;
+ 1 01    Alabama White                             3247262  2133
+ 2 01    Alabama Black/African American            1318388  3585
+ 3 01    Alabama American Indian/Alaska Native       14864   868
+ 4 01    Alabama Asian                               69099  1113
+ 5 01    Alabama Native Hawaiian/Pacific Islander     1557   303
+ 6 01    Alabama Other race                          14724  1851
+ 7 01    Alabama Multi-Race                         129791  3724
+ 8 01    Alabama Hispanic/Latino                    232407   199
+ 9 02    Alaska  White                              428802  1173
+10 02    Alaska  Black/African American              22400   935
+# ℹ 406 more rows</code></pre>
+</div>
+</div>
+<p>You could improve this function in a few ways. You might want the resulting variable names to follow a consistent syntax, for example, so you could use the <code>clean_names()</code> function from the <code>janitor</code> package to format them in snake case (in which all words are lowercase and separated by underscores). However, you might also want to have the option of keeping the original variable names. To accomplish this, add the <code>clean_variable_names</code> argument to the function definition as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
+<span>      geography <span class="op">=</span> <span class="st">"state"</span>,</span>
+<span>      variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>        <span class="st">"White"</span> <span class="op">=</span> <span class="st">"B03002_003"</span>,</span>
+<span>        <span class="st">"Black/African American"</span> <span class="op">=</span> <span class="st">"B03002_004"</span>,</span>
+<span>        <span class="st">"American Indian/Alaska Native"</span> <span class="op">=</span> <span class="st">"B03002_005"</span>,</span>
+<span>        <span class="st">"Asian"</span> <span class="op">=</span> <span class="st">"B03002_006"</span>,</span>
+<span>        <span class="st">"Native Hawaiian/Pacific Islander"</span> <span class="op">=</span> <span class="st">"B03002_007"</span>,</span>
+<span>        <span class="st">"Other race"</span> <span class="op">=</span> <span class="st">"B03002_008"</span>,</span>
+<span>        <span class="st">"Multi-Race"</span> <span class="op">=</span> <span class="st">"B03002_009"</span>,</span>
+<span>        <span class="st">"Hispanic/Latino"</span> <span class="op">=</span> <span class="st">"B03002_012"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">clean_variable_names</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span> <span class="fu">clean_names</span><span class="op">(</span><span class="va">race_ethnicity_data</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">race_ethnicity_data</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code adds the <code>clean_variable_names</code> argument to <code>get_acs_race _ethnicity()</code> and specifies that its value should be <code>FALSE</code> by default. Then, in the function body, an if statement says that if the argument is <code>TRUE</code>, the variable names should be overwritten by versions formatted in snake case. If the argument is <code>FALSE</code>, the variable names remain unchanged.</p>
+<p>If you run the function now, nothing should change, because the new argument is set to <code>FALSE</code> by default. Try setting <code>clean_variable_names</code> to TRUE as follows:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">get_acs_race_ethnicity</span><span class="op">(</span>clean_variable_names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function call should return data with consistent variable names:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 416 × 5
+   geoid name    variable                         estimate   moe
+   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                               &lt;dbl&gt; &lt;dbl&gt;
+ 1 01    Alabama White                             3247262  2133
+ 2 01    Alabama Black/African American            1318388  3585
+ 3 01    Alabama American Indian/Alaska Native       14864   868
+ 4 01    Alabama Asian                               69099  1113
+ 5 01    Alabama Native Hawaiian/Pacific Islander     1557   303
+ 6 01    Alabama Other race                          14724  1851
+ 7 01    Alabama Multi-Race                         129791  3724
+ 8 01    Alabama Hispanic/Latino                    232407   199
+ 9 02    Alaska  White                              428802  1173
+10 02    Alaska  Black/African American              22400   935
+# ℹ 406 more rows</code></pre>
+</div>
+</div>
+<p>Notice that <code>GEOID</code> and <code>NAME</code> now appear as <code>geoid</code> and <code>name</code>.</p>
+<p>Now that you’ve seen how to add arguments to two separate functions, you’ll learn how to pass arguments from one function to another.</p>
+</section><section id="using-to-pass-arguments-to-another-function" class="level3"><h3 class="anchored" data-anchor-id="using-to-pass-arguments-to-another-function">Using … to Pass Arguments to Another Function</h3>
+<p>The <code>get_acs_race_ethnicity()</code> function you’ve created retrieves population data at the state level by passing the <code>geography = "state"</code> argument to the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> function. But what if you wanted to obtain county-level or census tract data? You could do so using <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code>, but <code>get_acs_race_ethnicity()</code> isn’t currently written in a way that would allow this. How could you modify the function to make it more flexible?</p>
+<p>Your first idea might be to add a new argument for the level of data to retrieve. You could edit the first two lines of the function as follows to add a <code>my_geography</code> argument and then use it in the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> function like so:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
+<span>  <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">my_geography</span></span>
+<span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
+<span>      geography <span class="op">=</span> <span class="va">my_geography</span>,</span>
+<span>      variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>        <span class="st">"White"</span> <span class="op">=</span> <span class="st">"B03002_003"</span>,</span>
+<span>        <span class="st">"Black/African American"</span> <span class="op">=</span> <span class="st">"B03002_004"</span>,</span>
+<span>        <span class="st">"American Indian/Alaska Native"</span> <span class="op">=</span> <span class="st">"B03002_005"</span>,</span>
+<span>        <span class="st">"Asian"</span> <span class="op">=</span> <span class="st">"B03002_006"</span>,</span>
+<span>        <span class="st">"Native Hawaiian/Pacific Islander"</span> <span class="op">=</span> <span class="st">"B03002_007"</span>,</span>
+<span>        <span class="st">"Other race"</span> <span class="op">=</span> <span class="st">"B03002_008"</span>,</span>
+<span>        <span class="st">"Multi-Race"</span> <span class="op">=</span> <span class="st">"B03002_009"</span>,</span>
+<span>        <span class="st">"Hispanic/Latino"</span> <span class="op">=</span> <span class="st">"B03002_012"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">clean_variable_names</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span> <span class="fu">clean_names</span><span class="op">(</span><span class="va">race_ethnicity_data</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">race_ethnicity_data</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But what if you also want to select the year for which to retrieve data? Well, you could add an argument for that as well. However, as you saw in <a href="accessing-data.html" class="quarto-xref"><span>Chapter 11</span></a>, the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> function has many arguments, and repeating them all in your code would quickly become cumbersome.</p>
+<p>The <code>...</code> syntax gives you a more efficient option. Placing <code>...</code> in the <code>get_acs_race_ethnicity()</code> function allows you to automatically pass any of its arguments to <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> by including <code>...</code> in that function as well:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
+<span>  <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span></span>
+<span>    <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
+<span>      <span class="va">...</span>,</span>
+<span>      variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>        <span class="st">"White"</span> <span class="op">=</span> <span class="st">"B03002_003"</span>,</span>
+<span>        <span class="st">"Black/African American"</span> <span class="op">=</span> <span class="st">"B03002_004"</span>,</span>
+<span>        <span class="st">"American Indian/Alaska Native"</span> <span class="op">=</span> <span class="st">"B03002_005"</span>,</span>
+<span>        <span class="st">"Asian"</span> <span class="op">=</span> <span class="st">"B03002_006"</span>,</span>
+<span>        <span class="st">"Native Hawaiian/Pacific Islander"</span> <span class="op">=</span> <span class="st">"B03002_007"</span>,</span>
+<span>        <span class="st">"Other race"</span> <span class="op">=</span> <span class="st">"B03002_008"</span>,</span>
+<span>        <span class="st">"Multi-Race"</span> <span class="op">=</span> <span class="st">"B03002_009"</span>,</span>
+<span>        <span class="st">"Hispanic/Latino"</span> <span class="op">=</span> <span class="st">"B03002_012"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">clean_variable_names</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span> <span class="fu">clean_names</span><span class="op">(</span><span class="va">race_ethnicity_data</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">race_ethnicity_data</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try running your function by passing it the <code>geography</code> argument set to “state”:</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">get_acs_race_ethnicity</span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This should return the following:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 416 × 5
+   GEOID NAME    variable                         estimate   moe
+   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                               &lt;dbl&gt; &lt;dbl&gt;
+ 1 01    Alabama White                             3247262  2133
+ 2 01    Alabama Black/African American            1318388  3585
+ 3 01    Alabama American Indian/Alaska Native       14864   868
+ 4 01    Alabama Asian                               69099  1113
+ 5 01    Alabama Native Hawaiian/Pacific Islander     1557   303
+ 6 01    Alabama Other race                          14724  1851
+ 7 01    Alabama Multi-Race                         129791  3724
+ 8 01    Alabama Hispanic/Latino                    232407   199
+ 9 02    Alaska  White                              428802  1173
+10 02    Alaska  Black/African American              22400   935
+# ℹ 406 more rows</code></pre>
+</div>
+</div>
+<p>You’ll see that the <code>GEOID</code> and <code>NAME</code> variables are uppercase because the <code>clean_variable_names</code> argument is set to <code>FALSE</code> by default, and we didn’t change it when using the <code>get_acs_race_ethnicity()</code> function.</p>
+<p>Alternatively, you could change the value of the argument to get data by county:</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">get_acs_race_ethnicity</span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"county"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You could also run the function with the <code>geometry = TRUE</code> argument to return geospatial data alongside demographic data:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">get_acs_race_ethnicity</span><span class="op">(</span></span>
+<span>  geography <span class="op">=</span> <span class="st">"county"</span>,</span>
+<span>  geometry <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function should return data like the following:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 416 features and 5 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -179.1467 ymin: 17.88328 xmax: 179.7785 ymax: 71.38782
+Geodetic CRS:  NAD83
+First 10 features:
+   GEOID         NAME                         variable estimate  moe
+1     35   New Mexico                            White   752424 1849
+2     35   New Mexico           Black/African American    37996 1116
+3     35   New Mexico    American Indian/Alaska Native   178608 1339
+4     35   New Mexico                            Asian    32214  868
+5     35   New Mexico Native Hawaiian/Pacific Islander     1117  190
+6     35   New Mexico                       Other race     7680  967
+7     35   New Mexico                       Multi-Race    50798 2565
+8     35   New Mexico                  Hispanic/Latino  1051626   NA
+9     46 South Dakota                            White   718056  978
+10    46 South Dakota           Black/African American    19172  805
+                         geometry
+1  MULTIPOLYGON (((-109.0502 3...
+2  MULTIPOLYGON (((-109.0502 3...
+3  MULTIPOLYGON (((-109.0502 3...
+4  MULTIPOLYGON (((-109.0502 3...
+5  MULTIPOLYGON (((-109.0502 3...
+6  MULTIPOLYGON (((-109.0502 3...
+7  MULTIPOLYGON (((-109.0502 3...
+8  MULTIPOLYGON (((-109.0502 3...
+9  MULTIPOLYGON (((-104.0579 4...
+10 MULTIPOLYGON (((-104.0579 4...</code></pre>
+</div>
+</div>
+<p>The <code>...</code> syntax allows you to create your own function and pass arguments from it to another function without repeating all of that function’s arguments in your own code. This approach gives you flexibility while keeping your code concise.</p>
+<p>Now let’s look at how to put your custom functions into a package.</p>
+</section></section><section id="creating-a-package" class="level2"><h2 class="anchored" data-anchor-id="creating-a-package">Creating a Package</h2>
+<p>Packages bundle your functions so you can use them in multiple projects. If you find yourself copying functions from one project to another, or from a <em>functions.R</em> file into each new project, that’s a good indication that you should make a package.</p>
+<p>While you can run the functions from a <em>functions.R</em> file in your own environment, this code might not work on someone else’s computer. Other users may not have the necessary packages installed, or they may be confused about how your functions’ arguments work and not know where to go for help. Putting your functions in a package makes them more likely to work for everyone, as they include the necessary dependencies as well as built-in documentation to help others use the functions on their own.</p>
+<section id="starting-the-package" class="level3"><h3 class="anchored" data-anchor-id="starting-the-package">Starting the Package</h3>
+<p>To create a package in RStudio, go to <strong>File &gt; New Project &gt; New Directory</strong>. Select <strong>R Package</strong> from the list of options and give your package a name. In <a href="#fig-rstudio-create-package" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>, I’ve called mine <code>dk</code>. Also decide where you want your package to live on your computer. You can leave everything else as is.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-rstudio-create-package" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-create-package-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="assets/create-r-package.png" class="img-fluid figure-img" width="532">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-create-package-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: The RStudio menu for creating your own package
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>RStudio will now create and open the package. It should already contain a few files, including <em>hello.R</em>, which has a prebuilt function called <code>hello()</code> that, when run, prints the text <code>Hello, world!</code> in the console. You’ll get rid of this and a few other default files so you can start with a clean slate. Delete <em>hello.R</em>, <em>NAMESPACE</em>, and <em>hello.Rd</em> in the <em>man</em> directory.</p>
+</section><section id="adding-functions-with-use_r" class="level3"><h3 class="anchored" data-anchor-id="adding-functions-with-use_r">Adding Functions with use_r()</h3>
+<p>All of the functions in a package should go in separate files in the <em>R</em> folder. To add these files to the package automatically and test that they work correctly, you’ll use the <code>usethis</code> and <code>devtools</code> packages. Install them using <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> like so:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"usethis"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To add a function to the package, run the <code>use_r()</code> function from the usethis package in the console:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_r.html">use_r</a></span><span class="op">(</span><span class="st">"acs"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>package::function()</code> syntax allows you to use a function without loading the associated package. The <code>use_r()</code> function should create a file in the R directory with the argument name you provide — in this case, the file is called <em>acs.R</em>. The name itself doesn’t really matter, but it’s a good practice to choose something that gives an indication of the functions the file contains. Now you can open the file and add code to it. Copy the <code>get_acs_race _ethnicity()</code> function to the package.</p>
+</section><section id="checking-our-package-with-devtools" class="level3"><h3 class="anchored" data-anchor-id="checking-our-package-with-devtools">Checking our Package with devtools</h3>
+<p>You need to change the <code>get_acs_race_ethnicity()</code> function in a few ways to make it work in a package. The easiest way to figure out what changes you need to make is to use built-in tools to check that your package is built correctly. Run the function <code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code> in the console to perform what is known as an <code>R CMD check</code>, a command that runs under the hood to ensure others can install your package on their system. Running <code>R CMD check</code> on the <code>dk</code> package outputs this long message:</p>
+<pre><code>── R CMD check results ─────────────── dk 0.1.0 ────
+Duration: 4s
+
+❯ checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+What license is it under?
+Standardizable: FALSE
+
+❯ checking for missing documentation entries ... WARNING
+Undocumented code objects:
+‘get_acs_race_ethnicity’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
+❯ checking R code for possible problems ... NOTE
+get_acs_race_ethnicity: no visible global function definition for
+‘get_acs’
+get_acs_race_ethnicity: no visible global function definition for
+‘clean_names’
+Undefined global functions or variables:
+clean_names get_acs
+
+0 errors ✔ | 2 warnings ✖ | 1 note ✖</code></pre>
+<p>The last part is the most important, so let’s review the output from bottom to top. The line <code>0 errors ✔ | 2 warnings ✖ | 1 note ✖</code> highlights three levels of issues identified in the package. Errors are the most severe, as they mean others won’t be able to install your package, while warnings and notes may cause problems for others. It’s best practice to eliminate all errors, warnings, and notes.</p>
+<p>We’ll start by addressing the note. To help you understand what <code>R CMD check</code> is saying here, I need to explain a bit about how packages work. When you install a package using the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function, it often takes a while. That’s because the package you’re telling R to install likely uses functions from other packages. To access these functions, R must install these packages (known as <em>dependencies</em>) for you; after all, it would be a pain if you had to manually install a whole set of dependencies every time you installed a new package. But to make sure that the appropriate packages are installed for any user of the <code>dk</code> package, you still have to make a few changes.</p>
+<p><code>R CMD check</code> is saying this package includes several “undefined global functions or variables” and “no visible global function definition” for various functions. This is because you’re trying to use functions from the tidycensus and janitor packages, but you haven’t specified where these functions come from. I can run this code in my environment because I have <code>tidycensus</code> and <code>janitor</code> installed, but you can’t assume the same of everyone.</p>
+</section><section id="adding-dependency-packages" class="level3"><h3 class="anchored" data-anchor-id="adding-dependency-packages">Adding Dependency Packages</h3>
+<p>To ensure the package’s code will work, you need to install <code>tidycensus</code> and <code>janitor</code> for users when they install the <code>dk</code> package. To do this, run the <code>use_package()</code> function from the usethis package in the console, first specifying <code>"tidycensus"</code> for the package argument:</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_package.html">use_package</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"tidycensus"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should get the following message:</p>
+<pre><code>✔ Setting active project to '/Users/davidkeyes/Documents/Work/R Without Statistics/dk'
+✔ Adding 'tidycensus' to Imports field in DESCRIPTION
+• Refer to functions with `tidycensus::fun()`</code></pre>
+<p>The <code>Setting active project...</code> line indicates that you’re working in the <code>dk</code> project. The second line indicates that the <em>DESCRIPTION</em> file has been edited. This file provides metadata about the package you’re developing.</p>
+<p>Next, add the <code>janitor</code> package the same way you added <code>tidyverse</code></p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_package.html">use_package</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"janitor"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which should give you the following output:</p>
+<pre><code>✔ Adding 'janitor' to Imports field in DESCRIPTION
+• Refer to functions with `janitor::fun()`</code></pre>
+<p>If you open the <em>DESCRIPTION</em> file in the root directory of your project, you should see the following:</p>
+<pre><code>Package: dk
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer &lt;yourself@somewhere.net&gt;
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    janitor,
+    tidycensus</code></pre>
+<p>The <code>Imports</code> section at the bottom of the file indicates that when a user installs the <code>dk</code> package, the <code>tidycensus</code> and <code>janitor</code> packages will also be imported.</p>
+</section><section id="referring-to-functions-correctly" class="level3"><h3 class="anchored" data-anchor-id="referring-to-functions-correctly">Referring to Functions Correctly</h3>
+<p>The output from running <code>usethis::use_package(package = "janitor")</code> also included the line <code>Refer to functions with tidycensus::fun()</code> (where <code>fun()</code> stands for function name). This tells you that in order to use functions from other packages in the <code>dk</code> package, you need to specify both the package name and the function name to ensure that the correct function is used at all times. On rare occasions, you’ll find functions with identical names used across multiple packages, and this syntax avoids ambiguity. Remember this line from the <code>R CMD check</code>?</p>
+<pre><code>Undefined global functions or variables:
+clean_names get_acs</code></pre>
+<p>It appeared because you were using functions without saying what package they came from. The <code>clean_names()</code> function comes from the <code>janitor</code> package, and <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> comes from <code>tidycensus</code>, so you will need to add these package names before each function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
+<span>  <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span> <span class="fu">tidycensus</span><span class="fu">::</span><span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
+<span>    <span class="va">...</span>,</span>
+<span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"White"</span> <span class="op">=</span> <span class="st">"B03002_003"</span>,</span>
+<span>      <span class="st">"Black/African American"</span> <span class="op">=</span> <span class="st">"B03002_004"</span>,</span>
+<span>      <span class="st">"American Indian/Alaska Native"</span> <span class="op">=</span> <span class="st">"B03002_005"</span>,</span>
+<span>      <span class="st">"Asian"</span> <span class="op">=</span> <span class="st">"B03002_006"</span>,</span>
+<span>      <span class="st">"Native Hawaiian/Pacific Islander"</span> <span class="op">=</span> <span class="st">"B03002_007"</span>,</span>
+<span>      <span class="st">"Other race"</span> <span class="op">=</span> <span class="st">"B03002_008"</span>,</span>
+<span>      <span class="st">"Multi-Race"</span> <span class="op">=</span> <span class="st">"B03002_009"</span>,</span>
+<span>      <span class="st">"Hispanic/Latino"</span> <span class="op">=</span> <span class="st">"B03002_012"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">clean_variable_names</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span> <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="va">race_ethnicity_data</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">race_ethnicity_data</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now you can run <code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code> again, and you should see that the notes have gone away:</p>
+<pre><code>❯ checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+What license is it under?
+Standardizable: FALSE
+
+❯ checking for missing documentation entries ... WARNING
+Undocumented code objects:
+‘get_acs_race_ethnicity’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+
+0 errors ✔ | 2 warnings ✖ | 0 notes ✔</code></pre>
+<p>However, there are still two warnings to deal with. You’ll do that next.</p>
+</section><section id="creating-documentation-with-roxygen" class="level3"><h3 class="anchored" data-anchor-id="creating-documentation-with-roxygen">Creating Documentation with Roxygen</h3>
+<p>The <code>checking for missing documentation entries</code> warning indicates that you need to document your <code>get_acs_race_ethnicity()</code> function. One of the benefits of creating a package is that you can add documentation to help others use your code. In the same way that users can enter <code>?get_acs()</code> and see documentation about that function, you want them to be able to enter <code>?get_acs _race_ethnicity()</code> to learn how your function works.</p>
+<p>To create documentation for <code>get_acs_race_ethnicity()</code>, you’ll use Roxygen, a documentation tool that uses a package called <code>roxygen2</code>. To get started, place your cursor anywhere in your function. Then, in RStudio go to <strong>Code &gt; Insert Roxygen Skeleton</strong>. This should add the following text before the <code>get_acs_race_ethnicity()</code> function:</p>
+<pre><code>#' Title
+#'
+#' @param clean_variable_names 
+#' @param ... 
+#'
+#' @return
+#' @export
+#'
+#' @examples</code></pre>
+<p>This text is the documentation’s skeleton. Each line starts with the special characters <code>#'</code>, which indicate that you’re working with Roxygen. Now you can edit the text to create your documentation. Begin by replacing Title with a sentence that describes the function:</p>
+<pre><code>#' Access race and ethnicity data from the American Community Survey</code></pre>
+<p>Next, turn your attention to the lines beginning with <code>@param</code>. Roxygen automatically creates one of these lines for each function argument, but it’s up to you to fill them in with a description. Begin by describing what the clean_variable_names argument does. Next, specify that the <code>...</code> will pass additional arguments to the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">tidycensus::get_acs()</a></code> function:</p>
+<pre><code>#' @param clean_variable_names Should variable names be cleaned (i.e. snake case)
+#' @param ... Other arguments passed to tidycensus::get_acs()</code></pre>
+<p>The <code>@return</code> line should tell the user what the <code>get_acs_race_ethnicity()</code> function returns. In this case, it returns data, which you document as follows:</p>
+<pre><code>#' @return A tibble with five variables: GEOID, NAME, variable, estimate, and moe</code></pre>
+<p>After <code>@return</code> is <code>@export</code>. You don’t need to change anything here. Most functions in a package are known as exported functions, meaning they’re available to users of the package. In contrast, internal functions, which are used only by the package developers, don’t have <code>@export</code> in the Roxygen skeleton.</p>
+<p>The last section is <code>@examples</code>. This is where you can give examples of code that users can run to learn how the function works. Doing this introduces some complexity and isn’t required, so you can skip it here and delete the line with <code>@examples</code> on it.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>If you want to learn more about adding examples to your documentation, the second edition of Hadley Wickham and Jenny Bryan’s book <em>R Packages</em> is a great resource.</p>
+</div>
+</div>
+</div>
+<p>Now that you’ve added documentation with Roxygen, run <code><a href="https://devtools.r-lib.org/reference/document.html">devtools:: document()</a></code> in the console. This should create a <code>get_acs_race_ethnicity.Rd</code> documentation file in the man directory using the very specific format that R packages require. You’re welcome to look at it, but you can’t change it; it’s read-only.</p>
+<p>Running the function should also create a <em>NAMESPACE</em> file, which lists the functions that your package makes available to users. It should look like this:</p>
+<pre><code># Generated by roxygen2: do not edit by hand
+
+export(get_acs_race_ethnicity)</code></pre>
+<p>Your <code>get_acs_race_ethnicity()</code> function is now almost ready for users.</p>
+</section><section id="adding-a-license-and-metadata" class="level3"><h3 class="anchored" data-anchor-id="adding-a-license-and-metadata">Adding a License and Metadata</h3>
+<p>Run <code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code> again to see if you’ve fixed the issues that led to the warnings. The warning about missing documentation should no longer be there. However, you do still get one warning:</p>
+<pre><code>❯ checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+What license is it under?
+Standardizable: FALSE
+
+0 errors ✔ | 1 warning ✖ | 0 notes ✔</code></pre>
+<p>This warning reminds you that you have not given your package a license. If you plan to make your package publicly available, choosing a license is important because it tells other people what they can and cannot do with your code. For information about how to choose the right license for your package, see <a href="https://choosealicense.com" class="uri">https://choosealicense.com</a>.</p>
+<p>In this example, you’ll use the MIT license, which allows users to do essentially whatever they want with your code, by running <code><a href="https://usethis.r-lib.org/reference/licenses.html">usethis::use_mit_license()</a></code>. The <code>usethis</code> package has similar functions for other common licenses. You should get the following output:</p>
+<pre><code>✔ Setting active project to '/Users/davidkeyes/Documents/Work/R Without Statistics/dk'
+✔ Setting License field in DESCRIPTION to 'MIT + file LICENSE'
+✔ Writing 'LICENSE'
+✔ Writing 'LICENSE.md'
+✔ Adding '^LICENSE\\.md$' to '.Rbuildignore'</code></pre>
+<p>The <code>use_mit_license()</code> function handles a lot of the tedious parts of adding a license to your package. Most importantly for our purposes, it specifies the license in the <em>DESCRIPTION</em> file. If you open it, you should see this confirmation that you’ve added the MIT license:</p>
+<pre><code>License: MIT + file LICENSE</code></pre>
+<p>In addition to the license, the <em>DESCRIPTION</em> file contains metadata about the package. You can make a few changes to identify its title and add an author, a maintainer, and a description. The final <em>DESCRIPTION</em> file might look something like this</p>
+<pre><code>Package: dk
+Type: Package
+Title: David Keyes's Personal Package
+Version: 0.1.0
+Author: David Keyes
+Maintainer: David Keyes &lt;david@rfortherestofus.com&gt;
+    Description: A package with functions that David Keyes may find 
+    useful.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    janitor,
+    tidycensus</code></pre>
+<p>Having made these changes, run <code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code> one more time to make sure everything is in order:</p>
+<pre><code>0 errors ✔ | 0 warnings ✔ | 0 notes ✔</code></pre>
+<p>This is exactly what you want to see!</p>
+</section><section id="adding-additional-functions" class="level3"><h3 class="anchored" data-anchor-id="adding-additional-functions">Adding Additional Functions</h3>
+<p>You’ve now got a package with one working function in it. If you wanted to add more functions, you would follow the same procedure:</p>
+<ol type="1">
+<li><p>Create a new <em>.R</em> file with <code><a href="https://usethis.r-lib.org/reference/use_r.html">usethis::use_r()</a></code> or copy another function to the existing <em>.R</em> file.</p></li>
+<li><p>Develop your function using the <code>package::function()</code> syntax to refer to functions from other packages.</p></li>
+<li><p>Add any dependency packages with <code>use_package()</code>.</p></li>
+<li><p>Add documentation for your function.</p></li>
+<li><p>Run <code><a href="https://devtools.r-lib.org/reference/check.html">devtools::check()</a></code> to make sure you did everything correctly.</p></li>
+</ol>
+<p>Your package can contain a single function, like <code>dk</code>, or as many functions as you want.</p>
+</section><section id="installing-the-package" class="level3"><h3 class="anchored" data-anchor-id="installing-the-package">Installing the Package</h3>
+<p>Now you’re ready to install and use the new package. When you’re developing your own package, installing it for your own use is relatively straightforward. Simply run <code><a href="https://devtools.r-lib.org/reference/install.html">devtools::install()</a></code>, and the package will be ready for you to use in any project.</p>
+<p>Of course, if you’re developing a package, you’re likely doing it not just for yourself but for others as well. The most common way to make your package available to others is with the code-sharing website GitHub. The details of how to put your code on GitHub are beyond what I can cover here, but the book <em>Happy Git and GitHub for the useR</em> by Jenny Bryan (self-published at <a href="https://happygitwithr.com" class="uri">https://happygitwithr.com</a>) is a great place to start.</p>
+<p>I’ve pushed the <code>dk</code> package to GitHub, and you can find it at <a href="https://github.com/dgkeyes/dk" class="uri">https://github.com/dgkeyes/dk</a>. If you’d like to install it, first make sure you have the <code>remotes</code> package installed, then run the code <code>remotes::install_github("dgkeyes/dk")</code> in the console.</p>
+</section></section><section id="summary" class="level2"><h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this chapter, you saw that packages are useful because they let you bundle several elements needed to reliably run your code: a set of functions, instructions to automatically install dependency packages, and code documentation.</p>
+<p>Creating your own R package is especially beneficial when you’re working for an organization, as packages can allow advanced R users to help colleagues with less experience. When Travis Gerke and Garrick Aden-Buie provided researchers at the Moffitt Cancer Center with a package that contained functions for easily accessing their databases, the researchers began to use R more creatively.</p>
+<p>If you create a package, you can also guide people to use R in the way you think is best. Packages are a way to ensure that others follow best practices (without even being aware they are doing so). They make it easy to reuse functions across projects, help others, and adhere to a consistent style.</p>
+</section><section id="additional-resources" class="level2"><h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p>Malcolm Barrett, “Package Development with R,” online course, accessed December 2, 2023, <a href="https://rfortherestofus.com/courses/package-development" class="uri">https://rfortherestofus.com/courses/package-development</a>.</p></li>
+<li><p>Hadley Wickham and Jennifer Bryan, <em>R Packages</em>, 2nd ed.&nbsp;(Sebastopol, CA: O’Reilly Media, 2023), <a href="https://r-pkgs.org" class="uri">https://r-pkgs.org</a>.</p></li>
+</ul></section><section id="wrapping-up" class="level2"><h2 class="anchored" data-anchor-id="wrapping-up">Wrapping Up</h2>
+<p>R was invented in 1993 as a tool for statistics, and in the years since, it has been used for plenty of statistical analysis. But over the last three decades, R has also become a tool that can do much more than statistics.</p>
+<p>As you’ve seen in this book, R is great for making visualizations. You can use it to create high-quality graphics and maps, make your own theme to keep your visuals consistent and on-brand, and generate tables that look good and communicate well. Using R Markdown or Quarto, you can create reports, presentations, and websites. And best of all, these documents are all reproducible, meaning that updating them is as easy as rerunning your code. Finally, you’ve seen that R can help you automate how you access data, as well as assist you in collaborating with others through the functions and packages you create.</p>
+<p>If R was new to you when you started this book, I hope you now feel inspired to use it. If you’re an experienced R user, I hope this book has shown you some ways to use R that you hadn’t previously considered. No matter your background, my hope is that you now understand how to use R like a pro. Because it isn’t just a tool for statisticians — R is a tool for the rest of us too.</p>
+
+
+</section></main><!-- /main --><script>
+document.addEventListener("DOMContentLoaded", function() {
+    // figure
+    var figcaptions = document.querySelectorAll("figcaption, .quarto-xref");
+
+    figcaptions.forEach(function(figcaption) {
+        var captionText = figcaption.textContent;
+        var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+        var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+        
+        figcaption.textContent = updatedCaption;
+    });
+    
+    // section
+    var sectionRefs = document.querySelectorAll(".quarto-xref");
+
+    sectionRefs.forEach(function(sectionRef) {
+        var sectionText = sectionRef.textContent;
+        var regex = /Section (\d+)\.(\d+)\.(\d+)/g;
+        var sectionTextUpdated = sectionText.replace(regex, "Section $1-$2-$3");
+        
+        sectionRef.textContent = sectionTextUpdated;
+    });
+    
+});
+</script><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-body"><div class="nav-page nav-page-previous">
+      <a href="./accessing-data.html" class="pagination-link" aria-label="Automatically Accessing Online Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accessing Online Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rfortherestofus/book/blob/main/packages.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rfortherestofus/book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
