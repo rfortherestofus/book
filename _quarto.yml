@@ -13,7 +13,7 @@ book:
   favicon: assets/r-treasure-chest.png
   site-url: https://book.rfortherestofus.com/
   body-header: | 
-    ###### You are reading the free online version of this book. If you'd like to purchase a physical or electronic copy, you can buy it from [No Starch Press](https://nostarch.com/r-rest-us), [Powell's](https://www.powells.com/book/r-for-the-rest-of-us-9781718503328), or [Amazon](https://a.co/d/fzAMxMV). 
+    ###### You are reading the free online version of this book. If you'd like to purchase a physical or electronic copy, you can buy it from [No Starch Press](https://nostarch.com/r-rest-us), [Powell's](https://www.powells.com/book/r-for-the-rest-of-us-9781718503328), [Barnes and Noble](https://www.barnesandnoble.com/w/r-for-the-rest-of-us-david-keyes/1145069854?ean=9781718503328) or [Amazon](https://a.co/d/fzAMxMV). 
   
   sidebar:
     logo: assets/cover.jpg
