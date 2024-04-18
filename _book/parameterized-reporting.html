@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accessing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accesing Online Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accessing Online Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -662,7 +662,32 @@ Figure&nbsp;7.3: The named list column in the RStudio viewer
 </ul>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script>
+document.addEventListener("DOMContentLoaded", function() {
+    // figure
+    var figcaptions = document.querySelectorAll("figcaption, .quarto-xref");
+
+    figcaptions.forEach(function(figcaption) {
+        var captionText = figcaption.textContent;
+        var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+        var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+        
+        figcaption.textContent = updatedCaption;
+    });
+    
+    // section
+    var sectionRefs = document.querySelectorAll(".quarto-xref");
+
+    sectionRefs.forEach(function(sectionRef) {
+        var sectionText = sectionRef.textContent;
+        var regex = /Section (\d+)\.(\d+)\.(\d+)/g;
+        var sectionTextUpdated = sectionText.replace(regex, "Section $1-$2-$3");
+        
+        sectionRef.textContent = sectionTextUpdated;
+    });
+    
+});
+</script><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
