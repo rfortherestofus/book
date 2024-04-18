@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accessing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accesing Online Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accessing Online Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -898,7 +898,19 @@ Figure&nbsp;9.10: Setting up GitHub Pages
 </ul>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var elements = document.querySelectorAll("figcaption, .quarto-xref");
+    
+        elements.forEach(function(element) {
+            var captionText = element.textContent;
+            var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+            var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+    
+            element.textContent = updatedCaption;
+        });
+    });
+</script><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
