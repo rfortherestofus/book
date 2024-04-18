@@ -227,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./accessing-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accessing Online Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accesing Online Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -250,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#about-the-book" id="toc-about-the-book" class="nav-link active" data-scroll-target="#about-the-book">About the Book</a></li>
   <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link" data-scroll-target="#about-the-author">About the Author</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#acknowldgements" id="toc-acknowldgements" class="nav-link" data-scroll-target="#acknowldgements">Acknowldgements</a></li>
   <li><a href="#buy-the-book" id="toc-buy-the-book" class="nav-link" data-scroll-target="#buy-the-book">Buy the Book</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/rfortherestofus/book/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rfortherestofus/book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -296,8 +296,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="assets/david-keyes.jpg" class="headshot img-fluid" alt="David Keyes"></p>
 <p>David Keyes is the founder and CEO of <a href="https://rfortherestofus.com/">R for the Rest of Us</a>, which offers online courses, workshops, and custom training sessions that help organizations take control of their data. He has a PhD in anthropology from UC San Diego, as well as a master’s degree in education from Ohio State, and has dedicated his professional life to teaching people to embrace R as the most powerful tool for data analysis and visualization.</p>
 </section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<section id="acknowldgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowldgements">Acknowldgements</h2>
 <p>This book is a testament to the many members of the R community who share their knowledge freely and encourage others generously. I call myself self-taught, but really what I am is community-taught. Throughout this book, you will read about several R users from whom I have learned so much; still, many others go unmentioned. To everyone who has worked to develop R, share your knowledge about R, and make R a welcoming place, thank you.</p>
 <p>I’d also like to thank the team at R for the Rest of Us. Working directly with talented R users has taught me so much about what is possible with R.</p>
 <p>Finally, I’d like to thank people who have provided feedback as I’ve written this book. Technical reviewer Rita Giordano has helped me make sure everything works and suggested great ideas for improvement. My editor, Frances Saux, has provided fantastic input along the way. To Bill Pollock and the entire team at No Starch: thank you for taking a flyer on me and my strange idea to write a book about nonstatistical uses of a tool created for statistics.</p>
@@ -311,17 +311,30 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var elements = document.querySelectorAll("figcaption, .quarto-xref");
-    
-        elements.forEach(function(element) {
-            var captionText = element.textContent;
-            var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
-            var updatedCaption = captionText.replace(regex, "Figure $1-$2");
-    
-            element.textContent = updatedCaption;
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    // figure
+    var figcaptions = document.querySelectorAll("figcaption, .quarto-xref");
+
+    figcaptions.forEach(function(figcaption) {
+        var captionText = figcaption.textContent;
+        var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+        var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+        
+        figcaption.textContent = updatedCaption;
     });
+    
+    // section
+    var sectionRefs = document.querySelectorAll(".quarto-xref");
+
+    sectionRefs.forEach(function(sectionRef) {
+        var sectionText = sectionRef.textContent;
+        var regex = /Section (\d+)\.(\d+)\.(\d+)/g;
+        var sectionTextUpdated = sectionText.replace(regex, "Section $1-$2-$3");
+        
+        sectionRef.textContent = sectionTextUpdated;
+    });
+    
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,13 +1,26 @@
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var elements = document.querySelectorAll("figcaption, .quarto-xref");
-    
-        elements.forEach(function(element) {
-            var captionText = element.textContent;
-            var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
-            var updatedCaption = captionText.replace(regex, "Figure $1-$2");
-    
-            element.textContent = updatedCaption;
-        });
+document.addEventListener("DOMContentLoaded", function() {
+    // figure
+    var figcaptions = document.querySelectorAll("figcaption, .quarto-xref");
+
+    figcaptions.forEach(function(figcaption) {
+        var captionText = figcaption.textContent;
+        var regex = /Figure[\s\u00A0](\d+)\.(\d+)/g;
+        var updatedCaption = captionText.replace(regex, "Figure $1-$2");
+        
+        figcaption.textContent = updatedCaption;
     });
+    
+    // section
+    var sectionRefs = document.querySelectorAll(".quarto-xref");
+
+    sectionRefs.forEach(function(sectionRef) {
+        var sectionText = sectionRef.textContent;
+        var regex = /Section (\d+)\.(\d+)\.(\d+)/g;
+        var sectionTextUpdated = sectionText.replace(regex, "Section $1-$2-$3");
+        
+        sectionRef.textContent = sectionTextUpdated;
+    });
+    
+});
 </script>
