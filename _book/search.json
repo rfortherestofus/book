@@ -399,6 +399,17 @@
     ]
   },
   {
+    "objectID": "maps.html#footnotes",
+    "href": "maps.html#footnotes",
+    "title": "4  Maps and Geospatial Data",
+    "section": "",
+    "text": "The first print version of the book uses the albersusa package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions below to use the tigris package.↩︎",
+    "crumbs": [
+      "Part I: Visualizations",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Maps and Geospatial Data</span>"
+    ]
+  },
+  {
     "objectID": "tables.html",
     "href": "tables.html",
     "title": "5  Designing Effective Tables",
@@ -927,32 +938,11 @@
     ]
   },
   {
-    "objectID": "maps.html#footnotes",
-    "href": "maps.html#footnotes",
-    "title": "4  Maps and Geospatial Data",
-    "section": "",
-    "text": "The first print version of the book uses the albersusa package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions below to use the tigris package.↩︎",
-    "crumbs": [
-      "Part I: Visualizations",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Maps and Geospatial Data</span>"
-    ]
-  },
-  {
     "objectID": "errata.html",
     "href": "errata.html",
     "title": "Errata",
     "section": "",
     "text": "Chapter 1: An R Programming Crash Course\nNo updates",
-    "crumbs": [
-      "Errata"
-    ]
-  },
-  {
-    "objectID": "errata.html#chapter-4-maps-and-geospatial-data",
-    "href": "errata.html#chapter-4-maps-and-geospatial-data",
-    "title": "Errata",
-    "section": "Chapter 4: Maps and Geospatial Data",
-    "text": "Chapter 4: Maps and Geospatial Data\nThe first print version of the book uses the albersusa package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions to use the tigris package in the online version of this chapter.\nThe publication date for the book Analyzing US Census Data: Methods, Maps, and Models in R has been corrected from 2013 to 2023.",
     "crumbs": [
       "Errata"
     ]
@@ -973,6 +963,16 @@
     "title": "Errata",
     "section": "Chapter 3: Custom Data Visualization Themes",
     "text": "Chapter 3: Custom Data Visualization Themes\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-4-maps-and-geospatial-data",
+    "href": "errata.html#chapter-4-maps-and-geospatial-data",
+    "title": "Errata",
+    "section": "Chapter 4: Maps and Geospatial Data",
+    "text": "Chapter 4: Maps and Geospatial Data\nThe first print version of the book uses the albersusa package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions to use the tigris package in the online version of this chapter.\nThe publication date for the book Analyzing US Census Data: Methods, Maps, and Models in R has been corrected from 2013 to 2023.",
     "crumbs": [
       "Errata"
     ]
