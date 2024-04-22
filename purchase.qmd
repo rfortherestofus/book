@@ -1,0 +1,3 @@
+# Where to Buy the Book {.unnumbered}
+
+You are reading the free online version of *R for the Rest of Us: A Statistics-Free Introduction*. If you'd like to purchase a physical or electronic copy, you can buy it from [No Starch Press](https://nostarch.com/r-rest-us), [Powell's](https://www.powells.com/book/r-for-the-rest-of-us-9781718503328), [Barnes and Noble](https://www.barnesandnoble.com/w/r-for-the-rest-of-us-david-keyes/1145069854?ean=9781718503328) or [Amazon](https://a.co/d/fzAMxMV). 

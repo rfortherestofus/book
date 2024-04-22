@@ -46,6 +46,8 @@ book:
         - packages.qmd
 
     - errata.qmd
+    - text: "Purchase"
+      href: purchase.qmd
 
 engine: knitr
 
