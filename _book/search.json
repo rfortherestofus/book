@@ -370,7 +370,7 @@
     "href": "maps.html#making-your-own-maps",
     "title": "4  Maps and Geospatial Data",
     "section": "Making Your Own Maps",
-    "text": "Making Your Own Maps\nYou may now be wondering, Okay, great, but how do I actually make my own maps? In this section you’ll learn where you can find geospatial data, how to choose a projection, and how to prepare the data for mapping.\nThere are two ways to access simple features geospatial data. The first is to import raw data, and the second is to access it with R functions.\nImporting Raw Data\nGeospatial data can come in various formats. While ESRI shapefiles (with the .shp extension) are the most common, you might also encounter GeoJSON files (.geojson) like the ones we used in the Wyoming example at the beginning of this chapter, KML files (.kml), and others. Chapter 8 of Geocomputation with R by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow discusses this range of formats.\nThe good news is that a single function can read pretty much any type of geospatial data: read_sf() from the sf package. Say you’ve downloaded geospatial data about US state boundaries from the website &lt;geojson.xyz&gt; in GeoJSON format, then saved it in the data folder as states.geojson. To import this data, use the read_sf() function like so:\n\nus_states &lt;- read_sf(dsn = \"https://data.rfortherestofus.com/states.geojson\")\n\nThe dsn argument (which stands for data source name) tells read_sf() where to find the file. You save the data as the object us_states.\nAccessing Geospatial Data Using R Functions\nSometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. You saw earlier how the tigris package can help you access geospatial data on US states. This package also has functions to get geospatial data about counties, census tracts, roads, and more.\nIf you’re looking for data outside the United States, the rnaturalearth package provides functions for importing geospatial data from across the world. For example, use ne_countries() to retrieve geospatial data about various countries:\n\nlibrary(rnaturalearth)\n\nafrica_countries &lt;- ne_countries(\n  returnclass = \"sf\",\n  continent = \"Africa\"\n)\n\nThis code uses two arguments: returnclass = \"sf\" to get data in simple features format, and continent = \"Africa\" to get only countries on the African continent. If you save the result to an object called africa_countries, you can plot the data on a map as follows:\n\nafrica_countries %&gt;%\n  ggplot() +\n  geom_sf()\n\nFigure 4.11 shows the resulting map.\n\n\n\n\n\n\n\nFigure 4.11: A map of Africa made with data from the rnaturalearth package\n\n\n\n\nIf you can’t find an appropriate package, you can always fall back on using read_sf() from the sf package.\nUsing Appropriate Projections\nOnce you have access to geospatial data, you need to decide which projection to use. If you’re looking for a simple answer to this question, you’ll be disappointed. As Geocomputation with R puts it, “The question of which CRS [to use] is tricky, and there is rarely a ‘right’ answer.”\nIf you’re overwhelmed by the task of choosing a projection, the crsuggest package from Kyle Walker can give you ideas. Its suggest_top_crs() function returns a coordinate reference system that is well suited for your data. Load crsuggest and try it out on your africa_countries data:\n\nlibrary(crsuggest)\n\nafrica_countries %&gt;%\n  suggest_top_crs()\n\nThe suggest_top_crs() function should return projection number 28232. Pass this value to the st_transform() function to change the projection before you plot:\n\nafrica_countries %&gt;%\n  st_transform(28232) %&gt;%\n  ggplot() +\n  geom_sf()\n\nWhen run, this code generates the map in Figure 4.12.\n\n\n\n\n\n\n\nFigure 4.12: A map of Africa made with projection number 28232\n\n\n\n\nAs you can see, you’ve successfully mapped Africa with a different projection.\nWrangling Your Geospatial Data\nThe ability to merge traditional data frames with geospatial data is a huge benefit of working with simple features data. Remember that for his COVID-19 map, Madjid analyzed traditional data frames before merging them with geospatial data. But because simple features data acts just like traditional data frames, you can just as easily apply the data-wrangling and analysis functions from the tidyverse directly to a simple features object. To see how this works, revisit the africa_countries simple features data and select two variables (name and pop_est) to see the name and population of the countries:\n\nafrica_countries %&gt;%\n  select(name, pop_est)\n\nThe output looks like the following:\n\n\nSimple feature collection with 51 features and 2 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -17.62504 ymin: -34.81917 xmax: 51.13387 ymax: 37.34999\nGeodetic CRS:  WGS 84\nFirst 10 features:\n              name  pop_est                       geometry\n2         Tanzania 58005463 MULTIPOLYGON (((33.90371 -0...\n3        W. Sahara   603253 MULTIPOLYGON (((-8.66559 27...\n12 Dem. Rep. Congo 86790567 MULTIPOLYGON (((29.34 -4.49...\n13         Somalia 10192317 MULTIPOLYGON (((41.58513 -1...\n14           Kenya 52573973 MULTIPOLYGON (((39.20222 -4...\n15           Sudan 42813238 MULTIPOLYGON (((24.56737 8....\n16            Chad 15946876 MULTIPOLYGON (((23.83766 19...\n26    South Africa 58558270 MULTIPOLYGON (((16.34498 -2...\n27         Lesotho  2125268 MULTIPOLYGON (((28.97826 -2...\n49        Zimbabwe 14645468 MULTIPOLYGON (((31.19141 -2...\n\n\nSay you want to make a map showing which African countries have populations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the mutate() and if_else() functions, which will return TRUE if a country’s population is over 20 million and FALSE otherwise, and then store the result in a variable called population_above_20_million:\n\nafrica_countries %&gt;%\n  select(name, pop_est) %&gt;%\n  mutate(population_above_20_million = if_else(pop_est &gt; 20000000, TRUE, FALSE))\n\nYou can then take this code and pipe it into ggplot, setting the fill aesthetic property to be equal to population_above_20_million:\n\nafrica_countries %&gt;%\n  select(name, pop_est) %&gt;%\n  mutate(population_above_20_million = if_else(pop_est &gt; 20000000, TRUE, FALSE)) %&gt;%\n  ggplot(aes(fill = population_above_20_million)) +\n  geom_sf()\n\nThis code generates the map shown in Figure 4-13.\n\n\n\n\n\n\n\nFigure 4.13: A map of Africa that highlights countries with populations above 20 million people\n\n\n\n\nThis is a basic example of the data wrangling and analysis you can perform on simple features data. The larger lesson is this: any skill you’ve developed for working with data in R will serve you well when working with geospatial data.",
+    "text": "Making Your Own Maps\nYou may now be wondering, Okay, great, but how do I actually make my own maps? In this section you’ll learn where you can find geospatial data, how to choose a projection, and how to prepare the data for mapping.\nThere are two ways to access simple features geospatial data. The first is to import raw data, and the second is to access it with R functions.\nImporting Raw Data\nGeospatial data can come in various formats. While ESRI shapefiles (with the .shp extension) are the most common, you might also encounter GeoJSON files (.geojson) like the ones we used in the Wyoming example at the beginning of this chapter, KML files (.kml), and others. Chapter 8 of Geocomputation with R by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow discusses this range of formats.\nThe good news is that a single function can read pretty much any type of geospatial data: read_sf() from the sf package. Say you’ve downloaded geospatial data about US state boundaries from the website https://geojson.xyz in GeoJSON format, then saved it in the data folder as states.geojson. To import this data, use the read_sf() function like so:\n\nus_states &lt;- read_sf(dsn = \"data/states.geojson\")\n\nThe dsn argument (which stands for data source name) tells read_sf() where to find the file. You save the data as the object us_states.\nAccessing Geospatial Data Using R Functions\nSometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. You saw earlier how the tigris package can help you access geospatial data on US states. This package also has functions to get geospatial data about counties, census tracts, roads, and more.\nIf you’re looking for data outside the United States, the rnaturalearth package provides functions for importing geospatial data from across the world. For example, use ne_countries() to retrieve geospatial data about various countries:\n\nlibrary(rnaturalearth)\n\nafrica_countries &lt;- ne_countries(\n  returnclass = \"sf\",\n  continent = \"Africa\"\n)\n\nThis code uses two arguments: returnclass = \"sf\" to get data in simple features format, and continent = \"Africa\" to get only countries on the African continent. If you save the result to an object called africa_countries, you can plot the data on a map as follows:\n\nafrica_countries %&gt;%\n  ggplot() +\n  geom_sf()\n\nFigure 4.11 shows the resulting map.\n\n\n\n\n\n\n\nFigure 4.11: A map of Africa made with data from the rnaturalearth package\n\n\n\n\nIf you can’t find an appropriate package, you can always fall back on using read_sf() from the sf package.\nUsing Appropriate Projections\nOnce you have access to geospatial data, you need to decide which projection to use. If you’re looking for a simple answer to this question, you’ll be disappointed. As Geocomputation with R puts it, “The question of which CRS [to use] is tricky, and there is rarely a ‘right’ answer.”\nIf you’re overwhelmed by the task of choosing a projection, the crsuggest package from Kyle Walker can give you ideas. Its suggest_top_crs() function returns a coordinate reference system that is well suited for your data. Load crsuggest and try it out on your africa_countries data:\n\nlibrary(crsuggest)\n\nafrica_countries %&gt;%\n  suggest_top_crs()\n\nThe suggest_top_crs() function should return projection number 28232. Pass this value to the st_transform() function to change the projection before you plot:\n\nafrica_countries %&gt;%\n  st_transform(28232) %&gt;%\n  ggplot() +\n  geom_sf()\n\nWhen run, this code generates the map in Figure 4.12.\n\n\n\n\n\n\n\nFigure 4.12: A map of Africa made with projection number 28232\n\n\n\n\nAs you can see, you’ve successfully mapped Africa with a different projection.\nWrangling Your Geospatial Data\nThe ability to merge traditional data frames with geospatial data is a huge benefit of working with simple features data. Remember that for his COVID-19 map, Madjid analyzed traditional data frames before merging them with geospatial data. But because simple features data acts just like traditional data frames, you can just as easily apply the data-wrangling and analysis functions from the tidyverse directly to a simple features object. To see how this works, revisit the africa_countries simple features data and select two variables (name and pop_est) to see the name and population of the countries:\n\nafrica_countries %&gt;%\n  select(name, pop_est)\n\nThe output looks like the following:\n\n\nSimple feature collection with 51 features and 2 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -17.62504 ymin: -34.81917 xmax: 51.13387 ymax: 37.34999\nGeodetic CRS:  WGS 84\nFirst 10 features:\n              name  pop_est                       geometry\n2         Tanzania 58005463 MULTIPOLYGON (((33.90371 -0...\n3        W. Sahara   603253 MULTIPOLYGON (((-8.66559 27...\n12 Dem. Rep. Congo 86790567 MULTIPOLYGON (((29.34 -4.49...\n13         Somalia 10192317 MULTIPOLYGON (((41.58513 -1...\n14           Kenya 52573973 MULTIPOLYGON (((39.20222 -4...\n15           Sudan 42813238 MULTIPOLYGON (((24.56737 8....\n16            Chad 15946876 MULTIPOLYGON (((23.83766 19...\n26    South Africa 58558270 MULTIPOLYGON (((16.34498 -2...\n27         Lesotho  2125268 MULTIPOLYGON (((28.97826 -2...\n49        Zimbabwe 14645468 MULTIPOLYGON (((31.19141 -2...\n\n\nSay you want to make a map showing which African countries have populations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the mutate() and if_else() functions, which will return TRUE if a country’s population is over 20 million and FALSE otherwise, and then store the result in a variable called population_above_20_million:\n\nafrica_countries %&gt;%\n  select(name, pop_est) %&gt;%\n  mutate(population_above_20_million = if_else(pop_est &gt; 20000000, TRUE, FALSE))\n\nYou can then take this code and pipe it into ggplot, setting the fill aesthetic property to be equal to population_above_20_million:\n\nafrica_countries %&gt;%\n  select(name, pop_est) %&gt;%\n  mutate(population_above_20_million = if_else(pop_est &gt; 20000000, TRUE, FALSE)) %&gt;%\n  ggplot(aes(fill = population_above_20_million)) +\n  geom_sf()\n\nThis code generates the map shown in Figure 4-13.\n\n\n\n\n\n\n\nFigure 4.13: A map of Africa that highlights countries with populations above 20 million people\n\n\n\n\nThis is a basic example of the data wrangling and analysis you can perform on simple features data. The larger lesson is this: any skill you’ve developed for working with data in R will serve you well when working with geospatial data.",
     "crumbs": [
       "Part I: Visualizations",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Maps and Geospatial Data</span>"
@@ -942,7 +942,117 @@
     "href": "errata.html",
     "title": "Errata",
     "section": "",
-    "text": "You are reading the free online version of this book. If you’d like to purchase a physical or electronic copy, you can buy it from No Starch Press, Powell’s, Barnes and Noble or Amazon.\nChapter 1: An R Programming Crash Course\nNo updates\n\n\nChapter 2: Principles of Data Visualization\n\n\nChapter 3: Custom Data Visualization Themes\n\n\nChapter 4: Maps and Geospatial Data\nThe first print version of the book uses the albersusa package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions to use the tigris package in the online version of this chapter.\n\n\nChapter 5: Designing Effective Tables\n\n\nChapter 6: R Markdown Reports\n\n\nChapter 7: Parameterized Reporting\n\n\nChapter 8: Slideshow Presentations\n\n\nChapter 9: Websites\n\n\nChapter 10: Quarto\n\n\nChapter 11: Automatically Accessing Online Data\n\n\nChapter 12: Creating Functions and Packages",
+    "text": "Chapter 1: An R Programming Crash Course\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-4-maps-and-geospatial-data",
+    "href": "errata.html#chapter-4-maps-and-geospatial-data",
+    "title": "Errata",
+    "section": "Chapter 4: Maps and Geospatial Data",
+    "text": "Chapter 4: Maps and Geospatial Data\nThe first print version of the book uses the albersusa package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions to use the tigris package in the online version of this chapter.\nThe publication date for the book Analyzing US Census Data: Methods, Maps, and Models in R has been corrected from 2013 to 2023.",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-2-principles-of-data-visualization",
+    "href": "errata.html#chapter-2-principles-of-data-visualization",
+    "title": "Errata",
+    "section": "Chapter 2: Principles of Data Visualization",
+    "text": "Chapter 2: Principles of Data Visualization\nFigure 2-11 has been updated to use the correct plot (in the first print version, it uses the same plot shown in Figure 2-10).",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-3-custom-data-visualization-themes",
+    "href": "errata.html#chapter-3-custom-data-visualization-themes",
+    "title": "Errata",
+    "section": "Chapter 3: Custom Data Visualization Themes",
+    "text": "Chapter 3: Custom Data Visualization Themes\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-5-designing-effective-tables",
+    "href": "errata.html#chapter-5-designing-effective-tables",
+    "title": "Errata",
+    "section": "Chapter 5: Designing Effective Tables",
+    "text": "Chapter 5: Designing Effective Tables\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-6-r-markdown-reports",
+    "href": "errata.html#chapter-6-r-markdown-reports",
+    "title": "Errata",
+    "section": "Chapter 6: R Markdown Reports",
+    "text": "Chapter 6: R Markdown Reports\nA reference to the markdown package has been updated to the correct package name: rmarkdown",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-7-parameterized-reporting",
+    "href": "errata.html#chapter-7-parameterized-reporting",
+    "title": "Errata",
+    "section": "Chapter 7: Parameterized Reporting",
+    "text": "Chapter 7: Parameterized Reporting\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-8-slideshow-presentations",
+    "href": "errata.html#chapter-8-slideshow-presentations",
+    "title": "Errata",
+    "section": "Chapter 8: Slideshow Presentations",
+    "text": "Chapter 8: Slideshow Presentations\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-9-websites",
+    "href": "errata.html#chapter-9-websites",
+    "title": "Errata",
+    "section": "Chapter 9: Websites",
+    "text": "Chapter 9: Websites\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-10-quarto",
+    "href": "errata.html#chapter-10-quarto",
+    "title": "Errata",
+    "section": "Chapter 10: Quarto",
+    "text": "Chapter 10: Quarto\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-11-automatically-accessing-online-data",
+    "href": "errata.html#chapter-11-automatically-accessing-online-data",
+    "title": "Errata",
+    "section": "Chapter 11: Automatically Accessing Online Data",
+    "text": "Chapter 11: Automatically Accessing Online Data\nNo updates",
+    "crumbs": [
+      "Errata"
+    ]
+  },
+  {
+    "objectID": "errata.html#chapter-12-creating-functions-and-packages",
+    "href": "errata.html#chapter-12-creating-functions-and-packages",
+    "title": "Errata",
+    "section": "Chapter 12: Creating Functions and Packages",
+    "text": "Chapter 12: Creating Functions and Packages\nNo updates",
     "crumbs": [
       "Errata"
     ]

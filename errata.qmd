@@ -1,29 +1,51 @@
 # Errata {#sec-errata .unnumbered}
 
-#### Chapter 1: An R Programming Crash Course
+## Chapter 1: An R Programming Crash Course
 
 No updates
 
-#### Chapter 2: Principles of Data Visualization
+## Chapter 2: Principles of Data Visualization
 
-#### Chapter 3: Custom Data Visualization Themes
+Figure 2-11 has been updated to use the correct plot (in the first print version, it uses the same plot shown in Figure 2-10).
 
-#### Chapter 4: Maps and Geospatial Data
+## Chapter 3: Custom Data Visualization Themes
+
+No updates
+
+## Chapter 4: Maps and Geospatial Data
 
 The first print version of the book uses the `albersusa` package. Unfortunately, this package is no longer easily installable. I've changed the instructions to use the `tigris` package in the [online version of this chapter](#sec-maps-chapter).
 
-#### Chapter 5: Designing Effective Tables
+The publication date for the book *Analyzing US Census Data: Methods, Maps, and Models in R* has been corrected from 2013 to 2023.
 
-#### Chapter 6: R Markdown Reports
+## Chapter 5: Designing Effective Tables
 
-#### Chapter 7: Parameterized Reporting
+No updates
 
-#### Chapter 8: Slideshow Presentations
+## Chapter 6: R Markdown Reports
 
-#### Chapter 9: Websites
+A reference to the `markdown` package has been updated to the correct package name: `rmarkdown`
 
-#### Chapter 10: Quarto
+## Chapter 7: Parameterized Reporting
 
-#### Chapter 11: Automatically Accessing Online Data
+No updates
 
-#### Chapter 12: Creating Functions and Packages
+## Chapter 8: Slideshow Presentations
+
+No updates
+
+## Chapter 9: Websites
+
+No updates
+
+## Chapter 10: Quarto
+
+No updates
+
+## Chapter 11: Automatically Accessing Online Data
+
+No updates
+
+## Chapter 12: Creating Functions and Packages
+
+No updates

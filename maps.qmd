@@ -842,11 +842,11 @@ There are two ways to access simple features geospatial data. The first is to im
 
 Geospatial data can come in various formats. While ESRI shapefiles (with the *.shp* extension) are the most common, you might also encounter GeoJSON files (*.geojson*) like the ones we used in the Wyoming example at the beginning of this chapter, KML files (*.kml*), and others. Chapter 8 of *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow discusses this range of formats.
 
-The good news is that a single function can read pretty much any type of geospatial data: `read_sf()` from the `sf` package. Say you’ve downloaded geospatial data about US state boundaries from the website <geojson.xyz> in GeoJSON format, then saved it in the *data* folder as *states.geojson*. To import this data, use the *read_sf()* function like so:
+The good news is that a single function can read pretty much any type of geospatial data: `read_sf()` from the `sf` package. Say you’ve downloaded geospatial data about US state boundaries from the website <https://geojson.xyz> in GeoJSON format, then saved it in the *data* folder as *states.geojson*. To import this data, use the `read_sf()` function like so:
 
 ```{r}
 #| echo: true
-us_states <- read_sf(dsn = "https://data.rfortherestofus.com/states.geojson")
+us_states <- read_sf(dsn = "data/states.geojson")
 ```
 
 The `dsn` argument (which stands for data source name) tells `read_sf()` where to find the file. You save the data as the object `us_states`.
