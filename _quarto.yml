@@ -45,6 +45,8 @@ book:
         - accessing-data.qmd
         - packages.qmd
 
+    - errata.qmd
+
 engine: knitr
 
 execute: 

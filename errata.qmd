@@ -1,0 +1,29 @@
+# Errata {#sec-errata .unnumbered}
+
+#### Chapter 1: An R Programming Crash Course
+
+No updates
+
+#### Chapter 2: Principles of Data Visualization
+
+#### Chapter 3: Custom Data Visualization Themes
+
+#### Chapter 4: Maps and Geospatial Data
+
+The first print version of the book uses the `albersusa` package. Unfortunately, this package is no longer easily installable. I've changed the instructions to use the `tigris` package in the [online version of this chapter](#sec-maps-chapter).
+
+#### Chapter 5: Designing Effective Tables
+
+#### Chapter 6: R Markdown Reports
+
+#### Chapter 7: Parameterized Reporting
+
+#### Chapter 8: Slideshow Presentations
+
+#### Chapter 9: Websites
+
+#### Chapter 10: Quarto
+
+#### Chapter 11: Automatically Accessing Online Data
+
+#### Chapter 12: Creating Functions and Packages

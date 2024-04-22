@@ -330,26 +330,21 @@ knitr::include_graphics(here::here("assets/covid-map.png"))
 save_image_for_nostarch(here::here("assets/covid-map.png"))
 ```
 
-I’ve made some small modifications to the code to make the final map fit on the page. You’ll begin by loading a few packages:
+I’ve made some small modifications to the code to make the final map fit on the page. You’ll begin by loading a few packages[^1]:
+
+[^1]: The first print version of the book uses the `albersusa` package. Unfortunately, this package is no longer easily installable. I've changed the instructions below to use the `tigris` package.
 
 ```{r}
 #| echo: true
 library(tidyverse)
-library(albersusa)
+library(tigris)
 library(sf)
 library(zoo)
 library(colorspace)
+library(janitor)
 ```
 
-The `albersusa` package will give you access to geospatial data. Install it as follows:
-
-```{r}
-#| echo: true
-#| eval: false
-remotes::install_github("hrbrmstr/albersusa")
-```
-
-You can install all of the other packages using the standard `install.packages()` code. You’ll use the `tidyverse` to import data, manipulate it, and plot it with ggplot. The `sf` package will enable you to change the coordinate reference system and use an appropriate projection for the data. The `zoo` package has functions for calculating rolling averages, and the `colorspace` package gives you a color scale that highlights the data well.
+You can install all of the packages using the standard `install.packages()` code. You’ll use the `tidyverse` to import data, manipulate it, and plot it with ggplot. The data itself will come from the `tigris` package. The `sf` package will enable you to change the coordinate reference system and use an appropriate projection for the data. The `zoo` package has functions for calculating rolling averages, and the `colorspace` package gives you a color scale that highlights the data well. The `janitor` package gives you a function called `clean_names()` that makes variable names easier to work with in R. 
 
 ### Importing the Data
 
@@ -391,14 +386,17 @@ Finally, import the geospatial data and save it as an object called `usa_states_
 
 ```{r}
 #| echo: true
-usa_states_geom <- usa_sf() %>%
-  select(name) %>%
-  st_transform(us_laea_proj)
+usa_states_geom <- states(
+   cb = TRUE,
+   resolution = "20m",
+   progress_bar = FALSE
+) %>%
+  shift_geometry() %>% 
+  clean_names() %>% 
+  select(name) 
 ```
 
-The `usa_sf()` function from the `albersusa` package gives you simple features data for all US states. Conveniently, it places Alaska and Hawaii at a position and scale that make them easy to see. This data includes multiple variables, but because you need only the state names, this code keeps just the `name` variable.
-
-The `st_transform()` function from the `sf` package changes the coordinate reference system. The one used here comes from the `us_laea_proj` object in the albersusa package. This is the Albers equal-area conic convenience projection you used earlier to change the appearance of the Wyoming counties map.
+The `states()` function from the `tigris` package gives you simple features data for all US states. The `cb = TRUE` argument opts out of using the most detailed shapefile and sets the resolution to a more manageable `20m` (1:20 million). Without these changes, the resulting shapefile would be large and slow to work with. Setting `progress_bar = FALSE` hides the messages that `tigris` generates as it loads data. Conveniently, the `shift_geometry()` function places Alaska and Hawaii at a position and scale that make them easy to see. The `clean_names()` function makes all variable names lower case. This data includes multiple variables, but because you need only the state names, this code keeps just the `name` variable.
 
 ### Calculating Daily COVID-19 Cases
 
@@ -855,20 +853,7 @@ The `dsn` argument (which stands for data source name) tells `read_sf()` where t
 
 ### Accessing Geospatial Data Using R Functions
 
-Sometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. Madjid used the `usa_sf()` function from the `albersusa` package to acquire his data. Another package for accessing geospatial data related to the United States, `tigris`, has a number of well-named functions for different types of data. For example, load the `tigris` package and run the `states()` function like so:
-
-```{r}
-#| echo: true
-library(tigris)
-
-states_tigris <- states(
-  cb = TRUE,
-  resolution = "20m",
-  progress_bar = FALSE
-)
-```
-
-The `cb = TRUE` argument opts out of using the most detailed shapefile and sets the resolution to a more manageable `20m` (1:20 million). Without these changes, the resulting shapefile would be large and slow to work with. Setting `progress_bar = FALSE` hides the messages that tigris generates as it loads data. The result is saved as states_tigris. The tigris package has functions to get geospatial data about counties, census tracts, roads, and more.
+Sometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. You saw earlier how the `tigris` package can help you access geospatial data on US states. This package also has functions to get geospatial data about counties, census tracts, roads, and more. 
 
 If you’re looking for data outside the United States, the `rnaturalearth` package provides functions for importing geospatial data from across the world. For example, use `ne_countries()` to retrieve geospatial data about various countries:
 

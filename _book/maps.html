@@ -257,6 +257,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Errata</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
@@ -494,24 +500,21 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 </div>
 </div>
 </div>
-<p>I’ve made some small modifications to the code to make the final map fit on the page. You’ll begin by loading a few packages:</p>
+<p>I’ve made some small modifications to the code to make the final map fit on the page. You’ll begin by loading a few packages<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrbrmstr/albersusa">albersusa</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/tigris">tigris</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://zoo.R-Forge.R-project.org/">zoo</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://colorspace.R-Forge.R-project.org/">colorspace</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://colorspace.R-Forge.R-project.org/">colorspace</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>albersusa</code> package will give you access to geospatial data. Install it as follows:</p>
-<div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"hrbrmstr/albersusa"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You can install all of the other packages using the standard <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> code. You’ll use the <code>tidyverse</code> to import data, manipulate it, and plot it with ggplot. The <code>sf</code> package will enable you to change the coordinate reference system and use an appropriate projection for the data. The <code>zoo</code> package has functions for calculating rolling averages, and the <code>colorspace</code> package gives you a color scale that highlights the data well.</p>
+<p>You can install all of the packages using the standard <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> code. You’ll use the <code>tidyverse</code> to import data, manipulate it, and plot it with ggplot. The data itself will come from the <code>tigris</code> package. The <code>sf</code> package will enable you to change the coordinate reference system and use an appropriate projection for the data. The <code>zoo</code> package has functions for calculating rolling averages, and the <code>colorspace</code> package gives you a color scale that highlights the data well. The <code>janitor</code> package gives you a function called <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names()</a></code> that makes variable names easier to work with in R.</p>
 <section id="importing-the-data" class="level3"><h3 class="anchored" data-anchor-id="importing-the-data">Importing the Data</h3>
 <p>Next, you’ll import the data you need: COVID-19 rates by state over time, state populations, and geospatial information. Madjid imported each of these pieces of data separately and then merged them, and you’ll do the same.</p>
 <p>The COVID-19 data comes directly from the <em>New York Times</em>, which publishes daily case rates by state as a CSV file on its GitHub account. To import it, enter the following:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op">&lt;-</span> </span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/covid-us-states.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">fips</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -537,7 +540,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 </div>
 <p>Madjid’s map shows per capita rates (the rates per 100,000 people) rather than absolute rates (the rates without consideration for a state’s population). So, to re-create his maps, you also need to obtain data on each state’s population. Download this data as a CSV as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states</span> <span class="op">&lt;-</span> </span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/population-by-state.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">State</span>, <span class="va">Pop</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -562,16 +565,20 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 </div>
 <p>Finally, import the geospatial data and save it as an object called <code>usa_states_geom</code> like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/albersusa/man/usa_sf.html">usa_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">us_laea_proj</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tigris/man/states.html">states</a></span><span class="op">(</span></span>
+<span>   cb <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>   resolution <span class="op">=</span> <span class="st">"20m"</span>,</span>
+<span>   progress_bar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/tigris/man/shift_geometry.html">shift_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code><a href="https://rdrr.io/pkg/albersusa/man/usa_sf.html">usa_sf()</a></code> function from the <code>albersusa</code> package gives you simple features data for all US states. Conveniently, it places Alaska and Hawaii at a position and scale that make them easy to see. This data includes multiple variables, but because you need only the state names, this code keeps just the <code>name</code> variable.</p>
-<p>The <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> function from the <code>sf</code> package changes the coordinate reference system. The one used here comes from the <code>us_laea_proj</code> object in the albersusa package. This is the Albers equal-area conic convenience projection you used earlier to change the appearance of the Wyoming counties map.</p>
+<p>The <code><a href="https://rdrr.io/pkg/tigris/man/states.html">states()</a></code> function from the <code>tigris</code> package gives you simple features data for all US states. The <code>cb = TRUE</code> argument opts out of using the most detailed shapefile and sets the resolution to a more manageable <code>20m</code> (1:20 million). Without these changes, the resulting shapefile would be large and slow to work with. Setting <code>progress_bar = FALSE</code> hides the messages that <code>tigris</code> generates as it loads data. Conveniently, the <code><a href="https://rdrr.io/pkg/tigris/man/shift_geometry.html">shift_geometry()</a></code> function places Alaska and Hawaii at a position and scale that make them easy to see. The <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names()</a></code> function makes all variable names lower case. This data includes multiple variables, but because you need only the state names, this code keeps just the <code>name</code> variable.</p>
 </section><section id="calculating-daily-covid-19-cases" class="level3"><h3 class="anchored" data-anchor-id="calculating-daily-covid-19-cases">Calculating Daily COVID-19 Cases</h3>
 <p>The <code>covid_data</code> data frame lists cumulative COVID-19 cases by state, but not the number of cases per day, so the next step is to calculate that number:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases</span> <span class="op">&lt;-</span> <span class="va">covid_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases</span> <span class="op">&lt;-</span> <span class="va">covid_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    pd_cases <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span></span>
@@ -612,7 +619,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 </section><section id="calculating-incidence-rates" class="level3"><h3 class="anchored" data-anchor-id="calculating-incidence-rates">Calculating Incidence Rates</h3>
 <p>You’re not quite done calculating values. The data that Madjid used to make his map didn’t include daily case counts. Instead, it contained a five-day rolling average of cases per 100,000 people. A <em>rolling average</em> is the average case rate in a certain time period. Quirks of reporting (for example, not reporting on weekends but instead rolling Saturday and Sunday cases into Monday) can make the value for any single day less reliable. Using a rolling average smooths out these quirks. Generate this data as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>roll_cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/rollmean.html">rollmean</a></span><span class="op">(</span></span>
 <span>    <span class="va">daily_cases</span>,</span>
 <span>    k <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -622,7 +629,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>This code creates a new data frame called <code>covid_cases_rm</code> (where <em>rm</em> stands for rolling mean). The first step in its creation is to use the <code><a href="https://rdrr.io/pkg/zoo/man/rollmean.html">rollmean()</a></code> function from the <code>zoo</code> package to create a <code>roll_cases</code> variable, which holds the average number of cases in the five-day period surrounding a single date. The <code>k</code> argument is the number of days for which you want to calculate the rolling average (5, in this case), and the <code>fill</code> argument determines what happens in cases like the first day, where you can’t calculate a five-day rolling mean because there are no days prior to this day (Madjid set these values to <code>NA</code>).</p>
 <p>After calculating <code>roll_cases</code>, you need to calculate per capita case rates. To do this, you need population data, so join the population data from the <code>usa_states</code> data frame with the <code>covid_cases</code> data like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases_rm</span> <span class="op">&lt;-</span> <span class="va">covid_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases_rm</span> <span class="op">&lt;-</span> <span class="va">covid_cases</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>roll_cases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/rollmean.html">rollmean</a></span><span class="op">(</span></span>
 <span>    <span class="va">daily_cases</span>,</span>
 <span>    k <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -637,7 +644,7 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>To drop rows with missing population data, you call the <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> function with the <code>Pop</code> variable as an argument. In practice, this removes several US territories (American Samoa, Guam, the Northern Mariana Islands, and the Virgin Islands).</p>
 <p>Next, you create a per capita case rate variable called <code>incidence_rate</code> by multiplying the roll_cases variable by 100,000 and then dividing it by the population of each state:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases_rm</span> <span class="op">&lt;-</span> <span class="va">covid_cases_rm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_cases_rm</span> <span class="op">&lt;-</span> <span class="va">covid_cases_rm</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>incidence_rate <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">5</span> <span class="op">*</span> <span class="va">roll_cases</span> <span class="op">/</span> <span class="va">Pop</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    incidence_rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span></span>
@@ -673,13 +680,13 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 </section><section id="adding-geospatial-data" class="level3"><h3 class="anchored" data-anchor-id="adding-geospatial-data">Adding Geospatial Data</h3>
 <p>You’ve used two of the three data sources (COVID-19 case data and state population data) to create the <code>covid_cases_rm</code> data frame you’ll need to make the map. Now it’s time to use the third data source: the geospatial data you saved as <code>usa_states_geom</code>. Simple features data allows you to merge regular data frames and geospatial data (another point in its favor):</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">covid_cases_rm</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span> <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This code merges the <code>covid_cases_rm</code> data frame into the geospatial data, matching the name variable from <code>usa_states_geom</code> to the state variable in <code>covid_cases_rm</code>.</p>
 <p>Next, you create a new variable called <code>fancy_date</code> to format the date nicely (for example, Jan.&nbsp;01 instead of 2021-01-01):</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid</span> <span class="op">&lt;-</span> <span class="va">usa_states_geom</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid</span> <span class="op">&lt;-</span> <span class="va">usa_states_geom</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">covid_cases_rm</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span> <span class="op">=</span> <span class="st">"state"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fancy_date <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_inorder</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">date</span>, <span class="st">"%b. %d"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">fancy_date</span>, .before <span class="op">=</span> <span class="va">incidence_rate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -688,23 +695,34 @@ Figure&nbsp;4.8: Abdoul Madjid’s map of COVID-19 in the United States in 2021
 <p>Save this data frame as <code>usa_states_geom_covid</code> and take a look at the result:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 18615 features and 4 fields
+<pre><code>Simple feature collection with 18980 features and 4 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
-Bounding box:  xmin: -2100000 ymin: -2500000 xmax: 2516374 ymax: 732103.3
-Projected CRS: +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
+Bounding box:  xmin: -3112200 ymin: -1697728 xmax: 2258154 ymax: 1558935
+Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 First 10 features:
-      name       date fancy_date incidence_rate                       geometry
-1  Arizona 2021-01-01    Jan. 01            &gt;50 MULTIPOLYGON (((-1111066 -8...
-2  Arizona 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((-1111066 -8...
-3  Arizona 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((-1111066 -8...
-4  Arizona 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((-1111066 -8...
-5  Arizona 2021-01-05    Jan. 05            &gt;50 MULTIPOLYGON (((-1111066 -8...
-6  Arizona 2021-01-06    Jan. 06            &gt;50 MULTIPOLYGON (((-1111066 -8...
-7  Arizona 2021-01-07    Jan. 07            &gt;50 MULTIPOLYGON (((-1111066 -8...
-8  Arizona 2021-01-08    Jan. 08            &gt;50 MULTIPOLYGON (((-1111066 -8...
-9  Arizona 2021-01-09    Jan. 09            &gt;50 MULTIPOLYGON (((-1111066 -8...
-10 Arizona 2021-01-10    Jan. 10            &gt;50 MULTIPOLYGON (((-1111066 -8...</code></pre>
+        name       date fancy_date incidence_rate
+1  Louisiana 2021-01-01    Jan. 01            &gt;50
+2  Louisiana 2021-01-02    Jan. 02            &gt;45
+3  Louisiana 2021-01-03    Jan. 03            &gt;45
+4  Louisiana 2021-01-04    Jan. 04            &gt;50
+5  Louisiana 2021-01-05    Jan. 05            &gt;50
+6  Louisiana 2021-01-06    Jan. 06            &gt;50
+7  Louisiana 2021-01-07    Jan. 07            &gt;50
+8  Louisiana 2021-01-08    Jan. 08            &gt;50
+9  Louisiana 2021-01-09    Jan. 09            &gt;50
+10 Louisiana 2021-01-10    Jan. 10            &gt;50
+                         geometry
+1  MULTIPOLYGON (((182432.3 -5...
+2  MULTIPOLYGON (((182432.3 -5...
+3  MULTIPOLYGON (((182432.3 -5...
+4  MULTIPOLYGON (((182432.3 -5...
+5  MULTIPOLYGON (((182432.3 -5...
+6  MULTIPOLYGON (((182432.3 -5...
+7  MULTIPOLYGON (((182432.3 -5...
+8  MULTIPOLYGON (((182432.3 -5...
+9  MULTIPOLYGON (((182432.3 -5...
+10 MULTIPOLYGON (((182432.3 -5...</code></pre>
 </div>
 </div>
 <p>You can see the metadata and <code>geometry</code> columns discussed earlier in the chapter.</p>
@@ -712,36 +730,47 @@ First 10 features:
 <p>It took a lot of work to end up with the surprisingly simple <code>usa_states_geom_covid</code> data frame. While the data may be simple, the code Madjid used to make his map is quite complex. This section walks you through it in pieces.</p>
 <p>The final map is actually multiple maps, one for each day in 2021. Combining 365 days makes for a large final product, so instead of showing the code for every single day, filter the <code>usa_states_geom_covid</code> to show just the first six days in January:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid_six_days</span> <span class="op">&lt;-</span> <span class="va">usa_states_geom_covid</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid_six_days</span> <span class="op">&lt;-</span> <span class="va">usa_states_geom_covid</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">date</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/yearmon.html">as.Date</a></span><span class="op">(</span><span class="st">"2021-01-06"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Save the result as a data frame called <code>usa_states_geom_covid_six_days</code>. Here’s what this data looks like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 306 features and 4 fields
+<pre><code>Simple feature collection with 312 features and 4 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
-Bounding box:  xmin: -2100000 ymin: -2500000 xmax: 2516374 ymax: 732103.3
-Projected CRS: +proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs
+Bounding box:  xmin: -3112200 ymin: -1697728 xmax: 2258154 ymax: 1558935
+Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 First 10 features:
-       name       date fancy_date incidence_rate                       geometry
-1   Arizona 2021-01-01    Jan. 01            &gt;50 MULTIPOLYGON (((-1111066 -8...
-2   Arizona 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((-1111066 -8...
-3   Arizona 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((-1111066 -8...
-4   Arizona 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((-1111066 -8...
-5   Arizona 2021-01-05    Jan. 05            &gt;50 MULTIPOLYGON (((-1111066 -8...
-6   Arizona 2021-01-06    Jan. 06            &gt;50 MULTIPOLYGON (((-1111066 -8...
-7  Arkansas 2021-01-01    Jan. 01            &gt;50 MULTIPOLYGON (((557903.1 -1...
-8  Arkansas 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((557903.1 -1...
-9  Arkansas 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((557903.1 -1...
-10 Arkansas 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((557903.1 -1...</code></pre>
+        name       date fancy_date incidence_rate
+1  Louisiana 2021-01-01    Jan. 01            &gt;50
+2  Louisiana 2021-01-02    Jan. 02            &gt;45
+3  Louisiana 2021-01-03    Jan. 03            &gt;45
+4  Louisiana 2021-01-04    Jan. 04            &gt;50
+5  Louisiana 2021-01-05    Jan. 05            &gt;50
+6  Louisiana 2021-01-06    Jan. 06            &gt;50
+7   Maryland 2021-01-01    Jan. 01            &gt;45
+8   Maryland 2021-01-02    Jan. 02            &gt;45
+9   Maryland 2021-01-03    Jan. 03            &gt;40
+10  Maryland 2021-01-04    Jan. 04            &gt;40
+                         geometry
+1  MULTIPOLYGON (((182432.3 -5...
+2  MULTIPOLYGON (((182432.3 -5...
+3  MULTIPOLYGON (((182432.3 -5...
+4  MULTIPOLYGON (((182432.3 -5...
+5  MULTIPOLYGON (((182432.3 -5...
+6  MULTIPOLYGON (((182432.3 -5...
+7  MULTIPOLYGON (((1722285 240...
+8  MULTIPOLYGON (((1722285 240...
+9  MULTIPOLYGON (((1722285 240...
+10 MULTIPOLYGON (((1722285 240...</code></pre>
 </div>
 </div>
 <p>Madjid’s map is giant, as it includes all 365 days. The size of a few elements have been changed so that they fit in this book.</p>
 <section id="generating-the-basic-map" class="level4"><h4 class="anchored" data-anchor-id="generating-the-basic-map">Generating the Basic Map</h4>
 <p>With your six days of data, you’re ready to make some maps. Madjid’s map-making code has two main parts: generating the basic map, then tweaking its appearance. First, you’ll revisit the three lines of code used to make the Wyoming maps, with some adornments to improve the quality of the visualization:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid_six_days</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid_six_days</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">incidence_rate</span><span class="op">)</span>,</span>
@@ -770,7 +799,7 @@ Figure&nbsp;4.9: A map showing the incidence rate of COVID-19 for the first six 
 </section><section id="applying-data-visualization-principles" class="level4"><h4 class="anchored" data-anchor-id="applying-data-visualization-principles">Applying Data Visualization Principles</h4>
 <p>From now on, all of the code that Madjid uses is to improve the appearance of the maps. Many of the tweaks shown here should be familiar if you’ve read <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>, highlighting a benefit of making maps with ggplot: you can apply the same data visualization principles you learned about when making charts.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid_six_days</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">usa_states_geom_covid_six_days</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">incidence_rate</span><span class="op">)</span>,</span>
@@ -883,24 +912,14 @@ Figure&nbsp;4.10: The re-creation of Abdoul Madjid’s map
 <p>Geospatial data can come in various formats. While ESRI shapefiles (with the <em>.shp</em> extension) are the most common, you might also encounter GeoJSON files (<em>.geojson</em>) like the ones we used in the Wyoming example at the beginning of this chapter, KML files (<em>.kml</em>), and others. Chapter 8 of <em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, and Jannes Muenchow discusses this range of formats.</p>
 <p>The good news is that a single function can read pretty much any type of geospatial data: <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf()</a></code> from the <code>sf</code> package. Say you’ve downloaded geospatial data about US state boundaries from the website &lt;geojson.xyz&gt; in GeoJSON format, then saved it in the <em>data</em> folder as <em>states.geojson</em>. To import this data, use the <em>read_sf()</em> function like so:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="st">"https://data.rfortherestofus.com/states.geojson"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_states</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="st">"https://data.rfortherestofus.com/states.geojson"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>dsn</code> argument (which stands for data source name) tells <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf()</a></code> where to find the file. You save the data as the object <code>us_states</code>.</p>
 </section><section id="accessing-geospatial-data-using-r-functions" class="level3"><h3 class="anchored" data-anchor-id="accessing-geospatial-data-using-r-functions">Accessing Geospatial Data Using R Functions</h3>
-<p>Sometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. Madjid used the <code><a href="https://rdrr.io/pkg/albersusa/man/usa_sf.html">usa_sf()</a></code> function from the <code>albersusa</code> package to acquire his data. Another package for accessing geospatial data related to the United States, <code>tigris</code>, has a number of well-named functions for different types of data. For example, load the <code>tigris</code> package and run the <code><a href="https://rdrr.io/pkg/tigris/man/states.html">states()</a></code> function like so:</p>
-<div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/tigris">tigris</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">states_tigris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tigris/man/states.html">states</a></span><span class="op">(</span></span>
-<span>  cb <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  resolution <span class="op">=</span> <span class="st">"20m"</span>,</span>
-<span>  progress_bar <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The <code>cb = TRUE</code> argument opts out of using the most detailed shapefile and sets the resolution to a more manageable <code>20m</code> (1:20 million). Without these changes, the resulting shapefile would be large and slow to work with. Setting <code>progress_bar = FALSE</code> hides the messages that tigris generates as it loads data. The result is saved as states_tigris. The tigris package has functions to get geospatial data about counties, census tracts, roads, and more.</p>
+<p>Sometimes you’ll have to work with raw data in this way, but not always. That’s because certain R packages provide functions for accessing geospatial data. You saw earlier how the <code>tigris</code> package can help you access geospatial data on US states. This package also has functions to get geospatial data about counties, census tracts, roads, and more.</p>
 <p>If you’re looking for data outside the United States, the <code>rnaturalearth</code> package provides functions for importing geospatial data from across the world. For example, use <code><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html">ne_countries()</a></code> to retrieve geospatial data about various countries:</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/">rnaturalearth</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/">rnaturalearth</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">africa_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html">ne_countries</a></span><span class="op">(</span></span>
 <span>  returnclass <span class="op">=</span> <span class="st">"sf"</span>,</span>
@@ -909,7 +928,7 @@ Figure&nbsp;4.10: The re-creation of Abdoul Madjid’s map
 </div>
 <p>This code uses two arguments: <code>returnclass = "sf"</code> to get data in simple features format, and <code>continent = "Africa"</code> to get only countries on the African continent. If you save the result to an object called <code>africa_countries</code>, you can plot the data on a map as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -931,14 +950,14 @@ Figure&nbsp;4.11: A map of Africa made with data from the <code>rnaturalearth</c
 <p>Once you have access to geospatial data, you need to decide which projection to use. If you’re looking for a simple answer to this question, you’ll be disappointed. As <em>Geocomputation with R</em> puts it, “The question of <em>which</em> CRS [to use] is tricky, and there is rarely a ‘right’ answer.”</p>
 <p>If you’re overwhelmed by the task of choosing a projection, the <code>crsuggest</code> package from Kyle Walker can give you ideas. Its <code>suggest_top_crs()</code> function returns a coordinate reference system that is well suited for your data. Load <code>crsuggest</code> and try it out on your africa_countries data:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">crsuggest</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">crsuggest</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">suggest_top_crs</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>suggest_top_crs()</code> function should return projection number <code>28232</code>. Pass this value to the <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> function to change the projection before you plot:</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="fl">28232</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -960,7 +979,7 @@ Figure&nbsp;4.12: A map of Africa made with projection number 28232
 </section><section id="wrangling-your-geospatial-data" class="level3"><h3 class="anchored" data-anchor-id="wrangling-your-geospatial-data">Wrangling Your Geospatial Data</h3>
 <p>The ability to merge traditional data frames with geospatial data is a huge benefit of working with simple features data. Remember that for his COVID-19 map, Madjid analyzed traditional data frames before merging them with geospatial data. But because simple features data acts just like traditional data frames, you can just as easily apply the data-wrangling and analysis functions from the <code>tidyverse</code> directly to a simple features object. To see how this works, revisit the <code>africa_countries</code> simple features data and select two variables (<code>name</code> and <code>pop_est</code>) to see the name and population of the countries:</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">pop_est</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output looks like the following:</p>
@@ -987,13 +1006,13 @@ First 10 features:
 </div>
 <p>Say you want to make a map showing which African countries have populations larger than 20 million. First, you’ll need to calculate this value for each country. To do so, use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> functions, which will return <code>TRUE</code> if a country’s population is over 20 million and <code>FALSE</code> otherwise, and then store the result in a variable called <code>population_above_20_million</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">pop_est</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>population_above_20_million <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">pop_est</span> <span class="op">&gt;</span> <span class="fl">20000000</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can then take this code and pipe it into ggplot, setting the fill aesthetic property to be equal to population_above_20_million:</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">africa_countries</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">pop_est</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>population_above_20_million <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">pop_est</span> <span class="op">&gt;</span> <span class="fl">20000000</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">population_above_20_million</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1025,7 +1044,10 @@ Figure&nbsp;4.13: A map of Africa that highlights countries with populations abo
 </ul>
 
 
-</section></main><!-- /main --><script>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>The first print version of the book uses the <code>albersusa</code> package. Unfortunately, this package is no longer easily installable. I’ve changed the instructions below to use the <code>tigris</code> package.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script>
 document.addEventListener("DOMContentLoaded", function() {
     // figure
     var figcaptions = document.querySelectorAll("figcaption, .quarto-xref");
