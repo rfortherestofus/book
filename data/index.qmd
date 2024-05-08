@@ -44,7 +44,7 @@ COVID deaths and testing in the US: <https://data.rfortherestofus.com/united_sta
 
 Image of penguins: <https://data.rfortherestofus.com/penguins.jpg>
 
-### Quarto
+### Chapter 10: Quarto
 
 COVID deaths and testing in the US: <https://data.rfortherestofus.com/united_states_covid19_cases_deaths_and_testing_by_state.csv>
 
