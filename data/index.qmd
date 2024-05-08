@@ -1,4 +1,5 @@
 ---
+title: "Data for R for the Rest of Us: A Statistics-Free Introduction"
 format: 
   html:
     theme: 
@@ -6,10 +7,7 @@ format:
       - style.scss
 ---
 
-# This website contains the data used in the book *R for the Rest of Us: A Statistics-Free Introduction*. 
-
-[**Read the online version of the book →**](https://book.rfortherestofus.com/)
-
+This website contains links to the data used in the book [*R for the Rest of Us: A Statistics-Free Introduction*](https://book.rfortherestofus.com/). 
 
 [![](cover.jpg){width=400px .quarto-cover-image}](https://book.rfortherestofus.com/)
 
