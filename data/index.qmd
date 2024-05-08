@@ -1,0 +1,59 @@
+---
+format: 
+  html:
+    theme: 
+      - cosmo
+      - style.scss
+---
+
+# This website contains the data used in the book *R for the Rest of Us: A Statistics-Free Introduction*. 
+
+[**Read the online version of the book →**](https://book.rfortherestofus.com/)
+
+
+[![](cover.jpg){width=400px .quarto-cover-image}](https://book.rfortherestofus.com/)
+
+
+### Chapter 1: An R Programming Crash Course
+
+Population by state: <https://data.rfortherestofus.com/population-by-state.csv>
+
+### Chapter 2: Principles of Data Visualization
+
+10 rows of the gapminder dataset: <https://data.rfortherestofus.com/gapminder_10_rows.csv>
+
+Data on drought conditions by region: <https://data.rfortherestofus.com/dm_perc_cat_hubs.json>
+
+### Chapter 4: Maps and Geospatial Data
+
+Daily COVID rates in the US: <https://data.rfortherestofus.com/covid-us-states.csv>
+
+Population by state: <https://data.rfortherestofus.com/population-by-state.csv>
+
+### Chapter 6: R Markdown Reports
+
+Palmer Penguins data for 2007: <https://data.rfortherestofus.com/penguins-2007.csv>
+
+Palmer Penguins data for 2008: <https://data.rfortherestofus.com/penguins-2008.csv>
+
+### Chapter 7: Parameterized Reporting
+
+COVID deaths and testing in the US: <https://data.rfortherestofus.com/united_states_covid19_cases_deaths_and_testing_by_state.csv>
+
+### Chapter 8: Slideshow Presentations
+
+Image of penguins: <https://data.rfortherestofus.com/penguins.jpg>
+
+### Quarto
+
+COVID deaths and testing in the US: <https://data.rfortherestofus.com/united_states_covid19_cases_deaths_and_testing_by_state.csv>
+
+### Chapter 11: Automatically Accessing Online Data
+
+Fake data on video games survey: <https://data.rfortherestofus.com/google-sheet>
+
+### Chapter 12: Creating Functions and Packages
+
+Palmer Penguins data for 2007: <https://data.rfortherestofus.com/penguins-2007.csv>
+
+Rolling average of COVID rates in the US: <https://data.rfortherestofus.com/us-states-covid-rolling-average.csv>
