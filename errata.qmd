@@ -44,7 +44,7 @@ No updates
 
 ## Chapter 11: Automatically Accessing Online Data
 
-No updates
+Code to calculate the Asian population in each state via the first method shown in the Analyzing Census Data had an error in the first print version of the book. It has been fixed in the online version.
 
 ## Chapter 12: Creating Functions and Packages
 
