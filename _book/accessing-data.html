@@ -684,28 +684,29 @@ $ `What's your favorite game?`      &lt;chr&gt; "It's hard to choose. House Flip
 <span>  year <span class="op">=</span> <span class="fl">2020</span></span>
 <span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">NAME</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">NAME</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pct <span class="op">=</span> <span class="va">value</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"asian_population"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span></span>
+<span>    id_cols <span class="op">=</span> <span class="va">NAME</span>,</span>
+<span>    names_from <span class="op">=</span> <span class="va">variable</span>,</span>
+<span>    values_from <span class="op">=</span> <span class="va">value</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pct <span class="op">=</span> <span class="va">asian_population</span> <span class="op">/</span> <span class="va">total_population</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>group_by(NAME)</code> function creates one group for each state because you want to calculate the Asian population percentage in each state (not for the entire United States). Then <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> calculates each percentage, taking the value in each row and dividing it by the <code>total_population</code> and <code>asian_population</code> rows for each state. The <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> function removes the state-level grouping, and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> shows only the Asian population percentage.</p>
-<p>When you run this code, you should see both the total Asian population and the Asian population as a percentage of the total population in each state:</p>
+<p>The <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> function puts the values for Asian population and total population into their own variables. From there, you use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to calculate the percentage of the population in each state that is Asian, which you should see when you run this code:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 52 × 5
-   GEOID NAME                 variable           value    pct
-   &lt;chr&gt; &lt;chr&gt;                &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
- 1 01    Alabama              asian_population   76660 0.0150
- 2 02    Alaska               asian_population   44032 0.0566
- 3 04    Arizona              asian_population  257430 0.0347
- 4 05    Arkansas             asian_population   51839 0.0169
- 5 06    California           asian_population 6085947 0.133 
- 6 08    Colorado             asian_population  199827 0.0335
- 7 09    Connecticut          asian_population  172455 0.0456
- 8 10    Delaware             asian_population   42699 0.0413
- 9 11    District of Columbia asian_population   33545 0.0464
-10 12    Florida              asian_population  643682 0.0290
+<pre><code># A tibble: 52 × 4
+   NAME                 total_population asian_population    pct
+   &lt;chr&gt;                           &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Alabama                       5024279            76660 0.0153
+ 2 Alaska                         733391            44032 0.0600
+ 3 Arizona                       7151502           257430 0.0360
+ 4 Arkansas                      3011524            51839 0.0172
+ 5 California                   39538223          6085947 0.154 
+ 6 Colorado                      5773714           199827 0.0346
+ 7 Connecticut                   3605944           172455 0.0478
+ 8 Delaware                       989948            42699 0.0431
+ 9 District of Columbia           689545            33545 0.0486
+10 Florida                      21538187           643682 0.0299
 # ℹ 42 more rows</code></pre>
 </div>
 </div>
