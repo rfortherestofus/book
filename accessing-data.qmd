@@ -441,15 +441,15 @@ get_decennial(
   year = 2020
 ) %>%
   arrange(NAME) %>%
-  group_by(NAME) %>%
-  mutate(pct = value / sum(value)) %>%
-  ungroup() %>%
-  filter(variable == "asian_population")
+  pivot_wider(
+    id_cols = NAME,
+    names_from = variable,
+    values_from = value
+  ) %>%
+  mutate(pct = asian_population / total_population)
 ```
 
-The `group_by(NAME)` function creates one group for each state because you want to calculate the Asian population percentage in each state (not for the entire United States). Then `mutate()` calculates each percentage, taking the value in each row and dividing it by the `total_population` and `asian_population` rows for each state. The `ungroup()` function removes the state-level grouping, and `filter()` shows only the Asian population percentage.
-
-When you run this code, you should see both the total Asian population and the Asian population as a percentage of the total population in each state:
+The `pivot_wider()` function puts the values for Asian population and total population into their own variables. From there, you use `mutate()` to calculate the percentage of the population in each state that is Asian, which you should see when you run this code:
 
 ```{r}
 get_decennial(
@@ -461,10 +461,12 @@ get_decennial(
   year = 2020
 ) %>%
   arrange(NAME) %>%
-  group_by(NAME) %>%
-  mutate(pct = value / sum(value)) %>%
-  ungroup() %>%
-  filter(variable == "asian_population")
+  pivot_wider(
+    id_cols = NAME,
+    names_from = variable,
+    values_from = value
+  ) %>%
+  mutate(pct = asian_population / total_population)
 ```
 
 This is a reasonable way to calculate the Asian population as a percentage of the total population in each state — but it’s not the only way.
@@ -745,4 +747,3 @@ If you’re looking for census data from other countries, there are also R packa
 - Isabella Velásquez and Curtis Kephart, “Automated Survey Reporting with googlesheets4, pins, and R Markdown,” Posit, June 15, 2022, <https://posit.co/blog/automated-survey-reporting/>.
 
 - Kyle Walker, *Analyzing US Census Data: Methods, Maps, and Models in R* (Boca Raton, FL: CRC Press, 2023), <https://walker-data.com/census-r/>.
-
