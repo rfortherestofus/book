@@ -323,7 +323,7 @@ To change the font in addition to the text’s size and color, add this CSS:
 .remark-slide-content h2 {
   font-size: 150px;
   color: white;
-	font-family: Inter;
+  font-family: Inter;
   font-weight: bold;
 }
 ```
