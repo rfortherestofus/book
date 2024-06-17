@@ -91,6 +91,7 @@ table_gridlines <- gdp %>%
 ```{r}
 #| label: fig-table-with-gridlines
 #| fig-cap: "A table with grid lines everywhere can be distracting."
+#| out-width: 100%
 save_table_for_nostarch(table_gridlines)
 ```
 
@@ -107,6 +108,7 @@ table_default <- gdp %>%
 ```{r}
 #| label: fig-table-horizontal-gridlines
 #| fig-cap: "A table with only horizontal grid lines is more effective."
+#| out-width: 100%
 save_table_for_nostarch(table_default)
 
 ```
@@ -180,6 +182,7 @@ table_clean <- gdp %>%
 ```{r}
 #| label: fig-table-no-body-gridlines
 #| fig-cap: "A clean-looking table with grid lines only on the header row and the bottom"
+#| out-width: 100%
 save_table_for_nostarch(table_clean)
 ```
 
@@ -210,6 +213,7 @@ table_no_grid_lines <- gdp %>%
 ```{r}
 #| label: fig-table-no-gridlines-at-all
 #| fig-cap: "An unclear table with all grid lines removed"
+#| out-width: 100%
 save_table_for_nostarch(table_no_grid_lines)
 ```
 
@@ -242,6 +246,7 @@ table <- table_no_gridlines %>%
 ```{r}
 #| label: fig-table-bold-header
 #| fig-cap: "Making the header row more obvious using bold"
+#| out-width: 100%
 save_table_for_nostarch(table)
 ```
 
@@ -285,6 +290,7 @@ table_mixed_alignment <- table_bold_header %>%
 ```{r}
 #| label: fig-table-cols-aligned-lcr
 #| fig-cap: "Comparing numerical data aligned to the left (1952), center (1972), and right (1992)"
+#| out-width: 100%
 save_table_for_nostarch(table_mixed_alignment)
 ```
 
@@ -360,6 +366,7 @@ table_center_aligned <- gdp_with_bosnia %>%
 ```{r}
 #| label: fig-table-country-centered
 #| fig-cap: "Center-aligned text can be hard to read, especially when it includes longer values."
+#| out-width: 100%
 save_table_for_nostarch(table_center_aligned)
 ```
 
@@ -424,6 +431,7 @@ table_dollar_signs <- table_bold_header %>%
 ```{r}
 #| label: fig-table-whole-numbers
 #| fig-cap: "Rounding dollar amounts to whole numbers and adding dollar signs can simplify data."
+#| out-width: 100%
 save_table_for_nostarch(table_dollar_signs)
 ```
 
@@ -503,6 +511,7 @@ table_highlight_values <- table_whole_numbers %>%
 ```{r}
 #| label: fig-table-highlight-values
 #| fig-cap: "Using color to highlight important values, such as the largest number in each year"
+#| out-width: 100%
 save_table_for_nostarch(table_highlight_values)
 ```
 
@@ -672,6 +681,7 @@ table_with_sparklines <- gdp_with_trend %>%
 ```{r}
 #| label: fig-table-sparkline
 #| fig-cap: "A table with sparklines can show changes in data over time."
+#| out-width: 100%
 save_table_for_nostarch(table_with_sparklines)
 ```
 
@@ -733,6 +743,7 @@ table_fivethirtyeight <- gdp %>%
 ```{r}
 #| label: fig-table-fivethirtyeight
 #| fig-cap: "A table redone in the *FiveThirtyEight* style"
+#| out-width: 100%
 save_table_for_nostarch(table_fivethirtyeight)
 ```
 

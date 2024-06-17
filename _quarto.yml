@@ -59,7 +59,6 @@ execute:
   output: true
   include: true
   cache: true
-  out-width: "100%"
 
 format:
   html:
