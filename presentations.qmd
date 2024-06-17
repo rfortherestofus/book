@@ -446,7 +446,7 @@ With `xaringan`, you can create any type of presentation you want and then custo
 
 ## Additional Resources
 
-- Garrick Aden-Buie, Silvia Canelón, and Shannon Pileggi, “Professional, Polished, Presentable: Making Great Slides with xaringan,” workshop materials, n.d., <https://presentable-user2021.netlify.app>.
+- Garrick Aden-Buie and Silvia Canelón, “Professional, Polished, Presentable: Making Great Slides with xaringan,” workshop materials, n.d., <https://presentable-user2021.netlify.app>.
 
 - Silvia Canelón, “Sharing Your Work with xaringan: An Introduction to xaringan for Presentations: The Basics and Beyond,” workshop for the NHS-R Community 2020 Virtual Conference, November 2, 2020, <https://spcanelon.github.io/xaringan-basics-and-beyond/index.html>.
 
