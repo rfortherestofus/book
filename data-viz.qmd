@@ -1062,7 +1062,6 @@ ggplot(
 ```
 
 On the x axis, they removed both the axis title ("week") using `name = NULL` and the 0–50 text with `guide = "none"`. On the y axis, they removed the title and text showing percentages using `labels = NULL`, which functionally does the same thing as `guide = "none"`. They also moved the axis lines themselves to the right side using `position = "right"`. These axis lines are apparent only as tick marks at this point but will become more visible later. @fig-southwest-2003-xy-scales-plot shows the result of these tweaks.
-
 On the x-axis, they removed both the axis title (“week”) using `name = NULL` and the axis labels (the weeks numbered 0 to 50) with `guide = "none"`. On the y-axis, they removed the title and text showing percentages using labels = NULL, which functionally does the same thing as `guide = "none"`. They also moved the axis lines themselves to the right side using `position = "right"`. These axis lines are apparent only as tick marks at this point but will become more visible later. @fig-southwest-2003-xy-scales-plot shows the result of these tweaks.
 
 ```{r}
