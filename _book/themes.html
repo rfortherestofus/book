@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 3&nbsp; Custom Data Visualization Themes</title>
+<title>3&nbsp; Custom Data Visualization Themes – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 3&nbsp; Custom Data Visualization Themes">
+<meta property="og:title" content="3&nbsp; Custom Data Visualization Themes – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./themes.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Custom Data Visualization Themes</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This code tells R to use the <code>penguins_summary</code> data frame, putting the island on the x-axis and the count of the number of penguins (<code>n</code>) on the y-axis, and making each bar a different color with the <code>fill</code> aesthetic property. Since you’ll modify this plot multiple times, saving it as an object called <code>penguins_plot</code> simplifies the process. <a href="#fig-basic-penguins-plot-plot" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows the resulting plot.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-basic-penguins-plot-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-basic-penguins-plot-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-basic-penguins-plot-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-basic-penguins-plot-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -423,7 +423,7 @@ Figure&nbsp;3.1: A chart with the default theme
 <p><a href="#fig-penguins-bbc-style-plot" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-bbc-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-bbc-style-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-bbc-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-bbc-style-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -491,7 +491,7 @@ Figure&nbsp;3.2: The same chart with BBC style
 <p><a href="#fig-penguins-plot-text-formatting-plot" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> shows these changes.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-plot-text-formatting-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-plot-text-formatting-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-text-formatting-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-plot-text-formatting-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -519,7 +519,7 @@ Figure&nbsp;3.3: The penguin chart with only the text formatting changed
 <p>This code removes the legend background (which would show up only if the background color of the entire plot weren’t white), the title, and the legend key (the borders on the boxes that show the island names, just barely visible in <a href="#fig-penguins-plot-text-formatting-plot" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>). Finally, the code sets the legend’s text to 18-point Helvetica with the same nearly black color. <a href="#fig-penguins-plot-legend-plot" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-plot-legend-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-plot-legend-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-legend-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-plot-legend-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -546,7 +546,7 @@ Figure&nbsp;3.4: The penguin chart with changes to the legend
 <p>All text on the axes becomes 18-point Helvetica and nearly black. The text on the x-axis (Biscoe, Dream, and Torgersen) gets a bit of spacing around it. Finally, both axes’ ticks and lines are removed. <a href="#fig-penguins-plot-axes-plot" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> shows these changes, although the removal of the axis lines doesn’t make a difference to the display here.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-plot-axes-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-plot-axes-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-axes-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-plot-axes-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -567,7 +567,7 @@ Figure&nbsp;3.5: The penguin chart with axis formatting changes
 <p>The approach here is fairly straightforward: this code removes minor grid lines for both axes, removes major grid lines on the x-axis, and keeps major grid lines on the y-axis but makes them a light gray (the #cbcbcb hex code). <a href="#fig-penguins-plot-gridlines-plot" class="quarto-xref">Figure&nbsp;<span>3.6</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-plot-gridlines-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-plot-gridlines-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-gridlines-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-plot-gridlines-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -585,7 +585,7 @@ Figure&nbsp;3.6: Our chart with tweaks to the grid lines
 <p>The plot without the gray background is seen in Figure @ref(fig:penguins-plot-no-bg).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-plot-no-bg" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-plot-no-bg" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-no-bg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-plot-no-bg-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -600,7 +600,7 @@ Figure&nbsp;3.7: The chart with the gray background removed
 <p>The <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function contains a bit more code to modify <code>strip.background</code> and <code>strip.text</code>. In ggplot, the <em>strip</em> refers to the text above faceted charts like the ones discussed in <a href="data-viz.html" class="quarto-xref"><span>Chapter 2</span></a>. Next, you’ll turn your penguin chart into a faceted chart to see these components of the BBC’s theme. I’ve used the code from the <code><a href="https://rdrr.io/pkg/bbplot/man/bbc_style.html">bbc_style()</a></code> function, minus the sections that deal with small multiples, to make <a href="#fig-penguin-facetted-plot" class="quarto-xref">Figure&nbsp;<span>3.8</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguin-facetted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguin-facetted-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguin-facetted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguin-facetted-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -619,7 +619,7 @@ Figure&nbsp;3.8: The faceted chart with no changes to the strip text formatting
 <p>This code removes the background (or, more accurately, colors it white). Then it makes the text larger, bold, and left-aligned using hjust = 0. Note that I did have to make the text size slightly smaller than in the actual chart to fit the book, and I added code to make it bold. <a href="#fig-penguins-plot-facetted-bbc" class="quarto-xref">Figure&nbsp;<span>3.9</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-plot-facetted-bbc" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-plot-facetted-bbc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-plot-facetted-bbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="themes_files/figure-html/fig-penguins-plot-facetted-bbc-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -706,18 +706,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -749,7 +738,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -757,7 +768,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

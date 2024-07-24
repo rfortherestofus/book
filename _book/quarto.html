@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 10&nbsp; Quarto</title>
+<title>10&nbsp; Quarto – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 10&nbsp; Quarto">
+<meta property="og:title" content="10&nbsp; Quarto – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rmarkdown.html">Part II: Reports, Presentations, and Websites</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quarto</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -293,22 +293,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#revealing-content-incrementally" id="toc-revealing-content-incrementally" class="nav-link" data-scroll-target="#revealing-content-incrementally">Revealing Content Incrementally</a></li>
   <li><a href="#aligning-content-and-adding-background-images" id="toc-aligning-content-and-adding-background-images" class="nav-link" data-scroll-target="#aligning-content-and-adding-background-images">Aligning Content and Adding Background Images</a></li>
-  <li><a href="#customizing-your-slides-with-themes-and-css" id="toc-customizing-your-slides-with-themes-and-css" class="nav-link" data-scroll-target="#customizing-your-slides-with-themes-and-css">Customizing Your Slides with Themes and CSS</a></li>
   </ul>
 </li>
-  <li>
-<a href="#making-websites" id="toc-making-websites" class="nav-link" data-scroll-target="#making-websites">Making Websites</a>
-  <ul class="collapse">
-<li><a href="#building-the-website" id="toc-building-the-website" class="nav-link" data-scroll-target="#building-the-website">Building the Website</a></li>
-  <li><a href="#setting-options" id="toc-setting-options" class="nav-link" data-scroll-target="#setting-options">Setting Options</a></li>
-  <li><a href="#changing-the-websites-appearance" id="toc-changing-the-websites-appearance" class="nav-link" data-scroll-target="#changing-the-websites-appearance">Changing the Website’s Appearance</a></li>
-  <li><a href="#adjusting-the-title-and-navigation-bar" id="toc-adjusting-the-title-and-navigation-bar" class="nav-link" data-scroll-target="#adjusting-the-title-and-navigation-bar">Adjusting the Title and Navigation Bar</a></li>
-  <li><a href="#creating-wider-layouts" id="toc-creating-wider-layouts" class="nav-link" data-scroll-target="#creating-wider-layouts">Creating Wider Layouts</a></li>
-  <li><a href="#hosting-your-website-on-github-pages-and-quarto-pub" id="toc-hosting-your-website-on-github-pages-and-quarto-pub" class="nav-link" data-scroll-target="#hosting-your-website-on-github-pages-and-quarto-pub">Hosting Your Website on GitHub Pages and Quarto Pub</a></li>
-  </ul>
-</li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/rfortherestofus/book/blob/main/quarto.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rfortherestofus/book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -335,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Once you’ve installed Quarto, create a document by clicking <strong>File &gt; New File &gt; Quarto</strong> Document. You should see a menu, shown in <a href="#fig-new-quarto-doc" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>, that looks like the one used to create an R Markdown document.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-new-quarto-doc" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-new-quarto-doc" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-new-quarto-doc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/new-quarto-doc.png" class="img-fluid figure-img" width="568">
 </div>
@@ -620,7 +606,7 @@ Figure&nbsp;10.1: The RStudio menu for creating a new Quarto document
 <p>You can use a <code>&lt;div&gt;</code> tag to create columns in Quarto slides, too. Say you want to create a slide with content in two columns, as in <a href="#fig-quarto-slides-two-columns" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-slides-two-columns" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-slides-two-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-slides-two-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-slides-two-columns.png" class="img-fluid figure-img" width="1004">
 </div>
@@ -678,7 +664,6 @@ Notice the <code>:::</code>, as well as <code>::::</code>, which creates nested 
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Penguins {background-image="penguins.jpg"}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This should add a slide with the text <em>Penguins</em> in front of the selected image.</p>
-
 <section id="customizing-your-slides-with-themes-and-css" class="level3"><h3 class="anchored" data-anchor-id="customizing-your-slides-with-themes-and-css">Customizing Your Slides with Themes and CSS</h3>
 <p>You’ve started making some changes to the look and feel of the Quarto slides, but you can add even more customization to your design. As with xaringan, there are two main ways to further customize your slides in Quarto: using existing themes and changing the CSS.</p>
 <p>Themes are the easiest way to change your slide design. To apply a theme in Quarto, simply add its name to your YAML:</p>
@@ -693,7 +678,7 @@ Notice the <code>:::</code>, as well as <code>::::</code>, which creates nested 
 <p>Using this option should change the theme from light (the default) to dark. You can see the title slide with the dark theme applied in <a href="#fig-quarto-slide-dark" class="quarto-xref">Figure&nbsp;<span>10.3</span></a>. To see the full list of available themes, go to <a href="https://quarto.org/docs/presentations/revealjs/themes.html" class="uri">https://quarto.org/docs/presentations/revealjs/themes.html</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-slide-dark" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-slide-dark" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-slide-dark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-slide-dark.png" class="img-fluid figure-img" width="1004">
 </div>
@@ -730,7 +715,7 @@ Figure&nbsp;10.3: A slide with the dark theme applied
 <p><a href="#fig-quarto-slide-scss" class="quarto-xref">Figure&nbsp;<span>10.4</span></a> shows the changes applied to the rendered slides.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-slide-scss" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-slide-scss" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-slide-scss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-slide-scss.png" class="img-fluid figure-img" width="1004">
 </div>
@@ -761,7 +746,7 @@ Figure&nbsp;10.4: A slide modified using custom CSS
 <p>To render a Quarto website, look for the Build tab in the top right of RStudio and click <strong>Render Website</strong>. The rendered website should now appear in the Viewer pane on the bottom-right pane of RStudio. If you navigate to the Files pane on the same panel, you should also see that a <em>_site</em> folder has been created to hold the content of the rendered site. Try opening the <em>index.html</em> file in your web browser. You should see the website in <a href="#fig-covid-website-messages" class="quarto-xref">Figure&nbsp;<span>10.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-covid-website-messages" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-covid-website-messages" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-covid-website-messages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/covid-website-messages.png" class="img-fluid figure-img" width="568">
 </div>
@@ -815,7 +800,7 @@ Figure&nbsp;10.5: The Quarto website with warnings and messages
 <p>If you build the website again, you should now see just the content, as in <a href="#fig-covid-website-no-messages" class="quarto-xref">Figure&nbsp;<span>10.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-covid-website-no-messages" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-covid-website-no-messages" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-covid-website-no-messages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/covid-website-no-messages.png" class="img-fluid figure-img" width="546">
 </div>
@@ -846,7 +831,7 @@ Figure&nbsp;10.6: The website with warnings and messages removed
 <p>The re-rendered <em>index.html</em> now has large red headings (shown in <a href="#fig-covid-website-custom-css" class="quarto-xref">Figure&nbsp;<span>10.7</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-covid-website-custom-css" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-covid-website-custom-css" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-covid-website-custom-css-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/covid-website-custom-css.png" class="img-fluid figure-img" width="568">
 </div>
@@ -872,7 +857,7 @@ Figure&nbsp;10.7: The website with custom CSS applied
 <p>This syntax tells Quarto to use the <code>minty</code> theme, then make additional tweaks based on the <em>styles.scss</em> file. If you render the website again, you should see the bright yellow background throughout (<a href="#fig-quarto-website-scss" class="quarto-xref">Figure&nbsp;<span>10.8</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-website-scss" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-website-scss" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-website-scss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-website-scss.png" class="img-fluid figure-img" width="971">
 </div>
@@ -899,7 +884,7 @@ Figure&nbsp;10.8: The website with custom CSS applied through styles.scss
 <p>Changing the title requires adjusting the <code>title</code> line. The <code>navbar</code> section functions nearly identically to how it does with <code>distill</code>. The <code>href</code> line lists the files the navigation bar should link to. The optional text line specifies the text that should show up for that link. <a href="#fig-quarto-website-navbar-changes" class="quarto-xref">Figure&nbsp;<span>10.9</span></a> shows these changes applied to the website.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-website-navbar-changes" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-website-navbar-changes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-website-navbar-changes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-website-navbar-changes.png" class="img-fluid figure-img" width="974">
 </div>
@@ -946,7 +931,7 @@ Figure&nbsp;10.9: The changes to the navigation bar
 <p>As an alternative to GitHub Pages, Quarto has a free service called Quarto Pub that makes it easy to get your materials online. If you’re not a GitHub user, this is a great way to publish your work. To see how it works, you’ll publish the website you just made to it. Click the <strong>Terminal</strong> tab on the bottom-left pane of RStudio. At the prompt, enter <code>quarto publish</code>. This should bring up a list of ways you can publish your website, as shown in <a href="#fig-quarto-publish" class="quarto-xref">Figure&nbsp;<span>10.10</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-publish" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-publish" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-publish-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-publish.png" class="img-fluid figure-img" width="651">
 </div>
@@ -959,7 +944,7 @@ Figure&nbsp;10.10: The list of providers to publish your Quarto website
 <p>Press <strong>Enter</strong> to select Quarto Pub. You’ll then be asked to authorize RStudio to publish to Quarto Pub. Enter Y to do so, which should take you to <a href="https://quartopub.com" class="uri">https://quartopub.com</a>. Sign up for an account (or sign in if you already have one). You should see a screen indicating that you have successfully signed in and authorized RStudio to connect with Quarto Pub. From there, you can return to RStudio, which should prompt you to select a name for your website. The easiest option is to use your project’s name. Once you enter the name, Quarto Pub should publish the site and take you to it, as shown in <a href="#fig-quarto-pub-website" class="quarto-xref">Figure&nbsp;<span>10.11</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-quarto-pub-website" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-quarto-pub-website" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-pub-website-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/quarto-pub-website.png" class="img-fluid figure-img" width="991">
 </div>
@@ -982,7 +967,9 @@ Figure&nbsp;10.11: The website published on Quarto Pub
 </ul>
 
 
-</section><!-- /main --><script>
+</section>
+</div>
+</section></section></main><!-- /main --><script>
 document.addEventListener("DOMContentLoaded", function() {
     // figure
     var figcaptions = document.querySelectorAll("figcaption, .quarto-xref");
@@ -1042,18 +1029,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1085,7 +1061,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -1093,7 +1091,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1428,8 +1426,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav>
 </div> <!-- /content -->
 
-</section></section></main>
-</div>
 
 
 <footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rfortherestofus/book/blob/main/quarto.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/rfortherestofus/book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>

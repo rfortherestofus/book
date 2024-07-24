@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 1&nbsp; An R Programming Crash Course</title>
+<title>1&nbsp; An R Programming Crash Course – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 1&nbsp; An R Programming Crash Course">
+<meta property="og:title" content="1&nbsp; An R Programming Crash Course – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./crash-course.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An R Programming Crash Course</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You’ll need two pieces of software to use R effectively. The first is R itself, which provides the underlying computational tools that make the language work. The second is an <em>integrated development environment (IDE)</em> like RStudio. This coding platform simplifies working with R. The best way to understand the relationship between R and RStudio is with this analogy from Chester Ismay and Albert Kim’s book <em>Statistical Inference via Data Science: A Modern Dive into R and the Tidyverse</em>: R is the engine that powers your data, and RStudio is like the dashboard that provides a user-friendly interface.</p>
 <section id="installing-r-and-rstudio" class="level3"><h3 class="anchored" data-anchor-id="installing-r-and-rstudio">Installing R and RStudio</h3>
 <p>To download R, go to <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a> and choose the link for your operating system. Once you’ve installed it, open the file. This should open an interface, like the one shown in <a href="#fig-r-console" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>, that lets you work with R on your operating system’s command line. For example, enter <code>2 + 2</code>, and you should see <code>4</code>.</p>
-<div id="fig-r-console" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-r-console" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-r-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/r-console.png" class="img-fluid figure-img">
 </div>
@@ -347,7 +347,7 @@ Figure&nbsp;1.1: The R console
 <p>A few brave souls work with R using only this command line, but most opt to use RStudio, which provides a way to see your files, the output of your code, and more. You can download RStudio at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. Install RStudio as you would any other app and open it.</p>
 </section><section id="exploring-the-rstudio-interface" class="level3"><h3 class="anchored" data-anchor-id="exploring-the-rstudio-interface">Exploring the RStudio Interface</h3>
 <p>The first time you open RStudio, you should see the three panes shown in <a href="#fig-rstudio-no-project" class="quarto-xref">Figure&nbsp;<span>1.2</span></a>.</p>
-<div id="fig-rstudio-no-project" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rstudio-no-project" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-no-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/rstudio-no-project.png" class="img-fluid figure-img">
 </div>
@@ -361,7 +361,7 @@ Figure&nbsp;1.2: The RStudio editor
 </section></section><section id="r-script-files" class="level2"><h2 class="anchored" data-anchor-id="r-script-files">R Script Files</h2>
 <p>If you write all of your code in the console, you won’t have any record of it. Say you sit down today and import your data, analyze it, and then make some graphs. If you run these operations in the console, you’ll have to re-create that code from scratch tomorrow. But if you write your code in files instead, you can run it multiple times.</p>
 <p>R script files, which use the .R extension, save your code so you can run it later. To create an R script file, go to <em>File &gt; New File &gt; R Script</em>, and the script file pane should appear in the top left of RStudio, as shown in <a href="#fig-rstudio-four-panels" class="quarto-xref">Figure&nbsp;<span>1.3</span></a>. Save this file in your Documents folder as <code>sample-code.R</code>.</p>
-<div id="fig-rstudio-four-panels" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rstudio-four-panels" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-four-panels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/rstudio-four-panels.png" class="img-fluid figure-img">
 </div>
@@ -490,7 +490,7 @@ Note
 <p>R lets you do all of the same data manipulation tasks you might perform in a tool like Excel, such as calculating averages or totals. Conceptually, however, working with data in R is very different from working with Excel, where your data and analysis code live in the same place: a spreadsheet. While the data you work with in R might look similar to the data you work with in Excel, it typically comes from some external file, so you have to run code to import it.</p>
 <section id="importing-data" class="level3"><h3 class="anchored" data-anchor-id="importing-data">Importing Data</h3>
 <p>You’ll import data from a <code>comma-separated values</code> (CSV) file, a text file that holds a series of related values separated by commas. You can open CSV files using most spreadsheet applications, which use columns rather than commas as separators. For example, <a href="#fig-population-by-state-csv" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> shows the <code>population-by-state.csv</code> file in Excel.</p>
-<div id="fig-population-by-state-csv" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-population-by-state-csv" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-population-by-state-csv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/population-by-state-csv.png" class="img-fluid figure-img">
 </div>
@@ -629,7 +629,7 @@ Figure&nbsp;1.4: The population-by-state.csv file in Excel
 <p>To save your data for reuse, you need to create an object. For the purposes of this discussion, an object is a data structure that is stored for later use. To create an object, update your data-importing syntax so it looks like this:</p>
 <p>Now this line of code contains the <code>&lt;-</code> <em>assignment operator</em>, which takes what follows it and assigns it to the item on the left. To the left of the assignment operator is the <code>population_data</code> object. Put together, the whole line imports the CSV file and assigns it to an object called <code>population_data</code>.</p>
 <p>When you run this code, you should see <code>population_data</code> in your environment pane, as shown in <a href="#fig-population-data-environment" class="quarto-xref">Figure&nbsp;<span>1.5</span></a>.</p>
-<div id="fig-population-data-environment" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-population-data-environment" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-population-data-environment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/population-data-environment.png" class="img-fluid figure-img">
 </div>
@@ -681,7 +681,7 @@ Figure&nbsp;1.5: The population_data object in the environment pane
 <p>By working in a project, you can use <em>relative paths</em> to your files instead of having to write the entire filepath when calling a function to import data. Then, if you place the CSV file in your project, anyone can open it by using the file’s name, as in <code>read_csv(file = "population-by-state.csv")</code>. This makes the path easier to write and enables others to use your code.</p>
 <p>To create a new RStudio project, go to File New Project. Select either New Directory or Existing Directory and choose where to put your project. If you choose New Directory, you’ll need to specify that you want to create a new project. Next, choose a name for the new directory and where it should live. (Leave the checkboxes that ask about creating a Git repository and using renv unchecked; they’re for more advanced purposes.)</p>
 <p>Once you’ve created this project, you should see two major differences in RStudio’s appearance. First, the files pane no longer shows every file on your computer. Instead, it shows only files in the <code>example-project</code> directory. Right now, that’s just the <code>example-project.Rproj</code> file, which indicates that the folder contains a project. Second, at the top right of RStudio, you can see the name <code>example-project</code>. This label previously read <code>Project: (None)</code>. If you want to make sure you’re working in a project, check for its name here. <a href="#fig-rstudio-active-project.png" class="quarto-xref">Figure&nbsp;<span>1.6</span></a> shows these changes.</p>
-<div id="fig-rstudio-active-project.png" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rstudio-active-project.png" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-active-project.png-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/rstudio-active-project.png" class="img-fluid figure-img">
 </div>
@@ -763,7 +763,7 @@ Figure&nbsp;1.6: RStudio with an active project
 </section><section id="how-to-get-help" class="level2"><h2 class="anchored" data-anchor-id="how-to-get-help">How to Get Help</h2>
 <p>Now that you’ve learned the basics of how R works, you’re probably ready to dive in and write some code. When you do, though, you’re going to encounter errors. Being able to get help when you run into issues is a key part of learning to use R successfully. There are two main strategies you can use to get unstuck.</p>
 <p>The first is to read the documentation for the functions you use. Remember, to access the documentation for any function, simply enter ? and then the name of the function in the console. In the bottom-right pane in <a href="#fig-readcsv-documentation" class="quarto-xref">Figure&nbsp;<span>1.7</span></a>, for example, you can see the result of running <code><a href="https://rdrr.io/r/utils/read.table.html">?read.csv</a></code>.</p>
-<div id="fig-readcsv-documentation" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-readcsv-documentation" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-readcsv-documentation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/readcsv-documentation.png" class="img-fluid figure-img">
 </div>
@@ -856,18 +856,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -899,7 +888,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -907,7 +918,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 11&nbsp; Automatically Accessing Online Data</title>
+<title>11&nbsp; Automatically Accessing Online Data – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 11&nbsp; Automatically Accessing Online Data">
+<meta property="og:title" content="11&nbsp; Automatically Accessing Online Data – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./accessing-data.html">Part III: Automation and Collaboration</a></li><li class="breadcrumb-item"><a href="./accessing-data.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Automatically Accessing Online Data</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now that you’ve connected R to your Google account, you can import the fake data that Harris created about video game preferences (access it at <a href="https://data.rfortherestofus.com/google-sheet" class="uri">https://data.rfortherestofus.com/google-sheet</a>). <a href="#fig-video-game-survey-data" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> shows what it looks like in Google Sheets.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-video-game-survey-data" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-video-game-survey-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-video-game-survey-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/video-game-survey-data.png" class="img-fluid figure-img" width="774">
 </div>
@@ -503,7 +503,7 @@ $ favorite_game  &lt;chr&gt; "It's hard to choose. House Flipper and Parkitect a
 <p>These sections calculate the number of survey respondents, then put this value in the text using inline R code; create a table that breaks down the respondents by age group; and generate a graph displaying how many respondents like video games. <a href="#fig-video-game-report" class="quarto-xref">Figure&nbsp;<span>11.2</span></a> shows the resulting report.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-video-game-report" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-video-game-report" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-video-game-report-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/video-game-report.png" class="img-fluid figure-img" width="966">
 </div>
@@ -821,7 +821,7 @@ $ `What's your favorite game?`      &lt;chr&gt; "It's hard to choose. House Flip
 <p>After importing the data with the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> function, the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function pipes it directly into ggplot. States (which use the variable <code>NAME</code>) will go on the y-axis, and median age (<code>estimate</code>) will go on the x-axis. A simple <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> creates the bar chart shown in <a href="#fig-median-age-chart" class="quarto-xref">Figure&nbsp;<span>11.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-median-age-chart" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-median-age-chart" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-median-age-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="accessing-data_files/figure-html/fig-median-age-chart-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -880,7 +880,7 @@ First 10 features:
 <p>The resulting map, shown in <a href="#fig-median-age-map-bad" class="quarto-xref">Figure&nbsp;<span>11.4</span></a>, is less than ideal because the Aleutian Islands in Alaska cross the 180-degree line of longitude, or the International Date Line. As a result, most of Alaska appears on one side of the map and a small part appears on the other side. What’s more, both Hawaii and Puerto Rico are hard to see.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-median-age-map-bad" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-median-age-map-bad" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-median-age-map-bad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="accessing-data_files/figure-html/fig-median-age-map-bad-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -908,7 +908,7 @@ Figure&nbsp;11.4: A hard-to-read map showing median age by state
 <p>Setting the <code>preserve_area</code> argument to <code>FALSE</code> shrinks the giant state of Alaska and makes Hawaii and Puerto Rico larger. Although the state sizes in the map won’t be precise, the map will be easier to read, as you can see in <a href="#fig-median-age-map-good" class="quarto-xref">Figure&nbsp;<span>11.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-median-age-map-good" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-median-age-map-good" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-median-age-map-good-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="accessing-data_files/figure-html/fig-median-age-map-good-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -990,18 +990,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1033,7 +1022,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -1041,7 +1052,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

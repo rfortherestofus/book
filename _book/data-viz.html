@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 2&nbsp; Principles of Data Visualization</title>
+<title>2&nbsp; Principles of Data Visualization – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 2&nbsp; Principles of Data Visualization">
+<meta property="og:title" content="2&nbsp; Principles of Data Visualization – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./data-viz.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Principles of Data Visualization</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -328,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Need proof that Scherer and Karamanis’s decluttered graph is better than the alternative? <a href="#fig-cluttered-viz" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows a version with a few tweaks to the code to include grid lines and text labels on axes.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-final-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-final-viz" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-final-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-final-viz-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -340,7 +340,7 @@ Figure&nbsp;2.1: A section of the final drought visualization, with a few tweaks
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-cluttered-viz" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-cluttered-viz" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-cluttered-viz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-cluttered-viz-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -354,7 +354,7 @@ Figure&nbsp;2.2: The cluttered version of the drought visualization
 <p>One of the best ways to reduce clutter is to break a single chart into a set of component charts, as Scherer and Karamanis have done (this approach, known as <em>faceting</em>, will be discussed further in <a href="#sec-faceting-the-plot" class="quarto-xref"><span>Section 2.4.3</span></a>). Each rectangle represents one region in one year. Filtering the larger chart to show the Southwest region in 2003 produces the graph shown in <a href="#fig-viz-sw-2003" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>, where the x-axis indicates the week and the y-axis indicates the percentage of that region at different drought levels.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-viz-sw-2003" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-viz-sw-2003" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-viz-sw-2003-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-viz-sw-2003-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -372,7 +372,7 @@ Figure&nbsp;2.3: A drought visualization for the Southwest in 2003
 <p>Thinking about data visualization through the lens of the grammar of graphics helps highlight, for example, that graphs typically have some data that is plotted on the x-axis and other data that is plotted on the y-axis. This is the case whether the graph is a bar chart or a line chart, as <a href="#fig-bar-line-chart" class="quarto-xref">Figure&nbsp;<span>2.4</span></a> shows.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bar-line-chart" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-bar-line-chart" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-bar-line-chart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-bar-line-chart-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -427,7 +427,7 @@ Figure&nbsp;2.4: A bar chart and a line chart showing identical data
 <p>Running this code produces the chart in <a href="#fig-blank-ggplot" class="quarto-xref">Figure&nbsp;<span>2.5</span></a>, which doesn’t look like much yet.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-blank-ggplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-blank-ggplot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-blank-ggplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-blank-ggplot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -453,7 +453,7 @@ Figure&nbsp;2.5: A blank chart that maps year values to the x-axis and life expe
 <p>Now the graph shows that people in 1952 had a life expectancy of about 28 and that this value rose every year in the dataset (see <a href="#fig-gapminder-points-plot" class="quarto-xref">Figure&nbsp;<span>2.6</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-gapminder-points-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gapminder-points-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-points-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-gapminder-points-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -477,7 +477,7 @@ Figure&nbsp;2.6: The life expectancy chart with points added
 <p><a href="#fig-gapminder-line-plot" class="quarto-xref">Figure&nbsp;<span>2.7</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-gapminder-line-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gapminder-line-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-gapminder-line-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -502,7 +502,7 @@ Figure&nbsp;2.7: The data as a line chart
 <p>This code generates a line chart with points, as shown in <a href="#fig-gapminder-points-line-plot" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-gapminder-points-line-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gapminder-points-line-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-points-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-gapminder-points-line-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -526,7 +526,7 @@ Figure&nbsp;2.8: The same data with both points and a line
 <p>Notice in <a href="#fig-gapminder-bar-plot" class="quarto-xref">Figure&nbsp;<span>2.9</span></a> that the y-axis range has been automatically updated, going from 0 to 40 to account for the different geom.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-gapminder-bar-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gapminder-bar-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-bar-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-gapminder-bar-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -554,7 +554,7 @@ Figure&nbsp;2.9: The life expectancy data as a bar chart
 <p><a href="#fig-gapminder-bar-colors-plot" class="quarto-xref">Figure&nbsp;<span>2.10</span></a> shows the result. Now the fill is darker for earlier years and lighter for later years (as also indicated by the legend, added to the right of the plot).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-gapminder-bar-colors-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gapminder-bar-colors-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-bar-colors-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-gapminder-bar-colors-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -596,7 +596,7 @@ Figure&nbsp;2.10: The same chart, now with added colors
 <p>This theme starts to declutter the plot, as you can see in <a href="#fig-gapminder-theme-plot" class="quarto-xref">Figure&nbsp;<span>2.11</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-gapminder-theme-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-gapminder-theme-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-gapminder-theme-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-gapminder-theme-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -664,7 +664,7 @@ Figure&nbsp;2.11: The same chart with <code><a href="https://ggplot2.tidyverse.o
 <p>The ggplot() function tells R to put <code>week</code> on the x-axis and <code>percentage</code> on the y-axis, as well as to use the category variable for the <code>fill</code> color. The <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> function creates a bar chart in which each bar’s fill color represents the percentage of the region at each drought level for that particular week, as shown in <a href="#fig-southwest-2003-no-style-plot" class="quarto-xref">Figure&nbsp;<span>2.12</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-southwest-2003-no-style-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-southwest-2003-no-style-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-southwest-2003-no-style-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-southwest-2003-no-style-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -719,11 +719,10 @@ Figure&nbsp;2.12: One year (2003) and region (Southwest) of the drought visualiz
 <span>    position <span class="op">=</span> <span class="st">"right"</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>On the x axis, they removed both the axis title (“week”) using <code>name = NULL</code> and the 0–50 text with <code>guide = "none"</code>. On the y axis, they removed the title and text showing percentages using <code>labels = NULL</code>, which functionally does the same thing as <code>guide = "none"</code>. They also moved the axis lines themselves to the right side using <code>position = "right"</code>. These axis lines are apparent only as tick marks at this point but will become more visible later. <a href="#fig-southwest-2003-xy-scales-plot" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> shows the result of these tweaks.</p>
 <p>On the x-axis, they removed both the axis title (“week”) using <code>name = NULL</code> and the axis labels (the weeks numbered 0 to 50) with <code>guide = "none"</code>. On the y-axis, they removed the title and text showing percentages using labels = NULL, which functionally does the same thing as <code>guide = "none"</code>. They also moved the axis lines themselves to the right side using <code>position = "right"</code>. These axis lines are apparent only as tick marks at this point but will become more visible later. <a href="#fig-southwest-2003-xy-scales-plot" class="quarto-xref">Figure&nbsp;<span>2.13</span></a> shows the result of these tweaks.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-southwest-2003-xy-scales-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-southwest-2003-xy-scales-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-southwest-2003-xy-scales-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-southwest-2003-xy-scales-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -772,7 +771,7 @@ Figure&nbsp;2.13: The 2003 drought data for the Southwest with adjustments to th
 <p>Scherer and Karamanis put <code>year</code> in rows and <code>hub</code> (region) in columns. The <code>switch = "y"</code> argument moves the year label from the right side (where it appears by default) to the left. With this code in place, you can see the final plot coming together in <a href="#fig-drought-viz-faceted-plot" class="quarto-xref">Figure&nbsp;<span>2.14</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-drought-viz-faceted-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-drought-viz-faceted-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-faceted-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-drought-viz-faceted-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -911,7 +910,7 @@ Figure&nbsp;2.14: The faceted version of the drought visualization
 <p>They also set some additional aesthetic properties specific to this geom — <code>xmin</code>, <code>xmax</code>, <code>ymin</code>, and <code>ymax</code> — which determine the boundaries of the rectangle it produces. The result is a gray background behind each small multiple, as shown in <a href="#fig-drought-viz-theme-tweaks-plot" class="quarto-xref">Figure&nbsp;<span>2.15</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-drought-viz-theme-tweaks-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-drought-viz-theme-tweaks-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-theme-tweaks-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-drought-viz-theme-tweaks-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -939,7 +938,7 @@ Figure&nbsp;2.15: Faceted version of the drought visualization with gray backgro
 <p>The <code>name</code> argument sets the legend title, and the labels argument specifies the <code>labels</code> that show up in the legend. <a href="#fig-drought-viz-legend-tweaks" class="quarto-xref">Figure&nbsp;<span>2.16</span></a> shows the result of these changes.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-drought-viz-legend-tweaks" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-drought-viz-legend-tweaks" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-drought-viz-legend-tweaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="data-viz_files/figure-html/fig-drought-viz-legend-tweaks-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -1174,18 +1173,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1217,7 +1205,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -1225,7 +1235,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

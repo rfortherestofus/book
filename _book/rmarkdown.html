@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 6&nbsp; R Markdown Reports</title>
+<title>6&nbsp; R Markdown Reports – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 6&nbsp; R Markdown Reports">
+<meta property="og:title" content="6&nbsp; R Markdown Reports – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rmarkdown.html">Part II: Reports, Presentations, and Websites</a></li><li class="breadcrumb-item"><a href="./rmarkdown.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R Markdown Reports</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To create an R Markdown document in RStudio, go to <strong>File &gt; New File &gt; R Markdown</strong>. Choose a title, author, and date, as well as your default output format (HTML, PDF, or Word). These values can be changed later. Click <strong>OK</strong>, and RStudio will create an R Markdown document with some placeholder content, as shown in <a href="#fig-default-rmd-content" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-default-rmd-content" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-default-rmd-content" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-default-rmd-content-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/default-rmd-content.png" class="img-fluid figure-img" width="428">
 </div>
@@ -333,7 +333,7 @@ Figure&nbsp;6.1: The placeholder content in a new R Markdown document
 <p>To explore the structure of an R Markdown document, you’ll create a report about penguins using data from the palmerpenguins package introduced in <a href="themes.html" class="quarto-xref"><span>Chapter 3</span></a>. I’ve separated the data by year, and you’ll use just the 2007 data. <a href="#fig-rmarkdown-pieces" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> shows the complete R Markdown document, with boxes surrounding each section.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-rmarkdown-pieces" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rmarkdown-pieces" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rmarkdown-pieces-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/rmarkdown-pieces-color.png" class="img-fluid figure-img" width="476">
 </div>
@@ -380,7 +380,7 @@ Figure&nbsp;6.2: Components of an R Markdown document
 <p><a href="#fig-simple-histogram" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows the resulting histogram.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-simple-histogram" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-simple-histogram" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-simple-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="rmarkdown_files/figure-html/fig-simple-histogram-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -446,7 +446,7 @@ Figure&nbsp;6.3: A simple histogram generated by an R Markdown code chunk
 <p>Markdown text sections (which have a white background in RStudio) will be converted into formatted text in the Word document after knitting. <a href="#fig-markdown-text-to-word" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> highlights the equivalent sections in the R Markdown and Word documents.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-markdown-text-to-word" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-markdown-text-to-word" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-markdown-text-to-word-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/markdown-text-to-word.png" class="img-fluid figure-img" width="838">
 </div>
@@ -495,7 +495,7 @@ Figure&nbsp;6.4: Markdown text in R Markdown and its equivalent in a knitted Wor
 <p>Now that you’ve switched <em>penguins-2007.csv</em> to <em>penguins-2008.csv</em>, you can reknit the report and produce a new Word document, complete with updated results. <a href="#fig-penguins-report-2008" class="quarto-xref">Figure&nbsp;<span>6.5</span></a> shows the new document.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-penguins-report-2008" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-penguins-report-2008" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-penguins-report-2008-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/penguins-report-2008.png" class="img-fluid figure-img" width="291">
 </div>
@@ -510,7 +510,7 @@ Figure&nbsp;6.5: The knitted Word document with 2008 data
 <p>You can run the code in an R Markdown document in two ways. The first is by knitting the entire document. The second is to run code chunks manually (also known as <em>interactively</em>) by pressing the green play button at the top right of a code chunk. The down arrow next to the green play button will run all code until that point. You can see these buttons in <a href="#fig-code-chunk-buttons-annotated" class="quarto-xref">Figure&nbsp;<span>6.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-code-chunk-buttons-annotated" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-code-chunk-buttons-annotated" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-code-chunk-buttons-annotated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/code-chunk-buttons-annotated-color.png" class="img-fluid figure-img" width="613">
 </div>
@@ -630,18 +630,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -673,7 +662,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -681,7 +692,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

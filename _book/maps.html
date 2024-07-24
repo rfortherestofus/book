@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.54">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
-<title>R for the Rest of Us: A Statistics-Free Introduction - 4&nbsp; Maps and Geospatial Data</title>
+<title>4&nbsp; Maps and Geospatial Data – R for the Rest of Us: A Statistics-Free Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.usefathom.com/script.js" data-site="JNTNGGFP" defer=""></script>
-<meta property="og:title" content="R for the Rest of Us: A Statistics-Free Introduction - 4&nbsp; Maps and Geospatial Data">
+<meta property="og:title" content="4&nbsp; Maps and Geospatial Data – R for the Rest of Us: A Statistics-Free Introduction">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://book.rfortherestofus.com/assets/featured-image.png">
 <meta property="og:site_name" content="R for the Rest of Us: A Statistics-Free Introduction">
@@ -111,13 +111,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./crash-course.html">Part I: Visualizations</a></li><li class="breadcrumb-item"><a href="./maps.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maps and Geospatial Data</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -154,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Part I: Visualizations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -195,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Part II: Reports, Presentations, and Websites</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -236,9 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Part III: Automation and Collaboration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -366,7 +366,7 @@ Geodetic CRS:  WGS 84
 <p><a href="#fig-wyoming-map-plot" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> shows the resulting map of Wyoming. It may not look like much, but I wasn’t the one who made Wyoming a nearly perfect rectangle!</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-wyoming-map-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-wyoming-map-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-map-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-wyoming-map-plot-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -379,7 +379,7 @@ Figure&nbsp;4.1: A map of Wyoming generated using <code>POLYGON</code> simple fe
 <p>Other geometry types used in simple features data include <code>POINT</code>, to display elements such as a pin on a map that represents a single location. For example, the map in <a href="#fig-ev-station-map" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> uses <code>POINT</code> data to show a single electric vehicle charging station in Wyoming.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-ev-station-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-ev-station-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ev-station-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-ev-station-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -392,7 +392,7 @@ Figure&nbsp;4.2: A map of Wyoming containing <code>POINT</code> simple features 
 <p>The <code>LINESTRING</code> geometry type is for a set of points that can be connected with lines and is often used to represent roads. <a href="#fig-wy-roads-map" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> shows a map that uses <code>LINESTRING</code> data to represent a section of US Highway 30 that runs through Wyoming.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-wy-roads-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-wy-roads-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wy-roads-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-wy-roads-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -405,7 +405,7 @@ Figure&nbsp;4.3: A road represented using <code>LINESTRING</code> simple feature
 <p>Each of these geometry types has a <code>MULTI</code> variation (<code>MULTIPOINT</code>, <code>MULTILINESTRING</code>, and <code>MULTIPOLYGON</code>) that combines multiple instances of the type in one row of data. For example, <a href="#fig-wyoming-ev-stations-map" class="quarto-xref">Figure&nbsp;<span>4.4</span></a> uses <code>MULTIPOINT</code> data to show all electric vehicle charging stations in Wyoming.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-wyoming-ev-stations-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-wyoming-ev-stations-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-ev-stations-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-wyoming-ev-stations-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -418,7 +418,7 @@ Figure&nbsp;4.4: Using <code>MULTIPOINT</code> data to represent multiple electr
 <p>Likewise, you can use MULTILINESTRING data to show not just one road but all major roads in Wyoming (<a href="#fig-wyoming-roads-map" class="quarto-xref">Figure&nbsp;<span>4.5</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-wyoming-roads-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-wyoming-roads-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-roads-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-wyoming-roads-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -455,7 +455,7 @@ Geodetic CRS:  WGS 84
 <p>As you can see on the second line, the geometry type of this data is <code>MULTIPOLYGON</code>. In addition, the repeated <code>MULTIPOLYGON</code> text in the geometry column indicates that each row contains a shape of type <code>MULTIPOLYGON</code>. <a href="#fig-wyoming-counties-map" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> shows a map made with this data.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-wyoming-counties-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-wyoming-counties-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-counties-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-wyoming-counties-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -477,7 +477,7 @@ Figure&nbsp;4.6: A map of Wyoming counties
 <p>The data for the Wyoming counties map includes the line <code>Geodetic CRS: WGS 84</code>, indicating the use of a coordinate reference system known as <em>WGS84</em>. To see a different projection, check out the same map using the <em>Albers equal-area conic convenience projection</em>. While Wyoming looked perfectly horizontal in <a href="#fig-wyoming-counties-map" class="quarto-xref">Figure&nbsp;<span>4.6</span></a>, the version in <a href="#fig-wyoming-counties-map-wgs84" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> appears to be tilted.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-wyoming-counties-map-wgs84" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-wyoming-counties-map-wgs84" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-wyoming-counties-map-wgs84-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-wyoming-counties-map-wgs84-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -496,7 +496,7 @@ Figure&nbsp;4.7: A map of Wyoming counties using the Albers equal-area conic con
 <p>Now that you understand the basics of geospatial data, let’s walk through the code Madjid used to make his COVID-19 map. Shown in Figure 4-8, it makes use of the geometry types, dimensions, bounding boxes, projections, and the geometry column just discussed.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-madjid-covid-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-madjid-covid-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-madjid-covid-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="assets/covid-map.png" class="img-fluid figure-img" width="1280">
 </div>
@@ -791,7 +791,7 @@ First 10 features:
 <p>The <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> function plots the geospatial data, modifying a couple of arguments: <code>size = .05</code> makes the state borders less prominent and <code>color = "grey55"</code> sets them to a medium-gray color. Then, the <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> function is used for the faceting (that is, to make one map for each day). The <code>vars(fancy _date)</code> code specifies that the fancy_date variable should be used for the faceted maps, and <code>strip.position = "bottom"</code> moves the labels Jan.&nbsp;01, Jan.&nbsp;02, and so on to the bottom of the maps. Figure <a href="#fig-basic-map" class="quarto-xref">Figure&nbsp;<span>4.9</span></a> shows the result.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-basic-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-basic-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-basic-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-basic-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -900,7 +900,7 @@ Figure&nbsp;4.9: A map showing the incidence rate of COVID-19 for the first six 
 <p>There you have it! <a href="#fig-final-map" class="quarto-xref">Figure&nbsp;<span>4.10</span></a> shows the re-creation of his COVID-19 map.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-final-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-final-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-final-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-final-map-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -941,7 +941,7 @@ Figure&nbsp;4.10: The re-creation of Abdoul Madjid’s map
 <p><a href="#fig-africa-map" class="quarto-xref">Figure&nbsp;<span>4.11</span></a> shows the resulting map.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-africa-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-africa-map" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-africa-map-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -971,7 +971,7 @@ Figure&nbsp;4.11: A map of Africa made with data from the <code>rnaturalearth</c
 <p>When run, this code generates the map in <a href="#fig-africa-map-different-projection" class="quarto-xref">Figure&nbsp;<span>4.12</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-africa-map-different-projection" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-africa-map-different-projection" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-map-different-projection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-africa-map-different-projection-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -1027,7 +1027,7 @@ First 10 features:
 <p>This code generates the map shown in Figure 4-13.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-africa-map-20m" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-africa-map-20m" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-africa-map-20m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="maps_files/figure-html/fig-africa-map-20m-1.png" class="img-fluid figure-img" width="672">
 </div>
@@ -1113,18 +1113,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1156,7 +1145,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/book\.rfortherestofus\.com\/");
@@ -1164,7 +1175,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
