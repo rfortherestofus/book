@@ -472,7 +472,7 @@ save_image_for_nostarch(here::here("assets/readcsv-documentation.png"))
 Help files can be a bit hard to decipher, but essentially they describe what package the function comes from, what the function does, what arguments it accepts, and some examples of how to use it.
 
 ::: {.callout-tip}
-For additional guidance on reading documentation, I recommend the appendix of Kieran Healy’s book *Data Visualization: A Practical Introduction*. A free online version is available at <https://socviz.co/appendix>.html.
+For additional guidance on reading documentation, I recommend the appendix of Kieran Healy’s book *Data Visualization: A Practical Introduction*. A free online version is available at <https://socviz.co/appendix.html>.
 :::
 
 The second approach is to read the documentation websites associated with many R packages. These can be easier to read than RStudio’s help files. In addition, they often contain longer articles, known as *vignettes*, that provide an overview of how a given package works. Reading these can help you understand how to combine individual functions in the context of a larger project. Every package discussed in this book has a good documentation website.
