@@ -644,7 +644,7 @@ gapminder_10_rows
 
 This output is a shortened version of the full which includes over 1,700 rows of data.
 
-Before making a chart with ggplot, you need to decice which variable to put on the x-axis and which to put on the y-axis. For data showing change over time, it’s common to put the date (in this case, `year`) on the x-axis and the changing value (in this case, `lifeExp`) on the y-axis. To do so, define the `ggplot()` function as follows:
+Before making a chart with ggplot, you need to decide which variable to put on the x-axis and which to put on the y-axis. For data showing change over time, it’s common to put the date (in this case, `year`) on the x-axis and the changing value (in this case, `lifeExp`) on the y-axis. To do so, define the `ggplot()` function as follows:
 
 ```{r}
 #| label: blank-ggplot
