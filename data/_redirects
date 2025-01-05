@@ -1,2 +1,4 @@
 # Redirects from what the browser requests to what we serve
-/google-sheet      https://docs.google.com/spreadsheets/d/1AR0_RcFBg8wdiY4Cj-k8vRypp_txh27MyZuiRdqScog/edit?usp=sharing
+
+/google-sheet https://docs.google.com/spreadsheets/d/1AR0_RcFBg8wdiY4Cj-k8vRypp_txh27MyZuiRdqScog/edit?usp=sharing
+/data/gapminder_10_rows.csv https://data.rfortherestofus.com/data/gapminder_10_rows.csv
