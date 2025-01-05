@@ -6,6 +6,8 @@ No updates
 
 ## Chapter 2: Principles of Data Visualization
 
+The URL to download the 10 rows of Gapminder data is incorrect. Rather than https://data.rfortherestofus.com/data/gapminder_10_rows.csv, it should be https://data.rfortherestofus.com/gapminder_10_rows.csv. A redirect has been created so that the former URL redirects automatically to the latter URL.
+
 Figure 2-11 has been updated to use the correct plot (in the first print version, it uses the same plot shown in Figure 2-10).
 
 ## Chapter 3: Custom Data Visualization Themes
