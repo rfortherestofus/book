@@ -107,7 +107,9 @@ Having created the function with the `data` argument, now you can run it with an
 ```{r}
 #| echo: true
 #| eval: false
-covid_data <- read_csv("https://data.rfortherestofus.com/us-states-covid-rolling-average.csv")
+covid_data <- read_csv(
+  "https://data.rfortherestofus.com/us-states-covid-rolling-average.csv"
+)
 
 show_in_excel(data = covid_data)
 ```
@@ -229,9 +231,8 @@ Your first idea might be to add a new argument for the level of data to retrieve
 ```{r}
 #| echo: true
 get_acs_race_ethnicity <- function(
-  clean_variable_names = FALSE,
-  my_geography
-) {
+    clean_variable_names = FALSE,
+    my_geography) {
   race_ethnicity_data <-
     get_acs(
       geography = my_geography,
@@ -262,9 +263,8 @@ The `...` syntax gives you a more efficient option. Placing `...` in the `get_ac
 ```{r}
 #| echo: true
 get_acs_race_ethnicity <- function(
-  clean_variable_names = FALSE,
-  ...
-) {
+    clean_variable_names = FALSE,
+    ...) {
   race_ethnicity_data <-
     get_acs(
       ...,
@@ -444,7 +444,7 @@ You should get the following message:
 
 The `Setting active project...` line indicates that you’re working in the `dk` project. The second line indicates that the *DESCRIPTION* file has been edited. This file provides metadata about the package you’re developing. 
 
-Next, add the `janitor` package the same way you added `tidyverse`
+Next, add the `janitor` package the same way you added `tidycensus`
 
 ```{r}
 #| echo: true
@@ -495,9 +495,8 @@ It appeared because you were using functions without saying what package they ca
 #| echo: true
 #| eval: false
 get_acs_race_ethnicity <- function(
-  clean_variable_names = FALSE,
-  ...
-) {
+    clean_variable_names = FALSE,
+    ...) {
   race_ethnicity_data <- tidycensus::get_acs(
     ...,
     variables = c(

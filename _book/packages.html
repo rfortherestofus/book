@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.6.43">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
 <title>12&nbsp; Creating Functions and Packages – R for the Rest of Us: A Statistics-Free Introduction</title>
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-91ab9a974b767e93c41fb766c98b0fc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -389,7 +389,9 @@ Figure&nbsp;12.1: The new function in the global environment
 </div>
 <p>Having created the function with the <code>data</code> argument, now you can run it with any data you want to. This code, for example, imports the COVID case data from <a href="maps.html" class="quarto-xref"><span>Chapter 4</span></a> and opens it in Excel:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://data.rfortherestofus.com/us-states-covid-rolling-average.csv"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://data.rfortherestofus.com/us-states-covid-rolling-average.csv"</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">show_in_excel</span><span class="op">(</span>data <span class="op">=</span> <span class="va">covid_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -506,9 +508,8 @@ Figure&nbsp;12.1: The new function in the global environment
 <p>Your first idea might be to add a new argument for the level of data to retrieve. You could edit the first two lines of the function as follows to add a <code>my_geography</code> argument and then use it in the <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> function like so:</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
-<span>  <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="va">my_geography</span></span>
-<span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    <span class="va">my_geography</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
 <span>      geography <span class="op">=</span> <span class="va">my_geography</span>,</span>
@@ -535,9 +536,8 @@ Figure&nbsp;12.1: The new function in the global environment
 <p>The <code>...</code> syntax gives you a more efficient option. Placing <code>...</code> in the <code>get_acs_race_ethnicity()</code> function allows you to automatically pass any of its arguments to <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> by including <code>...</code> in that function as well:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
-<span>  <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span></span>
 <span>    <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
 <span>      <span class="va">...</span>,</span>
@@ -698,7 +698,7 @@ clean_names get_acs
 ✔ Adding 'tidycensus' to Imports field in DESCRIPTION
 • Refer to functions with `tidycensus::fun()`</code></pre>
 <p>The <code>Setting active project...</code> line indicates that you’re working in the <code>dk</code> project. The second line indicates that the <em>DESCRIPTION</em> file has been edited. This file provides metadata about the package you’re developing.</p>
-<p>Next, add the <code>janitor</code> package the same way you added <code>tidyverse</code></p>
+<p>Next, add the <code>janitor</code> package the same way you added <code>tidycensus</code></p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_package.html">use_package</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"janitor"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -728,9 +728,8 @@ clean_names get_acs</code></pre>
 <p>It appeared because you were using functions without saying what package they came from. The <code>clean_names()</code> function comes from the <code>janitor</code> package, and <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code> comes from <code>tidycensus</code>, so you will need to add these package names before each function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_acs_race_ethnicity</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
-<span>  <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">clean_variable_names</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">race_ethnicity_data</span> <span class="op">&lt;-</span> <span class="fu">tidycensus</span><span class="fu">::</span><span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
 <span>    <span class="va">...</span>,</span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
@@ -974,8 +973,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1086,7 +1083,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

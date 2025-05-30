@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.6.43">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="David Keyes">
 <title>4&nbsp; Maps and Geospatial Data – R for the Rest of Us: A Statistics-Free Introduction</title>
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-91ab9a974b767e93c41fb766c98b0fc3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -707,28 +707,17 @@ Dimension:     XY
 Bounding box:  xmin: -3112200 ymin: -1697728 xmax: 2258154 ymax: 1558935
 Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 First 10 features:
-        name       date fancy_date incidence_rate
-1  Louisiana 2021-01-01    Jan. 01            &gt;50
-2  Louisiana 2021-01-02    Jan. 02            &gt;45
-3  Louisiana 2021-01-03    Jan. 03            &gt;45
-4  Louisiana 2021-01-04    Jan. 04            &gt;50
-5  Louisiana 2021-01-05    Jan. 05            &gt;50
-6  Louisiana 2021-01-06    Jan. 06            &gt;50
-7  Louisiana 2021-01-07    Jan. 07            &gt;50
-8  Louisiana 2021-01-08    Jan. 08            &gt;50
-9  Louisiana 2021-01-09    Jan. 09            &gt;50
-10 Louisiana 2021-01-10    Jan. 10            &gt;50
-                         geometry
-1  MULTIPOLYGON (((182432.3 -5...
-2  MULTIPOLYGON (((182432.3 -5...
-3  MULTIPOLYGON (((182432.3 -5...
-4  MULTIPOLYGON (((182432.3 -5...
-5  MULTIPOLYGON (((182432.3 -5...
-6  MULTIPOLYGON (((182432.3 -5...
-7  MULTIPOLYGON (((182432.3 -5...
-8  MULTIPOLYGON (((182432.3 -5...
-9  MULTIPOLYGON (((182432.3 -5...
-10 MULTIPOLYGON (((182432.3 -5...</code></pre>
+    name       date fancy_date incidence_rate                       geometry
+1  Texas 2021-01-01    Jan. 01            &gt;45 MULTIPOLYGON (((-998043.8 -...
+2  Texas 2021-01-02    Jan. 02            &gt;50 MULTIPOLYGON (((-998043.8 -...
+3  Texas 2021-01-03    Jan. 03            &gt;50 MULTIPOLYGON (((-998043.8 -...
+4  Texas 2021-01-04    Jan. 04            &gt;50 MULTIPOLYGON (((-998043.8 -...
+5  Texas 2021-01-05    Jan. 05            &gt;50 MULTIPOLYGON (((-998043.8 -...
+6  Texas 2021-01-06    Jan. 06            &gt;50 MULTIPOLYGON (((-998043.8 -...
+7  Texas 2021-01-07    Jan. 07            &gt;50 MULTIPOLYGON (((-998043.8 -...
+8  Texas 2021-01-08    Jan. 08            &gt;50 MULTIPOLYGON (((-998043.8 -...
+9  Texas 2021-01-09    Jan. 09            &gt;50 MULTIPOLYGON (((-998043.8 -...
+10 Texas 2021-01-10    Jan. 10            &gt;50 MULTIPOLYGON (((-998043.8 -...</code></pre>
 </div>
 </div>
 <p>You can see the metadata and <code>geometry</code> columns discussed earlier in the chapter.</p>
@@ -748,28 +737,28 @@ Dimension:     XY
 Bounding box:  xmin: -3112200 ymin: -1697728 xmax: 2258154 ymax: 1558935
 Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 First 10 features:
-        name       date fancy_date incidence_rate
-1  Louisiana 2021-01-01    Jan. 01            &gt;50
-2  Louisiana 2021-01-02    Jan. 02            &gt;45
-3  Louisiana 2021-01-03    Jan. 03            &gt;45
-4  Louisiana 2021-01-04    Jan. 04            &gt;50
-5  Louisiana 2021-01-05    Jan. 05            &gt;50
-6  Louisiana 2021-01-06    Jan. 06            &gt;50
-7   Maryland 2021-01-01    Jan. 01            &gt;45
-8   Maryland 2021-01-02    Jan. 02            &gt;45
-9   Maryland 2021-01-03    Jan. 03            &gt;40
-10  Maryland 2021-01-04    Jan. 04            &gt;40
+         name       date fancy_date incidence_rate
+1       Texas 2021-01-01    Jan. 01            &gt;45
+2       Texas 2021-01-02    Jan. 02            &gt;50
+3       Texas 2021-01-03    Jan. 03            &gt;50
+4       Texas 2021-01-04    Jan. 04            &gt;50
+5       Texas 2021-01-05    Jan. 05            &gt;50
+6       Texas 2021-01-06    Jan. 06            &gt;50
+7  California 2021-01-01    Jan. 01            &gt;50
+8  California 2021-01-02    Jan. 02            &gt;50
+9  California 2021-01-03    Jan. 03            &gt;50
+10 California 2021-01-04    Jan. 04            &gt;50
                          geometry
-1  MULTIPOLYGON (((182432.3 -5...
-2  MULTIPOLYGON (((182432.3 -5...
-3  MULTIPOLYGON (((182432.3 -5...
-4  MULTIPOLYGON (((182432.3 -5...
-5  MULTIPOLYGON (((182432.3 -5...
-6  MULTIPOLYGON (((182432.3 -5...
-7  MULTIPOLYGON (((1722285 240...
-8  MULTIPOLYGON (((1722285 240...
-9  MULTIPOLYGON (((1722285 240...
-10 MULTIPOLYGON (((1722285 240...</code></pre>
+1  MULTIPOLYGON (((-998043.8 -...
+2  MULTIPOLYGON (((-998043.8 -...
+3  MULTIPOLYGON (((-998043.8 -...
+4  MULTIPOLYGON (((-998043.8 -...
+5  MULTIPOLYGON (((-998043.8 -...
+6  MULTIPOLYGON (((-998043.8 -...
+7  MULTIPOLYGON (((-2066285 -2...
+8  MULTIPOLYGON (((-2066285 -2...
+9  MULTIPOLYGON (((-2066285 -2...
+10 MULTIPOLYGON (((-2066285 -2...</code></pre>
 </div>
 </div>
 <p>Madjid’s map is giant, as it includes all 365 days. The size of a few elements have been changed so that they fit in this book.</p>
@@ -1160,8 +1149,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1272,7 +1259,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
